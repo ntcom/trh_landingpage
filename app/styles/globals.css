@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-app {
+  @apply container mx-auto max-w-container;
+}
+
+.heading {
+  @apply text-[26px] text-primary font-normal;
+}
+
+.input-app {
+  @apply border outline-none border-gray-300 text-gray-900 text-sm rounded-md focus:ring-primary focus:border-primary block w-full h-[34px] px-2.5;
+}
+
+.btn-app {
+  @apply text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+}
+.btn-danger {
+  @apply focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900;
+}
+.btn-success {
+  @apply focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800;
+}
+.btn-warn {
+  @apply focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900;
+}
+
+.divide {
+  @apply border-b border-[#eee] mt-2 mb-4 block;
+}
+
+.required::after {
+  content: " *";
+  color: #f00;
+}
