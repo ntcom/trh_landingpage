@@ -3,7 +3,7 @@ import search from "@/assets/svgs/search.svg";
 import chevronRight from "@/assets/svgs/chevron-right.svg";
 import docs from "@/assets/svgs/docs.svg";
 
-export default function Sidebar({ sideBar, setSideBar }) {
+export default function Sidebar({ sideBar, setSideBar }: any) {
   return (
     <div>
       <div
