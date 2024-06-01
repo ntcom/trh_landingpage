@@ -1,0 +1,7 @@
+.bg-home {
+  background-image: url(https://ticket.flc.vn/assets/default/images/support-5.jpg);
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  min-height: 425px;
+  width: 100%;
+}

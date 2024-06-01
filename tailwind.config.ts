@@ -9,31 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        "poppins": ["Poppins, sans-serif"],
-        "roboto": ["Roboto, sans-serif"],
+        poppins: ["Poppins, sans-serif"],
+        roboto: ["Roboto, sans-serif"],
       },
-      backgroundImage: {
+      backgroundImage: {},
+      colors: {
+        primary: {
+          DEFAULT: "#0473aa",
+          light: "#60A5FA",
+          dark: "#286090",
+        },
+        secondary: {
+          DEFAULT: "#f5f5f5",
+        },
+      },
+      maxWidth: {
+        container: "1140px",
       },
     },
     screens: {
+      'xsr': '350px',
+
       'xs': '375px',
       // => @media (min-width: 375px) { ... }
 
+      'xss': '396px',
+
+      'xsss': '420px',
+
       'sm': '640px',
-      // => @media (min-width: 640px) { ... }
 
       'md': '768px',
-      // => @media (min-width: 768px) { ... }
+      
+      'mds': '916px',
 
       'lg': '1024px',
-      // => @media (min-width: 1024px) { ... }
+      'lgs': '1200px',
 
       'xl': '1280px',
-      // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
+      "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
-    }
+    },
   },
   plugins: [],
 };
