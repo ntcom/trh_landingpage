@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Image from "next/image";
 import phone from "@/assets/svgs/phone.svg";
@@ -18,14 +18,25 @@ export default function Header() {
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
 
-  window.onscroll = () => {
-    if (window.scrollY >= 56) {
-      setScroll(true);
-      setOnsearch(false)
-    } else {
-      setScroll(false);
-    }
-  };
+  // window.onscroll = () => {
+  //   if (window.scrollY >= 56) {
+  //     setScroll(true);
+  //     setOnsearch(false)
+  //   } else {
+  //     setScroll(false);
+  //   }
+  // };
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 56) {
+        setScroll(true);
+        setOnsearch(false)
+      } else {
+        setScroll(false);
+      }
+    });
+  }, [])
 
   return (
     <div className="w-full">
