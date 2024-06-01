@@ -28,20 +28,25 @@ const config: Config = {
       },
     },
     screens: {
-      xs: "375px",
+      'xsr': '350px',
+
+      'xs': '375px',
       // => @media (min-width: 375px) { ... }
 
-      sm: "640px",
-      // => @media (min-width: 640px) { ... }
+      'xss': '396px',
 
-      md: "768px",
-      // => @media (min-width: 768px) { ... }
+      'xsss': '420px',
 
-      lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
+      'sm': '640px',
 
-      xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
+      'md': '768px',
+      
+      'mds': '916px',
+
+      'lg': '1024px',
+      'lgs': '1200px',
+
+      'xl': '1280px',
 
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
