@@ -28,7 +28,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
           <ul>
             <li>
               <a
-                href="/"
+                href="/services"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />

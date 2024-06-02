@@ -18,25 +18,18 @@ export default function Header() {
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
 
-  // window.onscroll = () => {
-  //   if (window.scrollY >= 56) {
-  //     setScroll(true);
-  //     setOnsearch(false)
-  //   } else {
-  //     setScroll(false);
-  //   }
-  // };
-
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    // if (typeof window !== 'undefined') {
+    window.onscroll = () => {
       if (window.scrollY >= 56) {
         setScroll(true);
-        setOnsearch(false)
+        setOnsearch(false);
       } else {
         setScroll(false);
       }
-    });
-  }, [])
+    };
+    // }
+  }, []);
 
   return (
     <div className="w-full">
@@ -44,13 +37,13 @@ export default function Header() {
         <div className="container flex flex-wrap items-center justify-center lg:justify-between py-[10px] gap-[15px_30px]">
           <div className="flex flex-wrap justify-center sm:justify-start gap-4 md:gap-5 xl:gap-7">
             <div className="flex items-center gap-[15px]">
-              <Image src={phone} height={14} alt=""/>
+              <Image src={phone} height={14} alt="" />
               <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
                 800-123-45-67
               </p>
             </div>
             <div className="flex items-center gap-[15px]">
-              <Image src={pen} height={14} alt=""/>
+              <Image src={pen} height={14} alt="" />
               <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
                 brobit@example.com
               </p>
@@ -59,13 +52,13 @@ export default function Header() {
 
           <div className="flex flex-wrap justify-center sm:justify-end gap-4 md:gap-5 xl:gap-7">
             <div className="flex items-center gap-[15px]">
-              <Image src={user} height={14} alt=""/>
+              <Image src={user} height={14} alt="" />
               <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
                 Log in / Sign Up
               </p>
             </div>
             <div className="flex items-center gap-[15px]">
-              <Image src={message} height={14} alt=""/>
+              <Image src={message} height={14} alt="" />
               <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
                 Request a quote
               </p>
@@ -104,7 +97,9 @@ export default function Header() {
                     type="text"
                     className={`${
                       onSearch ? "w-[280px] opacity-100" : "w-0 opacity-0"
-                    } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${scroll ? 'text-[#218392] border-[#218392]' : 'text-[#fff]'} transition-all duration-300`}
+                    } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${
+                      scroll ? "text-[#218392] border-[#218392]" : "text-[#fff]"
+                    } transition-all duration-300`}
                   />
                   <button
                     onClick={() => {
@@ -117,17 +112,27 @@ export default function Header() {
                     className="absolute right-4"
                   >
                     {scroll ? (
-                      <Image src={searchGreen} width={14} className="hidden md:block" alt=""/>
+                      <Image
+                        src={searchGreen}
+                        width={14}
+                        className="hidden md:block"
+                        alt=""
+                      />
                     ) : (
-                      <Image src={search} width={14} className="hidden md:block" alt=""/>
+                      <Image
+                        src={search}
+                        width={14}
+                        className="hidden md:block"
+                        alt=""
+                      />
                     )}
                   </button>
                 </div>
                 <button onClick={() => setSideBar(true)}>
                   {scroll ? (
-                    <Image src={navigationGreen} width={20} alt=""/>
+                    <Image src={navigationGreen} width={20} alt="" />
                   ) : (
-                    <Image src={navigation} width={20} alt=""/>
+                    <Image src={navigation} width={20} alt="" />
                   )}
                 </button>
               </div>
@@ -142,7 +147,7 @@ export default function Header() {
           href="#"
           className="flex justify-center items-center w-[60px] h-[60px] fixed bottom-0 right-0 bg-[#218392] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-300 z-[998]"
         >
-          <Image src={chevron} alt="" className="-rotate-90"/>
+          <Image src={chevron} alt="" className="-rotate-90" />
         </a>
       )}
     </div>
