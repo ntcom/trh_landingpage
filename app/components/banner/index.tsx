@@ -548,12 +548,12 @@ const Banner = ({ pageName, breadcrumbs }: IProps) => {
 
   if (init) {
     return (
-      <div className="relative h-[450px] overflow-hidden">
-        <div className="absolute left-16 top-16 z-50">
+      <div className="relative h-[450px] overflow-hidden mb-20">
+        {/* <div className="absolute left-16 top-16 z-50">
           <span className="logo-text border-2 uppercase cursor-pointer border-white text-white text-2xl tracking-[0.5em] px-5 py-1 inline-block">
             <strong>Bro</strong>bit{" "}
           </span>
-        </div>
+        </div> */}
         <div className="absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] z-50">
           <h2 className="text-white text-[60px] font-bold uppercase text-center -tracking-[-0.2em]">
             {pageName}
