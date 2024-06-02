@@ -1,6 +1,7 @@
 "use client";
 import Banner from "@/app/components/banner";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function ServicePage() {
@@ -15,12 +16,12 @@ function ServicePage() {
     },
   ];
   return (
-    <div>
+    <div className="mb-20">
       <Banner pageName="services" breadcrumbs={breadcrumbs} />
       <div className="container-app mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
-            <div className="card-appp-[40px] min-h-[380px] flex flex-col">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon01.png"
@@ -40,14 +41,17 @@ function ServicePage() {
                 đầu sử dụng.
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-success self-end">
+                <Link
+                  href="/create-requirement"
+                  className="btn-success self-end"
+                >
                   Tạo yêu cầu mới
-                </button>
+                </Link>
               </div>
             </div>
           </div>
           <div>
-            <div className="card-appp-[40px] min-h-[380px] flex flex-col">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon02.png"
@@ -72,7 +76,7 @@ function ServicePage() {
             </div>
           </div>
           <div>
-            <div className="card-appp-[40px] min-h-[380px] flex flex-col">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon03.png"
@@ -105,7 +109,7 @@ function ServicePage() {
             </div>
           </div>
           <div>
-            <div className="card-appp-[40px] min-h-[380px] flex flex-col">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon05.png"
