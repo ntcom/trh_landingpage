@@ -5,8 +5,8 @@ import arrowSlide from "@/assets/imgs/slider/arrow-slide.png";
 export default function Banner() {
   return (
     <div className="w-full h-[580px] md:h-[720px] xl:h-[1020px] relative">
-      <div className="relative w-full flex justify-center items-center">
-        <Image src={slide1} alt="" className="w-full object-cover" />
+      <div className="relative w-full h-full flex justify-center items-center">
+        <Image src={slide1} alt="" className="w-full h-full object-cover" />
 
         <div className="absolute mt-[50px] sm:mt-[80px] mds:mt-[150px] px-[25px]">
           <p className="text-[16px] md:text-[22px] mds:text-[28px] lg:text-[36px] xl:text-[40px] text-[#fff] font-light tracking-[2px] xsss:tracking-[4px] sm:tracking-[8px] mds:tracking-[10px] lg:tracking-[14px] xl:tracking-[18px] leading-10 text-center uppercase">

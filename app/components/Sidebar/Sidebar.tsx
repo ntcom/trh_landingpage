@@ -3,7 +3,7 @@ import search from "@/assets/svgs/search.svg";
 import chevronRight from "@/assets/svgs/chevron-right.svg";
 import docs from "@/assets/svgs/docs.svg";
 
-export default function Sidebar({ sideBar, setSideBar }) {
+export default function Sidebar({ sideBar, setSideBar }: any) {
   return (
     <div>
       <div
@@ -28,7 +28,7 @@ export default function Sidebar({ sideBar, setSideBar }) {
           <ul>
             <li>
               <a
-                href="/"
+                href="/services"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
