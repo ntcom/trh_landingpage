@@ -1,19 +1,27 @@
+import Banner from "./components/Banner/Banner";
+import BannerBot from "./components/Banner/BannerBot";
+import Blogs from "./components/Blogs/Blogs";
+import Careers from "./components/Careers/Careers";
+import FormQuestion from "./components/FormQuestion/FormQuestion";
+import Intro from "./components/Intro/Intro";
+import Questions from "./components/Questions/Questions";
+import Teams from "./components/Teams/Teams";
+import Television from "./components/Television/Television";
+import Timeline from "./components/Timeline/Timeline";
 import "./styles/app.css";
 export default function Home() {
   return (
     <main className="">
-      <div className="bg-home relative">
-        <div className="absolute transform translate-x-[-50%] translate-y-[-50%] left-1/2 top-1/2">
-          <div>
-            <h2 className="text-[#FFC800] text-3xl font-semibold text-center">
-              Dịch vụ Hỗ trợ Nội bộ
-            </h2>
-            <p className="text-primary-dark text-xl text-center">
-              Dịch vụ Hỗ trợ Nội bộ
-            </p>
-          </div>
-        </div>
-      </div>
+      <Banner />
+      <Intro />
+      <Timeline />
+      <Careers />
+      <Television />
+      <Teams />
+      <FormQuestion />
+      <Blogs />
+      <Questions />
+      <BannerBot />
     </main>
   );
 }
