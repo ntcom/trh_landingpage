@@ -12,13 +12,13 @@ function ServicePage() {
     },
     {
       title: "Services",
-      path: "/service",
+      path: "/services",
     },
   ];
   return (
     <div className="mb-20">
       <BannerCustom pageName="services" breadcrumbs={breadcrumbs} />
-      <div className="container-app mb-16">
+      <div className="container-app px-6 mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="flex">
             <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">
@@ -71,7 +71,12 @@ function ServicePage() {
                 việc.
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-common self-end btn-check">Kiểm tra tiến độ</button>
+                <Link
+                  href="/checking-process"
+                  className="btn-common self-end btn-check"
+                >
+                  Kiểm tra tiến độ
+                </Link>
               </div>
             </div>
           </div>
@@ -102,9 +107,12 @@ function ServicePage() {
                 </p>
               </div>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-common self-end btn-refresh">
+                <Link
+                  href="/create-requirement"
+                  className="btn-common self-end btn-refresh"
+                >
                   Báo cáo sự việc mọi lúc, mọi nơi
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -133,9 +141,12 @@ function ServicePage() {
                 bổ sung cho vấn đề/sự việc đã được hỗ trợ xong.
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-common self-end btn-check">
+                <Link
+                  href="/checking-process"
+                  className="btn-common self-end btn-check"
+                >
                   Việc không trôi, nắm bắt kịp thời
-                </button>
+                </Link>
               </div>
             </div>
           </div>
