@@ -18,7 +18,7 @@ interface IProps {
   pageName: string;
   breadcrumbs: IBreadcrumb[];
 }
-const Banner = ({ pageName, breadcrumbs }: IProps) => {
+const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -592,4 +592,4 @@ const Banner = ({ pageName, breadcrumbs }: IProps) => {
   return <div className="min-h-[450px]"></div>;
 };
 
-export default Banner;
+export default BannerCustom;

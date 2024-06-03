@@ -1,5 +1,5 @@
 "use client";
-import Banner from "../../components/Banner";
+import BannerCustom from "@/app/components/Banner";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,7 +17,7 @@ function ServicePage() {
   ];
   return (
     <div className="mb-20">
-      <Banner pageName="services" breadcrumbs={breadcrumbs} />
+      <BannerCustom pageName="services" breadcrumbs={breadcrumbs} />
       <div className="container-app mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="flex">
