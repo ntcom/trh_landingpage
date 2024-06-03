@@ -14,73 +14,104 @@ import send from "@/assets/svgs/send.svg";
 import refresh from "@/assets/svgs/refresh.svg";
 import cancel from "@/assets/svgs/cancel.svg";
 
+import user from "@/assets/svgs/user.svg";
+import mail from "@/assets/svgs/email.svg";
+import phone from "@/assets/svgs/phone.svg";
+import attach from "@/assets/svgs/attach.svg";
+import note from "@/assets/svgs/note.svg";
+
+const options = [
+  { title: "-- Chọn một chủ đề --", value: 0 },
+  { title: "VPTĐ / Báo tiếp nhận nhân sự mới", value: 1 },
+  { title: "VPTĐ / Đặt lịch họp", value: 2 },
+  { title: "VPTĐ / Đặt phòng Residence 265", value: 3 },
+  { title: "VPTĐ / Yêu cầu về form Báo Cáo Tuần", value: 4 },
+  { title: "Ban thanh tra / Đề nghị xem lại Camera", value: 5 },
+  { title: "VPTĐ / Báo hỗ trợ liên quan đến Tài Sản", value: 6 },
+  { title: "CNTT./ Báo hỗ trợ dịch vụ CNTT", value: 7 },
+  { title: "CNTT./ Yêu cầu về Tài Khoản người dùng", value: 8 },
+  { title: "CNTT./ Yêu cầu kết nối hệ thông, ứng đội", value: 9 },
+  { title: "CNTT./ Đăng ký mượn thiết bị CNTT", value: 10 },
+  { title: "CNTT./ Đăng quảng cáo WIFI Marketing", value: 11 },
+  { title: "CNTT./ Đăng ký tài khoản Polycom", value: 12 },
+  { title: "CNTT./ Đăng ký tạo Dự án trên Hệ thống", value: 13 },
+  { title: "CNTT./ Yêu cầu về Thể CBNV", value: 14 },
+  { title: "Ban Nhân sự / Báo các sự việc bất thường", value: 15 },
+  { title: "Ban Thanh tra / Báo các sự việc bất thường", value: 16 },
+  { title: "BQL Toà nhà / Đăng quảng cáo tại Toà nhà 265", value: 17 },
+  { title: "BQL / Báo hỏng hóc cơ sở vật chất", value: 18 },
+  { title: "Đóng góp ý kiến cải thiện", value: 19 },
+];
+const questionsList = [
+  {
+    id: 1,
+    tag: "User Interface",
+    questions: [
+      {
+        id: 101,
+        title: "Ex ratione and consectetur laborum suscipit?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.mi.",
+      },
+      {
+        id: 102,
+        title: "Molestiae suscipit Exercitation si or laudantium?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat. Quam.",
+      },
+      {
+        id: 103,
+        title: "Veniam magna for ut or adipisci veritatis dicta?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat.",
+      },
+      {
+        id: 104,
+        title: "Culpa aspernatur nisi adipisicing yet laudantium?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.Quisque ligula massa, porttitor vitae volutpat ut, luctus a mi.",
+      },
+    ],
+  },
+  {
+    id: 2,
+    tag: "Payment Method",
+    questions: [
+      {
+        id: 201,
+        title: "Ex ratione and consectetur laborum suscipit?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.iae, yet consequatur. Quisque ligula massa.",
+      },
+      {
+        id: 202,
+        title: "Molestiae suscipit ipsum non eos so autem dolores?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat, luctus a mi.",
+      },
+      {
+        id: 203,
+        title: "Veniam magna for ut or adipisci veritatis?",
+        content:
+          "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat.",
+      },
+    ],
+  },
+];
+const locations = [
+  { title: "-- Lựa chọn --", value: "" },
+  { title: "Trung tâm hội nghị Quốc gia", value: "tthnqg" },
+  { title: "Phòng họp 1", value: "ph1" },
+  { title: "Phòng họp 2", value: "ph2" },
+];
+
 function CreateRequirement() {
-  const options = [
-    { title: "-- Chọn một chủ đề --", value: 0 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
-  ];
-  const questionsList = [
-    {
-      id: 1,
-      tag: "User Interface",
-      questions: [
-        {
-          id: 101,
-          title: "Ex ratione and consectetur laborum suscipit?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.mi.",
-        },
-        {
-          id: 102,
-          title: "Molestiae suscipit Exercitation si or laudantium?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat. Quam.",
-        },
-        {
-          id: 103,
-          title: "Veniam magna for ut or adipisci veritatis dicta?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat.",
-        },
-        {
-          id: 104,
-          title: "Culpa aspernatur nisi adipisicing yet laudantium?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.Quisque ligula massa, porttitor vitae volutpat ut, luctus a mi.",
-        },
-      ],
-    },
-    {
-      id: 2,
-      tag: "Payment Method",
-      questions: [
-        {
-          id: 201,
-          title: "Ex ratione and consectetur laborum suscipit?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste.iae, yet consequatur. Quisque ligula massa.",
-        },
-        {
-          id: 202,
-          title: "Molestiae suscipit ipsum non eos so autem dolores?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat, luctus a mi.",
-        },
-        {
-          id: 203,
-          title: "Veniam magna for ut or adipisci veritatis?",
-          content:
-            "Beatae quae reprehenderit accusantium and sunt eum. Laboris iste. Laborum dolore or quaerat.",
-        },
-      ],
-    },
-  ];
   const [tabActive, setTabActive] = useState(1);
   const [quesActive, setQuesActive] = useState(
     questionsList[0].questions[0].id
   );
+  const [pickOption, setPickOption] = useState('');
+  const [locationOption, setLocationOption] = useState('');
   const breadcrumbs = [
     {
       title: "Home page",
@@ -206,12 +237,93 @@ function CreateRequirement() {
             <hr className="divide"></hr>
             {/* Chủ đề */}
             <div className="flex mb-4">
-              <Select option={options} icon={SvgPalette} />
+              <Select option={options} icon={SvgPalette} setPickOption={setPickOption}/>
             </div>
+
+            {pickOption === '2' && <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+              <div className="flex items-center gap-6">
+                <p className="font-poppins text-lg text-[#4c4c4c] font-medium whitespace-nowrap">
+                  Địa điểm tổ chức <span className="text-[#E72929]">*</span>
+                </p>
+                <div className="flex">
+                  <Select option={locations} icon={SvgPalette} setPickOption={setLocationOption}/>
+                </div>
+              </div>
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={user}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="question-input"
+                  placeholder="Người chủ trì"
+                  required
+                />
+              </div>
+              <div className="flex flex-col mds:flex-row gap-5">
+                <div className="relative w-full flex items-center">
+                  <div className="absolute left-[28px] w-[16px] flex justify-center">
+                    <Image
+                      src={phone}
+                      alt=""
+                      className="max-w-[16px] max-h-[16px]"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    className="question-input"
+                    placeholder="Số người tham gia"
+                  />
+                </div>
+                <div className="relative w-full flex items-center">
+                  <div className="absolute left-[28px] w-[16px] flex justify-center">
+                    <Image
+                      src={attach}
+                      alt=""
+                      className="max-w-[16px] max-h-[16px] -rotate-[25deg]"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    className="question-input"
+                    placeholder="Thời gian"
+                  />
+                </div>
+              </div>
+
+              <div className="relative flex">
+                <Image
+                  src={note}
+                  alt=""
+                  className="absolute top-5 left-[28px] max-w-[16px] max-h-[16px]"
+                />
+                <textarea
+                  name=""
+                  id=""
+                  className="question-textarea"
+                  placeholder="Nội dung cuộc họp"
+                  required
+                ></textarea>
+              </div>
+            </form>}
+
             <div className="flex justify-end gap-2">
-              <button className="btn-common btn-app"><Image src={send} alt=""/>Gửi đi</button>
-              <button className="btn-common btn-success btn-refresh"><Image src={refresh} alt=""/>Làm mới</button>
-              <button className="btn-common btn-danger btn-cancel"><Image src={cancel} alt=""/>Hủy bỏ</button>
+              <button className="btn-common btn-app">
+                <Image src={send} alt="" />
+                Gửi đi
+              </button>
+              <button className="btn-common btn-success btn-refresh">
+                <Image src={refresh} alt="" />
+                Làm mới
+              </button>
+              <button className="btn-common btn-danger btn-cancel">
+                <Image src={cancel} alt="" />
+                Hủy bỏ
+              </button>
             </div>
           </form>
         </div>
