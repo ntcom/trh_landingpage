@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import phone from "@/assets/svgs/phone.svg";
@@ -5,9 +6,12 @@ import pen from "@/assets/svgs/pen.svg";
 import user from "@/assets/svgs/user.svg";
 import message from "@/assets/svgs/message.svg";
 import logo from "@/assets/imgs/logo-footer.png";
+import { usePathname } from "next/navigation";
 
 function Footer() {
-  return (
+  const pathname = usePathname();
+
+  return pathname !== '/login' && (
     <footer>
       <div className="bg-[#171b1f]">
         <div className="container2 p-[55px_15px] flex flex-col lgs:flex-row items-center lgs:items-start gap-8 justify-between">

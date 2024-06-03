@@ -1,6 +1,6 @@
 import Image from "next/image";
-import model from "@/assets/imgs/Intro/model2.jpg";
-import signature from "@/assets/imgs/Intro/signature.png";
+import model from "@/assets/imgs/Intro/model2.png";
+// import signature from "@/assets/imgs/Intro/signature.png";
 
 export default function Intro() {
   return (

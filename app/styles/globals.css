@@ -197,3 +197,9 @@ body {
     top: 116px;
   }
 }
+
+.main-login {
+  background-image: url(../../assets/imgs/bg-login.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

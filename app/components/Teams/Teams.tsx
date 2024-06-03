@@ -1,50 +1,71 @@
 import Image from "next/image";
-import mem1 from "@/assets/imgs/team_member_1.jpg";
-import mem2 from "@/assets/imgs/team_member_2.jpg";
-import mem3 from "@/assets/imgs/team_member_3.jpg";
-import mem4 from "@/assets/imgs/team_member_4.jpg";
-import mem5 from "@/assets/imgs/team_member_5.jpg";
-import mem6 from "@/assets/imgs/team_member_6.jpg";
+import mem1 from "@/assets/imgs/Teams/mem1.jpg";
+import mem2 from "@/assets/imgs/Teams/mem2.png";
+import mem3 from "@/assets/imgs/Teams/mem3.png";
+import mem4 from "@/assets/imgs/Teams/mem4.jpg";
+import mem5 from "@/assets/imgs/Teams/mem5.jpeg";
+import mem6 from "@/assets/imgs/Teams/mem6.png";
+import mem7 from "@/assets/imgs/Teams/mem7.png";
+import mem8 from "@/assets/imgs/Teams/mem8.jpg";
+import mem9 from "@/assets/imgs/Teams/mem9.jpeg";
 import { v4 as uuidv4 } from "uuid";
 
 const teamList = [
-    {
-      id: uuidv4(),
-      name: "Dean Wales",
-      position: "SENIOR EXECUTIVE",
-      image: mem1,
-    },
-    {
-      id: uuidv4(),
-      name: "Jamie Brant",
-      position: "SALES MANAGER",
-      image: mem2,
-    },
-    {
-      id: uuidv4(),
-      name: "Amelia Brynne",
-      position: "SERVICE MANAGER",
-      image: mem3,
-    },
-    {
-      id: uuidv4(),
-      name: "Lesia Travis",
-      position: "CO-FOUNDER",
-      image: mem4,
-    },
-    {
-      id: uuidv4(),
-      name: "Jackson Janey",
-      position: "FOUNDER",
-      image: mem5,
-    },
-    {
-      id: uuidv4(),
-      name: "Lark Laverne",
-      position: "EXECUTIVE MANAGER",
-      image: mem6,
-    },
-  ];
+  {
+    id: uuidv4(),
+    name: "Trần Nhiệm",
+    position: "IT Manager",
+    image: mem1,
+  },
+  {
+    id: uuidv4(),
+    name: "Lương Minh Đức",
+    position: "Developer",
+    image: mem2,
+  },
+  {
+    id: uuidv4(),
+    name: "Vũ Thái Sơn",
+    position: "Developer",
+    image: mem3,
+  },
+  {
+    id: uuidv4(),
+    name: "Nguyễn Hữu Tùng",
+    position: "Business analyst",
+    image: mem4,
+  },
+  {
+    id: uuidv4(),
+    name: "Nguyễn Thị Tuyết",
+    position: "Tester",
+    image: mem5,
+  },
+  {
+    id: uuidv4(),
+    name: "Nguyễn Hoàng Vương",
+    position: "IT Helpdesk",
+    image: mem6,
+  },
+  {
+    id: uuidv4(),
+    name: "Nguyễn Quang Vinh",
+    position: "Developer",
+    image: mem7,
+  },
+  {
+    id: uuidv4(),
+    name: "Nguyễn Thị Ngân",
+    position: "Tester",
+    image: mem8,
+  },
+  {
+    id: uuidv4(),
+    name: "Phạm Quỳnh Mai",
+    position: "Tester",
+    image: mem9,
+  },
+];
 
 export default function Teams() {
   return (
@@ -56,8 +77,12 @@ export default function Teams() {
               key={mem.id}
               className="bg-[#fff] rounded-[5px] relative overflow-hidden"
             >
-              <div className="relative max-h-[370px] cursor-pointer overflow-hidden [&>span]:hover:bg-[rgba(33,131,146,0.5)]">
-                <Image src={mem.image} alt="" />
+              <div className="relative h-[370px] max-h-[370px] cursor-pointer overflow-hidden [&>span]:hover:bg-[rgba(33,131,146,0.5)]">
+                <Image
+                  src={mem.image}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
                 <span className="absolute top-0 left-0 right-0 bottom-0 transition-all"></span>
               </div>
               <div className="p-[35px_50px]">
@@ -84,5 +109,5 @@ export default function Teams() {
         })}
       </div>
     </div>
-  )
+  );
 }
