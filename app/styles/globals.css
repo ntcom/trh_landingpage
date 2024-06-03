@@ -183,6 +183,7 @@ body {
 
 .question-input,
 .question-textarea {
+  font-family: "Poppins", sans-serif;
   width: 100%;
   height: 60px;
   border: 1px solid rgba(76, 76, 76, 0.1);
@@ -205,6 +206,7 @@ body {
 
 .question-input::placeholder,
 .question-textarea::placeholder {
+  font-family: "Poppins", sans-serif;
   color: #808080;
   font-size: 12px;
   line-height: 18px;
@@ -224,10 +226,10 @@ body {
 }
 
 .header-on-scroll {
-  top: 56px;
+  top: 0;
 }
 
-@media (min-width: 623px) and (max-width: 935px) {
+/* @media (min-width: 623px) and (max-width: 935px) {
   .header-on-scroll {
     top: 87px;
   }
@@ -241,7 +243,7 @@ body {
   .header-on-scroll {
     top: 116px;
   }
-}
+} */
 
 .main-login {
   background-image: url(../../assets/imgs/bg-login.png);

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import mem1 from "@/assets/imgs/Teams/mem1.jpg";
+// import mem1 from "@/assets/imgs/Teams/mem1.jpg";
 import mem2 from "@/assets/imgs/Teams/mem2.png";
 import mem3 from "@/assets/imgs/Teams/mem3.png";
 import mem4 from "@/assets/imgs/Teams/mem4.jpg";
@@ -8,14 +8,21 @@ import mem6 from "@/assets/imgs/Teams/mem6.png";
 import mem7 from "@/assets/imgs/Teams/mem7.png";
 import mem8 from "@/assets/imgs/Teams/mem8.jpg";
 import mem9 from "@/assets/imgs/Teams/mem9.jpeg";
+import mem10 from "@/assets/imgs/Teams/mem10.png";
 import { v4 as uuidv4 } from "uuid";
 
 const teamList = [
+  // {
+  //   id: uuidv4(),
+  //   name: "Trần Nhiệm",
+  //   position: "IT Manager",
+  //   image: mem1,
+  // },
   {
     id: uuidv4(),
-    name: "Trần Nhiệm",
-    position: "IT Manager",
-    image: mem1,
+    name: "Nguyễn Thị Ngân",
+    position: "Tester",
+    image: mem10,
   },
   {
     id: uuidv4(),
@@ -55,7 +62,7 @@ const teamList = [
   },
   {
     id: uuidv4(),
-    name: "Nguyễn Thị Ngân",
+    name: "Lê Thị Minh",
     position: "Tester",
     image: mem8,
   },

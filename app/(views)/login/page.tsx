@@ -35,16 +35,16 @@ const Login = () => {
 >
   <div>
     <h2 className="text-[#fff] text-[46px] md:text-[58px] 2xl:text-[68px] font-semibold leading-normal text-center">
-      Login
+      Đăng nhập
     </h2>
     <p className="text-[#fff] text-xs md:text-sm 2xl:text-base font-normal text-center">
-      Create an Capa account!{" "}
+      Tạo tài khoản!{" "}
       <span>
         <a
           href="/register"
           className="border-b-[1px] border-solid border-[#fff] pb-[1px]"
         >
-          Register now!
+          Đăng ký!
         </a>
       </span>
     </p>
@@ -53,17 +53,17 @@ const Login = () => {
     onSubmit={handleSubmit}
     style={{
       background:
-        "linear-gradient(116deg, rgba(255, 255, 255, 0.44) -0.2%, rgba(255, 255, 255, 0.00) 122.69%)",
+        "linear-gradient(116deg,rgba(255,255,255,0.44)-0.2%,rgba(255,255,255,0.00)122.69%)",
       // backdropFilter: "blur(2px)",
     }}
-    className="w-full max-w-[340px] md:max-w-[420px] 2xl:max-w-[480px] p-6 md:p-8 2xl:p-11 rounded-xl flex flex-col items-start gap-5 md:gap-6 2xl:gap-8 z-[996]"
+    className="w-full max-w-[340px] md:max-w-[420px] 2xl:max-w-[480px] p-[40px_24px_58px] md:p-[50px_32px_68px] 2xl:p-[60px_44px_80px] rounded-xl flex flex-col items-start gap-5 md:gap-6 2xl:gap-8 z-[996]"
   >
     <div className="w-full flex flex-col gap-2 md:gap-3 2xl:gap-4">
       <label
         htmlFor="username"
         className="text-[#fff] text-sm md:text-lg 2xl:text-xl font-normal"
       >
-        Username
+        Tên đăng nhập
       </label>
       <div className="w-full relative flex items-center">
         <input
@@ -86,7 +86,7 @@ const Login = () => {
         htmlFor="password"
         className="text-[#fff] text-sm md:text-lg 2xl:text-xl font-normal"
       >
-        Password
+        Mật khẩu
       </label>
       <div className="w-full relative flex items-center">
         <input
@@ -111,7 +111,7 @@ const Login = () => {
             <Image src={eyeIcon} alt="eye icon" />
           )}
         </div>
-        <button
+        <a href="/"
           style={{
             background:
               "linear-gradient(224deg, rgba(210, 0, 98, 0.55) -56.57%, rgba(38, 102, 207, 0.95) 70.27%)",
@@ -119,11 +119,11 @@ const Login = () => {
           className="absolute right-0 h-full w-10 md:w-12 2xl:w-14 flex justify-center items-center rounded-[0_12px_12px_0]"
         >
           <Image src={chevronRight} alt="" className="w-2 lg:w-3 2xl:w-4" />
-        </button>
+        </a>
       </div>
     </div>
 
-    <div className="w-full flex items-center gap-3 md:gap-5 lg:gap-6 2xl:gap-8">
+    {/* <div className="w-full flex items-center gap-3 md:gap-5 lg:gap-6 2xl:gap-8">
       <p className="shrink-0 text-[#fff] text-xs sm:text-sm md:text-base font-normal">
         Or login with
       </p>
@@ -158,7 +158,7 @@ const Login = () => {
           />
         </a>
       </li>
-    </ul>
+    </ul> */}
   </form>
   <Image
     src={vector1}
@@ -183,7 +183,7 @@ const Login = () => {
   <Image
     src={vector5}
     alt=""
-    className="absolute max-w-[8%] bottom-[26.8%] right-[30.8%]"
+    className="absolute max-w-[8%] bottom-[24.8%] right-[28.8%]"
   />
   <Image
     src={vector6}
