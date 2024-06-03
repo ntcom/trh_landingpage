@@ -1,5 +1,5 @@
 "use client";
-import Banner from "@/app/components/Banner";
+import Banner from "@/app/components/Banner/index";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
