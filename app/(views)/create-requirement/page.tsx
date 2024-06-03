@@ -125,14 +125,14 @@ function CreateRequirement() {
   return (
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
-      <div className="container-app">
+      <div className="container-app px-6">
         <h2 className="bg-secondary heading px-3 py-1">Tạo yêu cầu mới</h2>
         <p className="text-xs pt-2 pb-8">
           Hãy điền vào bảng dưới đây để mở phiếu yêu cầu mới.
         </p>
         {/* <h3 className="text-2xl">Thông tin liên lạc</h3> */}
         <hr className="divide"></hr>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="bg-[#fff]">
             <div className="">
               <ul className="flex flex-col md:flex-row">
