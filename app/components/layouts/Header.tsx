@@ -12,14 +12,15 @@ import navigationGreen from "@/assets/svgs/navigation-green.svg";
 import chevron from "@/assets/svgs/chevron-white2.svg";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
 import logo from "@/assets/imgs/logo.png";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [scroll, setScroll] = useState(false);
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // if (typeof window !== 'undefined') {
     window.onscroll = () => {
       if (window.scrollY >= 56) {
         setScroll(true);
@@ -28,12 +29,11 @@ export default function Header() {
         setScroll(false);
       }
     };
-    // }
   }, []);
 
   return (
     <div className="w-full">
-      <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
+      {pathname !== '/login' && <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
         <div className="container flex flex-wrap items-center justify-between py-[10px] gap-[15px_30px]">
           <div className="flex flex-wrap justify-center sm:justify-start gap-4 md:gap-7">
             <div className="flex items-center gap-[15px]">
@@ -65,17 +65,17 @@ export default function Header() {
           <div className="w-full sm:w-auto flex flex-wrap justify-center sm:justify-end gap-4 md:gap-5 xl:gap-7">
             <Image src={user} height={14} alt="" />
             <div className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
-              <a href="/signin">Log in</a> / <a href="/signup">Sign Up</a>
+              <a href="/login">Đăng nhập</a> / <a href="/register">Đăng ký</a>
             </div>
           </div>
         </div>
-      </div>
+      </div>}
       <header
         className={`${
           scroll
             ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
             : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
-        } left-0 right-0 transition-all duration-500 z-[996]`}
+        } ${pathname === '/login' && '!top-0'} left-0 right-0 transition-all duration-500 z-[996]`}
       >
         <div className={`h-[60px] flex items-center`}>
           <div className="container flex justify-between">

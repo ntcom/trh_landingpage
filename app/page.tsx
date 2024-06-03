@@ -1,5 +1,5 @@
 import Banner from "./components/Banner/Banner";
-import BannerBot from "./components/Banner/BannerBot";
+// import BannerBot from "./components/Banner/BannerBot";
 import Blogs from "./components/Blogs/Blogs";
 import Careers from "./components/Careers/Careers";
 import FormQuestion from "./components/FormQuestion/FormQuestion";
@@ -21,7 +21,7 @@ export default function Home() {
       <FormQuestion />
       <Blogs />
       <Questions />
-      <BannerBot />
+      {/* <BannerBot /> */}
     </main>
   );
 }
