@@ -92,10 +92,10 @@ export default function Teams() {
                 />
                 <span className="absolute top-0 left-0 right-0 bottom-0 transition-all"></span>
               </div>
-              <div className="p-[35px_50px]">
+              <div className="p-[35px_25px]">
                 <a
                   href="/"
-                  className="block text-2xl text-[#4c4c4c] font-bold leading-[34px] tracking-[0.72px] mb-1 text-center hover:text-[#4c4c4ccc] transition-all"
+                  className="block text-2xl text-[#4c4c4c] font-bold leading-[34px] tracking-[0.72px] mb-1 text-center hover:text-[#4c4c4ccc] transition-all whitespace-nowrap"
                 >
                   {mem.name}
                 </a>
