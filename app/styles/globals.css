@@ -177,3 +177,23 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.header-on-scroll {
+  top: 56px;
+}
+
+@media (min-width: 623px) and (max-width: 935px) {
+  .header-on-scroll {
+    top: 87px;
+  }
+}
+@media (min-width: 421px) and (max-width: 622px) {
+  .header-on-scroll {
+    top: 119px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .header-on-scroll {
+    top: 116px;
+  }
+}
