@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Banner from "../../components/Banner";
+import BannerCustom from "@/app/components/Banner";
 import SvgMail from "@/assets/svgs/SvgMail";
 import SvgPalette from "@/assets/svgs/SvgPalette";
 import SvgPhone from "@/assets/svgs/SvgPhone";
@@ -93,7 +93,7 @@ function CreateRequirement() {
   ];
   return (
     <div className="mb-20">
-      <Banner pageName="Create Requirement" breadcrumbs={breadcrumbs} />
+      <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
       <div className="container-app">
         <h2 className="bg-secondary heading px-3 py-1">Tạo yêu cầu mới</h2>
         <p className="text-xs pt-2 pb-8">
