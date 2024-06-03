@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import BannerCustom from "@/app/components/Banner";
+import BannerCustom from "@/app/components/BannerCustom";
 import SvgMail from "@/assets/svgs/SvgMail";
 import SvgPalette from "@/assets/svgs/SvgPalette";
 import SvgPhone from "@/assets/svgs/SvgPhone";
