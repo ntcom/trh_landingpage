@@ -9,6 +9,7 @@ import {
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
 // import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
+import Link from "next/link";
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 interface IBreadcrumb {
   title: string;
@@ -565,12 +566,13 @@ const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
             {breadcrumbs.map((item, index) => {
               return (
                 <>
-                  <p
+                  <Link
+                    href={item.path}
                     key={index}
                     className="text-white uppercase tracking-[0.4em] text-[12px] font-light"
                   >
                     {item.title}
-                  </p>
+                  </Link>
                   {breadcrumbs.length - 1 != index && (
                     <span className="text-white">{">"}</span>
                   )}

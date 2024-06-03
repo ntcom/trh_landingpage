@@ -8,6 +8,7 @@ interface IOption {
 interface IProps {
   option: IOption[];
   icon: (props: any) => React.JSX.Element;
+  setPickOption: React.Dispatch<React.SetStateAction<string>>;
 }
 function Select(props: IProps) {
   const Icon = props?.icon || SvgMail;
@@ -22,6 +23,7 @@ function Select(props: IProps) {
         className="input-app uppercase text-[12px]"
         style={{ color: "#747474", letterSpacing: "0.2em" }}
         {...props}
+        onChange={(e: any) => props.setPickOption(e.target.value)}
       >
         {props.option.map((item, index) => {
           return (
