@@ -1,5 +1,5 @@
 "use client";
-import Banner from "@/app/components/banner";
+import Banner from "@/app/components/Banner";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -20,8 +20,8 @@ function ServicePage() {
       <Banner pageName="services" breadcrumbs={breadcrumbs} />
       <div className="container-app mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <div>
-            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
+          <div className="flex">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon01.png"
@@ -43,15 +43,15 @@ function ServicePage() {
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
                   href="/create-requirement"
-                  className="btn-success self-end"
+                  className="btn-commont self-end btn-app"
                 >
                   Tạo yêu cầu mới
                 </Link>
               </div>
             </div>
           </div>
-          <div>
-            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
+          <div className="flex">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon02.png"
@@ -71,12 +71,12 @@ function ServicePage() {
                 việc.
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-app self-end">Kiểm tra tiến độ</button>
+                <button className="btn-common self-end btn-check">Kiểm tra tiến độ</button>
               </div>
             </div>
           </div>
-          <div>
-            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
+          <div className="flex">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon03.png"
@@ -102,14 +102,14 @@ function ServicePage() {
                 </p>
               </div>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-danger self-end">
+                <button className="btn-common self-end btn-refresh">
                   Báo cáo sự việc mọi lúc, mọi nơi
                 </button>
               </div>
             </div>
           </div>
-          <div>
-            <div className="card-app p-[40px] min-h-[380px] flex flex-col">
+          <div className="flex">
+            <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">
               <div className="flex justify-center">
                 <Image
                   src="https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/service-icon05.png"
@@ -133,7 +133,7 @@ function ServicePage() {
                 bổ sung cho vấn đề/sự việc đã được hỗ trợ xong.
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
-                <button className="btn-success self-end">
+                <button className="btn-common self-end btn-check">
                   Việc không trôi, nắm bắt kịp thời
                 </button>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Banner from "@/app/components/banner";
+import Banner from "@/app/components/Banner";
 import SvgMail from "@/assets/svgs/SvgMail";
 import SvgPalette from "@/assets/svgs/SvgPalette";
 import SvgPhone from "@/assets/svgs/SvgPhone";
@@ -10,13 +10,16 @@ import Select from "@/core/components/Select";
 import Image from "next/image";
 import plus from "@/assets/svgs/plus.svg";
 import minus from "@/assets/svgs/minus.svg";
+import send from "@/assets/svgs/send.svg";
+import refresh from "@/assets/svgs/refresh.svg";
+import cancel from "@/assets/svgs/cancel.svg";
 
 function CreateRequirement() {
   const options = [
     { title: "-- Chọn một chủ đề --", value: 0 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệt thống", value: 1 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệt thống", value: 1 },
-    { title: "CNTT./ Đăng kí tạo dự án trên hệt thống", value: 1 },
+    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
+    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
+    { title: "CNTT./ Đăng kí tạo dự án trên hệ thống", value: 1 },
   ];
   const questionsList = [
     {
@@ -100,7 +103,7 @@ function CreateRequirement() {
         <hr className="divide"></hr>
         <div className="grid grid-cols-2 gap-10">
           <div className="bg-[#fff]">
-            <div className="p-[15px]">
+            <div className="">
               <ul className="flex flex-col md:flex-row">
                 {questionsList.map((tab) => {
                   return (
@@ -161,7 +164,7 @@ function CreateRequirement() {
               </ul>
             </div>
           </div>
-          <form>
+          <form className="mt-[50px]">
             <div className="flex  mb-4">
               <Input
                 id="email"
@@ -202,13 +205,13 @@ function CreateRequirement() {
             </div>
             <hr className="divide"></hr>
             {/* Chủ đề */}
-            <div className="flex  mb-4">
+            <div className="flex mb-4">
               <Select option={options} icon={SvgPalette} />
             </div>
-            <div className="flex gap-2">
-              <button className="btn-app">Gửi đi</button>
-              <button className="btn-success">Làm mới</button>
-              <button className="btn-danger">Hủy bỏ</button>
+            <div className="flex justify-end gap-2">
+              <button className="btn-common btn-app"><Image src={send} alt=""/>Gửi đi</button>
+              <button className="btn-common btn-success btn-refresh"><Image src={refresh} alt=""/>Làm mới</button>
+              <button className="btn-common btn-danger btn-cancel"><Image src={cancel} alt=""/>Hủy bỏ</button>
             </div>
           </form>
         </div>
