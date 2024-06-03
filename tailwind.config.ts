@@ -44,6 +44,7 @@ const config: Config = {
       'mds': '916px',
 
       'lg': '1024px',
+
       'lgs': '1200px',
 
       'xl': '1280px',

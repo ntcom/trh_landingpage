@@ -9,29 +9,29 @@ const timelineData = [
   {
     id: 1,
     value:
-      "Get ready for more potential, more opportunity and more of everything you expect from internet provider",
-    year: "2012",
+      "Tiếp nhận yêu cầu",
+    label: "Tiếp nhận yêu cầu",
   },
   {
     id: 2,
     value:
-      "Started working at the entrepreneuring company and passed all way from Junior Manager to Senior",
-    year: "2015",
+      "Phân tích yêu cầu",
+    label: "Phân tích yêu cầu",
   },
   {
     id: 3,
-    value: "My partners and I founded entrepreneuring company.",
-    year: "2018",
+    value: "Xử lý",
+    label: "Xử lý",
   },
   {
     id: 4,
-    value: "We got a leading position in the Internet advertising market.",
-    year: "2020",
+    value: "Khách hàng đánh giá/phản hồi ",
+    label: "Khách hàng đánh giá/phản hồi ",
   },
   {
     id: 5,
-    value: "I joined Power Home Remodeling as an innovator marketer.",
-    year: "2024",
+    value: "Đóng yêu cầu",
+    label: "Đóng yêu cầu",
   },
 ];
 
@@ -41,15 +41,15 @@ export default function Timeline() {
   return (
     <div
       className="timeline-bg h-[609px] flex justify-center items-center"
-    //   style={{ background: `no-repeat url(${bg})`, backgroundSize: "cover" }}
+      //   style={{ background: `no-repeat url(${bg})`, backgroundSize: "cover" }}
     >
       <div className="w-full px-[30px]">
         <div>
-          <p className="text-xl sm:text-2xl text-[#fff] font-light leading-5 sm:leading-6 tracking-[4.8px] text-center">
-            Our
+          <p className="font-poppins text-xl sm:text-2xl text-[#fff] tracking-[3px] text-center">
+            QUY TRÌNH HỖ TRỢ
           </p>
-          <p className="text-[40px] sm:text-[60px] text-[#fff] font-bold leading-[46px] sm:leading-[66px] tracking-[12px] text-center uppercase">
-            Timeline
+          <p className="font-poppins text-[24px] sm:text-[40px] text-[#fff] font-bold leading-[32px] sm:leading-[52px] tracking-[2px] text-center uppercase mt-2">
+            DỊCH VỤ CÔNG NGHỆ THÔNG TIN
           </p>
           <div className="flex justify-center items-center gap-6 mt-6 sm:mt-10">
             <button
@@ -60,7 +60,7 @@ export default function Timeline() {
               }}
               className="p-2"
             >
-              <Image src={chevron} width={11} alt="" className="rotate-180"/>
+              <Image src={chevron} width={11} alt="" className="rotate-180" />
             </button>
             <div className="w-full max-w-[700px] h-[60px] flex justify-center relative">
               {timelineData.map((item) => {
@@ -86,7 +86,7 @@ export default function Timeline() {
               }}
               className="p-2"
             >
-              <Image src={chevron} width={11} alt=""/>
+              <Image src={chevron} width={11} alt="" />
             </button>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Timeline() {
         >
           <div
             id="move-slide"
-            className={`absolute w-[96vw] transition-all duration-[450ms] ${
+            className={`absolute w-[94vw] transition-all duration-[450ms] ${
               nodeActive === 1
                 ? "translate-x-[0]"
                 : nodeActive === 2
@@ -119,8 +119,8 @@ export default function Timeline() {
                     key={item.id}
                     className={`w-6 h-6 bg-[rgb(255,255,255,.5)] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
                   >
-                    <span className="absolute top-[-35px] text-xs text-[#fff] font-medium leading-6 tracking-[2.4px] text-center">
-                      {item.year}
+                    <span className="font-poppins absolute top-[-35px] text-[10px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
+                      {item.label}
                     </span>
                     <span className="w-[18px] h-[18px] bg-[#218392] rounded-[100px] z-20 flex justify-center items-center">
                       {nodeActive !== item.id && nodeActive <= item.id && (

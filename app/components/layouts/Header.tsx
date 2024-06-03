@@ -5,13 +5,13 @@ import Image from "next/image";
 import phone from "@/assets/svgs/phone.svg";
 import pen from "@/assets/svgs/pen.svg";
 import user from "@/assets/svgs/user.svg";
-import message from "@/assets/svgs/message.svg";
 import search from "@/assets/svgs/search.svg";
 import searchGreen from "@/assets/svgs/search-green.svg";
 import navigation from "@/assets/svgs/navigation.svg";
 import navigationGreen from "@/assets/svgs/navigation-green.svg";
 import chevron from "@/assets/svgs/chevron-white2.svg";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
+import logo from "@/assets/imgs/logo.png";
 
 export default function Header() {
   const [scroll, setScroll] = useState(false);
@@ -33,35 +33,39 @@ export default function Header() {
 
   return (
     <div className="w-full">
-      <div className="w-full bg-[#fff] p-[10px_15px] sm:p-[10px_65px] z-[997]">
-        <div className="container flex flex-wrap items-center justify-center lg:justify-between py-[10px] gap-[15px_30px]">
-          <div className="flex flex-wrap justify-center sm:justify-start gap-4 md:gap-5 xl:gap-7">
+      <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
+        <div className="container flex flex-wrap items-center justify-between py-[10px] gap-[15px_30px]">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-4 md:gap-7">
             <div className="flex items-center gap-[15px]">
               <Image src={phone} height={14} alt="" />
-              <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
-                800-123-45-67
-              </p>
+              <div className="flex items-center gap-2">
+                <a
+                  href="tel:+84934525315"
+                  className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px] whitespace-normal"
+                >
+                  0934-525-315
+                </a>
+                <p className="text-[10px] xsss:text-xs text-[#4c4c4c]">/</p>
+                <a
+                  href="tel:+84903269299"
+                  className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px] whitespace-normal"
+                >
+                  0903-269-299
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-[15px]">
               <Image src={pen} height={14} alt="" />
-              <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
-                brobit@example.com
+              <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px] whitespace-normal">
+                cskh@tranghuylogistics.com
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center sm:justify-end gap-4 md:gap-5 xl:gap-7">
-            <div className="flex items-center gap-[15px]">
-              <Image src={user} height={14} alt="" />
-              <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
-                Log in / Sign Up
-              </p>
-            </div>
-            <div className="flex items-center gap-[15px]">
-              <Image src={message} height={14} alt="" />
-              <p className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
-                Request a quote
-              </p>
+          <div className="w-full sm:w-auto flex flex-wrap justify-center sm:justify-end gap-4 md:gap-5 xl:gap-7">
+            <Image src={user} height={14} alt="" />
+            <div className="text-[10px] xsss:text-xs text-[#4c4c4c] font-medium uppercase tracking-[2.4px]">
+              <a href="/signin">Log in</a> / <a href="/signup">Sign Up</a>
             </div>
           </div>
         </div>
@@ -70,26 +74,50 @@ export default function Header() {
         className={`${
           scroll
             ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
-            : "absolute top-[147px] xsr:top-[116px] xs:top-[85px] xsss:top-[87px] mds:top-[56px] bg-transparent p-[30px_15px] sm:p-[50px_65px]"
+            : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
         } left-0 right-0 transition-all duration-500 z-[996]`}
       >
         <div className={`h-[60px] flex items-center`}>
           <div className="container flex justify-between">
             <a
               href="/"
-              className={`h-[42px] p-[7px_12px] flex justify-center items-center border-[2px] border-solid ${
-                scroll ? "border-[#218392] h-[42px]" : "border-[#fff]"
+              className={`${
+                scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
               }`}
             >
-              <p
+              {/* <p
                 className={`${
                   scroll ? "text-[#218392]" : "text-[#fff]"
                 } text-2xl tracking-[0.5em]`}
               >
                 <strong>BRO</strong>BIT
-              </p>
+              </p> */}
+              <Image src={logo} alt="" className={`w-full h-full`} />
             </a>
             <div className="flex items-center gap-[40px]">
+              <nav className="hidden md:flex items-center gap-[30px]">
+                <a
+                  href="/helpdesk"
+                  className={`py-[15px] text-xs ${
+                    scroll
+                      ? "text-[#4c4c4c] hover:text-[#218392]"
+                      : "text-[#fff] hover:text-[#ffffffb3]"
+                  } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                >
+                  IT Helpdesk
+                </a>
+                <a
+                  href="https://capa-group.netlify.app/login"
+                  className={`py-[15px] text-xs ${
+                    scroll
+                      ? "text-[#4c4c4c] hover:text-[#218392]"
+                      : "text-[#fff] hover:text-[#ffffffb3]"
+                  } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                >
+                  Khách hàng
+                </a>
+              </nav>
+
               <div className="flex items-center gap-9">
                 <div className="relative flex items-center">
                   <input
