@@ -10,7 +10,7 @@ export default function FormQuestion() {
     <div className="bg-[#fff]">
       <div className="container2 p-[150px_15px_140px]">
         <p className="text-2xl text-[#4c4c4c] font-bold leading-6 tracking-[0.72px]">
-          Ask Any Question
+          Gửi câu hỏi
         </p>
         <form action="" className="flex flex-col gap-5 mt-[30px]">
           <div className="flex flex-col mds:flex-row gap-5">
@@ -21,7 +21,7 @@ export default function FormQuestion() {
               <input
                 type="text"
                 className="question-input"
-                placeholder="Full name"
+                placeholder="Họ và tên"
                 required
               />
             </div>
@@ -32,7 +32,7 @@ export default function FormQuestion() {
               <input
                 type="text"
                 className="question-input"
-                placeholder="E-mail"
+                placeholder="Email"
                 required
               />
             </div>
@@ -45,7 +45,7 @@ export default function FormQuestion() {
               <input
                 type="text"
                 className="question-input"
-                placeholder="Phone number"
+                placeholder="Số điện thoại"
               />
             </div>
             <div className="relative w-full flex items-center">
@@ -59,7 +59,7 @@ export default function FormQuestion() {
               <input
                 type="text"
                 className="question-input"
-                placeholder="Your topic"
+                placeholder="Đính kèm"
               />
             </div>
           </div>
@@ -74,14 +74,14 @@ export default function FormQuestion() {
               name=""
               id=""
               className="question-textarea"
-              placeholder="Your message"
+              placeholder="Nội dung câu hỏi"
               required
             ></textarea>
           </div>
 
           <div className="self-start bg-[#218392] flex justify-center items-center p-[2px] mt-6">
-            <button className="p-[18px_15px] bg-transparent rounded text-xs text-[#fff] font-medium leading-5 tracking-[2.4px] hover:bg-[#fff] hover:text-[#171b1f] transition-all">
-              Ask a question
+            <button className="font-poppins p-[15px] bg-transparent rounded text-xs text-[#fff] font-semibold leading-5 tracking-[2px] hover:bg-[#fff] hover:text-[#171b1f] transition-all uppercase">
+              Gửi câu hỏi!
             </button>
           </div>
         </form>
