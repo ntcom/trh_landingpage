@@ -37,7 +37,7 @@ const Login = () => {
     <h2 className="text-[#fff] text-[46px] md:text-[58px] 2xl:text-[68px] font-semibold leading-normal text-center">
       Đăng nhập
     </h2>
-    <p className="text-[#fff] text-xs md:text-sm 2xl:text-base font-normal text-center">
+    {/* <p className="text-[#fff] text-xs md:text-sm 2xl:text-base font-normal text-center">
       Tạo tài khoản!{" "}
       <span>
         <a
@@ -47,7 +47,7 @@ const Login = () => {
           Đăng ký!
         </a>
       </span>
-    </p>
+    </p> */}
   </div>
   <form
     onSubmit={handleSubmit}
@@ -70,7 +70,7 @@ const Login = () => {
           type="text"
           className="w-full h-10 md:h-12 2xl:h-14 bg-[#fff] p-[10px_16px_10px_44px] md:p-[12px_24px_12px_54px] 2xl:p-[12px_24px_12px_64px] outline-none rounded-xl text-sm md:text-lg 2xl:text-xl font-normal placeholder:text-[#BABABA]"
           id="username"
-          placeholder="Your Username"
+          // placeholder="Your Username"
           required
         />
         <Image
@@ -97,7 +97,7 @@ const Login = () => {
               : "text-xl md:text-2xl 2xl:text-[38px] text-[#1f1f1f]"
           } font-normal placeholder:text-sm placeholder:md:text-lg placeholder:2xl:text-xl placeholder:leading-6 placeholder:text-[#BABABA]`}
           id="password"
-          placeholder="Your Password"
+          // placeholder="Your Password"
           required
           onChange={(e) => setPassVal(e.target.value)}
         />

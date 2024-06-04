@@ -9,11 +9,11 @@ export default function Intro() {
         <Image src={model} alt="" className="w-full object-cover" />
       </div>
       <div className="lg:max-w-[50%] px-[15px] mt-[50px] lg:mt-0 flex-grow">
-        <p className="text-2xl sm:text-3xl text-[#4c4c4c] font-light leading-6 tracking-[0.72px] text-center md:text-left uppercase">
-          IT Manager
-        </p>
-        <p className="font-poppins text-2xl sm:text-[42px] text-[#4c4c4c] font-bold leading-10 tracking-[1.2px] text-center md:text-left uppercase mt-2">
+        <p className="font-poppins text-2xl sm:text-3xl text-[#4c4c4c] leading-6 tracking-[0.72px] text-center md:text-left uppercase">
           Trần Nhiệm
+        </p>
+        <p className="text-2xl sm:text-[42px] text-[#4c4c4c] font-bold leading-10 tracking-[1.2px] text-center md:text-left uppercase mt-2">
+          IT Manager
         </p>
         {/* <p className="text-lg sm:text-[20px] text-[#4c4c4c] font-medium leading-[30px] italic mt-[45px] text-center md:text-left">
           To get started with SkyMax, please go over all of our plans to let our

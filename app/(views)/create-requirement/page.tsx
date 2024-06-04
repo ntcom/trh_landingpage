@@ -110,8 +110,8 @@ function CreateRequirement() {
   const [quesActive, setQuesActive] = useState(
     questionsList[0].questions[0].id
   );
-  const [pickOption, setPickOption] = useState('');
-  const [locationOption, setLocationOption] = useState('');
+  const [pickOption, setPickOption] = useState("");
+  const [locationOption, setLocationOption] = useState("");
   const breadcrumbs = [
     {
       title: "Home page",
@@ -127,13 +127,17 @@ function CreateRequirement() {
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
       <div className="container-app px-6">
         <h2 className="bg-secondary heading px-3 py-1">Tạo yêu cầu mới</h2>
-        <p className="text-xs pt-2 pb-8">
-          Hãy điền vào bảng dưới đây để mở phiếu yêu cầu mới.
-        </p>
+        <div className="w-1/3 flex mt-4">
+          <Select
+            option={options}
+            icon={SvgPalette}
+            setPickOption={setPickOption}
+          />
+        </div>
         {/* <h3 className="text-2xl">Thông tin liên lạc</h3> */}
         <hr className="divide"></hr>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="bg-[#fff]">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10"> */}
+        {/* <div className="bg-[#fff]">
             <div className="">
               <ul className="flex flex-col md:flex-row">
                 {questionsList.map((tab) => {
@@ -194,9 +198,9 @@ function CreateRequirement() {
                 })}
               </ul>
             </div>
-          </div>
-          <form className="mt-[50px]">
-            <div className="flex  mb-4">
+          </div> */}
+        <form className="mt-[50px]">
+          {/* <div className="flex  mb-4">
               <Input
                 id="email"
                 icon={SvgMail}
@@ -204,9 +208,9 @@ function CreateRequirement() {
                 className="input-app"
                 placeholder="E-mail"
               />
-            </div>
-            {/* Họ tên */}
-            <div className="flex  mb-4">
+            </div> */}
+          {/* Họ tên */}
+          {/* <div className="flex  mb-4">
               <Input
                 id="fullname"
                 type="text"
@@ -214,9 +218,9 @@ function CreateRequirement() {
                 className="input-app"
                 placeholder="Họ tên"
               />
-            </div>
-            {/* Số điện thoại */}
-            <div className="flex mb-4">
+            </div> */}
+          {/* Số điện thoại */}
+          {/* <div className="flex mb-4">
               <div className="flex w-full gap-6">
                 <Input
                   id="phone"
@@ -234,19 +238,24 @@ function CreateRequirement() {
                 />
               </div>
             </div>
-            <hr className="divide"></hr>
-            {/* Chủ đề */}
-            <div className="flex mb-4">
+            <hr className="divide"></hr> */}
+          {/* Chủ đề */}
+          {/* <div className="flex mb-4">
               <Select option={options} icon={SvgPalette} setPickOption={setPickOption}/>
-            </div>
+            </div> */}
 
-            {pickOption === '2' && <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+          {pickOption === "2" && (
+            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex items-center gap-6">
                 <p className="font-poppins text-lg text-[#4c4c4c] font-medium whitespace-nowrap">
                   Địa điểm tổ chức <span className="text-[#E72929]">*</span>
                 </p>
                 <div className="flex">
-                  <Select option={locations} icon={SvgPalette} setPickOption={setLocationOption}/>
+                  <Select
+                    option={locations}
+                    icon={SvgPalette}
+                    setPickOption={setLocationOption}
+                  />
                 </div>
               </div>
               <div className="relative w-full flex items-center">
@@ -294,7 +303,6 @@ function CreateRequirement() {
                   />
                 </div>
               </div>
-
               <div className="relative flex">
                 <Image
                   src={note}
@@ -309,24 +317,37 @@ function CreateRequirement() {
                   required
                 ></textarea>
               </div>
-            </form>}
+              <div className="flex items-center gap-6">
+                <p className="font-poppins text-lg text-[#4c4c4c] font-medium whitespace-nowrap">
+                  Đề nghị hỗ trợ
+                </p>
+                <div className="flex">
+                  <Select
+                    option={locations}
+                    icon={SvgPalette}
+                    setPickOption={setLocationOption}
+                  />
+                </div>
+              </div>
+            </form>
+          )}
 
-            <div className="flex justify-end gap-2">
-              <button className="btn-common btn-app">
-                <Image src={send} alt="" />
-                Gửi đi
-              </button>
-              <button className="btn-common btn-success btn-refresh">
-                <Image src={refresh} alt="" />
-                Làm mới
-              </button>
-              <button className="btn-common btn-danger btn-cancel">
-                <Image src={cancel} alt="" />
-                Hủy bỏ
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="flex justify-end gap-2">
+            <button className="btn-common btn-app">
+              <Image src={send} alt="" />
+              Gửi đi
+            </button>
+            <button className="btn-common btn-success btn-refresh">
+              <Image src={refresh} alt="" />
+              Làm mới
+            </button>
+            <button className="btn-common btn-danger btn-cancel">
+              <Image src={cancel} alt="" />
+              Hủy bỏ
+            </button>
+          </div>
+        </form>
+        {/* </div> */}
       </div>
     </div>
   );

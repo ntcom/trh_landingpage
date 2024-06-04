@@ -119,7 +119,7 @@ export default function Timeline() {
                     key={item.id}
                     className={`w-6 h-6 bg-[rgb(255,255,255,.5)] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
                   >
-                    <span className="font-poppins absolute top-[-35px] text-[10px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
+                    <span className="font-poppins absolute top-[-35px] text-xs text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
                     <span className="w-[18px] h-[18px] bg-[#218392] rounded-[100px] z-20 flex justify-center items-center">
