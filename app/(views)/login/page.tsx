@@ -56,7 +56,7 @@ const Login = () => {
             "linear-gradient(116deg,rgba(255,255,255,0.44)-0.2%,rgba(255,255,255,0.00)122.69%)",
           // backdropFilter: "blur(2px)",
         }}
-        className="w-full max-w-[340px] md:max-w-[420px] 2xl:max-w-[480px] p-[40px_24px_58px] md:p-[50px_32px_68px] 2xl:p-[60px_44px_80px] rounded-xl flex flex-col items-start gap-5 md:gap-6 2xl:gap-8 z-[996]"
+        className="w-full max-w-[340px] md:max-w-[420px] 2xl:max-w-[480px] p-[40px_24px_58px] md:p-[50px_32px] 2xl:p-[60px_44px_80px] rounded-xl flex flex-col items-start gap-5 md:gap-6 2xl:gap-8 z-[996]"
       >
         <div className="w-full flex flex-col gap-2 md:gap-3 2xl:gap-4">
           <label

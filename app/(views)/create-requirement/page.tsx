@@ -443,10 +443,10 @@ function CreateRequirement() {
           </div> */}
 
           <div className="flex justify-center gap-4 mt-[50px]">
-            <button className="btn-common btn-send">
+            <a href="/create-requirement/process" className="btn-common btn-send">
               <Image src={send} alt="" />
               Gửi đi
-            </button>
+            </a>
             <button className="btn-common btn-success btn-refresh">
               <Image src={refresh} alt="" />
               Làm mới
