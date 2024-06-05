@@ -34,7 +34,7 @@ const timelineData = [
 ];
 
 export default function Timeline() {
-  const [nodeActive, setNodeActive] = useState(1);
+  const [nodeActive, setNodeActive] = useState(3);
 
   return (
     <div
@@ -112,13 +112,13 @@ export default function Timeline() {
                 className="absolute w-[99%] left-[4px] h-[4px] bg-[rgb(255,255,255,.1)] flex justify-start items-center z-0"
                 color="#6c757d"
               >
-                <span
+                {/* <span
                   className={`${
                     nodeActive === 1
                       ? "w-0"
-                      : `w-[${25*(nodeActive-1)+"%"}]`
+                      : `w-[50%]`
                   } h-full bg-[#fff] z-0 transition-all duration-[450ms]`}
-                ></span>
+                ></span> */}
               </div>
               {timelineData.map((item) => {
                 return (
