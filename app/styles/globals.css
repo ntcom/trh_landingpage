@@ -71,17 +71,26 @@ body {
 .btn-app:hover {
   background-color: rgb(33, 131, 146, .8);
 }
+.btn-send {
+  background: linear-gradient(276deg, #0081FF 44.33%, rgba(30, 144, 255, 0.75) 98.56%);
+  box-shadow: 0px 10px 20px 0px rgba(30, 144, 255, 0.25);
+}
+.btn-send:hover {
+  background-color: rgb(30, 144, 255, .8);
+}
 .btn-refresh {
-  background-color: #fe933c;
+  background: linear-gradient(273deg, #00B692 4.95%, rgba(26, 188, 156, 0.80) 93.62%);
+  box-shadow: 0px 10px 20px 0px rgba(26, 188, 156, 0.50);
 }
 .btn-refresh:hover {
-  background-color: rgb(254, 147, 60, .8);
+  background-color: rgb(26, 188, 156, .8);
 }
 .btn-cancel {
-  background-color: #D04848;
+  background: linear-gradient(276deg, #EE0016 44.33%, rgba(255, 56, 74, 0.80) 98.56%);
+  box-shadow: 0px 10px 20px 0px rgba(255, 56, 74, 0.15);
 }
 .btn-cancel:hover {
-  background-color: rgb(208, 72, 72, .8);
+  background-color: rgb(255, 56, 74, .8);
 }
 .btn-check {
   background-color: #0D9276;
@@ -97,7 +106,7 @@ body {
   gap: 8px;
   transition: all .2s ease-in-out;
   padding: 10px 18px;
-  border-radius: 2px;
+  border-radius: 15px;
 
   font-size: 14px;
   color: #fff;
@@ -162,14 +171,14 @@ body {
 .common-textarea {
   font-family: "Poppins", sans-serif;
   width: 100%;
-  height: 60px;
-  border: 1px solid rgba(76, 76, 76, 0.1);
+  /* border: 1px solid rgba(76, 76, 76, 0.1); */
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: transparent;
   color: #1d2024;
   font-size: 14px;
   letter-spacing: 1.2px;
   outline: none;
+  border-radius: 2px;
 }
 
 .common-input {
@@ -190,6 +199,11 @@ body {
   line-height: 18px;
   text-transform: uppercase;
   letter-spacing: 2.4px;
+}
+.common-input:focus,
+.common-textarea:focus {
+  border: 1px solid rgba(33, 131, 146, .8);
+  box-shadow: 0 0 8px 1px rgba(33, 131, 146, .3);
 }
 
 .header-on-scroll {

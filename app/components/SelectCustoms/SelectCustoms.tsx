@@ -17,7 +17,13 @@ export default function SelectCustoms(props: SelectPropsType) {
   const [value, setValue] = useState("");
 
   return (
-    <div className="relative w-full">
+    <div
+      className={`relative w-full rounded-sm border ${
+        onSelect
+          ? "border-[rgb(33,131,146,.8)] shadow-[0_0_8px_2px_rgba(33,131,146,.2)]"
+          : "border-[#4c4c4c1a]"
+      }`}
+    >
       <span
         onClick={() => {
           setOnSelect(!onSelect);
@@ -30,7 +36,7 @@ export default function SelectCustoms(props: SelectPropsType) {
         value={value}
         placeholder={`-- ${props.placeholder} --`}
         disabled
-        className="common-input z-10"
+        className="common-input z-10 placeholder:text-[13px] placeholder:text-[#218392] placeholder:font-medium placeholder:tracking-0"
       />
       <div className="absolute left-[28px] max-w-[16px] max-h-[16px] top-1/2 -translate-y-1/2 z-20">
         <Image src={props.icon} alt="" />
@@ -44,11 +50,11 @@ export default function SelectCustoms(props: SelectPropsType) {
       </div>
 
       <div
-        className={`absolute top-[108%] left-0 w-full ${
+        className={`absolute top-[108%] left-[-1px] w-[calc(100%+2px)] ${
           onSelect
-            ? "max-h-[500px] opacity-100"
-            : "max-h-0 border-transparent shadow-none overflow-hidden"
-        } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border border-[#4c4c4c1a] z-50 shadow-lg hidden-scroll`}
+            ? "max-h-[400px] border-[rgb(33,131,146,.8)]"
+            : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
+        } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
       >
         {props.options.map((option: any) => {
           return (
@@ -56,7 +62,7 @@ export default function SelectCustoms(props: SelectPropsType) {
               key={option.value}
               value={option.value}
               onClick={() => {
-                props.setPickOption(option.value)
+                props.setPickOption(option.value);
                 setValue(option.title);
                 props.setIValue(option.value);
                 setOnSelect(false);
