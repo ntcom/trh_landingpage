@@ -17,8 +17,8 @@ interface IBreadcrumb {
   path: string;
 }
 interface IProps {
-  pageName: string;
-  breadcrumbs: IBreadcrumb[];
+  pageName?: string;
+  breadcrumbs?: IBreadcrumb[];
 }
 const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
   const [init, setInit] = useState(false);
