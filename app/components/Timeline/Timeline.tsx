@@ -95,7 +95,7 @@ export default function Timeline() {
         >
           <div
             id="move-slide"
-            className={`absolute w-[94vw] transition-all duration-[450ms] ${
+            className={`absolute w-[90vw] transition-all duration-[450ms] ${
               nodeActive === 1
                 ? "translate-x-[0]"
                 : nodeActive === 2
@@ -129,7 +129,7 @@ export default function Timeline() {
                     key={item.id}
                     className={`w-6 h-6 border-[3px] border-solid border-[#c5cddf] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
                   >
-                    <span className="font-poppins absolute top-[-35px] text-xs text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
+                    <span className="font-poppins absolute top-[-35px] text-[18px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
                     <span className="w-[18px] h-[18px] bg-[#0755d1] rounded-[100px] z-20 flex justify-center items-center">
