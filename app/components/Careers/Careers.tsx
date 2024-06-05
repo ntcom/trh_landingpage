@@ -57,7 +57,7 @@ export default function Careers() {
                 <div className="h-[60px]">
                   <Image src={career.icon} alt=""/>
                 </div>
-                <p className="font-nunito text-[23px] text-[#4c4c4c] leading-[30px] tracking-[0.69px] font-black text-center m-[25px_0_14px]">
+                <p className="text-gradient font-condensed text-[23px] text-[#4c4c4c] leading-[30px] tracking-[0.69px] font-extrabold text-center m-[50px_0_15px]">
                   {career.position}
                 </p>
                 {/* <p className="text-base text-[#6e6e6e] leading-[30px] font-light text-center">
