@@ -31,7 +31,7 @@ function ServicePage() {
                   className="rounded-full"
                 />
               </div>
-              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#218392]">
+              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#0755d1]">
                 Tạo yêu cầu mới
               </h2>
               <p className="font-light text-center text-[#6e6e6e] cursor-pointer">
@@ -43,7 +43,7 @@ function ServicePage() {
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
                   href="/create-requirement"
-                  className="btn-commont self-end btn-app"
+                  className="btn-common self-end btn-send"
                 >
                   Tạo yêu cầu mới
                 </Link>
@@ -61,7 +61,7 @@ function ServicePage() {
                   className="rounded-full"
                 />
               </div>
-              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#218392]">
+              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#0755d1]">
                 Kiểm tra tiến độ
               </h2>
               <p className="font-light text-center text-[#6e6e6e] cursor-pointer">
@@ -73,7 +73,7 @@ function ServicePage() {
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
                   href="/checking-process"
-                  className="btn-common self-end btn-check"
+                  className="btn-common self-end btn-refresh"
                 >
                   Kiểm tra tiến độ
                 </Link>
@@ -91,7 +91,7 @@ function ServicePage() {
                   className="rounded-full"
                 />
               </div>
-              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#218392]">
+              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#0755d1]">
                 Các vấn đề tương tác
               </h2>
               <div className="font-light text-center text-[#6e6e6e] cursor-pointer">
@@ -127,7 +127,7 @@ function ServicePage() {
                   className="rounded-full"
                 />
               </div>
-              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#218392]">
+              <h2 className="text-[24px] font-bold text-center mt-8 mb-2 hover:text-[#0755d1]">
                 Đơn vị tiếp nhận
               </h2>
               <p className="font-light text-center text-[#6e6e6e] cursor-pointer">
@@ -143,7 +143,7 @@ function ServicePage() {
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
                   href="/checking-process"
-                  className="btn-common self-end btn-check"
+                  className="btn-common self-end btn-send"
                 >
                   Việc không trôi, nắm bắt kịp thời
                 </Link>

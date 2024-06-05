@@ -32,7 +32,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   My tickets
                 </p>
               </a>
@@ -43,7 +43,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   New tickets
                 </p>
               </a>
@@ -54,7 +54,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Knowledge tickets
                 </p>
               </a>
@@ -73,7 +73,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={docs} height={16} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Lorem ipsum dolor sit
                 </p>
               </a>
@@ -84,7 +84,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={docs} height={16} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Lorem ipsum
                 </p>
               </a>
@@ -95,7 +95,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={docs} height={16} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Fusce rutrum dolor
                 </p>
               </a>
@@ -106,7 +106,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={docs} height={16} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Incididunt ut labore
                 </p>
               </a>
@@ -117,7 +117,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={docs} height={16} alt="" />
-                <p className="text-base text-[#4c4c4c] hover:text-[#218392]">
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Lorem ipsum sit amet
                 </p>
               </a>

@@ -8,6 +8,7 @@ import Questions from "./components/Questions/Questions";
 import Teams from "./components/Teams/Teams";
 import Television from "./components/Television/Television";
 import Timeline from "./components/Timeline/Timeline";
+import "./styles/globals.css";
 import "./styles/app.css";
 export default function Home() {
   return (

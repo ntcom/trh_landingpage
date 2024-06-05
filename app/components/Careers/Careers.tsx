@@ -10,38 +10,38 @@ import { v4 as uuidv4 } from "uuid";
 const careersList = [
   {
     id: uuidv4(),
-    position: "Lead Developer",
-    description: "A passionate leader and team player",
+    position: "TÔI – NGUYÊN NHÂN VÀ GIẢI PHÁP",
+    description: "TÔI – NGUYÊN NHÂN VÀ GIẢI PHÁP",
     icon: img1,
   },
   {
     id: uuidv4(),
-    position: "Mobile Developer",
-    description: "Self-motivated with a strong sense of ownership",
+    position: "LÀM TỐT NHẤT MỖI KHI HIỆN DIỆN",
+    description: "LÀM TỐT NHẤT MỖI KHI HIỆN DIỆN",
     icon: img2,
   },
   {
     id: uuidv4(),
-    position: "Team Leader",
-    description: "A QA Team leader with at least 5 years’ experience",
+    position: "BÌNH TĨNH, CHÂN THÀNH",
+    description: "BÌNH TĨNH, CHÂN THÀNH",
     icon: img3,
   },
   {
     id: uuidv4(),
-    position: "Product Designer",
-    description: "Designer with at least 3 years experience in UX",
+    position: "TRỰC DIỆN, KHÔNG TỰ ÁI",
+    description: "TRỰC DIỆN, KHÔNG TỰ ÁI",
     icon: img4,
   },
   {
     id: uuidv4(),
-    position: "Head of Marketing",
-    description: "A close-to-numbers individual with a passion for products",
+    position: "TRÁCH NHIỆM – CHÍNH TRỰC – TỐC ĐỘ",
+    description: "TRÁCH NHIỆM – CHÍNH TRỰC – TỐC ĐỘ",
     icon: img5,
   },
   {
     id: uuidv4(),
-    position: "Office Manager",
-    description: "A service-oriented go-getter with 3+ years experience",
+    position: "THẤU HIỂU & HIỆU QUẢ",
+    description: "THẤU HIỂU & HIỆU QUẢ",
     icon: img6,
   },
 ];
@@ -57,12 +57,12 @@ export default function Careers() {
                 <div className="h-[60px]">
                   <Image src={career.icon} alt=""/>
                 </div>
-                <p className="text-[23px] text-[#4c4c4c] leading-[30px] tracking-[0.69px] font-bold text-center m-[25px_0_14px]">
+                <p className="font-nunito text-[23px] text-[#4c4c4c] leading-[30px] tracking-[0.69px] font-black text-center m-[25px_0_14px]">
                   {career.position}
                 </p>
-                <p className="text-base text-[#6e6e6e] leading-[30px] font-light text-center">
+                {/* <p className="text-base text-[#6e6e6e] leading-[30px] font-light text-center">
                   {career.description}
-                </p>
+                </p> */}
               </a>
             </div>
           );

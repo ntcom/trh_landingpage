@@ -7,7 +7,7 @@ function Input(props: any) {
     <div className="relative w-full">
       <Icon
         className="absolute top-1/2 transform translate-y-[-50%]"
-        fill="#218392"
+        fill="#0755d1"
         style={{ left: "25px" }}
       />
       <input className="input-app" {...props}></input>

@@ -251,8 +251,8 @@ export default function Questions() {
                   onClick={() => setTabActive(tab.id)}
                   className={`${
                     tabActive === tab.id
-                      ? "bg-[#218392] text-[#fff] hover:opacity-90"
-                      : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#218392]"
+                      ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                      : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
                   } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] text-xs font-medium leading-5 tracking-[2.4px] uppercase`}
                 >
                   {tab.tag}

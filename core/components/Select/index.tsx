@@ -16,7 +16,7 @@ function Select(props: IProps) {
     <div className="relative w-full">
       <Icon
         className="absolute top-1/2 transform translate-y-[-50%]"
-        fill="#218392"
+        fill="#0755d1"
         style={{ left: "25px" }}
       />
       <select
