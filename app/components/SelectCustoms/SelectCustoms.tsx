@@ -20,7 +20,7 @@ export default function SelectCustoms(props: SelectPropsType) {
     <div
       className={`relative w-full rounded-sm border ${
         onSelect
-          ? "border-[rgb(33,131,146,.8)] shadow-[0_0_8px_2px_rgba(33,131,146,.2)]"
+          ? "border-[rgba(7,85,209,.8)] shadow-[0_0_8px_2px_rgba(7,85,209,.2)]"
           : "border-[#4c4c4c1a]"
       }`}
     >
@@ -36,7 +36,7 @@ export default function SelectCustoms(props: SelectPropsType) {
         value={value}
         placeholder={`-- ${props.placeholder} --`}
         disabled
-        className="common-input z-10 placeholder:text-[13px] placeholder:text-[#218392] placeholder:font-medium placeholder:tracking-0"
+        className="common-input z-10 placeholder:text-[13px] placeholder:text-[#0755d1] placeholder:font-medium placeholder:tracking-0"
       />
       <div className="absolute left-[28px] max-w-[16px] max-h-[16px] top-1/2 -translate-y-1/2 z-20">
         <Image src={props.icon} alt="" />
@@ -52,7 +52,7 @@ export default function SelectCustoms(props: SelectPropsType) {
       <div
         className={`absolute top-[108%] left-[-1px] w-[calc(100%+2px)] ${
           onSelect
-            ? "max-h-[400px] border-[rgb(33,131,146,.8)]"
+            ? "max-h-[400px] border-[rgba(7,85,209,.8)]"
             : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
         } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
       >
@@ -67,7 +67,7 @@ export default function SelectCustoms(props: SelectPropsType) {
                 props.setIValue(option.value);
                 setOnSelect(false);
               }}
-              className="block w-full p-[10px_30px] hover:bg-[#218392] transition-all hover:text-[#fff] text-sm text-[#1d2024] font-medium tracking-[1.2px] cursor-pointer"
+              className="block w-full p-[10px_30px] hover:bg-[#0755d1] transition-all hover:text-[#fff] text-sm text-[#1d2024] font-medium tracking-[1.2px] cursor-pointer"
             >
               {option.title}
             </data>

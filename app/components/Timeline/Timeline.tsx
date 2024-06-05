@@ -132,10 +132,10 @@ export default function Timeline() {
                     <span className="font-poppins absolute top-[-35px] text-xs text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
-                    <span className="w-[18px] h-[18px] bg-[#218392] rounded-[100px] z-20 flex justify-center items-center">
+                    <span className="w-[18px] h-[18px] bg-[#0755d1] rounded-[100px] z-20 flex justify-center items-center">
                       {nodeActive !== item.id && nodeActive <= item.id && (
                         <div className="w-[12px] h-[12px] bg-[#c5cddf] rounded-[100px] flex justify-center items-center">
-                          <span className="w-[6px] h-[6px] bg-[#218392] rounded-[100px] z-10"></span>
+                          <span className="w-[6px] h-[6px] bg-[#0755d1] rounded-[100px] z-10"></span>
                         </div>
                       )}
                     </span>

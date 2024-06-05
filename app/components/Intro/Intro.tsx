@@ -34,7 +34,7 @@ export default function Intro() {
         <div className="w-full flex justify-end items-center sm:items-start flex-col-reverse sm:flex-row gap-5 mt-[50px]">
           {/* <a
             href="/services"
-            className="w-[150px] h-[50px] bg-[#218392] border-[2px] border-solid border-[#218392] flex justify-center items-center hover:bg-[#fff] transition-all duration-300 [&>*]:hover:text-[#218392]"
+            className="w-[150px] h-[50px] bg-[#0755d1] border-[2px] border-solid border-[#0755d1] flex justify-center items-center hover:bg-[#fff] transition-all duration-300 [&>*]:hover:text-[#0755d1]"
           >
             <p className="text-xs text-[#fff] font-medium left-5 uppercase">
               Purchase

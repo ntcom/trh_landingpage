@@ -12,13 +12,14 @@ const config: Config = {
         poppins: ["Poppins, sans-serif"],
         roboto: ["Roboto, sans-serif"],
         dancing: ["Dancing Script, sans-serif"],
+        nunito: ["Nunito, sans-serif"],
       },
       backgroundImage: {},
       colors: {
         primary: {
-          DEFAULT: "#218392",
-          light: "#218392",
-          dark: "#218392",
+          DEFAULT: "#0755d1",
+          light: "#0755d1",
+          dark: "#0755d1",
         },
         secondary: {
           DEFAULT: "#f5f5f5",

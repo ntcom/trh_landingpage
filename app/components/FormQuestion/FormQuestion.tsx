@@ -79,7 +79,7 @@ export default function FormQuestion() {
             ></textarea>
           </div>
 
-          <div className="self-start bg-[#218392] flex justify-center items-center p-[2px] mt-6">
+          <div className="self-start bg-[#0755d1] flex justify-center items-center p-[2px] mt-6">
             <button className="font-poppins p-[15px] bg-transparent rounded text-xs text-[#fff] font-semibold leading-5 tracking-[2px] hover:bg-[#fff] hover:text-[#171b1f] transition-all uppercase">
               Gửi câu hỏi!
             </button>

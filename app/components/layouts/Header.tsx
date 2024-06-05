@@ -91,7 +91,7 @@ export default function Header() {
             >
               {/* <p
                 className={`${
-                  scroll ? "text-[#218392]" : "text-[#fff]"
+                  scroll ? "text-[#0755d1]" : "text-[#fff]"
                 } text-2xl tracking-[0.5em]`}
               >
                 <strong>BRO</strong>BIT
@@ -104,7 +104,7 @@ export default function Header() {
                   href="/login"
                   className={`py-[15px] text-[15px] ${
                     scroll
-                      ? "text-[#4c4c4c] hover:text-[#218392]"
+                      ? "text-[#4c4c4c] hover:text-[#0755d1]"
                       : "text-[#fff] hover:text-[#ffffffb3]"
                   } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
@@ -114,7 +114,7 @@ export default function Header() {
                   href="https://capa-group.netlify.app/login"
                   className={`py-[15px] text-[15px] ${
                     scroll
-                      ? "text-[#4c4c4c] hover:text-[#218392]"
+                      ? "text-[#4c4c4c] hover:text-[#0755d1]"
                       : "text-[#fff] hover:text-[#ffffffb3]"
                   } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
@@ -130,7 +130,7 @@ export default function Header() {
                     className={`${
                       onSearch ? "w-[280px] opacity-100" : "w-0 opacity-0"
                     } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${
-                      scroll ? "text-[#218392] border-[#218392]" : "text-[#fff]"
+                      scroll ? "text-[#0755d1] border-[#0755d1]" : "text-[#fff]"
                     } transition-all duration-300`}
                   />
                   <button
@@ -177,7 +177,7 @@ export default function Header() {
       {scroll && !sideBar && (
         <a
           href="#"
-          className="flex justify-center items-center w-[60px] h-[60px] fixed bottom-0 right-0 bg-[#218392] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-300 z-[998]"
+          className="flex justify-center items-center w-[60px] h-[60px] fixed bottom-0 right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-300 z-[998]"
         >
           <Image src={chevron} alt="" className="-rotate-90" />
         </a>

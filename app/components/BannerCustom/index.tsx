@@ -11,6 +11,7 @@ import {
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 import Link from "next/link";
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
+import bannerImg from '@/assets/imgs/what-is-help-desk-what-is-its-purpose-in-business.jpg'
 interface IBreadcrumb {
   title: string;
   path: string;
@@ -45,8 +46,7 @@ const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
     () => ({
       autoPlay: true,
       background: {
-        image:
-          "url('https://webdesign-finder.com/skymax-demo/brobit/wp-content/uploads/2019/07/title.jpg')",
+        image:`url('https://quattran.com/vnt_upload/service/03_2022/contract-male-sunny-sand-career.jpg')`,
         size: "cover", // Hoặc "contain" tùy theo cách bạn muốn hình nền hiển thị
         position: "50% 50%", // Căn giữa hình nền
         repeat: "no-repeat", // Không lặp lại hình nền

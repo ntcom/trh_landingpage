@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,7 +32,7 @@ body {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #218392;
+  background: #0755d1;
   transition: all 0.2s;
   border-radius: 2px;
 }
@@ -66,7 +67,7 @@ body {
 }
 
 .btn-app {
-  background-color: #218392;
+  background-color: #0755d1;
 }
 .btn-app:hover {
   background-color: rgb(33, 131, 146, .8);
@@ -202,8 +203,8 @@ body {
 }
 .common-input:focus,
 .common-textarea:focus {
-  border: 1px solid rgba(33, 131, 146, .8);
-  box-shadow: 0 0 8px 1px rgba(33, 131, 146, .3);
+  border: 1px solid rgb(7, 85, 209, .8);
+  box-shadow: 0 0 8px 1px rgb(7, 85, 209, .3);
 }
 
 .header-on-scroll {

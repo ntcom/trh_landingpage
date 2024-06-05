@@ -190,7 +190,7 @@ function CreateRequirement() {
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
       <div className="container-app p-[120px_24px]">
-        <h2 className="bg-[#218392] p-[20px] text-2xl text-[#fff] font-semibold">Tạo yêu cầu mới</h2>
+        <h2 className="bg-[#0755d1] p-[20px] text-2xl text-[#fff] font-semibold">Tạo yêu cầu mới</h2>
         <div className="w-1/3 flex m-[30px_0_20px]">
           <SelectCustoms
             options={options}
@@ -362,8 +362,8 @@ function CreateRequirement() {
                         onClick={() => setTabActive(tab.id)}
                         className={`${
                           tabActive === tab.id
-                            ? "bg-[#218392] text-[#fff] hover:opacity-90"
-                            : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#218392]"
+                            ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                            : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
                         } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] text-xs font-medium leading-5 tracking-[2.4px] uppercase`}
                       >
                         {tab.tag}
