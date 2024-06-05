@@ -18,7 +18,7 @@ function ServicePage() {
   return (
     <div className="mb-20">
       <BannerCustom pageName="services" breadcrumbs={breadcrumbs} />
-      <div className="container-app px-6 mb-16">
+      <div className="container-app p-[150px_24px] mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="flex">
             <div className="card-app p-[40px] min-h-[380px] flex flex-col flex-grow">

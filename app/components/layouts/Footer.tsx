@@ -13,7 +13,7 @@ function Footer() {
 
   return pathname !== '/login' && (
     <footer>
-      <div className="bg-[#171b1f]">
+      {/* <div className="bg-[#171b1f]">
         <div className="container2 p-[55px_15px] flex flex-col lgs:flex-row items-center lgs:items-start gap-8 justify-between">
           <div className="flex flex-wrap items-center justify-center gap-4 mds:gap-8">
             <div className="flex items-center gap-[9px]">
@@ -49,11 +49,11 @@ function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-[#1d2024]">
-        <div className="container2 p-[95px_15px]">
-          <ul className="flex flex-wrap items-center justify-center gap-[10px] mb-[57px]">
+        <div className="container2 p-[35px_15px]">
+          {/* <ul className="flex flex-wrap items-center justify-center gap-[10px] mb-[57px]">
             <li className="shrink-0 px-5">
               <a href="/" className="text-xs text-[#fff] font-medium leading-6 tracking-[6px] uppercase">Home</a>
             </li>
@@ -75,10 +75,10 @@ function Footer() {
             <li className="shrink-0 px-5">
               <a href="/" className="text-xs text-[#fff] font-medium leading-6 tracking-[6px] uppercase">Contacts</a>
             </li>
-          </ul>
+          </ul> */}
 
           <div className="px-[15px]">
-            <p className="text-base text-[#fff] font-medium leading-6 tracking-[6.4px] text-center uppercase">© COPYRIGHT 2024 BROBIT</p>
+            <p className="text-base text-[#fff] font-medium leading-6 tracking-[6.4px] text-center uppercase">© COPYRIGHT 2024 TRANGHUY</p>
           </div>
         </div>
       </div>

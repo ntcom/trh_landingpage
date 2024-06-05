@@ -6,4 +6,44 @@
   width: 100%;
 }
 
+#cursor-bg {
+  cursor: url(../../assets/imgs/cursor.png), auto;
+}
 
+.timeline-bg {
+  background-image: url(../../assets/imgs/Timeline/timeline_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner-bot-bg {
+  background-image: url(../../assets/imgs/background-gradient02.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-login {
+  background-image: url(../../assets/imgs/bg-login.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.careers-item {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 60px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.careers-item:hover {
+  background-color: #218392;
+}
+.careers-item:hover > p {
+  color: #fff;
+}

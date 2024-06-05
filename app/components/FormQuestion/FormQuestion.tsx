@@ -20,7 +20,7 @@ export default function FormQuestion() {
               </div>
               <input
                 type="text"
-                className="question-input"
+                className="common-input"
                 placeholder="Họ và tên"
                 required
               />
@@ -31,7 +31,7 @@ export default function FormQuestion() {
               </div>
               <input
                 type="text"
-                className="question-input"
+                className="common-input"
                 placeholder="Email"
                 required
               />
@@ -44,7 +44,7 @@ export default function FormQuestion() {
               </div>
               <input
                 type="text"
-                className="question-input"
+                className="common-input"
                 placeholder="Số điện thoại"
               />
             </div>
@@ -58,7 +58,7 @@ export default function FormQuestion() {
               </div>
               <input
                 type="text"
-                className="question-input"
+                className="common-input"
                 placeholder="Đính kèm"
               />
             </div>
@@ -73,7 +73,7 @@ export default function FormQuestion() {
             <textarea
               name=""
               id=""
-              className="question-textarea"
+              className="common-textarea"
               placeholder="Nội dung câu hỏi"
               required
             ></textarea>

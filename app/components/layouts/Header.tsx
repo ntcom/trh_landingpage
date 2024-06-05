@@ -12,21 +12,27 @@ import navigationGreen from "@/assets/svgs/navigation-green.svg";
 import chevron from "@/assets/svgs/chevron-white2.svg";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
 import logo from "@/assets/imgs/logo.png";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [scroll, setScroll] = useState(false);
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
+  const pathname = usePathname()
 
   useEffect(() => {
     window.onscroll = () => {
-      if (window.scrollY >= 56) {
+      if (window.scrollY >= 56 || pathname === '/services' || pathname === '/create-requirement') {
         setScroll(true);
         setOnsearch(false);
       } else {
         setScroll(false);
       }
     };
+    
+    if(pathname === '/services' || pathname === '/create-requirement') {
+      setScroll(true);
+    }
   }, []);
 
   return (
@@ -93,10 +99,10 @@ export default function Header() {
               <Image src={logo} alt="" className={`w-full h-full`} />
             </a>
             <div className="flex items-center gap-[40px]">
-              <nav className="hidden md:flex items-center gap-[30px]">
+              {pathname === '/' && <nav className="hidden md:flex items-center gap-[30px]">
                 <a
                   href="/login"
-                  className={`py-[15px] text-xs ${
+                  className={`py-[15px] text-[15px] ${
                     scroll
                       ? "text-[#4c4c4c] hover:text-[#218392]"
                       : "text-[#fff] hover:text-[#ffffffb3]"
@@ -106,7 +112,7 @@ export default function Header() {
                 </a>
                 <a
                   href="https://capa-group.netlify.app/login"
-                  className={`py-[15px] text-xs ${
+                  className={`py-[15px] text-[15px] ${
                     scroll
                       ? "text-[#4c4c4c] hover:text-[#218392]"
                       : "text-[#fff] hover:text-[#ffffffb3]"
@@ -114,7 +120,7 @@ export default function Header() {
                 >
                   Khách hàng
                 </a>
-              </nav>
+              </nav>}
 
               <div className="flex items-center gap-9">
                 <div className="relative flex items-center">
@@ -140,14 +146,14 @@ export default function Header() {
                     {scroll ? (
                       <Image
                         src={searchGreen}
-                        width={14}
+                        width={18}
                         className="hidden md:block"
                         alt=""
                       />
                     ) : (
                       <Image
                         src={search}
-                        width={14}
+                        width={18}
                         className="hidden md:block"
                         alt=""
                       />
