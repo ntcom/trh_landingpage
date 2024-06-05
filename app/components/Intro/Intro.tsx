@@ -9,17 +9,17 @@ export default function Intro() {
         <Image src={model} alt="" className="w-full object-cover" />
       </div>
       <div className="lg:max-w-[50%] px-[15px] mt-[50px] lg:mt-0 flex-grow">
-        <p className="font-poppins text-2xl sm:text-3xl text-[#4c4c4c] leading-6 tracking-[0.72px] text-center md:text-left uppercase">
-          Trần Nhiệm
+        <p className="font-dancing text-4xl sm:text-[52px] text-[#4c4c4c] font-bold leading-10 tracking-[1.2px] text-center md:text-left">
+        Trần Nhiệm
         </p>
-        <p className="text-2xl sm:text-[42px] text-[#4c4c4c] font-bold leading-10 tracking-[1.2px] text-center md:text-left uppercase mt-2">
-          IT Manager
+        <p className="font-dancing text-[28px] sm:text-[32px] text-[#4c4c4c] font-medium leading-10 tracking-[0.72px] text-center md:text-left mt-2">
+        IT Manager
         </p>
         {/* <p className="text-lg sm:text-[20px] text-[#4c4c4c] font-medium leading-[30px] italic mt-[45px] text-center md:text-left">
           To get started with SkyMax, please go over all of our plans to let our
           operators know which one works for you the best!
         </p> */}
-        <p className="text-[18px] text-[#808080] leading-6 font-light mt-[25px] text-justify">
+        <p className="font-dancing text-2xl text-[#808080] leading-[50px] font-light mt-[25px] text-justify">
           Sứ mệnh của chúng tôi là mang đến giai đoạn chuyển đổi số cho Trang
           Huy Logistic để thay đổi cách vận hành & quản trị doanh nghiệp. Với
           kinh nghiệm & năng lượng của tuổi trẻ chúng tôi tin sẽ chuyển đổi số

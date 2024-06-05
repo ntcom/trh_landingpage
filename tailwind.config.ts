@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         poppins: ["Poppins, sans-serif"],
         roboto: ["Roboto, sans-serif"],
+        dancing: ["Dancing Script, sans-serif"],
       },
       backgroundImage: {},
       colors: {

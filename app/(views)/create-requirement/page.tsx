@@ -1,34 +1,36 @@
 "use client";
 import React, { useState } from "react";
 import BannerCustom from "@/app/components/BannerCustom";
-import SvgMail from "@/assets/svgs/SvgMail";
+// import SvgMail from "@/assets/svgs/SvgMail";
 import SvgPalette from "@/assets/svgs/SvgPalette";
-import SvgPhone from "@/assets/svgs/SvgPhone";
-import SvgUser from "@/assets/svgs/SvgUser";
-import Input from "@/core/components/Input";
+// import SvgPhone from "@/assets/svgs/SvgPhone";
+// import SvgUser from "@/assets/svgs/SvgUser";
+// import Input from "@/core/components/Input";
 import Select from "@/core/components/Select";
 import Image from "next/image";
-import plus from "@/assets/svgs/plus.svg";
-import minus from "@/assets/svgs/minus.svg";
+// import plus from "@/assets/svgs/plus.svg";
+// import minus from "@/assets/svgs/minus.svg";
 import send from "@/assets/svgs/send.svg";
 import refresh from "@/assets/svgs/refresh.svg";
 import cancel from "@/assets/svgs/cancel.svg";
 
 import user from "@/assets/svgs/user.svg";
-import mail from "@/assets/svgs/email.svg";
+// import mail from "@/assets/svgs/email.svg";
 import phone from "@/assets/svgs/phone.svg";
 import attach from "@/assets/svgs/attach.svg";
 import note from "@/assets/svgs/note.svg";
+import SelectCustoms from "@/app/components/SelectCustoms/SelectCustoms";
+import typeService from "@/assets/svgs/typeof-service.svg";
 
 const options = [
   { title: "-- Chọn một chủ đề --", value: 0 },
   { title: "VPTĐ / Báo tiếp nhận nhân sự mới", value: 1 },
-  { title: "VPTĐ / Đặt lịch họp", value: 2 },
+  { title: "VPTĐ / Đặt lịch họp", value: 'datphong' },
   { title: "VPTĐ / Đặt phòng Residence 265", value: 3 },
   { title: "VPTĐ / Yêu cầu về form Báo Cáo Tuần", value: 4 },
   { title: "Ban thanh tra / Đề nghị xem lại Camera", value: 5 },
   { title: "VPTĐ / Báo hỗ trợ liên quan đến Tài Sản", value: 6 },
-  { title: "CNTT./ Báo hỗ trợ dịch vụ CNTT", value: 7 },
+  { title: "CNTT./ Báo hỗ trợ dịch vụ CNTT", value: 'dvcntt' },
   { title: "CNTT./ Yêu cầu về Tài Khoản người dùng", value: 8 },
   { title: "CNTT./ Yêu cầu kết nối hệ thông, ứng đội", value: 9 },
   { title: "CNTT./ Đăng ký mượn thiết bị CNTT", value: 10 },
@@ -105,6 +107,103 @@ const locations = [
   { title: "Phòng họp 2", value: "ph2" },
 ];
 
+const processingDepartment = {
+  channel: [
+    {
+      title: "Kênh 1",
+      value: "kenh1",
+    },
+    {
+      title: "Kênh 2",
+      value: "kenh2",
+    },
+    {
+      title: "Kênh 3",
+      value: "kenh3",
+    },
+  ],
+  typeOfService: [
+    {
+      title: "Sửa chữa thiết bị",
+      value: "suachuathietbi",
+    },
+    {
+      title: "Cài đặt phần mềm",
+      value: "caidatphanmem",
+    },
+    {
+      title: "Cấp thiết bị",
+      value: "capthietbi",
+    },
+  ],
+  childService: [
+    {
+      title: "Sửa chữa laptop",
+      value: "sualaptop",
+    },
+    {
+      title: "Sửa máy in",
+      value: "suamayin",
+    },
+    {
+      title: "Cấp màn hình rời",
+      value: "capmanhinh",
+    },
+  ],
+  detailService: [
+    {
+      title: "Sửa chữa laptop",
+      value: "sualaptop",
+    },
+    {
+      title: "Sửa máy in",
+      value: "suamayin",
+    },
+    {
+      title: "Cấp màn hình rời",
+      value: "capmanhinh",
+    },
+  ],
+  receivingDepartment: [
+    {
+      title: "Bộ phận hạ tầng",
+      value: "infrastructure",
+    },
+    {
+      title: "Bộ phận lập trình",
+      value: "development",
+    },
+  ],
+  supportTeam: [
+    {
+      title: "Team helpdesk",
+      value: "helpdesk",
+    },
+    {
+      title: "Team Frontend",
+      value: "frontend",
+    },
+    {
+      title: "Team Backend",
+      value: "backend",
+    },
+  ],
+  handler: [
+    {
+      title: "Đức Hoằng",
+      value: "handler1",
+    },
+    {
+      title: "Văn Thắng",
+      value: "handler2",
+    },
+    {
+      title: "Nguyễn Quân",
+      value: "handler3",
+    },
+  ],
+};
+
 function CreateRequirement() {
   const [tabActive, setTabActive] = useState(1);
   const [quesActive, setQuesActive] = useState(
@@ -122,15 +221,21 @@ function CreateRequirement() {
       path: "/create-requirement",
     },
   ];
+
+  const [iValue, setIValue] = useState("");
+
   return (
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
-      <div className="container-app px-6">
+      <div className="container-app p-[120px_24px]">
         <h2 className="bg-secondary heading px-3 py-1">Tạo yêu cầu mới</h2>
-        <div className="w-1/3 flex mt-4">
-          <Select
-            option={options}
-            icon={SvgPalette}
+        <div className="w-1/3 flex m-[30px_0_20px]">
+          <SelectCustoms
+            options={options}
+            iValue={iValue}
+            setIValue={setIValue}
+            icon={attach}
+            placeholder="Chọn một chủ đề"
             setPickOption={setPickOption}
           />
         </div>
@@ -244,7 +349,7 @@ function CreateRequirement() {
               <Select option={options} icon={SvgPalette} setPickOption={setPickOption}/>
             </div> */}
 
-          {pickOption === "2" && (
+          {pickOption === "datphong" && (
             <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex items-center gap-6">
                 <p className="font-poppins text-lg text-[#4c4c4c] font-medium whitespace-nowrap">
@@ -268,7 +373,7 @@ function CreateRequirement() {
                 </div>
                 <input
                   type="text"
-                  className="question-input"
+                  className="common-input"
                   placeholder="Người chủ trì"
                   required
                 />
@@ -284,7 +389,7 @@ function CreateRequirement() {
                   </div>
                   <input
                     type="text"
-                    className="question-input"
+                    className="common-input"
                     placeholder="Số người tham gia"
                   />
                 </div>
@@ -298,7 +403,7 @@ function CreateRequirement() {
                   </div>
                   <input
                     type="text"
-                    className="question-input"
+                    className="common-input"
                     placeholder="Thời gian"
                   />
                 </div>
@@ -312,7 +417,7 @@ function CreateRequirement() {
                 <textarea
                   name=""
                   id=""
-                  className="question-textarea"
+                  className="common-textarea"
                   placeholder="Nội dung cuộc họp"
                   required
                 ></textarea>
@@ -332,7 +437,102 @@ function CreateRequirement() {
             </form>
           )}
 
-          <div className="flex justify-end gap-2">
+          {pickOption === "dvcntt" && (
+            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+              <div className="w-full flex items-center gap-6">
+                <div className="w-[calc(50%-12px)] flex">
+                  <SelectCustoms
+                    options={processingDepartment.channel}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={attach}
+                    placeholder="Kênh"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+              </div>
+              <div className="w-full flex items-center gap-6">
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+              </div>
+              <div className="w-full flex items-center gap-6">
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+              </div>
+              <div className="w-full flex items-center gap-6">
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+                <div className="w-1/2 flex">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setPickOption}
+                  />
+                </div>
+              </div>
+              <div className="flex items-center gap-6">
+                <p className="font-poppins text-lg text-[#4c4c4c] font-medium whitespace-nowrap">
+                  Đề nghị hỗ trợ
+                </p>
+                <div className="flex">
+                  <Select
+                    option={locations}
+                    icon={SvgPalette}
+                    setPickOption={setLocationOption}
+                  />
+                </div>
+              </div>
+            </form>
+          )}
+
+          <div className="flex justify-center gap-2">
             <button className="btn-common btn-app">
               <Image src={send} alt="" />
               Gửi đi

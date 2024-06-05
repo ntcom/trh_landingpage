@@ -7,9 +7,9 @@ import user from "@/assets/svgs/login/user-icon.svg";
 import hEyeIcon from "@/assets/svgs/login/eye-close-icon.svg";
 import eyeIcon from "@/assets/svgs/login/eye-icon.svg";
 import chevronRight from "@/assets/svgs/login/chevron-right2.svg";
-import google from "@/assets/svgs/login/google.svg";
-import facebook from "@/assets/svgs/login/facebook.svg";
-import apple from "@/assets/svgs/login/apple.svg";
+// import google from "@/assets/svgs/login/google.svg";
+// import facebook from "@/assets/svgs/login/facebook.svg";
+// import apple from "@/assets/svgs/login/apple.svg";
 import vector1 from "@/assets/svgs/login/vector1.svg";
 import vector2 from "@/assets/svgs/login/vector2.svg";
 import vector3 from "@/assets/svgs/login/vector3.svg";
@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // navigation("/");
   };
 
   return <div
@@ -111,7 +110,7 @@ const Login = () => {
             <Image src={eyeIcon} alt="eye icon" />
           )}
         </div>
-        <a href="/"
+        <a href="/services"
           style={{
             background:
               "linear-gradient(224deg, rgba(210, 0, 98, 0.55) -56.57%, rgba(38, 102, 207, 0.95) 70.27%)",

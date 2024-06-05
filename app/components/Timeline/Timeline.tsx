@@ -2,20 +2,18 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import bg from "@/assets/imgs/Timeline/timeline_bg.jpg";
+// import bg from "@/assets/imgs/Timeline/timeline_bg.jpg";
 import chevron from "@/assets/svgs/chevron-white.svg";
 
 const timelineData = [
   {
     id: 1,
-    value:
-      "Tiếp nhận yêu cầu",
+    value: "Tiếp nhận yêu cầu",
     label: "Tiếp nhận yêu cầu",
   },
   {
     id: 2,
-    value:
-      "Phân tích yêu cầu",
+    value: "Phân tích yêu cầu",
     label: "Phân tích yêu cầu",
   },
   {
@@ -110,6 +108,18 @@ export default function Timeline() {
             }`}
           >
             <ul className="relative w-full flex items-center justify-between">
+              <div
+                className="absolute w-[99%] left-[4px] h-[4px] bg-[rgb(255,255,255,.1)] flex justify-start items-center z-0"
+                color="#6c757d"
+              >
+                <span
+                  className={`${
+                    nodeActive === 1
+                      ? "w-0"
+                      : `w-[${25*(nodeActive-1)+"%"}]`
+                  } h-full bg-[#fff] z-0 transition-all duration-[450ms]`}
+                ></span>
+              </div>
               {timelineData.map((item) => {
                 return (
                   <li
@@ -117,25 +127,21 @@ export default function Timeline() {
                       setNodeActive(item.id);
                     }}
                     key={item.id}
-                    className={`w-6 h-6 bg-[rgb(255,255,255,.5)] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
+                    className={`w-6 h-6 border-[3px] border-solid border-[#c5cddf] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
                   >
                     <span className="font-poppins absolute top-[-35px] text-xs text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
                     <span className="w-[18px] h-[18px] bg-[#218392] rounded-[100px] z-20 flex justify-center items-center">
                       {nodeActive !== item.id && nodeActive <= item.id && (
-                        <div className="w-[12px] h-[12px] bg-[rgb(255,255,255,.5)] rounded-[100px] flex justify-center items-center">
-                          <span className="w-[6px] h-[6px] bg-[#218392] rounded-[100px]"></span>
+                        <div className="w-[12px] h-[12px] bg-[#c5cddf] rounded-[100px] flex justify-center items-center">
+                          <span className="w-[6px] h-[6px] bg-[#218392] rounded-[100px] z-10"></span>
                         </div>
                       )}
                     </span>
                   </li>
                 );
               })}
-              <div
-                className="absolute w-[99%] left-[4px] h-[4px] bg-[rgb(255,255,255,.1)] z-10"
-                color="#6c757d"
-              ></div>
             </ul>
           </div>
         </div>

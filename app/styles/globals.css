@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -156,33 +158,8 @@ body {
   }
 }
 
-#cursor-bg {
-  cursor: url(../../assets/imgs/cursor.png), auto;
-}
-
-.careers-item {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 60px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.careers-item:hover {
-  background-color: #218392;
-}
-.careers-item:hover > p {
-  color: #fff;
-}
-
-.question-input,
-.question-textarea {
+.common-input,
+.common-textarea {
   font-family: "Poppins", sans-serif;
   width: 100%;
   height: 60px;
@@ -190,39 +167,29 @@ body {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: transparent;
   color: #1d2024;
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  font-size: 14px;
+  letter-spacing: 1.2px;
   outline: none;
 }
 
-.question-input {
+.common-input {
   height: 60px;
-  padding: 9px 20px 9px 60px;
+  padding: 9px 30px 9px 60px;
+  font-weight: 500;
 }
 
-.question-textarea {
+.common-textarea {
   padding: 20px 20px 20px 60px;
 }
 
-.question-input::placeholder,
-.question-textarea::placeholder {
+.common-input::placeholder,
+.common-textarea::placeholder {
   font-family: "Poppins", sans-serif;
   color: #808080;
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
   letter-spacing: 2.4px;
-}
-
-.timeline-bg {
-  background-image: url(../../assets/imgs/Timeline/timeline_bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.banner-bot-bg {
-  background-image: url(../../assets/imgs/background-gradient02.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .header-on-scroll {
@@ -245,8 +212,6 @@ body {
   }
 } */
 
-.main-login {
-  background-image: url(../../assets/imgs/bg-login.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
 }
