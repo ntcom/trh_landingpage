@@ -13,6 +13,7 @@ const config: Config = {
         roboto: ["Roboto, sans-serif"],
         dancing: ["Dancing Script, sans-serif"],
         nunito: ["Nunito, sans-serif"],
+        condensed: ["Roboto Condensed, sans-serif"],
       },
       backgroundImage: {},
       colors: {

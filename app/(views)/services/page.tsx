@@ -99,16 +99,10 @@ function ServicePage() {
                 <p>- Đăng ký quảng cáo WIFI Marketing/Màn hình TV</p>
                 <p>- Đăng ký tài khoản Polycom/Email/Thẻ Từ</p>
                 <p>- Đặt lịch họp/Báo hỏng Tài sản/Thiết bị</p>
-                <p className="font-semibold">* SẮP RA MẮT *</p>
-                <p>- Báo nguy cơ về an ninh, PCCC</p>
-                <p>
-                  - Báo hỗ trợ nghiệp vụ HiStaff và giải đáp các vấn đề pháp
-                  chế/nhân sự.
-                </p>
               </div>
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
-                  href="/create-requirement"
+                  href="#"
                   className="btn-common self-end btn-refresh"
                 >
                   Báo cáo sự việc mọi lúc, mọi nơi
@@ -142,7 +136,7 @@ function ServicePage() {
               </p>
               <div className="flex justify-center mt-4 sefl-end flex-1">
                 <Link
-                  href="/checking-process"
+                  href="#"
                   className="btn-common self-end btn-send"
                 >
                   Việc không trôi, nắm bắt kịp thời

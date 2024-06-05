@@ -556,12 +556,12 @@ const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
           </span>
         </div> */}
         <div className="absolute top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] z-50">
-          <h2 className="text-white text-[60px] font-bold uppercase text-center -tracking-[-0.2em]">
+          {/* <h2 className="text-white text-[60px] font-bold uppercase text-center -tracking-[-0.2em]">
             {pageName}
-          </h2>
+          </h2> */}
         </div>
         {/* breadcrumb */}
-        <div className="absolute bottom-0 z-50 bg-[rgba(0,_0,_0,_0.1)] w-full h-[60px]">
+        {/* <div className="absolute bottom-0 z-50 bg-[rgba(0,_0,_0,_0.1)] w-full h-[60px]">
           <div className="flex justify-center items-center h-full gap-5">
             {breadcrumbs.map((item, index) => {
               return (
@@ -580,7 +580,7 @@ const BannerCustom = ({ pageName, breadcrumbs }: IProps) => {
               );
             })}
           </div>
-        </div>
+        </div> */}
         <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}

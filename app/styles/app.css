@@ -73,3 +73,9 @@
   line-height: 26px;
   text-transform: uppercase;
 }
+
+.text-gradient {
+  background: -webkit-linear-gradient(135deg, #42d392, #0755d1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

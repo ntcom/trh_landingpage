@@ -25,8 +25,8 @@ import suporter from "@/assets/svgs/suporter.svg";
 import tagName from "@/assets/svgs/tag-name.svg";
 
 const options = [
-  { title: "VPTĐ / Đặt lịch họp", value: "datphonghop" },
-  { title: "VPTĐ / Đặt văn phòng phẩm", value: "datvpp" },
+  { title: "CNTT / Đặt lịch họp", value: "datphonghop" },
+  { title: "CNTT / Đặt văn phòng phẩm", value: "datvpp" },
   { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "dvcntt" },
 ];
 const questionsList = [
@@ -176,8 +176,8 @@ function CreateRequirement() {
   return (
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
-      <div className="container-app p-[100px_24px_120px]">
-        <h2 className="font-poppins bg-[#0755d1] p-[20px] text-2xl text-[#fff] font-semibold uppercase">Tạo yêu cầu mới</h2>
+      <div className="container-app p-[180px_24px_220px]">
+        <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">Tạo yêu cầu mới</h2>
         <div className="w-full max-w-[700px] mx-auto">
           <div className="w-full flex m-[30px_0_20px]">
             <SelectCustoms
