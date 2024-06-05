@@ -38,7 +38,7 @@ body {
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(33, 131, 146, 0.8);
+  background: rgba(7, 85, 209, .8);
 }
 
 .container-app {
@@ -195,11 +195,12 @@ body {
 .common-input::placeholder,
 .common-textarea::placeholder {
   font-family: "Poppins", sans-serif;
-  color: #808080;
+  color: #0755d1;
   font-size: 12px;
   line-height: 18px;
   text-transform: uppercase;
   letter-spacing: 2.4px;
+  font-weight: 500;
 }
 .common-input:focus,
 .common-textarea:focus {

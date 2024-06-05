@@ -6,6 +6,7 @@ import send from "@/assets/svgs/send.svg";
 import refresh from "@/assets/svgs/refresh.svg";
 import cancel from "@/assets/svgs/cancel.svg";
 
+import channel from "@/assets/svgs/channel.svg";
 import attach from "@/assets/svgs/attach.svg";
 import note from "@/assets/svgs/note.svg";
 import SelectCustoms from "@/app/components/SelectCustoms/SelectCustoms";
@@ -14,33 +15,19 @@ import request from "@/assets/svgs/request.svg";
 import location from "@/assets/svgs/location.svg";
 import host from "@/assets/svgs/host.svg";
 import quantity from "@/assets/svgs/quantity.svg";
+import quantity2 from "@/assets/svgs/quantity2.svg";
 import time from "@/assets/svgs/time.svg";
 import childService from "@/assets/svgs/childService.svg";
 import detailService from "@/assets/svgs/detailService.svg";
 import receivingDepartment from "@/assets/svgs/receiving-department.svg";
 import suportTeam from "@/assets/svgs/suportTeam.svg";
 import suporter from "@/assets/svgs/suporter.svg";
+import tagName from "@/assets/svgs/tag-name.svg";
 
 const options = [
-  { title: "VPTĐ / Báo tiếp nhận nhân sự mới", value: 1 },
-  { title: "VPTĐ / Đặt lịch họp", value: "datphong" },
-  { title: "VPTĐ / Đặt phòng Residence 265", value: 3 },
-  { title: "VPTĐ / Yêu cầu về form Báo Cáo Tuần", value: 4 },
-  { title: "Ban thanh tra / Đề nghị xem lại Camera", value: 5 },
-  { title: "VPTĐ / Báo hỗ trợ liên quan đến Tài Sản", value: 6 },
-  { title: "CNTT./ Báo hỗ trợ dịch vụ CNTT", value: "dvcntt" },
-  { title: "CNTT./ Yêu cầu về Tài Khoản người dùng", value: 8 },
-  { title: "CNTT./ Yêu cầu kết nối hệ thông, ứng đội", value: 9 },
-  { title: "CNTT./ Đăng ký mượn thiết bị CNTT", value: 10 },
-  { title: "CNTT./ Đăng quảng cáo WIFI Marketing", value: 11 },
-  { title: "CNTT./ Đăng ký tài khoản Polycom", value: 12 },
-  { title: "CNTT./ Đăng ký tạo Dự án trên Hệ thống", value: 13 },
-  { title: "CNTT./ Yêu cầu về Thể CBNV", value: 14 },
-  { title: "Ban Nhân sự / Báo các sự việc bất thường", value: 15 },
-  { title: "Ban Thanh tra / Báo các sự việc bất thường", value: 16 },
-  { title: "BQL Toà nhà / Đăng quảng cáo tại Toà nhà 265", value: 17 },
-  { title: "BQL / Báo hỏng hóc cơ sở vật chất", value: 18 },
-  { title: "Đóng góp ý kiến cải thiện", value: 19 },
+  { title: "VPTĐ / Đặt lịch họp", value: "datphonghop" },
+  { title: "VPTĐ / Đặt văn phòng phẩm", value: "datvpp" },
+  { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "dvcntt" },
 ];
 const questionsList = [
   {
@@ -189,21 +176,23 @@ function CreateRequirement() {
   return (
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
-      <div className="container-app p-[120px_24px]">
-        <h2 className="bg-[#0755d1] p-[20px] text-2xl text-[#fff] font-semibold">Tạo yêu cầu mới</h2>
-        <div className="w-1/3 flex m-[30px_0_20px]">
-          <SelectCustoms
-            options={options}
-            iValue={iValue}
-            setIValue={setIValue}
-            icon={request}
-            placeholder="Chọn một chủ đề"
-            setPickOption={setPickOption}
-          />
+      <div className="container-app p-[100px_24px_120px]">
+        <h2 className="font-poppins bg-[#0755d1] p-[20px] text-2xl text-[#fff] font-semibold uppercase">Tạo yêu cầu mới</h2>
+        <div className="w-full max-w-[700px] mx-auto">
+          <div className="w-full flex m-[30px_0_20px]">
+            <SelectCustoms
+              options={options}
+              iValue={iValue}
+              setIValue={setIValue}
+              icon={request}
+              placeholder="Chọn một chủ đề"
+              setPickOption={setPickOption}
+            />
+          </div>
         </div>
         <hr className="divide"></hr>
-        <div className="mt-[50px] w-full max-w-[700px] mx-auto ">
-          {pickOption === "datphong" && (
+        <div className="mt-[40px] w-full max-w-[700px] mx-auto ">
+          {pickOption === "datphonghop" && (
             <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex">
                 <SelectCustoms
@@ -275,6 +264,69 @@ function CreateRequirement() {
             </form>
           )}
 
+          {pickOption === "datvpp" && (
+            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={tagName}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="common-input"
+                  placeholder="Tên sản phẩm"
+                />
+              </div>
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={quantity2}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="number"
+                  className="common-input"
+                  placeholder="Số lượng"
+                />
+              </div>
+              <div className="w-full">
+                <SelectCustoms
+                  options={processingDepartment.typeOfService}
+                  iValue={iValue}
+                  setIValue={setIValue}
+                  icon={receivingDepartment}
+                  placeholder="Bộ phận tiếp nhận"
+                  setPickOption={setParamOption}
+                />
+              </div>
+              <div className="w-full">
+                <SelectCustoms
+                  options={processingDepartment.typeOfService}
+                  iValue={iValue}
+                  setIValue={setIValue}
+                  icon={suporter}
+                  placeholder="Người xử lý"
+                  setPickOption={setParamOption}
+                />
+              </div>
+              <div className="w-full">
+                <SelectCustoms
+                  options={processingDepartment.typeOfService}
+                  iValue={iValue}
+                  setIValue={setIValue}
+                  icon={attach}
+                  placeholder="Đính kèm tài liệu, văn bản"
+                  setPickOption={setParamOption}
+                />
+              </div>
+            </form>
+          )}
+
           {pickOption === "dvcntt" && (
             <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="w-full flex items-center gap-6">
@@ -283,7 +335,7 @@ function CreateRequirement() {
                     options={processingDepartment.channel}
                     iValue={iValue}
                     setIValue={setIValue}
-                    icon={attach}
+                    icon={channel}
                     placeholder="Kênh"
                     setPickOption={setParamOption}
                   />
@@ -346,6 +398,16 @@ function CreateRequirement() {
                   setIValue={setIValue}
                   icon={suporter}
                   placeholder="Người xử lý"
+                  setPickOption={setParamOption}
+                />
+              </div>
+              <div className="w-full">
+                <SelectCustoms
+                  options={processingDepartment.typeOfService}
+                  iValue={iValue}
+                  setIValue={setIValue}
+                  icon={attach}
+                  placeholder="Đính kèm tài liệu, văn bản"
                   setPickOption={setParamOption}
                 />
               </div>

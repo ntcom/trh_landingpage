@@ -23,7 +23,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
       >
         <div>
           <p className="text-2xl text-[#4c4c4c] font-bold mb-[14px]">
-            My account
+            Tài khoản
           </p>
           <ul>
             <li>
@@ -33,7 +33,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  My tickets
+                  Thông tin tài khoản
                 </p>
               </a>
             </li>
@@ -44,7 +44,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  New tickets
+                  Yêu cầu đã gửi
                 </p>
               </a>
             </li>
@@ -55,7 +55,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Knowledge tickets
+                  Yêu cầu chưa đánh giá
                 </p>
               </a>
             </li>
@@ -64,7 +64,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
 
         <div className="mt-[60px]">
           <p className="text-2xl text-[#4c4c4c] font-bold mb-[14px]">
-            Popular FAQs
+            Câu hỏi phổ biến
           </p>
           <ul>
             <li>
@@ -74,7 +74,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={docs} height={16} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Lorem ipsum dolor sit
+                  Cách đăng ký tài khoản
                 </p>
               </a>
             </li>
@@ -85,7 +85,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={docs} height={16} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Lorem ipsum
+                  Yêu cầu được xử lý trong bao lâu?
                 </p>
               </a>
             </li>
@@ -96,7 +96,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={docs} height={16} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Fusce rutrum dolor
+                  Cách tạo yêu cầu
                 </p>
               </a>
             </li>
@@ -107,7 +107,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={docs} height={16} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Incididunt ut labore
+                  Làm sao để đổi thông tin?
                 </p>
               </a>
             </li>
@@ -118,7 +118,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
               >
                 <Image src={docs} height={16} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Lorem ipsum sit amet
+                  Tại sao yêu cầu bị từ chối?
                 </p>
               </a>
             </li>
@@ -126,13 +126,13 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
 
           <div className="mt-[60px]">
             <p className="text-2xl text-[#4c4c4c] font-bold mb-6">
-              Search FAQs
+              Tìm kiếm
             </p>
             <form action="" className="flex items-center">
               <input
                 type="text"
                 className="w-[190px] h-[60px] p-[6px_12px_6px_20px] border-[1px] border-solid border-[#4c4c4c1a] rounded-[5px_0_0_5px] shadow-[0_0_10px_0_rgba(0,0,0,0.1)] outline-none text-xs text-[#808080] font-medium"
-                placeholder="SEARCH"
+                placeholder="Search"
               />
               <button className="shrink-0 w-[60px] h-[60px] bg-[#d5550f] p-3 rounded-[0_5px_5px_0] flex justify-center items-center">
                 <Image src={search} height={24} alt="" />

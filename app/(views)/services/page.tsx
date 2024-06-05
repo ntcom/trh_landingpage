@@ -35,7 +35,7 @@ function ServicePage() {
                 Tạo yêu cầu mới
               </h2>
               <p className="font-light text-center text-[#6e6e6e] cursor-pointer">
-                Với người dùng sử dụng email @flc.vn, các anh/chị đăng nhập bằng
+                Với người dùng sử dụng email @tranghuy.com, các anh/chị đăng nhập bằng
                 email và mật khẩu của mình để tạo phiếu yêu cầu hỗ trợ. Đối với
                 các email khác, vui lòng tạo, kích hoạt tài khoản lần đầu để bắt
                 đầu sử dụng.
