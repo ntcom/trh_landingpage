@@ -177,9 +177,11 @@ function CreateRequirement() {
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
       <div className="container-app p-[180px_24px_220px]">
-        <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">Tạo yêu cầu mới</h2>
+        <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">
+          Tạo yêu cầu mới
+        </h2>
         <div className="w-full max-w-[700px] mx-auto">
-          <div className="w-full flex m-[30px_0_20px]">
+          <div className="w-full flex m-[50px_0]">
             <SelectCustoms
               options={options}
               iValue={iValue}
@@ -191,7 +193,7 @@ function CreateRequirement() {
           </div>
         </div>
         <hr className="divide"></hr>
-        <div className="mt-[40px] w-full max-w-[700px] mx-auto ">
+        <div className="mt-[60px] w-full max-w-[700px] mx-auto ">
           {pickOption === "datphonghop" && (
             <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex">
@@ -200,8 +202,50 @@ function CreateRequirement() {
                   iValue={iValue}
                   setIValue={setIValue}
                   icon={location}
-                  placeholder=" Địa điểm tổ chức"
+                  placeholder="Vị trí phòng họp"
                   setPickOption={setParamOption}
+                />
+              </div>
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={time}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="common-input"
+                  placeholder="Bắt đầu"
+                />
+              </div>
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={time}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="common-input"
+                  placeholder="Kết thúc"
+                />
+              </div>
+              <div className="relative w-full flex items-center">
+                <div className="absolute left-[28px] w-[16px] flex justify-center">
+                  <Image
+                    src={quantity}
+                    alt=""
+                    className="max-w-[16px] max-h-[16px]"
+                  />
+                </div>
+                <input
+                  type="text"
+                  className="common-input"
+                  placeholder="Người tham gia"
                 />
               </div>
               <div className="relative w-full flex items-center">
@@ -222,7 +266,7 @@ function CreateRequirement() {
               <div className="relative w-full flex items-center">
                 <div className="absolute left-[28px] w-[16px] flex justify-center">
                   <Image
-                    src={quantity}
+                    src={host}
                     alt=""
                     className="max-w-[16px] max-h-[16px]"
                   />
@@ -230,21 +274,8 @@ function CreateRequirement() {
                 <input
                   type="text"
                   className="common-input"
-                  placeholder="Số người tham gia"
-                />
-              </div>
-              <div className="relative w-full flex items-center">
-                <div className="absolute left-[28px] w-[16px] flex justify-center">
-                  <Image
-                    src={time}
-                    alt=""
-                    className="max-w-[16px] max-h-[16px]"
-                  />
-                </div>
-                <input
-                  type="text"
-                  className="common-input"
-                  placeholder="Thời gian"
+                  placeholder="Yêu cầu thêm"
+                  required
                 />
               </div>
               <div className="relative flex">
@@ -260,6 +291,16 @@ function CreateRequirement() {
                   placeholder="Nội dung cuộc họp"
                   required
                 ></textarea>
+              </div>
+              <div className="w-full">
+                <SelectCustoms
+                  options={processingDepartment.typeOfService}
+                  iValue={iValue}
+                  setIValue={setIValue}
+                  icon={attach}
+                  placeholder="Đính kèm tài liệu, văn bản"
+                  setPickOption={setParamOption}
+                />
               </div>
             </form>
           )}
@@ -443,7 +484,10 @@ function CreateRequirement() {
           </div> */}
 
           <div className="flex justify-center gap-4 mt-[50px]">
-            <a href="/create-requirement/process" className="btn-common btn-send">
+            <a
+              href="/create-requirement/process"
+              className="btn-common btn-send"
+            >
               <Image src={send} alt="" />
               Gửi đi
             </a>

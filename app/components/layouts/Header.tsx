@@ -22,7 +22,7 @@ export default function Header() {
 
   useEffect(() => {
     window.onscroll = () => {
-      if (window.scrollY >= 56 || pathname === '/services' || pathname === '/create-requirement') {
+      if (window.scrollY >= 56 || pathname !== '/') {
         setScroll(true);
         setOnsearch(false);
       } else {
@@ -30,7 +30,7 @@ export default function Header() {
       }
     };
     
-    if(pathname === '/services' || pathname === '/create-requirement') {
+    if(pathname !== '/') {
       setScroll(true);
     }
   }, []);
