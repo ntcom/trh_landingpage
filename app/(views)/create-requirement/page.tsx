@@ -181,7 +181,7 @@ function CreateRequirement() {
           Tạo yêu cầu mới
         </h2>
         <div className="w-full max-w-[700px] mx-auto">
-          <div className="w-full flex m-[50px_0]">
+          <div className="w-full flex m-[50px_0_100px]">
             <SelectCustoms
               options={options}
               iValue={iValue}
@@ -193,9 +193,9 @@ function CreateRequirement() {
           </div>
         </div>
         <hr className="divide"></hr>
-        <div className="mt-[60px] w-full max-w-[700px] mx-auto ">
-          {pickOption === "datphonghop" && (
-            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+        <form action={""} className="mt-[50px] w-full max-w-[700px] mx-auto ">
+          {pickOption === "datphonghop" ? (
+            <div className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex">
                 <SelectCustoms
                   options={locations}
@@ -302,11 +302,9 @@ function CreateRequirement() {
                   setPickOption={setParamOption}
                 />
               </div>
-            </form>
-          )}
-
-          {pickOption === "datvpp" && (
-            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
+            </div>
+          ) : pickOption === "datvpp" ? (
+            <div className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="relative w-full flex items-center">
                 <div className="absolute left-[28px] w-[16px] flex justify-center">
                   <Image
@@ -365,94 +363,94 @@ function CreateRequirement() {
                   setPickOption={setParamOption}
                 />
               </div>
-            </form>
-          )}
-
-          {pickOption === "dvcntt" && (
-            <form action="" className="flex flex-col gap-5 m-[30px_0_30px]">
-              <div className="w-full flex items-center gap-6">
-                <div className="w-full flex">
+            </div>
+          ) : (
+            pickOption === "dvcntt" ? (
+              <div className="flex flex-col gap-5 m-[30px_0_30px]">
+                <div className="w-full flex items-center gap-6">
+                  <div className="w-full flex">
+                    <SelectCustoms
+                      options={processingDepartment.channel}
+                      iValue={iValue}
+                      setIValue={setIValue}
+                      icon={channel}
+                      placeholder="Kênh"
+                      setPickOption={setParamOption}
+                    />
+                  </div>
+                </div>
+                <div className="w-full">
                   <SelectCustoms
-                    options={processingDepartment.channel}
+                    options={processingDepartment.typeOfService}
                     iValue={iValue}
                     setIValue={setIValue}
-                    icon={channel}
-                    placeholder="Kênh"
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={childService}
+                    placeholder="Dịch vụ con"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={detailService}
+                    placeholder="Dịch vụ chi tiết"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={receivingDepartment}
+                    placeholder="Bộ phận tiếp nhận"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={suportTeam}
+                    placeholder="Đội ngũ hỗ trợ"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={suporter}
+                    placeholder="Người xử lý"
+                    setPickOption={setParamOption}
+                  />
+                </div>
+                <div className="w-full">
+                  <SelectCustoms
+                    options={processingDepartment.typeOfService}
+                    iValue={iValue}
+                    setIValue={setIValue}
+                    icon={attach}
+                    placeholder="Đính kèm tài liệu, văn bản"
                     setPickOption={setParamOption}
                   />
                 </div>
               </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={typeService}
-                  placeholder="Loại dịch vụ"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={childService}
-                  placeholder="Dịch vụ con"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={detailService}
-                  placeholder="Dịch vụ chi tiết"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={receivingDepartment}
-                  placeholder="Bộ phận tiếp nhận"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={suportTeam}
-                  placeholder="Đội ngũ hỗ trợ"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={suporter}
-                  placeholder="Người xử lý"
-                  setPickOption={setParamOption}
-                />
-              </div>
-              <div className="w-full">
-                <SelectCustoms
-                  options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
-                  icon={attach}
-                  placeholder="Đính kèm tài liệu, văn bản"
-                  setPickOption={setParamOption}
-                />
-              </div>
-            </form>
+            ) : <div className="h-[100px]"></div>
           )}
 
           {/* <div className="bg-[#fff]">
@@ -500,7 +498,7 @@ function CreateRequirement() {
               Hủy bỏ
             </button>
           </div>
-        </div>
+        </form>
         {/* </div> */}
       </div>
     </div>

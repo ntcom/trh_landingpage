@@ -74,6 +74,8 @@ body {
 }
 .btn-send {
   background: linear-gradient(276deg, #0081FF 44.33%, rgba(30, 144, 255, 0.75) 98.56%);
+  /* background: linear-gradient(90deg, #0062FF 0%, rgb(0, 129, 255, .7) 100%); */
+  /* background: linear-gradient(90deg, #0062FF 0%, #65D1FF 100%); */
   box-shadow: 0px 10px 20px 0px rgba(30, 144, 255, 0.25);
 }
 .btn-send:hover {

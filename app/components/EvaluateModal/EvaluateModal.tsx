@@ -57,7 +57,7 @@ export default function EvaluateModal({ openModal, setOpenModal }: any) {
             <Image
               src={comment}
               alt=""
-              className="absolute top-5 left-[28px] max-w-[16px] max-h-[16px]"
+              className="absolute top-5 left-[24px] max-w-[16px] max-h-[16px]"
             />
             <textarea
               name=""

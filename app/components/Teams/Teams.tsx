@@ -84,7 +84,7 @@ export default function Teams() {
               key={mem.id}
               className="bg-[#fff] rounded-[5px] relative overflow-hidden"
             >
-              <div className="relative h-[370px] max-h-[370px] cursor-pointer overflow-hidden [&>span]:hover:bg-[rgba(33,131,146,0.5)]">
+              <div className="relative h-[370px] max-h-[370px] cursor-pointer overflow-hidden [&>span]:hover:bg-[rgba(7,85,209,.4)]">
                 <Image
                   src={mem.image}
                   alt=""
@@ -100,13 +100,7 @@ export default function Teams() {
                   {mem.name}
                 </a>
                 <p
-                  className={`text-xs ${
-                    index + 1 === teamList.length - 2 ||
-                    index + 1 === teamList.length - 1 ||
-                    index + 1 === teamList.length
-                      ? "text-[#3197d4]"
-                      : "text-[#d5550f]"
-                  } font-medium leading-5 tracking-[2.4px] text-center uppercase`}
+                  className={`text-xs text-[#3197d4] font-medium leading-5 tracking-[2.4px] text-center uppercase`}
                 >
                   {mem.position}
                 </p>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 // import bg from "@/assets/imgs/Timeline/timeline_bg.jpg";
 import chevron from "@/assets/svgs/chevron-white.svg";
+import box from "@/assets/svgs/box.svg";
+import lineArrow from "@/assets/svgs/line-arrow.svg";
 
 const timelineData = [
   {
@@ -12,9 +14,17 @@ const timelineData = [
     label: "Tiếp nhận yêu cầu",
   },
   {
+    id: 101,
+    icon: lineArrow,
+  },
+  {
     id: 2,
     value: "Phân tích yêu cầu",
     label: "Phân tích yêu cầu",
+  },
+  {
+    id: 201,
+    icon: lineArrow,
   },
   {
     id: 3,
@@ -22,9 +32,17 @@ const timelineData = [
     label: "Xử lý",
   },
   {
+    id: 301,
+    icon: lineArrow,
+  },
+  {
     id: 4,
     value: "Khách hàng đánh giá/phản hồi ",
     label: "Khách hàng đánh giá/phản hồi ",
+  },
+  {
+    id: 401,
+    icon: lineArrow,
   },
   {
     id: 5,
@@ -41,7 +59,7 @@ export default function Timeline() {
       className="timeline-bg h-[609px] flex justify-center items-center"
       //   style={{ background: `no-repeat url(${bg})`, backgroundSize: "cover" }}
     >
-      <div className="w-full px-[30px]">
+      <div className="w-full px-[30px] mt-[-100px]">
         <div>
           <p className="font-poppins text-xl sm:text-2xl text-[#fff] tracking-[3px] text-center">
             QUY TRÌNH HỖ TRỢ
@@ -91,7 +109,7 @@ export default function Timeline() {
 
         <div
           id="current-x"
-          className="relative shrink-0 w-6 mx-auto mt-[135px] sm:mt-[105px]"
+          className="relative shrink-0 w-6 mx-auto mt-[80px] sm:mt-[50px]"
         >
           <div
             id="move-slide"
@@ -108,37 +126,26 @@ export default function Timeline() {
             }`}
           >
             <ul className="relative w-full flex items-center justify-between">
-              <div
-                className="absolute w-[99%] left-[4px] h-[4px] bg-[rgb(255,255,255,.1)] flex justify-start items-center z-0"
-                color="#6c757d"
-              >
-                {/* <span
-                  className={`${
-                    nodeActive === 1
-                      ? "w-0"
-                      : `w-[50%]`
-                  } h-full bg-[#fff] z-0 transition-all duration-[450ms]`}
-                ></span> */}
-              </div>
               {timelineData.map((item) => {
-                return (
+                return item.value ? (
                   <li
                     onClick={() => {
                       setNodeActive(item.id);
                     }}
                     key={item.id}
-                    className={`w-6 h-6 border-[3px] border-solid border-[#c5cddf] rounded-[100px] z-20 flex justify-center items-center cursor-pointer`}
+                    className={`p-[22px] bg-[rgba(247,250,255,.1)] flex justify-center items-center rounded-[10px] border border-[#E5EFFF] cursor-pointer`}
                   >
-                    <span className="font-poppins absolute top-[-35px] text-[18px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
+                    <span className="font-roboto absolute bottom-[-50px] text-[18px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
-                    <span className="w-[18px] h-[18px] bg-[#0755d1] rounded-[100px] z-20 flex justify-center items-center">
-                      {nodeActive !== item.id && nodeActive <= item.id && (
-                        <div className="w-[12px] h-[12px] bg-[#c5cddf] rounded-[100px] flex justify-center items-center">
-                          <span className="w-[6px] h-[6px] bg-[#0755d1] rounded-[100px] z-10"></span>
-                        </div>
-                      )}
-                    </span>
+                    <Image src={box} alt="" />
+                  </li>
+                ) : (
+                  <li
+                    key={item.id}
+                    className={``}
+                  >
+                    <Image src={item.icon} alt="" />
                   </li>
                 );
               })}
