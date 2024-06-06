@@ -2,7 +2,8 @@
 import BannerCustom from "@/app/components/BannerCustom";
 import Image from "next/image";
 import React, { useState } from "react";
-import user1 from '@/assets/imgs/Teams/mem9.jpeg'
+import user1 from "@/assets/imgs/Teams/mem9.jpeg";
+import EvaluateModal from "@/app/components/EvaluateModal/EvaluateModal";
 
 const questionsList = [
   {
@@ -24,7 +25,7 @@ const questionsList = [
   {
     id: 3,
     tag: "Đánh giá của khách hàng",
-    content: `Rất tốt`,
+    content: ``,
   },
 ];
 const questionsList2 = [
@@ -73,11 +74,12 @@ const questionsList2 = [
 export default function Process() {
   const [tabActive, setTabActive] = useState(1);
   const [tabActive2, setTabActive2] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div>
       <BannerCustom />
-
+      <EvaluateModal openModal={openModal} setOpenModal={setOpenModal} />
       <div className="container-app p-[180px_24px_220px]">
         <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">
           Chờ xử lý
@@ -91,32 +93,47 @@ export default function Process() {
               Mã yêu cầu: <span className="text-[#0755d1]">YC090909</span>
             </p>
           </div>
-          <hr className="my-5" />
-          <div className="flex">
-            <div className="w-1/2">
-              <p className="font-poppins text-xl text-[#1d2024] font-semibold">
-                Kết quả xử lý
-              </p>
-              <ul className="flex flex-col gap-2 mt-3">
-                <li className="flex items-center">
-                  <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
-                    Thời gian cam kết:
-                  </p>
-                  <span className="text-[#0755d1] font-semibold">20 phút</span>
-                </li>
-                <li className="flex items-center">
-                  <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
-                    Thời lượng:
-                  </p>{" "}
-                  <span className="text-[#0755d1]">00:00</span>
-                </li>
-                <li className="flex items-center">
-                  <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
-                    Thời gian hoàn thành:
-                  </p>{" "}
-                  <span className="text-[#0755d1]">00:00</span>
-                </li>
-              </ul>
+          <hr className="my-7" />
+          <div className="flex gap-5 p-[30px_0_40px]">
+            <div className="w-1/2 flex flex-col items-start">
+              <div className="p-[15px_28px] bg-[#0755d1] rounded-[5px_5px_0_0]">
+                <p className="font-poppins text-xs text-[#fff] font-semibold leading-5 tracking-[1px] uppercase">
+                  Hoàn thành
+                </p>
+              </div>
+              <div className="w-full flex-grow flex flex-col items-center p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
+                <p className="font-poppins text-lg text-[#0755d1] font-semibold">
+                  Kết quả xử lý
+                </p>
+                <ul className="flex flex-col gap-3 mt-4">
+                  <li className="flex items-center">
+                    <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
+                      Thời gian cam kết:
+                    </p>
+                    <span className="text-[#0755d1] font-semibold">
+                      20 phút
+                    </span>
+                  </li>
+                  <li className="flex items-center">
+                    <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
+                      Thời lượng:
+                    </p>{" "}
+                    <span className="text-[#0755d1]">00:00</span>
+                  </li>
+                  <li className="flex items-center">
+                    <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
+                      Thời gian hoàn thành:
+                    </p>{" "}
+                    <span className="text-[#0755d1]">00:00</span>
+                  </li>
+                </ul>
+                <button
+                  onClick={() => setOpenModal(true)}
+                  className="mt-10 btn-common btn-send"
+                >
+                  Đánh giá
+                </button>
+              </div>
             </div>
 
             <div className="w-1/2">
@@ -132,7 +149,7 @@ export default function Process() {
                               tabActive2 === tab.id
                                 ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
                                 : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                            } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[2.4px] uppercase`}
+                            } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                           >
                             {tab.tag}
                           </button>
@@ -172,11 +189,15 @@ export default function Process() {
                                 1 ngày trước
                               </p>
                             </div>
-                            <p className="font-poppins text-sm text-[#777]">Giai đoạn đã thay đổi</p>
+                            <p className="font-poppins text-sm text-[#777]">
+                              Giai đoạn đã thay đổi
+                            </p>
                             <div>
                               <p className="font-poppins text-sm text-[#0754d1c9]">
                                 Đang thực hiện{" "}
-                                <span className="text-[#777] text-xs">(Giai đoạn)</span>
+                                <span className="text-[#777] text-xs">
+                                  (Giai đoạn)
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -197,11 +218,15 @@ export default function Process() {
                                 1 ngày trước
                               </p>
                             </div>
-                            <p className="font-poppins text-sm text-[#777]">Giai đoạn đã thay đổi</p>
+                            <p className="font-poppins text-sm text-[#777]">
+                              Giai đoạn đã thay đổi
+                            </p>
                             <div>
                               <p className="font-poppins text-sm text-[#0754d1c9]">
                                 Mới{" "}
-                                <span className="text-[#777] text-xs">(Giai đoạn)</span>
+                                <span className="text-[#777] text-xs">
+                                  (Giai đoạn)
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -228,7 +253,7 @@ export default function Process() {
                           tabActive === tab.id
                             ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
                             : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] text-xs font-medium leading-5 tracking-[2.4px] uppercase`}
+                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] text-xs font-medium leading-5 tracking-[1px] uppercase`}
                       >
                         {tab.tag}
                       </button>
@@ -240,6 +265,11 @@ export default function Process() {
                 <pre className="font-poppins text-sm text-[#1d2024]">
                   {questionsList[tabActive - 1].content}
                 </pre>
+                {questionsList[2] && (
+                  <div>
+                    <p>Tốt</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

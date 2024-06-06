@@ -42,7 +42,7 @@
 }
 
 .careers-item:hover {
-  background-color: #0755d1;
+  background-color: rgba(0, 98, 255, 0.3);
 }
 .careers-item:hover > p {
   color: #fff;
@@ -81,4 +81,21 @@
   background: -webkit-linear-gradient(135deg, #42d392, #0755d1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.emoij {
+  width: 50px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.emoij-active::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border: 4px dashed #fdca47;
+  border-radius: 999px;
 }
