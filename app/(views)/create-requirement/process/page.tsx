@@ -102,10 +102,10 @@ export default function Process() {
                 </p>
               </div>
               <div className="w-full flex-grow flex flex-col items-center p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                <p className="font-poppins text-lg text-[#0755d1] font-semibold">
+                <p className="font-poppins text-xl text-[#0755d1] font-semibold">
                   Kết quả xử lý
                 </p>
-                <ul className="flex flex-col gap-3 mt-4">
+                <ul className="flex flex-col gap-5 mt-10">
                   <li className="flex items-center">
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời gian cam kết:
@@ -129,7 +129,7 @@ export default function Process() {
                 </ul>
                 <button
                   onClick={() => setOpenModal(true)}
-                  className="mt-10 btn-common btn-send"
+                  className="mt-16 btn-common btn-send !text-[15px]"
                 >
                   Đánh giá
                 </button>
@@ -157,7 +157,7 @@ export default function Process() {
                       );
                     })}
                   </ul>
-                  <div className="h-[300px] bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] overflow-auto">
+                  <div className="h-[400px] bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] overflow-auto">
                     {/* {questionsList2[tabActive2 - 1].contents.map((item) => {
                         return (
                             <div key={item.id}>
@@ -166,7 +166,7 @@ export default function Process() {
                         )
                     })} */}
                     <div>
-                      <div className="w-full h-[1px] bg-[#ccc] relative flex items-center justify-center">
+                      <div className="w-full h-[1px] my-[10px] bg-[#ccc] relative flex items-center justify-center">
                         <p className="absolute text-sm text-[#777] font-medium px-2 bg-[#fff]">
                           05 tháng 06, 2024
                         </p>
@@ -193,7 +193,10 @@ export default function Process() {
                               Giai đoạn đã thay đổi
                             </p>
                             <div>
-                              <p className="font-poppins text-sm text-[#0754d1c9]">
+                              <p className="font-poppins text-sm text-[#1e90ffbf]">
+                                <span className="text-base font-bold leading-5">
+                                  •&ensp;
+                                </span>
                                 Đang thực hiện{" "}
                                 <span className="text-[#777] text-xs">
                                   (Giai đoạn)
@@ -222,7 +225,10 @@ export default function Process() {
                               Giai đoạn đã thay đổi
                             </p>
                             <div>
-                              <p className="font-poppins text-sm text-[#0754d1c9]">
+                              <p className="font-poppins text-sm text-[#1e90ffbf]">
+                                <span className="text-base font-bold leading-5">
+                                  •&ensp;
+                                </span>
                                 Mới{" "}
                                 <span className="text-[#777] text-xs">
                                   (Giai đoạn)
@@ -253,7 +259,7 @@ export default function Process() {
                           tabActive === tab.id
                             ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
                             : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                       >
                         {tab.tag}
                       </button>
@@ -262,34 +268,19 @@ export default function Process() {
                 })}
               </ul>
               <div className="bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                <pre className="font-poppins text-sm text-[#1d2024]">
-                  {questionsList[tabActive - 1].content}
-                </pre>
-                {questionsList[2] && (
+                {tabActive === 3 ? (
                   <div>
                     <p>Tốt</p>
                   </div>
+                ) : (
+                  <pre className="font-poppins text-sm text-[#1d2024]">
+                    {questionsList[tabActive - 1].content}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-
-          {/* <div className="flex justify-center gap-4 mt-[50px]">
-            <a href="/create-requirement/process" className="btn-common btn-send">
-              <Image src={send} alt="" />
-              Gửi đi
-            </a>
-            <button className="btn-common btn-success btn-refresh">
-              <Image src={refresh} alt="" />
-              Làm mới
-            </button>
-            <button className="btn-common btn-danger btn-cancel">
-              <Image src={cancel} alt="" />
-              Hủy bỏ
-            </button>
-          </div> */}
         </div>
-        {/* </div> */}
       </div>
     </div>
   );
