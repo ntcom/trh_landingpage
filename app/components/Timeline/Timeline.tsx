@@ -135,7 +135,7 @@ export default function Timeline() {
                     key={item.id}
                     className={`p-[22px] bg-[rgba(247,250,255,.1)] flex justify-center items-center rounded-[10px] border border-[#E5EFFF] cursor-pointer`}
                   >
-                    <span className="font-poppins absolute bottom-[-50px] text-[18px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
+                    <span className="font-roboto absolute bottom-[-50px] text-[18px] text-[#fff] font-medium leading-6 text-center whitespace-nowrap">
                       {item.label}
                     </span>
                     <Image src={box} alt="" />
