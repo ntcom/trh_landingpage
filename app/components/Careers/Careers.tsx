@@ -1,10 +1,10 @@
 import Image from "next/image";
-import img1 from "@/assets/imgs/Careers/careers_icon_1.png";
-import img2 from "@/assets/imgs/Careers/careers_icon_2.png";
-import img3 from "@/assets/imgs/Careers/careers_icon_3.png";
-import img4 from "@/assets/imgs/Careers/careers_icon_4.png";
-import img5 from "@/assets/imgs/Careers/careers_icon_5.png";
-import img6 from "@/assets/imgs/Careers/careers_icon_6.png";
+import img1 from "@/assets/svgs/careers/1.svg";
+import img2 from "@/assets/svgs/careers/2.svg";
+import img3 from "@/assets/svgs/careers/3.svg";
+import img4 from "@/assets/svgs/careers/4.svg";
+import img5 from "@/assets/svgs/careers/5.svg";
+import img6 from "@/assets/svgs/careers/6.svg";
 import { v4 as uuidv4 } from "uuid";
 
 const careersList = [
@@ -54,8 +54,8 @@ export default function Careers() {
           return (
             <div key={career.id} className="flex">
               <a href="/" className="careers-item">
-                <div className="h-[60px]">
-                  <Image src={career.icon} alt=""/>
+                <div className="h-[78px]">
+                  <Image src={career.icon} alt="" className="h-full"/>
                 </div>
                 <p className="text-gradient font-condensed text-[23px] text-[#4c4c4c] leading-[30px] tracking-[0.69px] font-extrabold text-center m-[50px_0_15px]">
                   {career.position}
