@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.66666in" height="2.66666in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2667 2667"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:white}
+    .fil0 {fill:url(#id0)}
+    .fil2 {fill:url(#id1)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="-0.00393701" y1="1333.33" x2="2666.67" y2="1333.33">
+   <stop offset="0" style="stop-opacity:1; stop-color:#0755d1"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#17adc0"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="480.012" y1="1332.89" x2="2186.64" y2="1332.89">
+  </linearGradient>
+ </defs>
+ <g id="_336234432">
+  <rect class="fil0" width="2667" height="2667" rx="592" ry="592"/>
+  <rect class="fil1" x="215" y="215" width="2237" height="2237" rx="497" ry="497"/>
+ </g>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil2" d="M1095 1009c-6,0 -12,-2 -16,-7l-66 -65c-4,-5 -7,-10 -7,-16l0 -131c0,-29 46,-29 46,0l0 121 59 59c14,15 3,39 -16,39zm1069 965l-177 0c-25,138 -225,138 -250,0l-687 0c-25,138 -225,138 -250,0l-297 0c-13,0 -23,-10 -23,-23l0 -961c0,-13 10,-23 23,-23l199 0c-27,-198 129,-379 329,-379 203,0 357,182 329,379l200 0c13,0 23,10 23,23l0 173 396 0c8,0 16,5 20,12l185 340 3 11 0 425c0,13 -11,23 -23,23zm-227 -54c-41,-81 -149,-55 -156,23 -4,48 33,90 81,90 60,0 96,-63 75,-113zm-1412 -195l1012 0 0 -713 -186 0c-43,150 -184,248 -338,240 -142,-7 -262,-103 -301,-240l-187 0 0 713zm1012 46l-1012 0 0 158 275 0c11,-60 64,-105 125,-105 62,0 114,45 125,105l687 0c3,-15 8,-29 15,-42l-192 0c-13,0 -23,-10 -23,-22l0 -94zm450 158l154 0 0 -42 -169 0c7,13 12,27 15,42zm-61 -87l215 0 0 -293 -558 0 0 293 215 0c12,-4 23,-18 64,-18 23,0 45,7 64,18zm200 -339l-161 -295 -382 0 0 295 42 0 0 -241c0,-12 10,-22 22,-22l276 0c8,0 15,4 19,11l148 252 36 0zm-456 0l367 0 -127 -218 -240 0 0 218zm112 124l-84 0c-29,0 -29,-46 0,-46l84 0c30,0 30,46 0,46zm-857 243c-45,0 -82,36 -82,81 0,45 37,82 82,82 45,0 82,-37 82,-82 0,-45 -37,-81 -82,-81zm84 -1235c-140,11 -252,123 -264,263l70 0c30,0 30,45 0,45l-70 0c12,140 124,253 264,264l0 -70c0,-30 45,-30 45,0l0 70c140,-11 252,-124 263,-264l-70 0c-29,0 -29,-45 0,-45l70 0c-11,-140 -123,-252 -263,-263l0 70c0,29 -45,29 -45,0l0 -70zm398 1023l-751 0c-29,0 -29,-46 0,-46l751 0c29,0 29,46 0,46zm0 -146l-751 0c-29,0 -29,-46 0,-46l751 0c29,0 29,46 0,46zm0 -146l-751 0c-29,0 -29,-45 0,-45l751 0c29,0 29,45 0,45z"/>
+ </g>
+</svg>

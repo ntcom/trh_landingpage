@@ -34,40 +34,59 @@ const questionsList2 = [
     tag: "Gửi tin",
     contents: [
       {
-        id: 101,
-        avatar: "",
-        username: "Lê Thị Minh",
-        comment: "Giai đoạn đã thay đổi",
-        status: "Đang thực hiện",
-        time: "05/06/2024",
+        time: "08 tháng 06, 2024",
+        comments: [
+          {
+            id: 101,
+            avatar: "",
+            username: "Lê Thị Minh",
+            comment: "Giai đoạn đã thay đổi",
+            status: "Đang thực hiện",
+          },
+          {
+            id: 102,
+            avatar: "",
+            username: "Nguyễn Trần Nhiệm",
+            comment: "Giai đoạn đã thay đổi",
+            status: "Đang thực hiện",
+          },
+          {
+            id: 103,
+            avatar: "",
+            username: "Administrator",
+            comment: "",
+            status: "Đã xử lý",
+          },
+        ],
       },
       {
-        id: 102,
-        avatar: "",
-        username: "Nguyễn Trần Nhiệm",
-        comment: "Giai đoạn đã thay đổi",
-        status: "Đang thực hiện",
-        time: "05/06/2024",
-      },
-      {
-        id: 103,
-        avatar: "",
-        username: "Administrator",
-        comment: "",
-        status: "Đã xử lý",
-        time: "06/06/2024",
+        time: "06 tháng 06, 2024",
+        comments: [
+          {
+            id: 201,
+            avatar: "",
+            username: "Lê Thị Minh",
+            comment: "Giai đoạn đã thay đổi",
+            status: "Đang thực hiện",
+          },
+          {
+            id: 202,
+            avatar: "",
+            username: "Nguyễn Trần Nhiệm",
+            comment: "Giai đoạn đã thay đổi",
+            status: "Đang thực hiện",
+          },
+        ],
       },
     ],
   },
   {
     id: 2,
     tag: "Ghi chú",
-    contents: `ádasds`,
   },
   {
     id: 3,
     tag: "Hoạt động",
-    contents: `ádasda`,
   },
 ];
 
@@ -158,87 +177,56 @@ export default function Process() {
                     })}
                   </ul>
                   <div className="h-[400px] bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] overflow-auto">
-                    {/* {questionsList2[tabActive2 - 1].contents.map((item) => {
-                        return (
-                            <div key={item.id}>
-
-                            </div>
-                        )
-                    })} */}
-                    <div>
-                      <div className="w-full h-[1px] my-[10px] bg-[#ccc] relative flex items-center justify-center">
-                        <p className="absolute text-sm text-[#777] font-medium px-2 bg-[#fff]">
-                          05 tháng 06, 2024
-                        </p>
-                      </div>
-
-                      <ul className="mt-6 flex flex-col gap-6">
-                        <li className="flex gap-3">
-                          <div className="w-10 h-10 rounded overflow-hidden">
-                            <Image src={user1} alt="" />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-1">
-                              <p className="font-poppins text-[15px] text-[#1d2024] font-semibold">
-                                Lê Thị Minh
-                              </p>
-                              <p className="font-poppins text-sm text-[#1d2024]">
-                                -
-                              </p>
-                              <p className="font-poppins text-sm text-[#1d2024]">
-                                1 ngày trước
-                              </p>
-                            </div>
-                            <p className="font-poppins text-sm text-[#777]">
-                              Giai đoạn đã thay đổi
+                    {questionsList2[tabActive2 - 1]?.contents?.map((item) => {
+                      return (
+                        <div key={item.time}>
+                          <div className="w-full h-[1px] my-[10px] bg-[#ccc] relative flex items-center justify-center">
+                            <p className="absolute text-sm text-[#777] font-medium px-2 bg-[#fff]">
+                              {item.time}
                             </p>
-                            <div>
-                              <p className="font-poppins text-sm text-[#1e90ffbf]">
-                                <span className="text-base font-bold leading-5">
-                                  •&ensp;
-                                </span>
-                                Đang thực hiện{" "}
-                                <span className="text-[#777] text-xs">
-                                  (Giai đoạn)
-                                </span>
-                              </p>
-                            </div>
                           </div>
-                        </li>
-                        <li className="flex gap-3">
-                          <div className="w-10 h-10 rounded overflow-hidden">
-                            <Image src={user1} alt="" />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-1">
-                              <p className="font-poppins text-[15px] text-[#1d2024] font-semibold">
-                                Lê Thị Minh
-                              </p>
-                              <p className="font-poppins text-sm text-[#1d2024]">
-                                -
-                              </p>
-                              <p className="font-poppins text-sm text-[#1d2024]">
-                                1 ngày trước
-                              </p>
-                            </div>
-                            <p className="font-poppins text-sm text-[#777]">
-                              Giai đoạn đã thay đổi
-                            </p>
-                            <div>
-                              <p className="font-poppins text-sm text-[#1e90ffbf]">
-                                <span className="text-base font-bold leading-5">
-                                  •&ensp;
-                                </span>
-                                Mới{" "}
-                                <span className="text-[#777] text-xs">
-                                  (Giai đoạn)
-                                </span>
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
+
+                          <ul className="mt-6 flex flex-col gap-6 mb-12">
+                            {item.comments.map((cmt) => {
+                              return (
+                                <li key={cmt.id} className="flex gap-3">
+                                  <div className="w-10 h-10 rounded overflow-hidden">
+                                    <Image src={user1} alt="" />
+                                  </div>
+                                  <div>
+                                    <div className="flex items-center gap-1">
+                                      <p className="font-poppins text-[15px] text-[#1d2024] font-semibold">
+                                        {cmt.username}
+                                      </p>
+                                      <p className="font-poppins text-sm text-[#1d2024]">
+                                        -
+                                      </p>
+                                      <p className="font-poppins text-sm text-[#1d2024]">
+                                        1 ngày trước
+                                      </p>
+                                    </div>
+                                    <p className="font-poppins text-sm text-[#777]">
+                                      Giai đoạn đã thay đổi
+                                    </p>
+                                    <div>
+                                      <p className="font-poppins text-sm text-[#1e90ffbf]">
+                                        <span className="text-base font-bold leading-5">
+                                          •&ensp;
+                                        </span>
+                                        Đang thực hiện{" "}
+                                        <span className="text-[#777] text-xs">
+                                          (Giai đoạn)
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

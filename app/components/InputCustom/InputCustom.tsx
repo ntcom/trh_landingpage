@@ -46,8 +46,8 @@ export default function InputCustom(props: InputProps) {
         className="opacity-0 z-0"
         placeholder={props.placeholder}
         onChange={(e) => {
-          console.log("input file: ", e);
-          setFileName(e.target.value);
+          const path = e.target.value.split('\\')[2];
+          setFileName(path);
         }}
       />
     </div>

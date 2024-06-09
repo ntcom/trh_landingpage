@@ -30,29 +30,6 @@ const options = [
   { title: "CNTT / Đặt văn phòng phẩm", value: "datvpp" },
   { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "dvcntt" },
 ];
-const questionsList = [
-  {
-    id: 1,
-    tag: "Mô tả",
-    content: `Hi phòng CNTT!
-
-Máy tính của tôi bị lỗi WIN, nhờ anh/chị cài lại giúp
-
-Trân trọng`,
-  },
-  {
-    id: 2,
-    tag: "Giải pháp/Khắc phục",
-    content: `WIN bị lỗi
-
-    Giải pháp: cài lại win`,
-  },
-  {
-    id: 3,
-    tag: "Đánh giá của khách hàng",
-    content: `Rất tốt`,
-  },
-];
 const locations = [
   { title: "Trung tâm hội nghị Quốc gia", value: "tthnqg" },
   { title: "Phòng họp 1", value: "ph1" },
