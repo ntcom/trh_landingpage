@@ -8,7 +8,7 @@ interface SelectPropsType {
   placeholder: string;
   iValue: string;
   setIValue: any;
-  icon: any;
+  icon?: any;
   setPickOption: any;
 }
 
@@ -69,7 +69,7 @@ export default function SelectCustoms(props: SelectPropsType) {
               }}
               className="block w-full p-[10px_30px] hover:bg-[#0755d1] transition-all hover:text-[#fff] text-sm text-[#1d2024] font-medium tracking-[1.2px] cursor-pointer"
             >
-              {option.title}
+              {option.title ? option.title : option}
             </data>
           );
         })}
