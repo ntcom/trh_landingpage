@@ -9,6 +9,7 @@ interface InputProps {
   inputValue?: string | number;
   setInputValue: any;
   icon: any;
+  id?: string
 }
 
 export default function InputCustom(props: InputProps) {
@@ -57,6 +58,7 @@ export default function InputCustom(props: InputProps) {
         <Image src={props.icon} alt="" className="max-w-[16px] max-h-[16px]" />
       </div>
       <input
+        id={props.id}
         type={props.type}
         defaultValue={props.defaultValue}
         className="common-input"

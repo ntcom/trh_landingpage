@@ -28,7 +28,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
           <ul>
             <li>
               <a
-                href="/services"
+                href="/profile"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
@@ -39,23 +39,23 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
             </li>
             <li>
               <a
-                href="/"
+                href="/services"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Yêu cầu đã gửi
+                  Dịch vụ
                 </p>
               </a>
             </li>
             <li>
               <a
-                href="/"
+                href="/checking-process"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
               >
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
-                  Yêu cầu chưa đánh giá
+                  Kiểm tra tiến độ
                 </p>
               </a>
             </li>
@@ -125,9 +125,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
           </ul>
 
           <div className="mt-[60px]">
-            <p className="text-2xl text-[#4c4c4c] font-bold mb-6">
-              Tìm kiếm
-            </p>
+            <p className="text-2xl text-[#4c4c4c] font-bold mb-6">Tìm kiếm</p>
             <form action="" className="flex items-center">
               <input
                 type="text"
