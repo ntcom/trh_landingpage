@@ -16,3 +16,8 @@ export const menu = [
     path: "/",
   },
 ] as const;
+
+export const appConfig = {
+  tokenName: "TH_access_token",
+  url: "https://test.tranghuy.com/api",
+} as const;
