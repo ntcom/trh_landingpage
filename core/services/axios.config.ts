@@ -23,7 +23,8 @@ const createInstance = (
   const options = {
     baseURL: baseUrl,
     headers: {
-      "X-Requested-With": "XMLHttpRequest",
+      // "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json",
     },
     // paramsSerializer: {
     //   serializer: (params) => {

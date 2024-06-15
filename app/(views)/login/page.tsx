@@ -17,6 +17,7 @@ import vector4 from "@/assets/svgs/login/vector4.svg";
 import vector5 from "@/assets/svgs/login/vector5.svg";
 import vector6 from "@/assets/svgs/login/vector6.svg";
 import useAuth from "@/app/providers/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { isAuthenticated, handleLogin } = useAuth();
@@ -25,12 +26,24 @@ const Login = () => {
   const [username, setUsername] = useState("");
 
   console.log("🚀 ~ isAuthenticated:", isAuthenticated);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleLogin({
-      login: username,
-      password: passVal,
-    });
+    try {
+      await axios.post("https://test.tranghuy.com/api/auth/token", {
+        params: {
+          db: "tranghuy_test_0306",
+          login: username,
+          password: passVal,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // handleLogin({
+    //   login: username,
+    //   password: passVal,
+    // });
   };
 
   return (

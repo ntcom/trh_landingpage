@@ -22,7 +22,7 @@ function AuthProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isAuthenticated, setAuthenticated] = useState(true);
   const [isInitial, setIsInitial] = useState(false);
   const user = useState({});
 
