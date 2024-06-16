@@ -257,7 +257,7 @@ export default function DeliveryService() {
   };
 
   return (
-    <div>
+    <div className="ml-[218px] 2xl:ml-[268px] w-full p-[30px]">
       <h2 className="text-2xl text-[#4285F4] font-bold">Đơn hàng</h2>
 
       <div className="mt-8 flex justify-between gap-[30px]">

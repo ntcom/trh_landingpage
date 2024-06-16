@@ -32,26 +32,26 @@ const config: Config = {
       },
     },
     screens: {
-      xsr: "350px",
+      "xsr": "350px",
 
-      xs: "375px",
+      "xs": "375px",
       // => @media (min-width: 375px) { ... }
 
-      xss: "396px",
+      "xss": "396px",
 
-      xsss: "420px",
+      "xsss": "420px",
 
-      sm: "640px",
+      "sm": "640px",
 
-      md: "768px",
+      "md": "768px",
 
-      mds: "916px",
+      "mds": "916px",
 
-      lg: "1024px",
+      "lg": "1024px",
 
-      lgs: "1200px",
+      "lgs": "1200px",
 
-      xl: "1280px",
+      "xl": "1280px",
 
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
