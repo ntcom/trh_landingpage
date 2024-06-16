@@ -2,7 +2,7 @@ import BaseService from "@/core/services/BaseService";
 
 const endPoint = {
   base: "auth",
-  getToken: "token",
+  getToken: "/token",
 };
 
 export interface ILogin {
@@ -17,9 +17,12 @@ class AuthService extends BaseService {
   }
 
   getToken(params: ILogin) {
-    return this.get(endPoint.getToken, {
-      params: { db: "tranghuy_test_0306", ...params },
-    });
+    return this.post(
+      {
+        params: { db: "tranghuy_test_0306", ...params },
+      },
+      endPoint.getToken
+    );
   }
 }
 

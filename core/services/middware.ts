@@ -23,9 +23,10 @@ const withAuthToken = (requestConfig: InternalAxiosRequestConfig) => {
   const { url } = requestConfig;
 
   if (url && !excludeApi.includes(url)) {
-    const authToken = LocalStorage.get(appConfig.tokenName);
+    const mockToken = "access_token_ba0e8c81183207cccd0d63c59e3afdb4292a109d";
+    const authToken = LocalStorage.get(appConfig.tokenName) || mockToken;
     if (authToken) {
-      requestConfig.headers.Authorization = `Bearer ${authToken}`;
+      requestConfig.headers["token"] = authToken;
       // requestConfig.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`;
       return requestConfig;
     }

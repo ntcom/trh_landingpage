@@ -1,0 +1,7 @@
+.td-table-require {
+  @apply flex items-center gap-2 text-[#030229] text-sm font-semibold whitespace-nowrap;
+}
+
+.th-table-require {
+  @apply flex items-center gap-2 text-[#030229] text-sm font-normal whitespace-nowrap;
+}

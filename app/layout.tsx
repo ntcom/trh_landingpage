@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Provider>
           <Header />
-          <div className="">{children}</div>
+          <div className="min-h-[calc(100vh-94px)]">{children}</div>
           <Footer />
         </Provider>
       </body>

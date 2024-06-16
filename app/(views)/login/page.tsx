@@ -6,7 +6,6 @@ import bgLogin from "@/assets/imgs/bg-login.png";
 import user from "@/assets/svgs/login/user-icon.svg";
 import hEyeIcon from "@/assets/svgs/login/eye-close-icon.svg";
 import eyeIcon from "@/assets/svgs/login/eye-icon.svg";
-import chevronRight from "@/assets/svgs/login/chevron-right2.svg";
 // import google from "@/assets/svgs/login/google.svg";
 // import facebook from "@/assets/svgs/login/facebook.svg";
 // import apple from "@/assets/svgs/login/apple.svg";
@@ -17,6 +16,8 @@ import vector4 from "@/assets/svgs/login/vector4.svg";
 import vector5 from "@/assets/svgs/login/vector5.svg";
 import vector6 from "@/assets/svgs/login/vector6.svg";
 import useAuth from "@/app/providers/AuthProvider";
+import axios from "axios";
+import authService from "@/app/services/auth.service";
 
 const Login = () => {
   const { isAuthenticated, handleLogin } = useAuth();
@@ -24,13 +25,21 @@ const Login = () => {
   const [passVal, setPassVal] = useState("");
   const [username, setUsername] = useState("");
 
-  console.log("🚀 ~ isAuthenticated:", isAuthenticated);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleLogin({
-      login: username,
-      password: passVal,
-    });
+    try {
+      await authService.getToken({
+        login: username,
+        password: passVal,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // handleLogin({
+    //   login: username,
+    //   password: passVal,
+    // });
   };
 
   return (

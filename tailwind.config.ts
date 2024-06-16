@@ -5,6 +5,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./core/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -31,26 +32,26 @@ const config: Config = {
       },
     },
     screens: {
-      'xsr': '350px',
+      xsr: "350px",
 
-      'xs': '375px',
+      xs: "375px",
       // => @media (min-width: 375px) { ... }
 
-      'xss': '396px',
+      xss: "396px",
 
-      'xsss': '420px',
+      xsss: "420px",
 
-      'sm': '640px',
+      sm: "640px",
 
-      'md': '768px',
-      
-      'mds': '916px',
+      md: "768px",
 
-      'lg': '1024px',
+      mds: "916px",
 
-      'lgs': '1200px',
+      lg: "1024px",
 
-      'xl': '1280px',
+      lgs: "1200px",
+
+      xl: "1280px",
 
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
