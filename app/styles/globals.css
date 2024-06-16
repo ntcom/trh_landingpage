@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
@@ -39,7 +39,7 @@ body {
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(7, 85, 209, .8);
+  background: rgba(7, 85, 209, 0.8);
 }
 
 .container-app {
@@ -71,44 +71,55 @@ body {
   background-color: #0755d1;
 }
 .btn-app:hover {
-  background-color: rgb(33, 131, 146, .8);
+  background-color: rgb(33, 131, 146, 0.8);
 }
 .btn-send {
-  background: linear-gradient(276deg, #0081FF 44.33%, rgba(30, 144, 255, 0.75) 98.56%);
+  background: linear-gradient(
+    276deg,
+    #0081ff 44.33%,
+    rgba(30, 144, 255, 0.75) 98.56%
+  );
   /* background: linear-gradient(90deg, #0062FF 0%, rgb(0, 129, 255, .7) 100%); */
   /* background: linear-gradient(90deg, #0062FF 0%, #65D1FF 100%); */
   box-shadow: 0px 10px 20px 0px rgba(30, 144, 255, 0.25);
 }
 .btn-send:hover {
-  background-color: rgb(30, 144, 255, .8);
+  background-color: rgb(30, 144, 255, 0.8);
 }
 .btn-refresh {
-  background: linear-gradient(273deg, #00B692 4.95%, rgba(26, 188, 156, 0.80) 93.62%);
-  box-shadow: 0px 10px 20px 0px rgba(26, 188, 156, 0.50);
+  background: linear-gradient(
+    273deg,
+    #00b692 4.95%,
+    rgba(26, 188, 156, 0.8) 93.62%
+  );
+  box-shadow: 0px 10px 20px 0px rgba(26, 188, 156, 0.5);
 }
 .btn-refresh:hover {
-  background-color: rgb(26, 188, 156, .8);
+  background-color: rgb(26, 188, 156, 0.8);
 }
 .btn-cancel {
-  background: linear-gradient(276deg, #EE0016 44.33%, rgba(255, 56, 74, 0.80) 98.56%);
+  background: linear-gradient(
+    276deg,
+    #ee0016 44.33%,
+    rgba(255, 56, 74, 0.8) 98.56%
+  );
   box-shadow: 0px 10px 20px 0px rgba(255, 56, 74, 0.15);
 }
 .btn-cancel:hover {
-  background-color: rgb(255, 56, 74, .8);
+  background-color: rgb(255, 56, 74, 0.8);
 }
 .btn-check {
-  background-color: #0D9276;
+  background-color: #0d9276;
 }
 .btn-check:hover {
-  background-color: rgb(13, 146, 118, .8);
+  background-color: rgb(13, 146, 118, 0.8);
 }
-
 
 .btn-common {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   padding: 10px 18px;
   border-radius: 15px;
 
@@ -209,8 +220,8 @@ body {
 }
 .common-input:focus,
 .common-textarea:focus {
-  border: 1px solid rgb(7, 85, 209, .8);
-  box-shadow: 0 0 8px 1px rgb(7, 85, 209, .3);
+  border: 1px solid rgb(7, 85, 209, 0.8);
+  box-shadow: 0 0 8px 1px rgb(7, 85, 209, 0.3);
 }
 
 .header-on-scroll {
@@ -235,4 +246,8 @@ body {
 
 .hidden-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.form-error {
+  @apply text-red-600 text-sm mt-1;
 }

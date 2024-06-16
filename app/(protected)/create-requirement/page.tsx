@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import BannerCustom from "@/app/components/BannerCustom";
 import Image from "next/image";
 import send from "@/assets/svgs/send.svg";
@@ -24,11 +24,21 @@ import suporter from "@/assets/svgs/suporter.svg";
 import tagName from "@/assets/svgs/tag-name.svg";
 import requestz from "@/assets/svgs/request.svg";
 import InputCustom from "@/app/components/InputCustom/InputCustom";
-
+import ControllerSelect from "@/core/components/Form/ControllerSelect";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  yupEmpty,
+  yupMeet,
+  yupOrder,
+  yupSuportReport,
+} from "./utils/validator";
+import ControllerInput from "@/core/components/Form/ControllerInput";
+import helpdeskService from "@/app/services/helpdesk.service";
 const options = [
-  { title: "CNTT / Đặt lịch họp", value: "datphonghop" },
-  { title: "CNTT / Đặt văn phòng phẩm", value: "datvpp" },
-  { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "dvcntt" },
+  { title: "CNTT / Đặt lịch họp", value: "MEET" },
+  { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
+  { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "SUPPORT_REPORT" },
 ];
 const locations = [
   { title: "Trung tâm hội nghị Quốc gia", value: "tthnqg" },
@@ -134,8 +144,35 @@ const processingDepartment = {
 };
 
 function CreateRequirement() {
-  const [pickOption, setPickOption] = useState("");
-  const [paramOption, setParamOption] = useState("");
+  const [pickOption, setPickOption] = useState<
+    "MEET" | "ORDER_STATIONERY" | "SUPPORT_REPORT" | "EMPTY"
+  >("SUPPORT_REPORT");
+
+  const currentYup = useMemo(() => {
+    if (pickOption === "ORDER_STATIONERY") {
+      return yupOrder;
+    } else if (pickOption === "SUPPORT_REPORT") {
+      return yupSuportReport;
+    } else if (pickOption === "MEET") {
+      return yupMeet;
+    }
+    return yupEmpty;
+  }, [pickOption]);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(currentYup),
+  });
+
+  const onSubmit = async (value: any) => {
+    try {
+      console.log(value);
+    } catch (error) {}
+  };
   const breadcrumbs = [
     {
       title: "Home page",
@@ -147,7 +184,19 @@ function CreateRequirement() {
     },
   ];
 
-  const [iValue, setIValue] = useState("");
+  const [theme, setTheme] = useState("");
+  const getData = async () => {
+    try {
+      const res = await helpdeskService.post(
+        helpdeskService.endpoint.getSupportReport
+      );
+      console.log("🚀 ~ res:", res);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="mb-20">
@@ -160,8 +209,8 @@ function CreateRequirement() {
           <div className="w-full flex m-[50px_0_100px]">
             <SelectCustom
               options={options}
-              iValue={iValue}
-              setIValue={setIValue}
+              iValue={pickOption}
+              setIValue={setPickOption}
               icon={request}
               placeholder="Chọn một chủ đề"
               setPickOption={setPickOption}
@@ -169,47 +218,51 @@ function CreateRequirement() {
           </div>
         </div>
         <hr className="divide"></hr>
-        <form action={""} className="mt-[50px] w-full max-w-[700px] mx-auto ">
-          {pickOption === "datphonghop" ? (
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mt-[50px] w-full max-w-[700px] mx-auto "
+        >
+          {pickOption === "MEET" ? (
             <div className="flex flex-col gap-5 m-[30px_0_30px]">
               <div className="flex">
-                <SelectCustom
+                <ControllerSelect
                   options={locations}
-                  iValue={iValue}
-                  setIValue={setIValue}
                   icon={location}
+                  control={control}
+                  name="position"
+                  pathLabel="title"
+                  pathValue="value"
                   placeholder="Vị trí phòng họp"
-                  setPickOption={setParamOption}
                 />
               </div>
               <InputCustom
                 type={"date"}
                 placeholder={"Bắt đầu"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={time}
               />
               <InputCustom
                 type={"date"}
                 placeholder={"Kết thúc"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={time}
               />
               <InputCustom
                 type={"number"}
                 placeholder={"Người tham gia"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={quantity}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Người chủ trì"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={host}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Yêu cầu thêm"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={requestz}
               />
               <div className="relative flex">
@@ -229,125 +282,132 @@ function CreateRequirement() {
               <InputCustom
                 type={"file"}
                 placeholder={"Đính kèm tài liệu, văn bản"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={attach}
               />
             </div>
-          ) : pickOption === "datvpp" ? (
+          ) : pickOption === "ORDER_STATIONERY" ? (
             <div className="flex flex-col gap-5 m-[30px_0_30px]">
               <InputCustom
                 type={"text"}
                 placeholder={"Tên sản phẩm"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={tagName}
               />
               <InputCustom
                 type={"number"}
                 placeholder={"Số lượng"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={quantity2}
               />
               <SelectCustom
                 options={processingDepartment.typeOfService}
-                iValue={iValue}
-                setIValue={setIValue}
+                setIValue={setTheme}
                 icon={receivingDepartment}
                 placeholder="Bộ phận tiếp nhận"
-                setPickOption={setParamOption}
               />
               <SelectCustom
                 options={processingDepartment.typeOfService}
-                iValue={iValue}
-                setIValue={setIValue}
+                setIValue={setTheme}
                 icon={suporter}
                 placeholder="Người xử lý"
-                setPickOption={setParamOption}
               />
               <InputCustom
                 type={"file"}
                 placeholder={"Đính kèm tài liệu, văn bản"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={attach}
               />
             </div>
-          ) : pickOption === "dvcntt" ? (
+          ) : pickOption === "SUPPORT_REPORT" ? (
             <div className="flex flex-col gap-5 m-[30px_0_30px]">
-              <div className="w-full flex items-center gap-6">
-                <div className="w-full flex">
-                  <SelectCustom
-                    options={processingDepartment.channel}
-                    iValue={iValue}
-                    setIValue={setIValue}
-                    icon={channel}
-                    placeholder="Kênh"
-                    setPickOption={setParamOption}
-                  />
-                </div>
+              <ControllerInput
+                control={control}
+                name="name"
+                placeholder="Tên dịch vụ"
+                icon={time}
+              />
+              <div className="w-full">
+                <ControllerSelect
+                  options={processingDepartment.channel}
+                  control={control}
+                  name="channel_source"
+                  pathLabel="title"
+                  pathValue="value"
+                  icon={channel}
+                  placeholder="Kênh"
+                />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
+                  control={control}
+                  name="type_service_id"
+                  pathLabel="title"
+                  pathValue="value"
                   icon={typeService}
                   placeholder="Loại dịch vụ"
-                  setPickOption={setParamOption}
                 />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
+                  control={control}
+                  pathLabel="title"
+                  pathValue="value"
+                  name="service_child_id"
                   icon={childService}
                   placeholder="Dịch vụ con"
-                  setPickOption={setParamOption}
                 />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
+                  name="service_detail_id"
+                  pathLabel="title"
+                  pathValue="value"
+                  control={control}
                   icon={detailService}
                   placeholder="Dịch vụ chi tiết"
-                  setPickOption={setParamOption}
                 />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
                   icon={receivingDepartment}
+                  control={control}
+                  name="receiving_department_id"
+                  pathLabel="title"
+                  pathValue="value"
                   placeholder="Bộ phận tiếp nhận"
-                  setPickOption={setParamOption}
                 />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
                   icon={suportTeam}
+                  name="team_id"
+                  pathLabel="title"
+                  pathValue="value"
+                  control={control}
                   placeholder="Đội ngũ hỗ trợ"
-                  setPickOption={setParamOption}
                 />
               </div>
               <div className="w-full">
-                <SelectCustom
+                <ControllerSelect
                   options={processingDepartment.typeOfService}
-                  iValue={iValue}
-                  setIValue={setIValue}
                   icon={suporter}
+                  control={control}
+                  name="user_id"
+                  pathLabel="title"
+                  pathValue="value"
                   placeholder="Người xử lý"
-                  setPickOption={setParamOption}
                 />
               </div>
               <InputCustom
                 type={"file"}
                 placeholder={"Đính kèm tài liệu, văn bản"}
-                setInputValue={setIValue}
+                setInputValue={setTheme}
                 icon={attach}
               />
             </div>
@@ -356,13 +416,10 @@ function CreateRequirement() {
           )}
 
           <div className="flex justify-center gap-4 mt-[50px]">
-            <a
-              href="/create-requirement/process"
-              className="btn-common btn-send"
-            >
+            <button type="submit" className="btn-common btn-send">
               <Image src={send} alt="" />
               Gửi đi
-            </a>
+            </button>
             <button className="btn-common btn-success btn-refresh">
               <Image src={refresh} alt="" />
               Làm mới
