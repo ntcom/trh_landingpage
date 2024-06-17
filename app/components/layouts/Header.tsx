@@ -13,6 +13,7 @@ import chevron from "@/assets/svgs/chevron-white2.svg";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
 import logo from "@/assets/imgs/logo.png";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
   const [scroll, setScroll] = useState(false);
@@ -35,7 +36,7 @@ export default function Header() {
     }
   }, []);
 
-  return (
+  return pathname !== '/delivery-service' && pathname !== '/client-profile' && (
     <div className="w-full">
       {/* {pathname !== '/login' && <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
         <div className="container flex flex-wrap items-center justify-between py-[10px] gap-[15px_30px]">
@@ -83,7 +84,7 @@ export default function Header() {
       >
         <div className={`h-[60px] flex items-center`}>
           <div className="container flex justify-between">
-            <a
+            <Link
               href="/"
               className={`${
                 scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
@@ -97,11 +98,11 @@ export default function Header() {
                 <strong>BRO</strong>BIT
               </p> */}
               <Image src={logo} alt="" className={`w-full h-full`} />
-            </a>
+            </Link>
             <div className="flex items-center gap-[40px]">
               {pathname === '/' && <nav className="hidden md:flex items-center gap-[30px]">
-                <a
-                  href="/login"
+                <Link
+                  href="/services"
                   className={`py-[15px] text-[15px] ${
                     scroll
                       ? "text-[#4c4c4c] hover:text-[#0755d1]"
@@ -109,9 +110,9 @@ export default function Header() {
                   } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
                   IT Helpdesk
-                </a>
-                <a
-                  href="https://capa-group.netlify.app/login"
+                </Link>
+                <Link
+                  href="/delivery-service"
                   className={`py-[15px] text-[15px] ${
                     scroll
                       ? "text-[#4c4c4c] hover:text-[#0755d1]"
@@ -119,7 +120,7 @@ export default function Header() {
                   } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
                   Khách hàng
-                </a>
+                </Link>
               </nav>}
 
               <div className="flex items-center gap-9">

@@ -6,7 +6,6 @@ import bgLogin from "@/assets/imgs/bg-login.png";
 import user from "@/assets/svgs/login/user-icon.svg";
 import hEyeIcon from "@/assets/svgs/login/eye-close-icon.svg";
 import eyeIcon from "@/assets/svgs/login/eye-icon.svg";
-import chevronRight from "@/assets/svgs/login/chevron-right2.svg";
 // import google from "@/assets/svgs/login/google.svg";
 // import facebook from "@/assets/svgs/login/facebook.svg";
 // import apple from "@/assets/svgs/login/apple.svg";
@@ -16,13 +15,31 @@ import vector3 from "@/assets/svgs/login/vector3.svg";
 import vector4 from "@/assets/svgs/login/vector4.svg";
 import vector5 from "@/assets/svgs/login/vector5.svg";
 import vector6 from "@/assets/svgs/login/vector6.svg";
+import useAuth from "@/app/providers/AuthProvider";
+import axios from "axios";
+import authService from "@/app/services/auth.service";
 
 const Login = () => {
+  const { isAuthenticated, handleLogin } = useAuth();
   const [eye, setEye] = useState(false);
   const [passVal, setPassVal] = useState("");
+  const [username, setUsername] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      await authService.getToken({
+        login: username,
+        password: passVal,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // handleLogin({
+    //   login: username,
+    //   password: passVal,
+    // });
   };
 
   return (
@@ -71,6 +88,7 @@ const Login = () => {
               className="w-full h-10 md:h-12 2xl:h-14 bg-[#fff] p-[10px_16px_10px_44px] md:p-[12px_24px_12px_54px] 2xl:p-[12px_24px_12px_64px] outline-none rounded-xl text-sm md:text-lg 2xl:text-xl font-normal placeholder:text-[#BABABA]"
               id="username"
               // placeholder="Your Username"
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
             <Image
@@ -122,12 +140,9 @@ const Login = () => {
         </a> */}
           </div>
         </div>
-        <a
-          href="/services"
-          className="btn-login"
-        >
+        <button type="submit" className="btn-login">
           Đăng nhập
-        </a>
+        </button>
 
         {/* <div className="w-full flex items-center gap-3 md:gap-5 lg:gap-6 2xl:gap-8">
       <p className="shrink-0 text-[#fff] text-xs sm:text-sm md:text-base font-normal">
