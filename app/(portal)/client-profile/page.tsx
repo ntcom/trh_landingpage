@@ -26,7 +26,7 @@ export default function ClientProfile() {
     e.preventDefault();
   };
   return (
-    <div className="ml-[218px] 2xl:ml-[268px] w-full flex mt-[60px]">
+    <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] flex mt-[60px]">
       <div className="w-1/2 bg-[#fff] rounded-[10px] p-[50px_40px_120px]">
         <p className="font-poppins text-2xl text-[#4285F4] font-bold">
           Hồ sơ của tôi
