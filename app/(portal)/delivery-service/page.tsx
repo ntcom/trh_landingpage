@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,9 @@ import arrowItemUp from "@/assets/svgs/Portal/arrow-item-up.svg";
 import arrowItemDown from "@/assets/svgs/Portal/arrow-item-down.svg";
 import bitmap from "@/assets/svgs/Portal/bitmap.svg";
 import GroupFuncKeys from "@/app/components/Portal/GroupFuncKeys/GroupFuncKeys";
-
+import axios from "axios";
+import { headers } from "next/headers";
+import orderService from "@/app/services/orderService.service";
 
 const dataTable = [
   {
@@ -187,68 +189,97 @@ export default function DeliveryService() {
   const [openFilter, setOpenFilter] = useState(false);
   const [filterSelect, setFilterSelect] = useState("all");
   const [soft, setSoft] = useState("new");
+  const [orderData, setOrderData] = useState([]);
+
+  // const TOKEN = 'access_token_ba0e8c81183207cccd0d63c59e3afdb4292a109d'
+  // const postData = {}
+  // const postHeaders = {
+  //   headers: {
+  //     'Authorization': `${TOKEN}`,
+  //     'Content-Type': 'application/json',
+  // }
+  // }
+
+  // const getListPortal = async () => {
+  //   const {data} = await axios.post(
+  //     "https://test.tranghuy.com/api/sale_order/get_data", postData, postHeaders);
+  //     setOrderData(data.result);
+  //   console.log('>>>>', data.result);
+  // };
+  useEffect(() => {
+    // getListPortal();
+    orderService.getData({}).then(({result}) => {
+      setOrderData(result.sale_order_ids)
+      console.log('>>>>>>>>', result);
+    })
+    
+  }, []);
 
   const renderDataTable = () => {
-    return dataTable.map((line) => {
+    return orderData.map((line, index) => {
       return (
         <tr
-          key={line.stt}
+          key={line.name}
           className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
           <td className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
-            {line.stt}
+            {index + 1}
           </td>
           <td className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <Link
               href={
-                line.status.type === "transport"
-                  ? `transport/${line.code}`
-                  : `/delivery-service/${line.code}`
+                line.state === "transport"
+                  ? `transport/${line.name}`
+                  : `/delivery-service/${line.name}`
               }
               className="text-[#4285F4] hover:underline"
             >
-              {line.code}
+              {line.name}
             </Link>
           </td>
           <td className="w-[172px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            <Image src={calendar} alt="" className="block shrink-0 w-[12.6px]" />
-            {line.date}
+            <Image
+              src={calendar}
+              alt=""
+              className="block shrink-0 w-[12.6px]"
+            />
+            {line.date_order}
           </td>
           <td className="w-[220px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.product}
+            {line.line_ids[0].product_name}
           </td>
           <td className="w-[90px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.quantity}
+            {line.line_ids[0].product_uom_qty}
           </td>
           <td className="w-[150px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.totalPrice}
+            {line.line_ids[0].price_total}
           </td>
           <td className="w-[120px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.deposits}
+            {line.line_ids[0].advance_money}
           </td>
           <td
             className={`flex items-center justify-center shrink-0 w-[140px] h-[35px] ${
-              line.status.type === "complete"
+              line.state === "sale"
                 ? "bg-[#3a974c1a]"
-                : line.status.type === "transport"
+                : line.state === "transport"
                 ? "bg-[#f293391a]"
-                : line.status.type === "cancel"
+                : line.state === "cancel"
                 ? "bg-[#d11a2a1a]"
                 : "bg-[#4285f41a]"
             } rounded-[22px]`}
           >
             <p
               className={`text-sm font-bold leading-[14px] ${
-                line.status.type === "complete"
+                line.state === "sale"
                   ? "text-[#3A974C]"
-                  : line.status.type === "transport"
+                  : line.state === "transport"
                   ? "text-[#F29339]"
-                  : line.status.type === "cancel"
+                  : line.state === "cancel"
                   ? "text-[#D11A2A]"
                   : "text-[#4285F4]"
               }`}
             >
-              {line.status.title}
+              {line.state}
             </p>
           </td>
         </tr>
@@ -257,7 +288,7 @@ export default function DeliveryService() {
   };
 
   return (
-    <div className="ml-[218px] 2xl:ml-[268px] w-full p-[30px]">
+    <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] p-[30px] bg-[#fafafb]">
       <h2 className="text-2xl text-[#4285F4] font-bold">Đơn hàng</h2>
 
       <div className="mt-8 flex justify-between gap-[30px]">
@@ -326,9 +357,7 @@ export default function DeliveryService() {
             />
           </div>
 
-          <button
-            className="shink-0 w-full max-w-[150px] h-10 p-[4px_20px] flex items-center justify-center gap-[10px] bg-[#4285F4] rounded-[10px]"
-          >
+          <button className="shink-0 w-full max-w-[150px] h-10 p-[4px_20px] flex items-center justify-center gap-[10px] bg-[#4285F4] rounded-[10px]">
             <div className="shrink-0 w-3 h-3 right-[23px]">
               <Image src={search} alt="" />
             </div>
