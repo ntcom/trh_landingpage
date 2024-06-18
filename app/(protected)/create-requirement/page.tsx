@@ -146,7 +146,7 @@ const processingDepartment = {
 function CreateRequirement() {
   const [pickOption, setPickOption] = useState<
     "MEET" | "ORDER_STATIONERY" | "SUPPORT_REPORT" | "EMPTY"
-  >();
+  >("SUPPORT_REPORT");
 
   const currentYup = useMemo(() => {
     if (pickOption === "ORDER_STATIONERY") {
