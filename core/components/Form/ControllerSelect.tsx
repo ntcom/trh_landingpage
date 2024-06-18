@@ -13,7 +13,7 @@ export default function ControllerSelect(props: any) {
           options={options}
           label={label}
           control={control}
-          name={name}
+          nameSelect={name}
           error={error?.message && error.message}
           disabled={disabled}
           {...field}

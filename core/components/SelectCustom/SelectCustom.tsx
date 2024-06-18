@@ -7,7 +7,7 @@ interface SelectPropsType {
   label?: string;
   placeholder: string;
   error: string;
-  name: string;
+  nameSelect: string;
   pathLabel: string;
   pathValue: string;
   icon?: any;
@@ -22,7 +22,7 @@ const SelectCustoms = forwardRef(function SelectCustoms(
   const [open, setOpen] = useState(false);
   const [localTitle, setLocalTitle] = useState("");
 
-  const handleSetValue = (item) => {
+  const handleSetValue = (item: any) => {
     setLocalTitle(item[pathLabel]);
     setOpen(false);
     onChange && onChange(item[pathValue]);
@@ -45,7 +45,7 @@ const SelectCustoms = forwardRef(function SelectCustoms(
         ></span>
         <input
           type="text"
-          name={props.name}
+          name={props.nameSelect}
           value={localTitle}
           placeholder={`-- ${props.placeholder} --`}
           disabled
