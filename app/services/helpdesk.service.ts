@@ -13,6 +13,9 @@ class HelpdeskService extends BaseService {
     super();
     this.baseEndPoint = endpoint.base;
   }
+  getHelpDesk() {
+    return this.post({}, endpoint.getSupportReport);
+  }
 }
 
 const helpdeskService = new HelpdeskService();
