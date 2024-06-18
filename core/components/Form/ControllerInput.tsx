@@ -12,7 +12,7 @@ export default function ControllerInput(props: any) {
           id={name}
           label={label}
           control={control}
-          name={name}
+          nameInput={name}
           error={error?.message && error.message}
           disabled={disabled}
           {...field}
