@@ -217,9 +217,10 @@ export default function DeliveryService() {
 
   const renderDataTable = () => {
     return orderData.map((line, index) => {
+      const lineKey = line.name.slice(1)
       return (
         <tr
-          key={line.name}
+          key={lineKey}
           className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
           <td className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
