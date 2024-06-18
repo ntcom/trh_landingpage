@@ -6,10 +6,10 @@ interface SelectPropsType {
   options: any;
   defaultValue?: string;
   placeholder: string;
-  iValue: string;
+  iValue?: string;
   setIValue: any;
   icon?: any;
-  setPickOption: any;
+  setPickOption?: any;
 }
 
 export default function SelectCustoms(props: SelectPropsType) {
