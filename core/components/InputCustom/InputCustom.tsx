@@ -10,7 +10,7 @@ interface InputProps {
   onChange: any;
   id?: string;
   error?: string;
-  name?: string;
+  nameInput?: string;
 }
 
 const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
@@ -74,7 +74,7 @@ const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
             type={props.type}
             defaultValue={props.label}
             className="common-input"
-            name={props.name}
+            name={props.nameInput}
             placeholder={props.placeholder}
             onChange={handleChange}
           />
