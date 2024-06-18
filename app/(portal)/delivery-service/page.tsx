@@ -341,8 +341,6 @@ export default function DeliveryService() {
 
       <div className="w-full flex justify-between mt-6">
         <GroupFuncKeys
-          openFilter={openFilter}
-          setOpenFilter={setOpenFilter}
           filterSelect={filterSelect}
           setFilterSelect={setFilterSelect}
           soft={soft}
