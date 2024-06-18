@@ -216,7 +216,7 @@ export default function DeliveryService() {
   }, []);
 
   const renderDataTable = () => {
-    return orderData.map((line, index) => {
+    return orderData.map((line:any, index) => {
       const lineKey = line.name.slice(1)
       return (
         <tr
@@ -341,8 +341,6 @@ export default function DeliveryService() {
 
       <div className="w-full flex justify-between mt-6">
         <GroupFuncKeys
-          openFilter={openFilter}
-          setOpenFilter={setOpenFilter}
           filterSelect={filterSelect}
           setFilterSelect={setFilterSelect}
           soft={soft}

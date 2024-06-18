@@ -13,8 +13,8 @@ interface GroupFuncKeysTypes {
   setFilterSelect: any;
   soft: string;
   setSoft: any;
-  group: string;
-  setGroup: any;
+  group?: string;
+  setGroup?: any;
 }
 
 export default function GroupFuncKeys(props: GroupFuncKeysTypes) {
