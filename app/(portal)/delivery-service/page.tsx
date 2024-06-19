@@ -206,18 +206,25 @@ export default function DeliveryService() {
   //     setOrderData(data.result);
   //   console.log('>>>>', data.result);
   // };
-  useEffect(() => {
-    // getListPortal();
+
+  const getOrderList = async () => {
     orderService.getData({}).then(({result}) => {
       setOrderData(result.sale_order_ids)
       console.log('>>>>>>>>', result);
     })
-    
+  }
+
+  useEffect(() => {
+    getOrderList()
   }, []);
 
   const renderDataTable = () => {
     return orderData.map((line:any, index) => {
-      const lineKey = line.name.slice(1)
+      const lineKey = line.name.slice(1);
+      const formatter = new Intl.NumberFormat('vi', {
+        style: 'currency',
+        currency: 'VND',
+      });
       return (
         <tr
           key={lineKey}
@@ -253,16 +260,16 @@ export default function DeliveryService() {
             {line.line_ids[0].product_uom_qty}
           </td>
           <td className="w-[150px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.line_ids[0].price_total}
+            {formatter.format(line.line_ids[0].price_total)}
           </td>
           <td className="w-[120px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.line_ids[0].advance_money}
+            {formatter.format(line.line_ids[0].advance_money)}
           </td>
           <td
             className={`flex items-center justify-center shrink-0 w-[140px] h-[35px] ${
               line.state === "sale"
                 ? "bg-[#3a974c1a]"
-                : line.state === "transport"
+                : line.state === "looking ncc"
                 ? "bg-[#f293391a]"
                 : line.state === "cancel"
                 ? "bg-[#d11a2a1a]"
@@ -273,14 +280,14 @@ export default function DeliveryService() {
               className={`text-sm font-bold leading-[14px] ${
                 line.state === "sale"
                   ? "text-[#3A974C]"
-                  : line.state === "transport"
+                  : line.state === "looking ncc"
                   ? "text-[#F29339]"
                   : line.state === "cancel"
                   ? "text-[#D11A2A]"
                   : "text-[#4285F4]"
               }`}
             >
-              {line.state}
+              {line.state === 'sale' ? 'Đơn bán hàng' : line.state === 'looking ncc' ? 'Đang vận chuyển' : 'Đã huỷ'}
             </p>
           </td>
         </tr>

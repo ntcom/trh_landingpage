@@ -17,12 +17,13 @@ import LocalStorage from "@/app/utils/LocalStorage";
 import { appConfig } from "@/app/utils/appConfig";
 import { InternalAxiosRequestConfig } from "axios";
 
-const excludeApi: string[] = [];
+const excludeApi: string[] = ["auth/token"];
 
 const withAuthToken = (requestConfig: InternalAxiosRequestConfig) => {
   const { url } = requestConfig;
 
   if (url && !excludeApi.includes(url)) {
+    console.log("🚀 ~ url:", url);
     const mockToken = "access_token_ba0e8c81183207cccd0d63c59e3afdb4292a109d";
     const authToken = LocalStorage.get(appConfig.tokenName) || mockToken;
     if (authToken) {

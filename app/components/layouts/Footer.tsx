@@ -10,8 +10,9 @@ import { usePathname } from "next/navigation";
 
 function Footer() {
   const pathname = usePathname();
+  const checkPortal = pathname.split('/')[1];
 
-  return pathname !== '/login' && pathname !== '/delivery-service' && pathname !== '/client-profile' &&  (
+  return pathname !== '/login' && checkPortal !== 'delivery-service' && pathname !== '/client-profile' && (
     <footer>
       {/* <div className="bg-[#171b1f]">
         <div className="container2 p-[55px_15px] flex flex-col lgs:flex-row items-center lgs:items-start gap-8 justify-between">
