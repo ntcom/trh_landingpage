@@ -20,6 +20,7 @@ export default function Header() {
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
   const pathname = usePathname()
+  const checkPortal = pathname.split('/')[1];
 
   useEffect(() => {
     window.onscroll = () => {
@@ -36,7 +37,7 @@ export default function Header() {
     }
   }, []);
 
-  return pathname !== '/delivery-service' && pathname !== '/client-profile' && (
+  return checkPortal !== 'delivery-service' && pathname !== '/client-profile' && (
     <div className="w-full">
       {/* {pathname !== '/login' && <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
         <div className="container flex flex-wrap items-center justify-between py-[10px] gap-[15px_30px]">
