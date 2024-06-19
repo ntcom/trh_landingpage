@@ -155,24 +155,12 @@ function TableMeet() {
       return (
         <tr
           key={line.stt}
-          className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
+          className="relative gap-1 flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
-          <td className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
+          <td className="w-[100px] text-[#030229] text-xs text-center font-normal">
             {line.stt}
           </td>
-          <td className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            <Link
-              href={
-                line.status.type === "transport"
-                  ? `transport/${line.code}`
-                  : `/delivery-service/${line.code}`
-              }
-              className="text-[#4285F4] hover:underline"
-            >
-              {line.code}
-            </Link>
-          </td>
-          <td className="w-[172px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <Image
               src={calendar}
               alt=""
@@ -180,20 +168,23 @@ function TableMeet() {
             />
             {line.date}
           </td>
-          <td className="w-[220px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          {/* <td className="w-[230px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.product}
-          </td>
-          <td className="w-[90px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          </td> */}
+          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.quantity}
           </td>
-          <td className="w-[150px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.totalPrice}
           </td>
-          <td className="w-[120px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.deposits}
+          </td>
+          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.deposits}
           </td>
           <td
-            className={`flex items-center justify-center shrink-0 w-[140px] h-[35px] ${
+            className={`flex items-center justify-center shrink-0 w-[150px] h-[35px] ${
               line.status.type === "complete"
                 ? "bg-[#3a974c1a]"
                 : line.status.type === "transport"
@@ -224,35 +215,29 @@ function TableMeet() {
 
   return (
     <div className="relative">
-      <table className="block xl:table w-full overflow-x-scroll">
+      <table className="overflow-auto block w-full">
         <thead>
           <tr className="flex items-center py-5 pr-5">
-            <th className="w-[74px] xl:w-full xl:max-w-[6.98%] th-table-require">
+            <th className="w-[100px] text-[#030229] justify-center th-table-require">
               STT
             </th>
-            <th
-              onClick={() => setSort("old")}
-              className="w-[110px] xl:w-full xl:max-w-[10%] th-table-require"
-            >
-              Mã đơn hàng <Arrow sort={sort} name={"old"} />
+            <th className="w-[230px] text-[#030229] th-table-require">
+              Mã phòng họp <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[172px] xl:w-full xl:max-w-[15%] th-table-require">
-              Ngày đặt hàng <Arrow sort={sort} name={"old"} />
+            <th className="w-[230px] text-[#030229] th-table-require">
+              Thời gian bắt đầu <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[220px] xl:w-full xl:max-w-[21%] th-table-require">
-              Sản phẩm <Arrow sort={sort} name={"old"} />
+            <th className="w-[230px] text-[#030229] th-table-require">
+              Thời gian kết thúc <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[90px] xl:w-full xl:max-w-[8%] th-table-require">
-              Số lượng <Arrow sort={sort} name={"old"} />
+            <th className="w-[230px] text-[#030229] th-table-require">
+              Người yêu cầu <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[150px] xl:w-full xl:max-w-[15%] th-table-require">
-              Tổng số tiền <Arrow sort={sort} name={"old"} />
+            <th className="w-[230px] text-[#030229] th-table-require">
+              Phòng ban <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[120px] xl:w-full xl:max-w-[12%] th-table-require">
-              Đã đặt cọc <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[140px] xl:w-auto th-table-require">
-              Trạng thái <Arrow sort={sort} name={"old"} />
+            <th className="w-[150px] text-[#030229] th-table-require">
+              Trạng thái yêu cầu <Arrow sort={sort} name={"old"} />
             </th>
           </tr>
         </thead>

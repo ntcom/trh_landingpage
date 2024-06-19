@@ -35,9 +35,10 @@ import {
 } from "./utils/validator";
 import ControllerInput from "@/core/components/Form/ControllerInput";
 import helpdeskService from "@/app/services/helpdesk.service";
+
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
-  { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
+  // { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
   { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "SUPPORT_REPORT" },
 ];
 const locations = [
@@ -146,7 +147,7 @@ const processingDepartment = {
 function CreateRequirement() {
   const [pickOption, setPickOption] = useState<
     "MEET" | "ORDER_STATIONERY" | "SUPPORT_REPORT" | "EMPTY"
-  >("SUPPORT_REPORT");
+  >("EMPTY");
 
   const currentYup = useMemo(() => {
     if (pickOption === "ORDER_STATIONERY") {
@@ -187,9 +188,7 @@ function CreateRequirement() {
   const [theme, setTheme] = useState("");
   const getData = async () => {
     try {
-      const res = await helpdeskService.post(
-        helpdeskService.endpoint.getSupportReport
-      );
+      const res = await helpdeskService.getHelpDesk();
       console.log("🚀 ~ res:", res);
     } catch (error) {}
   };
@@ -286,40 +285,41 @@ function CreateRequirement() {
                 icon={attach}
               />
             </div>
-          ) : pickOption === "ORDER_STATIONERY" ? (
-            <div className="flex flex-col gap-5 m-[30px_0_30px]">
-              <InputCustom
-                type={"text"}
-                placeholder={"Tên sản phẩm"}
-                setInputValue={setTheme}
-                icon={tagName}
-              />
-              <InputCustom
-                type={"number"}
-                placeholder={"Số lượng"}
-                setInputValue={setTheme}
-                icon={quantity2}
-              />
-              <SelectCustom
-                options={processingDepartment.typeOfService}
-                setIValue={setTheme}
-                icon={receivingDepartment}
-                placeholder="Bộ phận tiếp nhận"
-              />
-              <SelectCustom
-                options={processingDepartment.typeOfService}
-                setIValue={setTheme}
-                icon={suporter}
-                placeholder="Người xử lý"
-              />
-              <InputCustom
-                type={"file"}
-                placeholder={"Đính kèm tài liệu, văn bản"}
-                setInputValue={setTheme}
-                icon={attach}
-              />
-            </div>
-          ) : pickOption === "SUPPORT_REPORT" ? (
+          ) : //  : pickOption === "ORDER_STATIONERY" ? (
+          //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
+          //     <InputCustom
+          //       type={"text"}
+          //       placeholder={"Tên sản phẩm"}
+          //       setInputValue={setTheme}
+          //       icon={tagName}
+          //     />
+          //     <InputCustom
+          //       type={"number"}
+          //       placeholder={"Số lượng"}
+          //       setInputValue={setTheme}
+          //       icon={quantity2}
+          //     />
+          //     <SelectCustom
+          //       options={processingDepartment.typeOfService}
+          //       setIValue={setTheme}
+          //       icon={receivingDepartment}
+          //       placeholder="Bộ phận tiếp nhận"
+          //     />
+          //     <SelectCustom
+          //       options={processingDepartment.typeOfService}
+          //       setIValue={setTheme}
+          //       icon={suporter}
+          //       placeholder="Người xử lý"
+          //     />
+          //     <InputCustom
+          //       type={"file"}
+          //       placeholder={"Đính kèm tài liệu, văn bản"}
+          //       setInputValue={setTheme}
+          //       icon={attach}
+          //     />
+          //   </div>
+          // )
+          pickOption === "SUPPORT_REPORT" ? (
             <div className="flex flex-col gap-5 m-[30px_0_30px]">
               <ControllerInput
                 control={control}

@@ -11,10 +11,10 @@ const tables = [
     id: 1,
     tag: "Đặt lịch họp",
   },
-  {
-    id: 2,
-    tag: "Đặt văn phòng phẩm",
-  },
+  // {
+  //   id: 2,
+  //   tag: "Đặt văn phòng phẩm",
+  // },
   {
     id: 3,
     tag: "Báo hỗ trợ dịch vụ CNTT",
@@ -25,7 +25,8 @@ function ListRequirement() {
   const [tabActive, setTabActive] = useState(1);
 
   return (
-    <div className="mt-20 container-app p-[150px_24px] mb-16">
+    // <div className="mt-20 container-app p-[150px_24px] mb-16">
+    <div className="p-4 mt-20 mb-8">
       <ul className="flex flex-col md:flex-row">
         {tables.map((tab) => {
           const currentTab = tabActive === tab.id;
@@ -51,11 +52,12 @@ function ListRequirement() {
       <div className="bg-[#fff] p-2 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
         <div>
           {tabActive === 1 && <TableMeet />}
-          {tabActive === 2 && <TableOrderStationery />}
+          {/* {tabActive === 2 && <TableOrderStationery />} */}
           {tabActive === 3 && <TableSupportReport />}
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 
