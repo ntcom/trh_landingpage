@@ -99,38 +99,27 @@ function TableSupportReport() {
           key={line.stt}
           className="relative flex gap-1 items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
         >
-          <td className="w-[165px] justify-center td-table-require">
+          <td className="w-[100px] justify-center td-table-require">
             {line.stt}
           </td>
-          <td className="w-[165px] td-table-require">{line.code}</td>
-          <td className="w-[165px] td-table-require">{line.content}</td>
-          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            <Image
-              src={calendar}
-              alt=""
-              className="block shrink-0 w-[12.6px]"
-            />
-            {line.startDate}
+          <td className="w-[160px] td-table-require">{line.name}</td>
+          <td className="w-[160px] td-table-require">{line.channel_source}</td>
+          <td className="w-[160px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.type_service_id}
           </td>
-          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            <Image
-              src={calendar}
-              alt=""
-              className="block shrink-0 w-[12.6px]"
-            />
-            {line.endDate}
+          <td className="w-[160px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.service_child_id}
           </td>
           <td className="w-[175px] flex td-table-require">
-            <Image
-              src={calendar}
-              alt=""
-              className="block shrink-0 w-[12.6px]"
-            />
-            {line.endDate}
+            {line.service_detail_id}
           </td>
-          <td className="w-[165px] flex td-table-require">{line.user_id}</td>
+          <td className="w-[160px] flex td-table-require">
+            {line.receiving_department_id}
+          </td>
+          <td className="w-[160px] flex td-table-require">{line.team_id}</td>
+          <td className="w-[160px] flex td-table-require">{line.user_id}</td>
           <td
-            className={`flex items-center justify-center shrink-0 w-[165px] h-[35px] ${
+            className={`flex items-center justify-center shrink-0 w-[160px] h-[35px] ${
               line.status.type === "complete"
                 ? "bg-[#3a974c1a]"
                 : line.status.type === "transport"
@@ -154,23 +143,22 @@ function TableSupportReport() {
               {line.status.title}
             </p>
           </td>
-          <td className="w-[165px] flex td-table-require">{line.review}</td>
           {/* <td className="w-[220px] td-table-require">{line.name}</td>
-          <td className="w-[180px] td-table-require">{line.channel_source}</td>
-          <td className="w-[180px] td-table-require">
+          <td className="w-[160px] td-table-require">{line.channel_source}</td>
+          <td className="w-[160px] td-table-require">
             {line.service_child_id}
           </td>
-          <td className="w-[180px] td-table-require">
+          <td className="w-[160px] td-table-require">
             {line.service_child_id}
           </td>
-          <td className="w-[180px] td-table-require">
+          <td className="w-[160px] td-table-require">
             {line.service_detail_id}
           </td>
-          <td className="w-[180px] td-table-require">
+          <td className="w-[160px] td-table-require">
             {line.receiving_department_id}
           </td>
-          <td className="w-[180px] td-table-require">{line.team_id}</td>
-          <td className="w-[180px] td-table-require">{line.user_id}</td>
+          <td className="w-[160px] td-table-require">{line.team_id}</td>
+          <td className="w-[160px] td-table-require">{line.user_id}</td>
           <td
             className={`flex items-center justify-center shrink-0 w-[140px] h-[35px] ${
               line.status.type === "complete"
@@ -205,60 +193,34 @@ function TableSupportReport() {
       <table className="block w-full overflow-auto">
         <thead>
           <tr className="flex gap-1 items-center py-5 pr-5">
-            <th className="w-[165px] text-[#030229] justify-center th-table-require">
-              STT
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Mã yêu cầu <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Nội dung yêu cầu <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Ngày tạo <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Thời gian cam kết <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[175px] text-[#030229] th-table-require">
-              Thời gian hoàn thành <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Người xử lý <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Trạng thái <Arrow sort={sort} name={"old"} />
-            </th>
-            <th className="w-[165px] text-[#030229] th-table-require">
-              Đánh giá <Arrow sort={sort} name={"old"} />
-            </th>
-            {/* <th className="w-[220px] th-table-require">
+            <th className="w-[100px] justify-center th-table-require">STT</th>
+            <th className="w-[160px] th-table-require">
               Tên dịch vụ <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Kênh <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Loại dịch vụ <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Dịch vụ con <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Dịch vụ chi tiết <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Bộ phận tiếp nhận <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Đội ngũ hỗ trợ <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Người xử lý <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[180px] th-table-require">
+            <th className="w-[160px] th-table-require">
               Trạng thái <Arrow sort={sort} name={"old"} />
-            </th> */}
+            </th>
           </tr>
         </thead>
 
