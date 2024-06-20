@@ -9,6 +9,9 @@ import Loading from "@/core/components/Loading/Loading";
 const dataTable = [
   {
     stt: 1,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00924",
     date: "15/05/2024",
     time: "10:10:44",
@@ -18,11 +21,14 @@ const dataTable = [
     deposits: 0,
     status: {
       type: "new",
-      th: "Tạo mới",
+      title: "Tạo mới",
     },
   },
   {
     stt: 2,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00923",
     date: "15/05/2024",
     time: "10:09:34",
@@ -37,6 +43,9 @@ const dataTable = [
   },
   {
     stt: 3,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00911",
     date: "14/05/2024",
     time: "17:29:22",
@@ -51,6 +60,9 @@ const dataTable = [
   },
   {
     stt: 4,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00910",
     date: "14/05/2024",
     time: "17:26:33",
@@ -65,6 +77,9 @@ const dataTable = [
   },
   {
     stt: 5,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00902",
     date: "14/05/2024",
     time: "15:43:19",
@@ -79,6 +94,9 @@ const dataTable = [
   },
   {
     stt: 6,
+    user_id: "Nguyễn Văn Tú",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00894",
     date: "13/05/2024",
     time: "14:08:12",
@@ -93,6 +111,9 @@ const dataTable = [
   },
   {
     stt: 7,
+    user_id: "Nguyễn Văn Thìn",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00892",
     date: "13/05/2024",
     time: "14:00:34",
@@ -107,6 +128,9 @@ const dataTable = [
   },
   {
     stt: 8,
+    user_id: "Nguyễn Huy An",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00890",
     date: "13/05/2024",
     time: "13:58:24",
@@ -121,6 +145,9 @@ const dataTable = [
   },
   {
     stt: 9,
+    user_id: "Nguyễn Văn Hoàng",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00889",
     date: "13/05/2024",
     time: "13:55:37",
@@ -135,6 +162,9 @@ const dataTable = [
   },
   {
     stt: 10,
+    user_id: "Nguyễn Văn A",
+    content: "Nội dung",
+    feedback: "Đánh giá",
     code: "S00888",
     date: "13/05/2024",
     time: "13:47:19",
@@ -160,7 +190,21 @@ function TableMeet() {
           <td className="w-[100px] text-[#030229] text-xs text-center font-normal">
             {line.stt}
           </td>
-          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.code}
+          </td>
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.content}
+          </td>
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <Image
+              src={calendar}
+              alt=""
+              className="block shrink-0 w-[12.6px]"
+            />
+            {line.date}
+          </td>{" "}
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             <Image
               src={calendar}
               alt=""
@@ -168,23 +212,22 @@ function TableMeet() {
             />
             {line.date}
           </td>
-          {/* <td className="w-[230px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <Image
+              src={calendar}
+              alt=""
+              className="block shrink-0 w-[12.6px]"
+            />
+            {line.date}
+          </td>
+          {/* <td className="w-[165px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
             {line.product}
           </td> */}
-          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.quantity}
-          </td>
-          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.totalPrice}
-          </td>
-          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.deposits}
-          </td>
-          <td className="w-[230px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-            {line.deposits}
+          <td className="w-[175px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.user_id}
           </td>
           <td
-            className={`flex items-center justify-center shrink-0 w-[150px] h-[35px] ${
+            className={`flex items-center justify-center shrink-0 w-[165px] h-[35px] ${
               line.status.type === "complete"
                 ? "bg-[#3a974c1a]"
                 : line.status.type === "transport"
@@ -208,6 +251,9 @@ function TableMeet() {
               {line.status.title}
             </p>
           </td>
+          <td className="w-[165px] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            {line.feedback}
+          </td>
         </tr>
       );
     });
@@ -217,27 +263,33 @@ function TableMeet() {
     <div className="relative">
       <table className="overflow-auto block w-full">
         <thead>
-          <tr className="flex items-center py-5 pr-5">
+          <tr className="flex gap-1 items-center py-5 pr-5">
             <th className="w-[100px] text-[#030229] justify-center th-table-require">
               STT
             </th>
-            <th className="w-[230px] text-[#030229] th-table-require">
-              Mã phòng họp <Arrow sort={sort} name={"old"} />
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Mã yêu cầu <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[230px] text-[#030229] th-table-require">
-              Thời gian bắt đầu <Arrow sort={sort} name={"old"} />
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Nội dung yêu cầu <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[230px] text-[#030229] th-table-require">
-              Thời gian kết thúc <Arrow sort={sort} name={"old"} />
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Ngày tạo <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[230px] text-[#030229] th-table-require">
-              Người yêu cầu <Arrow sort={sort} name={"old"} />
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Thời gian cam kết <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[230px] text-[#030229] th-table-require">
-              Phòng ban <Arrow sort={sort} name={"old"} />
+            <th className="w-[175px] text-[#030229] th-table-require">
+              Thời gian hoàn thành <Arrow sort={sort} name={"old"} />
             </th>
-            <th className="w-[150px] text-[#030229] th-table-require">
-              Trạng thái yêu cầu <Arrow sort={sort} name={"old"} />
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Người xử lý <Arrow sort={sort} name={"old"} />
+            </th>
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Trạng thái <Arrow sort={sort} name={"old"} />
+            </th>
+            <th className="w-[165px] text-[#030229] th-table-require">
+              Đánh giá <Arrow sort={sort} name={"old"} />
             </th>
           </tr>
         </thead>
