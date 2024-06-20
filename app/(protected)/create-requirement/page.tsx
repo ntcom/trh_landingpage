@@ -35,6 +35,8 @@ import {
 } from "./utils/validator";
 import ControllerInput from "@/core/components/Form/ControllerInput";
 import helpdeskService from "@/app/services/helpdesk.service";
+import DatePickerInput from "@/core/components/DatePickerInput/DatePickerInput";
+import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
 
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
@@ -223,61 +225,59 @@ function CreateRequirement() {
         >
           {pickOption === "MEET" ? (
             <div className="flex flex-col gap-5 m-[30px_0_30px]">
+              <div className="relative flex">
+                <ControllerInput
+                  control={control}
+                  name="name"
+                  className="w-full"
+                  placeholder="Nội dung cuộc họp"
+                  icon={note}
+                />
+              </div>
               <div className="flex">
                 <ControllerSelect
                   options={locations}
                   icon={location}
                   control={control}
-                  name="position"
+                  name="location"
                   pathLabel="title"
                   pathValue="value"
                   placeholder="Vị trí phòng họp"
                 />
               </div>
-              <InputCustom
-                type={"date"}
-                placeholder={"Bắt đầu"}
-                setInputValue={setTheme}
-                icon={time}
+
+              <ControllerDatePicker
+                placeholder={"Thời gian bắt đầu"}
+                control={control}
+                name="date_start"
               />
-              <InputCustom
-                type={"date"}
-                placeholder={"Kết thúc"}
-                setInputValue={setTheme}
-                icon={time}
+
+              <ControllerDatePicker
+                placeholder={"Thời gian kết thúc"}
+                control={control}
+                name="date_end"
               />
-              <InputCustom
+
+              <ControllerInput
+                control={control}
                 type={"number"}
                 placeholder={"Người tham gia"}
-                setInputValue={setTheme}
+                name="participants_ids"
                 icon={quantity}
               />
-              <InputCustom
-                type={"text"}
+              <ControllerInput
+                control={control}
+                name="employee_id"
                 placeholder={"Người chủ trì"}
-                setInputValue={setTheme}
                 icon={host}
               />
-              <InputCustom
-                type={"text"}
+              <ControllerInput
+                control={control}
+                name="request_more_ids"
                 placeholder={"Yêu cầu thêm"}
                 setInputValue={setTheme}
                 icon={requestz}
               />
-              <div className="relative flex">
-                <Image
-                  src={note}
-                  alt=""
-                  className="absolute top-5 left-[28px] max-w-[16px] max-h-[16px]"
-                />
-                <textarea
-                  name=""
-                  id=""
-                  className="common-textarea"
-                  placeholder="Nội dung cuộc họp"
-                  required
-                ></textarea>
-              </div>
               <InputCustom
                 type={"file"}
                 placeholder={"Đính kèm tài liệu, văn bản"}

@@ -1,7 +1,30 @@
 import * as yup from "yup";
 
 export const yupMeet = yup.object().shape({
-  position: yup.string().required("Vui lòng chọn component").default(""),
+  name: yup.string().required("Vui lòng nhập Nội dung cuộc họp").default(""),
+  location: yup.string().required("Vui lòng chọn Vị trí phòng họp").default(""),
+  // category: yup.string().required("Vui lòng nhập Danh mục").default(""),
+  date_start: yup
+    .string()
+    .required("Vui lòng nhập Thời Thời gian bắt đầu")
+    .default(""),
+  date_end: yup
+    .string()
+    .required("Vui lòng nhập Thời gian kết thúc")
+    .default(""),
+  participants_ids: yup
+    .string()
+    .required("Vui lòng nhập Người tham gia")
+    .default(""),
+  employee_id: yup.string().required("Vui lòng nhập Người chủ trì").default(""),
+  request_more_ids: yup
+    .string()
+    .required("Vui lòng nhập Yêu cầu thêm")
+    .default(""),
+  // approver_ids: yup
+  //   .string()
+  //   .required("Vui lòng nhập Người phê duyệt")
+  //   .default(""),
 });
 
 export const yupOrder = yup.object().shape({
