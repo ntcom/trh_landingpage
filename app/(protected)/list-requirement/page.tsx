@@ -5,6 +5,8 @@ import TableMeet from "./components/table/TableMeet";
 import TableOrderStationery from "./components/table/TableOrderStationery";
 import TableSupportReport from "./components/table/TableSupportReport";
 import "./components/table/styles.css";
+import TableMeet2 from "./components/table/TableMeet2";
+import TableSupportReport2 from "./components/table/TableSupportReport2";
 
 const tables = [
   {
@@ -51,9 +53,9 @@ function ListRequirement() {
       </ul>
       <div className="bg-[#fff] p-2 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
         <div>
-          {tabActive === 1 && <TableMeet />}
+          {tabActive === 1 && <TableMeet2 />}
           {/* {tabActive === 2 && <TableOrderStationery />} */}
-          {tabActive === 3 && <TableSupportReport />}
+          {tabActive === 3 && <TableSupportReport2 />}
         </div>
       </div>
     </div>
