@@ -10,11 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Poppins, sans-serif"],
-        roboto: ["Roboto, sans-serif"],
-        dancing: ["Dancing Script, sans-serif"],
-        nunito: ["Nunito, sans-serif"],
-        condensed: ["Roboto Condensed, sans-serif"],
+        "poppins": ["Poppins, sans-serif"],
+        "roboto": ["Roboto, sans-serif"],
+        "dancing": ["Dancing Script, sans-serif"],
+        "nunito": ["Nunito, sans-serif"],
+        "condensed": ["Roboto Condensed, sans-serif"],
       },
       backgroundImage: {},
       colors: {
