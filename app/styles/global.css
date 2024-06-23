@@ -251,3 +251,7 @@ body {
 .form-error {
   @apply text-red-600 text-sm mt-1;
 }
+
+.react-datepicker-wrapper {
+  @apply w-full;
+}

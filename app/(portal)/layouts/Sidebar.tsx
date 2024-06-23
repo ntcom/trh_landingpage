@@ -80,7 +80,7 @@ export default function Sidebar() {
               href={nav.link}
               className="block py-[8px] rounded-[10px] hover:bg-[linear-gradient(90deg,rgba(66,133,244,.2)_0%,rgba(66,133,244,0.00)_30.98%)]"
               style={{
-                backgroundColor: pathname === nav.link ? "#fff" : '',
+                backgroundColor: pathname === nav.link ? "#fff" : "",
               }}
               key={nav.id}
             >
@@ -105,7 +105,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="absolute bottom-[166px] w-full max-w-[77.06%] h-[145px] mx-auto bg-[#fff] bgs-[#80abff1a] rounded-[20px] p-[15px] flex flex-col items-center justify-between">
+      <div className="absolute bottom-[200px] w-full max-w-[77.06%] h-[145px] mx-auto bg-[#fff] bgs-[#80abff1a] rounded-[20px] p-[15px] flex flex-col items-center justify-between">
         <div className="w-[50%]">
           <Image src={upgrade} alt="" />
         </div>
@@ -114,7 +114,7 @@ export default function Sidebar() {
         </button>
       </div>
 
-      <div className="absolute bottom-10 flex justify-between gap-[22px] items-center">
+      <div className="absolute bottom-10 flex flex-col justify-between gap-5 items-center">
         <div className="flex items-center gap-[10px]">
           <button className="shrink-0 block w-[45px] h-[45px] rounded-xl overflow-hidden">
             <Image src={ava} alt="" />
@@ -126,9 +126,15 @@ export default function Sidebar() {
             </p>
           </div>
         </div>
-        <Link href={"/login"} className="shrink-0 flex">
+        {/* <Link href={"/login"} className="shrink-0 flex">
           <Image src={logout} alt="" />
-        </Link>
+        </Link> */}
+        <a
+          href="/login"
+          className="w-full h-8 border-[2px] border-solid border-[#fff] p-[8px 20px] rounded flex justify-center items-center text-[#fff]"
+        >
+          Đăng xuất
+        </a>
       </div>
     </aside>
   );

@@ -11,6 +11,7 @@ interface InputProps {
   id?: string;
   error?: string;
   nameInput?: string;
+  className?: string;
 }
 
 const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
@@ -22,7 +23,7 @@ const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {props.type === "file" ? (
         <div className="relative w-full flex items-center common-input">
           <div className="absolute shrink-0 left-[28px] w-[16px] flex justify-center">
@@ -52,7 +53,7 @@ const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
             id="input-file"
             type={props.type}
             defaultValue={props.label}
-            className="opacity-0 z-0"
+            className={`opacity-0 z-0 ${props.className}`}
             placeholder={props.placeholder}
             onChange={(e) => {
               const path = e.target.value.split("\\")[2];
@@ -73,7 +74,7 @@ const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
             id={props.id}
             type={props.type}
             defaultValue={props.label}
-            className="common-input"
+            className={`common-input ${props.className}`}
             name={props.nameInput}
             placeholder={props.placeholder}
             onChange={handleChange}
