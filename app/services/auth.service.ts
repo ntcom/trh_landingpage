@@ -21,7 +21,12 @@ class AuthService extends BaseService {
       {
         params: { db: "tranghuy_test_0306", ...params },
       },
-      endPoint.getToken
+      endPoint.getToken,
+      {
+        headers: {
+          "Authorization": "login"
+        }
+      }
     );
   }
 }

@@ -166,7 +166,7 @@ export default function ClientProfile() {
             <div className="flex flex-col gap-10 mt-[194px]">
               <InputCustom
                 type={"text"}
-                placeholder={"Mật khẩu"}
+                placeholder={"Mật khẩu hiện tại"}
                 setInputValue={setIValue}
                 icon={currPass}
               />

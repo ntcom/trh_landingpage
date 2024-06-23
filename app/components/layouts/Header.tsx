@@ -124,7 +124,7 @@ export default function Header() {
                 </Link>
               </nav>}
 
-              <div className="flex items-center gap-9">
+              {pathname !== '/login' && <div className="flex items-center gap-9">
                 <div className="relative flex items-center">
                   <input
                     placeholder="seach"
@@ -169,7 +169,7 @@ export default function Header() {
                     <Image src={navigation} width={20} alt="" />
                   )}
                 </button>
-              </div>
+              </div>}
             </div>
           </div>
         </div>
