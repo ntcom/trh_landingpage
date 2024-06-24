@@ -3,6 +3,7 @@ import BaseService from "@/core/services/BaseService";
 export const endpoint = {
   base: "helpdesk",
   getSupportReport: "/get_data",
+  getListHelpdesk: "/get_list",
 };
 
 type Endpoint = typeof endpoint;
@@ -15,6 +16,9 @@ class HelpdeskService extends BaseService {
   }
   getHelpDesk() {
     return this.post({}, endpoint.getSupportReport);
+  }
+  getListHelpDesk() {
+    return this.post({}, endpoint.getListHelpdesk);
   }
 }
 
