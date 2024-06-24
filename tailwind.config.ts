@@ -21,12 +21,11 @@ const config = {
     },
     extend: {
       fontFamily: {
-        poppins: ["Poppins, sans-serif"],
-        roboto: ["Roboto, sans-serif"],
-        dancing: ["Dancing Script, sans-serif"],
-        nunito: ["Nunito, sans-serif"],
-        condensed: ["Roboto Condensed, sans-serif"],
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        "poppins": ["Poppins, sans-serif"],
+        "roboto": ["Roboto, sans-serif"],
+        "dancing": ["Dancing Script, sans-serif"],
+        "nunito": ["Nunito, sans-serif"],
+        "condensed": ["Roboto Condensed, sans-serif"],
       },
       backgroundImage: {},
       colors: {
