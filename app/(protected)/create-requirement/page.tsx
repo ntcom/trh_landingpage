@@ -38,6 +38,7 @@ import helpdeskService from "@/app/services/helpdesk.service";
 import DatePickerInput from "@/core/components/DatePickerInput/DatePickerInput";
 import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
 import helpdeskTicketService from "@/app/services/helpdesk-ticket.service";
+import meetRoomService from "@/app/services/meet-room.service";
 
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
@@ -178,6 +179,8 @@ function CreateRequirement() {
       if (pickOption === "SUPPORT_REPORT") {
         const newData = { ...value, channel_source: "" };
         await helpdeskTicketService.createHelpdeskTicket(newData);
+      } else if (pickOption === "MEET") {
+        await meetRoomService.createRoom(value);
       }
     } catch (error) {}
   };
@@ -205,7 +208,7 @@ function CreateRequirement() {
   const getData = async () => {
     try {
       const { result } = await helpdeskService.getHelpDesk();
-      
+
       setHelpdeskOption(result);
     } catch (error) {}
   };
