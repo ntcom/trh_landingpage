@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import calendar from "@/assets/svgs/Portal/calendar.svg";
 import arrowDown from "@/assets/svgs/Portal/arrow-down.svg";
+import meetRoomService from "@/app/services/meet-room.service";
 
 const dataTable = [
   {
@@ -186,6 +187,23 @@ const dataTable = [
   },
 ];
 function TableMeet2() {
+  const [room, setRoom] = useState([])
+  const getRoom = async () => {
+    try {
+      const res = await meetRoomService.getRoom({
+        date_start: "2024-06-19 17:00:00"
+      })
+      console.log('res:', res)
+      if (res?.result) {
+        setRoom(res.result)
+      }
+    } catch (error) {
+
+    }
+  }
+  useEffect(() => {
+    getRoom()
+  }, [])
   return (
     <div>
       <Table>

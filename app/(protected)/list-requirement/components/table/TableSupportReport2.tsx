@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import arrowDown from "@/assets/svgs/Portal/arrow-down.svg";
+import helpdeskService from "@/app/services/helpdesk.service";
 
 const dataTable = [
   {
@@ -215,6 +216,22 @@ const dataTable = [
   },
 ];
 function TableSupportReport2() {
+  const [helpDesk, setHelpDesk] = useState([])
+
+  const getHelpDesk = async () => {
+    try {
+
+      const res = await helpdeskService.getListHelpDesk()
+      if (res.result) {
+        setHelpDesk(res.result)
+      }
+    } catch (error) {
+
+    }
+  }
+  useEffect(() => {
+    getHelpDesk()
+  }, [])
   return (
     <div>
       <Table>
