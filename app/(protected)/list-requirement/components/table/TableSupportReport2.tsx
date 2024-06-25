@@ -216,22 +216,19 @@ const dataTable = [
   },
 ];
 function TableSupportReport2() {
-  const [helpDesk, setHelpDesk] = useState([])
+  const [helpDesk, setHelpDesk] = useState<any[]>([]);
 
   const getHelpDesk = async () => {
     try {
-
-      const res = await helpdeskService.getListHelpDesk()
+      const res = await helpdeskService.getListHelpDesk();
       if (res.result) {
-        setHelpDesk(res.result)
+        setHelpDesk(res.result);
       }
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   useEffect(() => {
-    getHelpDesk()
-  }, [])
+    getHelpDesk();
+  }, []);
   return (
     <div>
       <Table>
@@ -250,7 +247,16 @@ function TableSupportReport2() {
               </div>
             </TableHead>
             <TableHead>
-
+              <div className="flex gap-2 items-center cursor-pointer">
+                Mã yêu cầu
+                <Image
+                  src={arrowDown}
+                  alt=""
+                  className="block shrink-0 w-[8px]"
+                />
+              </div>
+            </TableHead>
+            <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
                 Loại dịch vụ
                 <Image
@@ -259,10 +265,8 @@ function TableSupportReport2() {
                   className="block shrink-0 w-[8px]"
                 />
               </div>
-
             </TableHead>
             <TableHead>
-
               <div className="flex gap-2 items-center cursor-pointer">
                 Dịch vụ con
                 <Image
@@ -271,10 +275,8 @@ function TableSupportReport2() {
                   className="block shrink-0 w-[8px]"
                 />
               </div>
-
             </TableHead>
             <TableHead>
-
               <div className="flex gap-2 items-center cursor-pointer">
                 Dịch vụ chi tiết
                 <Image
@@ -283,7 +285,6 @@ function TableSupportReport2() {
                   className="block shrink-0 w-[8px]"
                 />
               </div>
-
             </TableHead>
             <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
@@ -294,7 +295,6 @@ function TableSupportReport2() {
                   className="block shrink-0 w-[8px]"
                 />
               </div>
-
             </TableHead>
             <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
@@ -305,9 +305,8 @@ function TableSupportReport2() {
                   className="block shrink-0 w-[8px]"
                 />
               </div>
-
             </TableHead>
-            <TableHead>
+            {/* <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
                 Trạng thái
                 <Image
@@ -315,9 +314,8 @@ function TableSupportReport2() {
                   alt=""
                   className="block shrink-0 w-[8px]"
                 />
-
               </div>
-            </TableHead>
+            </TableHead> */}
             <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
                 Người xử lý
@@ -326,26 +324,29 @@ function TableSupportReport2() {
                   alt=""
                   className="block shrink-0 w-[8px]"
                 />
-
               </div>
             </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {dataTable.map((item, index) => {
-            const status = item.status.type;
+          {helpDesk.map((item, index) => {
+            // const status = item.status.type;
             return (
-              <TableRow key={index} className={cn({
-                "bg-[#f8f8f8]": index % 2 === 0
-              })}>
+              <TableRow
+                key={index}
+                className={cn({
+                  "bg-[#f8f8f8]": index % 2 === 0,
+                })}
+              >
                 <TableCell className="font-medium">{index + 1}</TableCell>
                 <TableCell>{item.name}</TableCell>
-                <TableCell>{item.type_service_id}</TableCell>
-                <TableCell>{item.service_child_id}</TableCell>
-                <TableCell>{item.service_detail_id}</TableCell>
-                <TableCell>{item.receiving_department_id}</TableCell>
-                <TableCell>{item.team_id}</TableCell>
-                <TableCell>
+                <TableCell>{item.code_ticket}</TableCell>
+                <TableCell>{item.type_service_id.name}</TableCell>
+                <TableCell>{item.service_child_id.name}</TableCell>
+                <TableCell>{item.service_detail_id.name}</TableCell>
+                <TableCell>{item.receiving_department_id.name}</TableCell>
+                <TableCell>{item.team_id.name}</TableCell>
+                {/* <TableCell>
                   <div
                     className={cn("bg-[#4285f41a] w-fit px-2 py-1 rounded-lg", {
                       "bg-[#3a974c1a]": status === "complete",
@@ -363,8 +364,8 @@ function TableSupportReport2() {
                       {item.status.title}
                     </p>
                   </div>
-                </TableCell>
-                <TableCell>{item.user_id}</TableCell>
+                </TableCell> */}
+                <TableCell>{item.user_id.name}</TableCell>
               </TableRow>
             );
           })}
