@@ -39,17 +39,13 @@ import DatePickerInput from "@/core/components/DatePickerInput/DatePickerInput";
 import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
 import helpdeskTicketService from "@/app/services/helpdesk-ticket.service";
 import meetRoomService from "@/app/services/meet-room.service";
-
+import dayjs from "dayjs";
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
   // { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
   { title: "CNTT / Báo hỗ trợ dịch vụ CNTT", value: "SUPPORT_REPORT" },
 ];
-const locations = [
-  { title: "Trung tâm hội nghị Quốc gia", value: "tthnqg" },
-  { title: "Phòng họp 1", value: "ph1" },
-  { title: "Phòng họp 2", value: "ph2" },
-];
+const locations = [{ title: "Phòng họp tầng 4", value: "Phòng họp tầng 4" }];
 
 const processingDepartment = {
   channel: [
@@ -177,10 +173,28 @@ function CreateRequirement() {
     try {
       console.log(value);
       if (pickOption === "SUPPORT_REPORT") {
-        const newData = { ...value, channel_source: "" };
-        await helpdeskTicketService.createHelpdeskTicket(newData);
+        const newData = { ...value, channel_source: "email" };
+        await helpdeskTicketService.createHelpdeskTicket({
+          params: {
+            ...newData,
+          },
+        });
       } else if (pickOption === "MEET") {
-        await meetRoomService.createRoom(value);
+        const date_start = dayjs(value.date_start).format(
+          "YYYY-MM-DD HH:mm:ss"
+        );
+        const date_end = dayjs(value.date_end).format("YYYY-MM-DD HH:mm:ss");
+        await meetRoomService.createRoom({
+          params: {
+            ...value,
+            category_id: 1,
+            approver_ids: [1],
+            participants_ids: [value.participants_ids],
+            request_more_ids: [value.request_more_ids],
+            date_start,
+            date_end,
+          },
+        });
       }
     } catch (error) {}
   };
@@ -258,8 +272,8 @@ function CreateRequirement() {
                   icon={location}
                   control={control}
                   name="location"
-                  pathLabel="name"
-                  pathValue="id"
+                  pathLabel="title"
+                  pathValue="value"
                   placeholder="Vị trí phòng họp"
                 />
               </div>
