@@ -33,7 +33,7 @@ export const yupOrder = yup.object().shape({
 
 export const yupSuportReport = yup.object().shape({
   name: yup.string().required("Vui lòng nhập tên dịch vụ").default(""),
-  channel_source: yup.string().required("Vui lòng chọn Kênh").default(""),
+  // channel_source: yup.string().required("Vui lòng chọn Kênh").default(""),
   type_service_id: yup
     .string()
     .required("Vui lòng chọn Loại dịch vụ")
