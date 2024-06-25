@@ -56,10 +56,10 @@ export default function SelectCustoms(props: SelectPropsType) {
             : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
         } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
       >
-        {props.options.map((option: any) => {
+        {props.options.map((option: any, index: number) => {
           return (
             <data
-              key={option.value}
+              key={index}
               value={option.value}
               onClick={() => {
                 props.setPickOption(option.value);
