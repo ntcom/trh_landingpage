@@ -36,10 +36,10 @@ const Login = () => {
       console.log(error);
     }
 
-    // handleLogin({
-    //   login: username,
-    //   password: passVal,
-    // });
+    handleLogin({
+      login: username,
+      password: passVal,
+    });
   };
 
   return (
