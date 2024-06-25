@@ -37,6 +37,8 @@ import ControllerInput from "@/core/components/Form/ControllerInput";
 import helpdeskService from "@/app/services/helpdesk.service";
 import DatePickerInput from "@/core/components/DatePickerInput/DatePickerInput";
 import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
+import helpdeskTicketService from "@/app/services/helpdesk-ticket.service";
+import meetRoomService from "@/app/services/meet-room.service";
 
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
@@ -170,10 +172,16 @@ function CreateRequirement() {
     mode: "onChange",
     resolver: yupResolver(currentYup),
   });
-
+  console.log("🚀 ~ errors:", errors);
   const onSubmit = async (value: any) => {
     try {
       console.log(value);
+      if (pickOption === "SUPPORT_REPORT") {
+        const newData = { ...value, channel_source: "" };
+        await helpdeskTicketService.createHelpdeskTicket(newData);
+      } else if (pickOption === "MEET") {
+        await meetRoomService.createRoom(value);
+      }
     } catch (error) {}
   };
   const breadcrumbs = [
@@ -188,10 +196,20 @@ function CreateRequirement() {
   ];
 
   const [theme, setTheme] = useState("");
+  const [helpdeskOption, setHelpdeskOption] = useState({
+    channel: [],
+    helpdesk_team_ids: [],
+    hr_department_ids: [],
+    service_child_ids: [],
+    service_detail_ids: [],
+    type_service_ids: [],
+    user_ids: [],
+  });
   const getData = async () => {
     try {
-      const res = await helpdeskService.getHelpDesk();
-      console.log("🚀 ~ res:", res);
+      const { result } = await helpdeskService.getHelpDesk();
+
+      setHelpdeskOption(result);
     } catch (error) {}
   };
 
@@ -240,8 +258,8 @@ function CreateRequirement() {
                   icon={location}
                   control={control}
                   name="location"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   placeholder="Vị trí phòng họp"
                 />
               </div>
@@ -327,34 +345,24 @@ function CreateRequirement() {
                 placeholder="Tên dịch vụ"
                 icon={time}
               />
+
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.channel}
-                  control={control}
-                  name="channel_source"
-                  pathLabel="title"
-                  pathValue="value"
-                  icon={channel}
-                  placeholder="Kênh"
-                />
-              </div>
-              <div className="w-full">
-                <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.type_service_ids}
                   control={control}
                   name="type_service_id"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   icon={typeService}
                   placeholder="Loại dịch vụ"
                 />
               </div>
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.service_child_ids}
                   control={control}
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   name="service_child_id"
                   icon={childService}
                   placeholder="Dịch vụ con"
@@ -362,10 +370,10 @@ function CreateRequirement() {
               </div>
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.service_detail_ids}
                   name="service_detail_id"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   control={control}
                   icon={detailService}
                   placeholder="Dịch vụ chi tiết"
@@ -373,34 +381,34 @@ function CreateRequirement() {
               </div>
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.hr_department_ids}
                   icon={receivingDepartment}
                   control={control}
                   name="receiving_department_id"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   placeholder="Bộ phận tiếp nhận"
                 />
               </div>
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.helpdesk_team_ids}
                   icon={suportTeam}
                   name="team_id"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   control={control}
                   placeholder="Đội ngũ hỗ trợ"
                 />
               </div>
               <div className="w-full">
                 <ControllerSelect
-                  options={processingDepartment.typeOfService}
+                  options={helpdeskOption.user_ids}
                   icon={suporter}
                   control={control}
                   name="user_id"
-                  pathLabel="title"
-                  pathValue="value"
+                  pathLabel="name"
+                  pathValue="id"
                   placeholder="Người xử lý"
                 />
               </div>
