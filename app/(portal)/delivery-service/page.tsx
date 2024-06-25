@@ -148,15 +148,15 @@ export default function DeliveryService() {
   //   console.log('>>>>', data.result);
   // };
 
-  // const getOrderList = async () => {
-  //   orderService.getData({}).then(({ result }) => {
-  //     setOrderData(result.sale_order_ids);
-  //     console.log(">>>>>>>>", result);
-  //   });
-  // };
+  const getOrderList = async () => {
+    orderService.getData({}).then(({ result }) => {
+      setOrderData(result.sale_order_ids);
+      console.log(">>>>>>>>", result);
+    });
+  };
 
   useEffect(() => {
-    // getOrderList();
+    getOrderList();
   }, []);
 
   // const renderDataTable = () => {
@@ -254,7 +254,7 @@ export default function DeliveryService() {
             <li className="w-full max-w-[6%] text-[#030229] text-xs text-center font-normal">
               {index + 1}
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[114.2px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               <Link
                 href={
                   line.state === "transport"
@@ -266,26 +266,20 @@ export default function DeliveryService() {
                 {line.code}
               </Link>
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[285.5px] xl:w-full xl:max-w-[25%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               {line.quantityCar}
             </li>
-            <li className="w-[198.9px] xl:w-full xl:max-w-[18%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[114.2px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               {line.product}
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               {formatter.format(line.price)}
             </li>
-            <li className="w-[88.4px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               {line.quantity}
             </li>
-            <li className="w-[66.3px] xl:w-full xl:max-w-[6%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
               {line.dvt}
-            </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-              {formatter.format(line.totalPrice)}
-            </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-              {line.deposits > 0 ? formatter.format(line.deposits) : ""}
             </li>
             {line.status !== null ? (
               <li
@@ -534,8 +528,8 @@ export default function DeliveryService() {
             <li className="w-full max-w-[6%] text-[#030229] text-xs font-medium">
               STT
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              Mã đơn hàng{" "}
+            <li className="w-[114.2px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+              Mã đơn{" "}
               <Image
                 src={arrowDown}
                 alt=""
@@ -544,7 +538,17 @@ export default function DeliveryService() {
                 }`}
               />
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+            <li className="w-[285.5px] xl:w-full xl:max-w-[25%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+              Ngày đặt hàng{" "}
+              <Image
+                src={arrowDown}
+                alt=""
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
+              />
+            </li>
+            <li className="w-[114.2px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
               Số lượng xe{" "}
               <Image
                 src={arrowDown}
@@ -554,47 +558,7 @@ export default function DeliveryService() {
                 }`}
               />
             </li>
-            <li className="w-[198.9px] xl:w-full xl:max-w-[18%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              Mặt hàng{" "}
-              <Image
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              Đơn giá{" "}
-              <Image
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </li>
-            <li className="w-[88.4px] xl:w-full xl:max-w-[8%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              Số lượng{" "}
-              <Image
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </li>
-            <li className="w-[66.3px] xl:w-full xl:max-w-[6%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              ĐVT{" "}
-              <Image
-                src={arrowDown}
-                alt=""
-                className={`block shrink-0 w-[7px] h-[6px] ${
-                  soft === "old" && "rotate-180"
-                }`}
-              />
-            </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
               Tổng tiền{" "}
               <Image
                 src={arrowDown}
@@ -604,8 +568,18 @@ export default function DeliveryService() {
                 }`}
               />
             </li>
-            <li className="w-[110.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
               Đã đặt cọc{" "}
+              <Image
+                src={arrowDown}
+                alt=""
+                className={`block shrink-0 w-[7px] h-[6px] ${
+                  soft === "old" && "rotate-180"
+                }`}
+              />
+            </li>
+            <li className="w-[137.04px] xl:w-full xl:max-w-[12%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+              Còn lại{" "}
               <Image
                 src={arrowDown}
                 alt=""
