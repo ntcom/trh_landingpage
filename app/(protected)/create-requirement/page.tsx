@@ -172,27 +172,40 @@ function CreateRequirement() {
   const onSubmit = async (value: any) => {
     try {
       console.log(value);
+      const {
+        content,
+        location,
+        date_start,
+        date_end,
+        participants_ids,
+        employee_id,
+        request_more_ids,
+        ...restRequest
+      } = value;
+
       if (pickOption === "SUPPORT_REPORT") {
-        const newData = { ...value, channel_source: "email" };
+        const newData = { ...restRequest, channel_source: "email" };
         await helpdeskTicketService.createHelpdeskTicket({
           params: {
             ...newData,
           },
         });
       } else if (pickOption === "MEET") {
-        const date_start = dayjs(value.date_start).format(
+        const date_start_computed = dayjs(date_start).format(
           "YYYY-MM-DD HH:mm:ss"
         );
-        const date_end = dayjs(value.date_end).format("YYYY-MM-DD HH:mm:ss");
+        const date_end_computed = dayjs(date_end).format("YYYY-MM-DD HH:mm:ss");
         await meetRoomService.createRoom({
           params: {
-            ...value,
+            name: content,
+            location,
+            employee_id,
             category_id: 1,
             approver_ids: [1],
             participants_ids: [value.participants_ids],
             request_more_ids: [value.request_more_ids],
-            date_start,
-            date_end,
+            date_start: date_start_computed,
+            date_end: date_end_computed,
           },
         });
       }
@@ -260,7 +273,7 @@ function CreateRequirement() {
               <div className="relative flex">
                 <ControllerInput
                   control={control}
-                  name="name"
+                  name="content"
                   className="w-full"
                   placeholder="Nội dung cuộc họp"
                   icon={note}
