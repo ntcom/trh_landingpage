@@ -1,6 +1,6 @@
 "use client";
 import InputCustom from "@/app/components/InputCustom/InputCustom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import camera from "@/assets/svgs/camera.svg";
 import Image from "next/image";
 import SelectCustoms from "@/app/components/SelectCustom/SelectCustom";
@@ -14,6 +14,7 @@ import phone from "@/assets/svgs/phone.svg";
 import nation from "@/assets/svgs/nation.svg";
 import city from "@/assets/svgs/city.svg";
 import location from "@/assets/svgs/location.svg";
+import userService from "@/app/services/user.service";
 
 const nationData = ["Vietnam", "Cuba", "Rusia", "Japan", "USA"];
 const cityData = ["Hanoi", "Vinh", "Danang", "Dalat", "TP.HCM"];
@@ -21,10 +22,22 @@ const cityData = ["Hanoi", "Vinh", "Danang", "Dalat", "TP.HCM"];
 export default function ClientProfile() {
   const [iValue, setIValue] = useState("");
   const [paramOption, setParamOption] = useState("");
+  const [userData, setUserData] = useState<any>();
+
+  const getUserInfo = async () => {
+    const { result } = await userService.getData({});
+    setUserData(result.employee_id[0]);
+    console.log(">>>>>>>>", result.employee_id[0]);
+  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   return (
     <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] flex mt-[60px]">
       <div className="w-1/2 bg-[#fff] rounded-[10px] p-[50px_40px_120px]">
@@ -48,12 +61,12 @@ export default function ClientProfile() {
                 htmlFor=""
                 className="font-poppins text-lg text-[#0755d1] font-medium block mb-3"
               >
-                Mã
+                Công ty
               </label>
               <InputCustom
                 type={"text"}
-                placeholder={"Mã"}
-                defaultValue={99999}
+                placeholder={"Công ty"}
+                defaultValue={userData?.company.name}
                 setInputValue={setIValue}
                 icon={channel}
               />
@@ -69,6 +82,7 @@ export default function ClientProfile() {
               <InputCustom
                 type={"text"}
                 placeholder={"Tên"}
+                defaultValue={userData?.name}
                 setInputValue={setIValue}
                 icon={name}
               />
@@ -85,6 +99,7 @@ export default function ClientProfile() {
                 <InputCustom
                   type={"text"}
                   placeholder={"Email"}
+                  defaultValue={userData?.email}
                   setInputValue={setIValue}
                   icon={email}
                 />
@@ -100,6 +115,9 @@ export default function ClientProfile() {
                 <InputCustom
                   type={"text"}
                   placeholder={"Số điện thoại"}
+                  defaultValue={
+                    userData?.work_phone ? userData.work_phone : null
+                  }
                   setInputValue={setIValue}
                   icon={phone}
                 />
@@ -109,7 +127,7 @@ export default function ClientProfile() {
               <div className="w-full">
                 <label
                   htmlFor=""
-                  className="block text-base text-[#030229] font-semibold mb-[15px]"
+                  className="font-poppins text-lg text-[#0755d1] font-medium block mb-3"
                 >
                   Quốc gia
                 </label>
@@ -125,7 +143,7 @@ export default function ClientProfile() {
               <div className="w-full">
                 <label
                   htmlFor=""
-                  className="block text-base text-[#030229] font-semibold mb-[15px]"
+                  className="font-poppins text-lg text-[#0755d1] font-medium block mb-3"
                 >
                   Tỉnh/ thành phố
                 </label>
@@ -139,12 +157,21 @@ export default function ClientProfile() {
                 />
               </div>
             </div>
-            <InputCustom
-              type={"text"}
-              placeholder={"Địa chỉ"}
-              setInputValue={setIValue}
-              icon={location}
-            />
+            <div className="w-full">
+              <label
+                htmlFor=""
+                className="font-poppins text-lg text-[#0755d1] font-medium block mb-3"
+              >
+                Địa chỉ
+              </label>
+              <InputCustom
+                type={"text"}
+                placeholder={"Địa chỉ"}
+                defaultValue={userData?.address ? userData.address : null}
+                setInputValue={setIValue}
+                icon={location}
+              />
+            </div>
           </div>
 
           <div className="w-full flex justify-center">
