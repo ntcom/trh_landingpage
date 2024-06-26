@@ -3,7 +3,7 @@ import authService, { ILogin } from "../services/auth.service";
 import { createContext, useContext, useState } from "react";
 import LocalStorage from "../utils/LocalStorage";
 import { appConfig } from "../utils/appConfig";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 interface IAuthContext {
   handleLogin: (body: ILogin) => Promise<void>;
@@ -23,25 +23,25 @@ function AuthProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isAuthenticated, setAuthenticated] = useState(true);
+  const [isAuthenticated, setAuthenticated] = useState(false);
   const [isInitial, setIsInitial] = useState(false);
   const user = useState({});
-  const router = useRouter()
+  const router = useRouter();
 
   const handleLogin = async (params: ILogin) => {
     try {
-      const {result} = await authService.getToken(params);
+      const { result } = await authService.getToken(params);
       console.log(result.access_token);
-      setAuthenticated(true)
+      setAuthenticated(true);
       LocalStorage.set(appConfig.tokenName, result.access_token);
-      router.push('/delivery-service')
+      router.push("/delivery-service");
     } catch (error) {
       console.log(error);
     }
   };
   const handleLogout = async (params: ILogin) => {
     try {
-      setAuthenticated(false)
+      setAuthenticated(false);
       LocalStorage.remove(appConfig.tokenName);
     } catch (error) {
       console.log(error);
