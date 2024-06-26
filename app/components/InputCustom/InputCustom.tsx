@@ -9,7 +9,8 @@ interface InputProps {
   inputValue?: string | number;
   setInputValue: any;
   icon: any;
-  id?: string
+  id?: string;
+  required?: boolean
 }
 
 export default function InputCustom(props: InputProps) {
@@ -50,6 +51,7 @@ export default function InputCustom(props: InputProps) {
           const path = e.target.value.split('\\')[2];
           setFileName(path);
         }}
+        required={required}
       />
     </div>
   ) : (

@@ -33,6 +33,9 @@ export default function ClientProfile() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
+  const handleChangePassword = (e: any) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     getUserInfo();
@@ -186,7 +189,7 @@ export default function ClientProfile() {
           Đổi mật khẩu
         </h2>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleChangePassword}
           className="w-full flex flex-col justify-center mt-10"
         >
           <div className="">
@@ -196,28 +199,30 @@ export default function ClientProfile() {
                 placeholder={"Mật khẩu hiện tại"}
                 setInputValue={setIValue}
                 icon={currPass}
+                required={true}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Mật khẩu mới"}
                 setInputValue={setIValue}
                 icon={newPass}
+                required={true}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Nhập lại mật khẩu"}
                 setInputValue={setIValue}
                 icon={newPass}
+                required={true}
               />
             </div>
           </div>
 
-          <Link
-            href={"/login"}
+          <button
             className="font-poppins mt-14 w-full max-w-[300px] mx-auto h-[50px] self-center rounded-[10px] bg-[#4285F4] text-lg text-[#fff] font-bold flex justify-center items-center"
           >
             Đổi mật khẩu
-          </Link>
+          </button>
         </form>
       </div>
     </div>
