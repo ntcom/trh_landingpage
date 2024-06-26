@@ -35,6 +35,7 @@ export default function ClientProfile() {
   };
   const handleChangePassword = (e: any) => {
     e.preventDefault();
+    console.log('=========', e);
   };
 
   useEffect(() => {
@@ -199,21 +200,21 @@ export default function ClientProfile() {
                 placeholder={"Mật khẩu hiện tại"}
                 setInputValue={setIValue}
                 icon={currPass}
-                required={true}
+                isRequired={true}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Mật khẩu mới"}
                 setInputValue={setIValue}
                 icon={newPass}
-                required={true}
+                isRequired={true}
               />
               <InputCustom
                 type={"text"}
                 placeholder={"Nhập lại mật khẩu"}
                 setInputValue={setIValue}
                 icon={newPass}
-                required={true}
+                isRequired={true}
               />
             </div>
           </div>
