@@ -9,7 +9,8 @@ interface InputProps {
   inputValue?: string | number;
   setInputValue: any;
   icon: any;
-  id?: string
+  id?: string;
+  isRequired?: boolean
 }
 
 export default function InputCustom(props: InputProps) {
@@ -43,7 +44,6 @@ export default function InputCustom(props: InputProps) {
       <input
         id="input-file"
         type={props.type}
-        defaultValue={props.defaultValue}
         className="opacity-0 z-0"
         placeholder={props.placeholder}
         onChange={(e) => {
@@ -64,6 +64,7 @@ export default function InputCustom(props: InputProps) {
         className="common-input"
         placeholder={props.placeholder}
         onChange={(e) => props.setInputValue(e.target.value)}
+        required={props.isRequired}
       />
     </div>
   );
