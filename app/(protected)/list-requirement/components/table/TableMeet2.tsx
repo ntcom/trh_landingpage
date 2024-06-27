@@ -188,19 +188,23 @@ const dataTable = [
 ];
 function TableMeet2() {
   const [room, setRoom] = useState([])
+
   const getRoom = async () => {
     try {
-      const res = await meetRoomService.getRoom({
-        date_start: "2024-06-19 17:00:00"
+      const res = await meetRoomService.listRoom()
+      const res2 = await meetRoomService.getRoom({
+        date_start: "2024-06-26 17:00:00"
       })
       console.log('res:', res)
       if (res?.result) {
         setRoom(res.result)
       }
     } catch (error) {
+      console.log('error:', error)
 
     }
   }
+
   useEffect(() => {
     getRoom()
   }, [])

@@ -14,6 +14,7 @@ import Sidebar from "@/app/components/Sidebar/Sidebar";
 import logo from "@/assets/imgs/logo.png";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [scroll, setScroll] = useState(false);
@@ -21,20 +22,24 @@ export default function Header() {
   const [onSearch, setOnsearch] = useState(false);
   const pathname = usePathname()
   const checkPortal = pathname.split('/')[1];
-
+  function toggleVisibility() {
+    if (window.scrollY > 300) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
   useEffect(() => {
     window.onscroll = () => {
       if (window.scrollY >= 56 || pathname !== '/') {
-        setScroll(true);
         setOnsearch(false);
       } else {
-        setScroll(false);
       }
     };
-    
-    if(pathname !== '/') {
-      setScroll(true);
-    }
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+
   }, []);
 
   return checkPortal !== 'delivery-service' && pathname !== '/client-profile' && (
@@ -77,19 +82,17 @@ export default function Header() {
         </div>
       </div>} */}
       <header
-        className={`${
-          scroll
-            ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
-            : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
-        } left-0 right-0 transition-all duration-500 z-[996]`}
+        className={`${scroll
+          ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
+          : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
+          } left-0 right-0 transition-all duration-500 z-[996]`}
       >
         <div className={`h-[60px] flex items-center`}>
           <div className="container flex justify-between">
             <Link
               href="/"
-              className={`${
-                scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
-              }`}
+              className={`${scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
+                }`}
             >
               {/* <p
                 className={`${
@@ -104,21 +107,19 @@ export default function Header() {
               {pathname === '/' && <nav className="hidden md:flex items-center gap-[30px]">
                 <Link
                   href="/services"
-                  className={`py-[15px] text-[15px] ${
-                    scroll
-                      ? "text-[#4c4c4c] hover:text-[#0755d1]"
-                      : "text-[#fff] hover:text-[#ffffffb3]"
-                  } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                  className={`py-[15px] text-[15px] ${scroll
+                    ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                    : "text-[#fff] hover:text-[#ffffffb3]"
+                    } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
                   IT Helpdesk
                 </Link>
                 <Link
                   href="/delivery-service"
-                  className={`py-[15px] text-[15px] ${
-                    scroll
-                      ? "text-[#4c4c4c] hover:text-[#0755d1]"
-                      : "text-[#fff] hover:text-[#ffffffb3]"
-                  } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                  className={`py-[15px] text-[15px] ${scroll
+                    ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                    : "text-[#fff] hover:text-[#ffffffb3]"
+                    } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                 >
                   Khách hàng
                 </Link>
@@ -129,11 +130,9 @@ export default function Header() {
                   <input
                     placeholder="seach"
                     type="text"
-                    className={`${
-                      onSearch ? "w-[280px] opacity-100" : "w-0 opacity-0"
-                    } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${
-                      scroll ? "text-[#0755d1] border-[#0755d1]" : "text-[#fff]"
-                    } transition-all duration-300`}
+                    className={`${onSearch ? "w-[280px] opacity-100" : "w-0 opacity-0"
+                      } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${scroll ? "text-[#0755d1] border-[#0755d1]" : "text-[#fff]"
+                      } transition-all duration-300`}
                   />
                   <button
                     onClick={() => {
@@ -176,14 +175,16 @@ export default function Header() {
       </header>
       <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
 
-      {scroll && !sideBar && (
-        <a
-          href="#"
-          className="flex justify-center items-center w-[60px] h-[60px] fixed bottom-0 right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-300 z-[998]"
-        >
-          <Image src={chevron} alt="" className="-rotate-90" />
-        </a>
-      )}
+
+      <a
+        href="#"
+        className={cn("flex justify-center items-center w-[60px] h-[60px] fixed bottom-[-80px] right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-200 z-[998]", {
+          'bottom-0': scroll && !sideBar
+        })}
+      >
+        <Image src={chevron} alt="" className="-rotate-90" />
+      </a>
+
     </div>
   );
 }

@@ -12,6 +12,8 @@
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
+import { appConfig } from "@/app/utils/appConfig";
+import LocalStorage from "@/app/utils/LocalStorage";
 import axios, { InternalAxiosRequestConfig } from "axios";
 
 const createInstance = (
@@ -48,7 +50,12 @@ const createInstance = (
   // Add a response interceptor
   instance.interceptors.response.use(
     (response) => {
-      const { data } = response;
+      const { data,status } = response;
+      if(status === 401){
+        LocalStorage.remove(appConfig.tokenName)
+        // hash code
+        window.location.reload();
+      }
       if (data.errors) {
         // hideLoadingPage()
         return Promise.reject(data);
