@@ -12,7 +12,7 @@ export const yupMeet = yup.object().shape({
     .string()
     .required("Vui lòng nhập Thời gian kết thúc")
     .default(""),
-  participants_ids: yup.number().required("Vui lòng nhập Người tham gia"),
+  participants_ids: yup.array().length(0,"Vui lòng nhập Người tham gia"),
   employee_id: yup.number().required("Vui lòng nhập Người chủ trì"),
   request_more_ids: yup.number().required("Vui lòng nhập Yêu cầu thêm"),
   // approver_ids: yup
