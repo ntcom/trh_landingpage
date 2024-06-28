@@ -23,7 +23,7 @@ function DatePickerInput(props: any) {
           selected={startDate}
           onChange={handleChangeDate}
           timeInputLabel="Time:"
-          dateFormat="MM/dd/yyyy  h:mm aa"
+          dateFormat="dd/MM/YYYY  h:mm aa"
           className="common-input w-full"
           placeholderText={props.placeholder}
           showTimeInput
