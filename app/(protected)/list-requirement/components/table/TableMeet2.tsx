@@ -191,7 +191,7 @@ function TableMeet2() {
 
   const getRoom = async () => {
     try {
-      const res = await meetRoomService.listRoom() 
+      const res = await meetRoomService.listRoom()
       if (res?.result) {
         setRoom(res.result)
       }
@@ -247,6 +247,20 @@ function TableMeet2() {
               />
             </div> </TableHead>
             <TableHead> <div className="flex gap-2 items-center cursor-pointer">
+              Vị trí phòng họp  <Image
+                src={arrowDown}
+                alt=""
+                className="block shrink-0 w-[8px]"
+              />
+            </div> </TableHead>
+            <TableHead> <div className="flex gap-2 items-center cursor-pointer">
+              Người chủ trì  <Image
+                src={arrowDown}
+                alt=""
+                className="block shrink-0 w-[8px]"
+              />
+            </div> </TableHead>
+            <TableHead> <div className="flex gap-2 items-center cursor-pointer">
               Trạng thái <Image
                 src={arrowDown}
                 alt=""
@@ -285,19 +299,21 @@ function TableMeet2() {
                 </TableCell>
 
                 <TableCell>{item.category_id}</TableCell>
+                <TableCell>{item.location}</TableCell>
+                <TableCell>{item.request_owner_id}</TableCell>
                 <TableCell>
                   <div
                     className={cn("bg-[#4285f41a] w-fit px-2 py-1 rounded-lg", {
-                      "bg-[#3a974c1a]": status === "approved",
-                      "bg-[#f293391a]": status === "pending",
-                      "bg-[#d11a2a1a]": status === "refused",
+                      "bg-[#3a974c1a]": status === "Đã duyệt",
+                      "bg-[#f293391a]": status === "Cần nộp",
+                      "bg-[#d11a2a1a]": status === "Từ chối",
                     })}
                   >
                     <p
                       className={cn("text-[#4285F4] font-medium", {
-                        "text-[#3A974C]": status === "approved",
-                        "text-[#F29339]": status === "pending",
-                        "text-[#D11A2A]": status === "refused",
+                        "text-[#3A974C]": status === "Đã duyệt",
+                        "text-[#F29339]": status === "Cần nộp",
+                        "text-[#D11A2A]": status === "Từ chối",
                       })}
                     >
                       {status}

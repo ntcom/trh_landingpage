@@ -40,9 +40,10 @@ import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
 import helpdeskTicketService from "@/app/services/helpdesk-ticket.service";
 import meetRoomService from "@/app/services/meet-room.service";
 import dayjs from "dayjs";
-import { MultiSelect } from "@/core/components/MultipleSelect/MultipleSelect";
 import { BellRing } from "lucide-react";
 import ControllerMultiSelect from "@/core/components/Form/ControllerMultipleSelect";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
   // { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
@@ -67,6 +68,7 @@ function CreateRequirement() {
     request_more: [],
     user_approval: [],
   })
+  const { toast } = useToast()
   const [theme, setTheme] = useState("");
   const [dateDisplay, setDateDisplay] = useState("");
   const [bookedMeet, setBookedMeet] = useState([]);
@@ -101,6 +103,8 @@ function CreateRequirement() {
     resolver: yupResolver(currentYup),
   });
   const startDate = watch('date_start')
+  const participants_idss = watch('participants_ids')
+  console.log('participants_idss:', participants_idss)
 
   const onSubmit = async (value: any) => {
     try {
@@ -112,37 +116,74 @@ function CreateRequirement() {
         participants_ids,
         employee_id,
         request_more_ids,
+        category_id,
         ...restRequest
       } = value;
 
       if (pickOption === "SUPPORT_REPORT") {
         const newData = { ...restRequest, channel_source: "email" };
-        await helpdeskTicketService.createHelpdeskTicket({
+        const { result } = await helpdeskTicketService.createHelpdeskTicket({
           params: {
             ...newData,
           },
         });
+        if (result?.requestID) {
+          toast({
+            title: "Thành công",
+            description: "Thêm dịch vụ thành công",
+            variant: "success",
+            action: <ToastAction altText="Done">Done</ToastAction>
+          })
+          return
+        }
+        toast({
+          title: "Thêm dịch vụ thất bại",
+          variant: "destructive",
+          description: "Vui lòng thử lại",
+          action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
+        })
       } else if (pickOption === "MEET") {
         const date_start_computed = dayjs(date_start).format(
           "YYYY-MM-DD HH:mm:ss"
         );
-        console.log('date_start:', date_start)
         const date_end_computed = dayjs(date_end).format("YYYY-MM-DD HH:mm:ss");
-        await meetRoomService.createRoom({
+        const { result } = await meetRoomService.createRoom({
           params: {
             name: content,
             location,
             employee_id,
-            category_id: 1,
+            category_id,
             approver_ids: [1],
-            participants_ids: [value.participants_ids],
-            request_more_ids: [value.request_more_ids],
+            participants_ids,
+            request_more_ids,
             date_start: date_start_computed,
             date_end: date_end_computed,
           },
         });
+        if (result?.requestID) {
+          toast({
+            title: "Thành công",
+            description: "Thêm phòng họp thành công",
+            variant: "success",
+            action: <ToastAction altText="Done">Done</ToastAction>
+          })
+          return
+        }
+        toast({
+          title: "Thêm phòng họp thất bại",
+          variant: "destructive",
+          description: "Vui lòng thử lại",
+          action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
+        })
       }
-    } catch (error) { }
+    } catch (error) {
+      toast({
+        title: "Thêm thất bại",
+        variant: "destructive",
+        description: "Vui lòng thử lại",
+        action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
+      })
+    }
   };
   const breadcrumbs = [
     {
@@ -208,10 +249,6 @@ function CreateRequirement() {
     getOptions()
   }, []);
 
-  const handleChange = () => {
-
-  }
-  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>(["react", "angular"]);
   return (
     <div className="mb-20">
       <BannerCustom pageName="Create Requirement" breadcrumbs={breadcrumbs} />
@@ -273,18 +310,20 @@ function CreateRequirement() {
                   control={control}
                   name="date_end"
                 />
-                <ControllerMultiSelect
-                  options={frameworksList}
-                  defaultValue={selectedFrameworks}
-                  placeholder="Người tham gia"
-                  pathLabel="label"
-                  pathValue="value"
-                  name="participants_ids"
-                  control={control}
-                  animation={2}
-                  maxCount={4}
-                  icon={request}
-                />
+                <div className="w-full">
+                  <ControllerMultiSelect
+                    options={optionsMeet.employee}
+                    defaultValue={[]}
+                    placeholder="Người tham gia"
+                    pathLabel="name"
+                    pathValue="id"
+                    name="participants_ids"
+                    control={control}
+                    animation={2}
+                    maxCount={2}
+                    icon={request}
+                  />
+                </div>
                 {/* 
                 <ControllerInput
                   control={control}
@@ -293,19 +332,40 @@ function CreateRequirement() {
                   name="participants_ids"
                   icon={quantity}
                 /> */}
-                <ControllerInput
-                  control={control}
-                  name="employee_id"
-                  placeholder={"Người chủ trì"}
-                  icon={host}
-                />
-                <ControllerInput
-                  control={control}
-                  name="request_more_ids"
-                  placeholder={"Yêu cầu thêm"}
-                  setInputValue={setTheme}
-                  icon={requestz}
-                />
+                <div className="w-full">
+                  <ControllerSelect
+                    options={optionsMeet.employee}
+                    control={control}
+                    name="employee_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    icon={host}
+                    placeholder="Người chủ trì"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={optionsMeet.request_more}
+                    control={control}
+                    name="request_more_ids"
+                    pathLabel="name"
+                    pathValue="id"
+                    icon={requestz}
+                    placeholder="Yêu cầu thêm"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={optionsMeet.category}
+                    control={control}
+                    name="category_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    icon={requestz}
+                    placeholder="Danh mục"
+                  />
+                </div>
+
                 <InputCustom
                   type={"file"}
                   placeholder={"Đính kèm tài liệu, văn bản"}

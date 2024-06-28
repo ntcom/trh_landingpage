@@ -28,6 +28,7 @@ import {
     CommandSeparator,
 } from "@/components/ui/command";
 import Image from "next/image";
+import debounceFn from "@/core/utils/debounceFn";
 
 const multiSelectVariants = cva(
     "m-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300",
@@ -91,7 +92,8 @@ export const MultiSelect = React.forwardRef<
             React.useState<string[]>(defaultValue);
         const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
         const [isAnimating, setIsAnimating] = React.useState(false);
-
+        const [widthChild, setWidthChild] = React.useState(700);
+        const refWrap = React.useRef<any>()
         // React.useEffect(() => {
         //     if (JSON.stringify(selectedValues) !== JSON.stringify(defaultValue)) {
         //         setSelectedValues(defaultValue);
@@ -145,9 +147,24 @@ export const MultiSelect = React.forwardRef<
                 onChange(allValues);
             }
         };
+        const updateWidth = () => {
+            if (refWrap.current) {
+                setWidthChild(refWrap.current.offsetWidth);
+                console.log('refWrap.current.offsetWidth:', refWrap.current.offsetWidth)
+            }
+        };
+        const debouncedUpdateWidth = debounceFn(updateWidth, 200);
+        React.useEffect(() => {
+            setWidthChild(refWrap.current.offsetWidth)
+        }, [])
+
+        React.useEffect(() => {
+            window.addEventListener('resize', debouncedUpdateWidth);
+            return () => window.removeEventListener('resize', debouncedUpdateWidth);
+        }, [debouncedUpdateWidth])
 
         return (
-            <div className="w-full">
+            <div className="w-full max-w-full" ref={refWrap}>
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                     <PopoverTrigger asChild>
                         <div
@@ -175,13 +192,13 @@ export const MultiSelect = React.forwardRef<
                                                         isAnimating ? "animate-bounce" : "",
                                                         multiSelectVariants({ variant, className })
                                                     )}
-                                                    variant="outline"
+                                                    variant="default"
                                                     style={{ animationDuration: `${animation}s` }}
                                                 >
                                                     {IconComponent && (
                                                         <IconComponent className="h-4 w-4 mr-2" />
                                                     )}
-                                                    {option?.label}
+                                                    {option[pathLabel]}
                                                     <XCircle
                                                         className="ml-2 h-4 w-4 cursor-pointer"
                                                         onClick={(event) => {
@@ -238,17 +255,18 @@ export const MultiSelect = React.forwardRef<
                         </div>
                     </PopoverTrigger>
                     <PopoverContent
-                        className="w-full p-0"
+                        className={`p-0`}
+                        width={widthChild}
                         align="start"
                         onEscapeKeyDown={() => setIsPopoverOpen(false)}
                     >
                         <Command>
                             <CommandInput
-                                placeholder="Search..."
+                                placeholder="Tìm kiếm..."
                                 onKeyDown={handleInputKeyDown}
                             />
                             <CommandList>
-                                <CommandEmpty>No results found.</CommandEmpty>
+                                <CommandEmpty>Không tìm thấy.</CommandEmpty>
                                 <CommandGroup>
                                     <CommandItem
                                         key="all"
@@ -266,22 +284,25 @@ export const MultiSelect = React.forwardRef<
                                         >
                                             <CheckIcon className="h-4 w-4" />
                                         </div>
-                                        <span>(Select All)</span>
+                                        <span>(Chọn tất cả)</span>
                                     </CommandItem>
                                     {options.map((option) => {
                                         const isSelected = selectedValues.includes(option[pathValue]);
+                                        console.log(option[pathLabel])
                                         return (
                                             <CommandItem
                                                 key={option[pathValue]}
                                                 onSelect={() => toggleOption(option[pathValue])}
                                                 style={{ pointerEvents: "auto", opacity: 1 }}
-                                                className="cursor-pointer"
+                                                className={cn("cursor-pointer ", {
+                                                    'bg-select-multi': isSelected
+                                                })}
                                             >
                                                 <div
                                                     className={cn(
                                                         "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
                                                         isSelected
-                                                            ? "bg-primary text-primary-foreground"
+                                                            ? "text-primary"
                                                             : "opacity-50 [&_svg]:invisible"
                                                     )}
                                                 >
@@ -305,7 +326,7 @@ export const MultiSelect = React.forwardRef<
                                                     style={{ pointerEvents: "auto", opacity: 1 }}
                                                     className="flex-1 justify-center cursor-pointer"
                                                 >
-                                                    Clear
+                                                    Bỏ chọn
                                                 </CommandItem>
                                                 <Separator
                                                     orientation="vertical"
@@ -319,14 +340,13 @@ export const MultiSelect = React.forwardRef<
                                             style={{ pointerEvents: "auto", opacity: 1 }}
                                             className="flex-1 justify-center cursor-pointer"
                                         >
-                                            Close
+                                            Đóng
                                         </CommandItem>
                                     </div>
                                 </CommandGroup>
                             </CommandList>
                         </Command>
                     </PopoverContent>
-                    <input type="text" name={props.name} className="opacity-0 invisible" />
                     {/* {animation > 0 && selectedValues.length > 0 && (
                         <WandSparkles
                             className={cn(

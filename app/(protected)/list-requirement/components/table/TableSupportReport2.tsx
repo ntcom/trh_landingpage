@@ -12,7 +12,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import arrowDown from "@/assets/svgs/Portal/arrow-down.svg";
 import helpdeskService from "@/app/services/helpdesk.service";
-
+import Link from "next/link";
+import { Eye } from 'lucide-react';
 const dataTable = [
   {
     stt: 1,
@@ -224,7 +225,7 @@ function TableSupportReport2() {
       if (res.result) {
         setHelpDesk(res.result);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     getHelpDesk();
@@ -326,6 +327,16 @@ function TableSupportReport2() {
                 />
               </div>
             </TableHead>
+            <TableHead>
+              <div className="flex gap-2 items-center cursor-pointer">
+                Hành động
+                <Image
+                  src={arrowDown}
+                  alt=""
+                  className="block shrink-0 w-[8px]"
+                />
+              </div>
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -366,6 +377,7 @@ function TableSupportReport2() {
                   </div>
                 </TableCell> */}
                 <TableCell>{item.user_id.name}</TableCell>
+                <TableCell><div className="flex justify-center"><Link href={'/list-requirement/' + item.code_ticket}><Eye className="text-sm text-[#727272]" /></Link></div></TableCell>
               </TableRow>
             );
           })}
