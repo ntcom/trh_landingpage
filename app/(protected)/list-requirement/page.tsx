@@ -28,7 +28,7 @@ function ListRequirement() {
 
   return (
     // <div className="mt-20 container-app p-[150px_24px] mb-16">
-    <div className="p-4 mt-20 mb-8">
+    <div className="p-4 mt-36 mb-8">
       <ul className="flex flex-col md:flex-row">
         {tables.map((tab) => {
           const currentTab = tabActive === tab.id;
