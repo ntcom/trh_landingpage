@@ -16,7 +16,6 @@ interface InputProps {
 
 const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
   const [fileName, setFileName] = useState("");
-  console.log(props.error);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     props?.onChange && props.onChange(value);

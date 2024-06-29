@@ -178,7 +178,7 @@ export default function Header() {
 
       <a
         href="#"
-        className={cn("flex justify-center items-center w-[60px] h-[60px] fixed bottom-[-80px] right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-200 z-[998]", {
+        className={cn("flex justify-center items-center w-[60px] h-[60px] fixed bottom-[-80px] right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-200 z-[199]", {
           'bottom-0': scroll && !sideBar
         })}
       >
