@@ -7,7 +7,7 @@ import download from "@/assets/svgs/Portal/download.svg";
 import print from "@/assets/svgs/Portal/print.svg";
 import cardAva from "@/assets/imgs/Portal/card-ava.png";
 import back from "@/assets/svgs/Portal/back.svg";
-import orderService from "@/app/services/orderService.service";
+import detailOrderService from "@/app/services/detailOrderService.service";
 
 interface orderDetailTypes {
   params: any;
@@ -18,8 +18,8 @@ export default function OrderDetail(props: orderDetailTypes) {
   const [total, setTotal] = useState<any>();
 
   useEffect(() => {
-    orderService.getData({}).then(({ result }) => {
-      setOrderDetail(result.sale_order_ids);
+    detailOrderService.getData({}).then(({ result }) => {
+      setOrderDetail(result);
       console.log("============ ", result);
     });
   }, []);

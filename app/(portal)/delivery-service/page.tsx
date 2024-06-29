@@ -12,119 +12,6 @@ import GroupFuncKeys from "@/app/components/Portal/GroupFuncKeys/GroupFuncKeys";
 import orderService from "@/app/services/orderService.service";
 import Dashboard from "@/app/components/Dashboard/Dashboard";
 
-// const dataTable = [
-//   {
-//     stt: 1,
-//     code: "S00924",
-//     product: "Vật tư",
-//     quantityCar: 1,
-//     quantity: 30,
-//     dvt: "Tấn",
-//     price: 1000000,
-//     totalPrice: 30000000,
-//     deposits: 0,
-//     status: {
-//       type: "new",
-//       title: "Tạo mới",
-//     },
-//   },
-//   {
-//     stt: 2,
-//     code: "S00925",
-//     product: "Vật tư",
-//     quantityCar: 1,
-//     quantity: 56,
-//     dvt: "Tấn",
-//     price: 1000000,
-//     totalPrice: 56000000,
-//     deposits: 0,
-//     status: null,
-//     children: [
-//       {
-//         code: "02/TRANGHUY/2024",
-//         departure: "Sân bay Tân Sơn Nhất, TP HCM",
-//         dateOfDepartment: "15/05/2024",
-//         destination: "Đông Anh, Hà Nội",
-//         theDayArrives: "19/05/2024",
-//         rangeOfVehicle: "Xe tải 13 tấn",
-//         licensePlate: "29G-12512",
-//         childStatus: {
-//           type: "transport",
-//           title: "Đang vận chuyển",
-//         },
-//       },
-//       {
-//         code: "01/TRANGHUY/2024",
-//         departure: "Sân bay Tân Sơn Nhất, TP HCM",
-//         dateOfDepartment: "15/05/2024",
-//         destination: "Đông Anh, Hà Nội",
-//         theDayArrives: "19/05/2024",
-//         rangeOfVehicle: "Xe tải 13 tấn",
-//         licensePlate: "29G-11245",
-//         childStatus: {
-//           type: "transport",
-//           title: "Đang vận chuyển",
-//         },
-//       },
-//     ],
-//   },
-//   {
-//     stt: 3,
-//     code: "S00911",
-//     product: "Miến dong",
-//     quantityCar: 1,
-//     quantity: 30,
-//     dvt: "Tấn",
-//     price: 1000000,
-//     totalPrice: 30000000,
-//     deposits: 0,
-//     status: {
-//       type: "complete",
-//       title: "Hoàn thành",
-//     },
-//   },
-//   {
-//     stt: 4,
-//     code: "S00999",
-//     product: "Vật tư",
-//     quantityCar: 1,
-//     quantity: 56,
-//     dvt: "Tấn",
-//     price: 1000000,
-//     totalPrice: 56000000,
-//     deposits: 0,
-//     status: null,
-//     children: [
-//       {
-//         code: "03/TRANGHUY/2024",
-//         departure: "Sân bay Tân Sơn Nhất, TP HCM",
-//         dateOfDepartment: "15/05/2024",
-//         destination: "Đông Anh, Hà Nội",
-//         theDayArrives: "19/05/2024",
-//         rangeOfVehicle: "Xe tải 13 tấn",
-//         licensePlate: "29G-12512",
-//         childStatus: {
-//           type: "transport",
-//           title: "Đang vận chuyển",
-//         },
-//       },
-//       {
-//         code: "05/TRANGHUY/2024",
-//         departure: "Sân bay Tân Sơn Nhất, TP HCM",
-//         dateOfDepartment: "15/05/2024",
-//         destination: "Đông Anh, Hà Nội",
-//         theDayArrives: "19/05/2024",
-//         rangeOfVehicle: "Xe tải 13 tấn",
-//         licensePlate: "29G-11245",
-//         childStatus: {
-//           type: "transport",
-//           title: "Đang vận chuyển",
-//         },
-//       },
-//     ],
-//   },
-// ];
-
 export default function DeliveryService() {
   const [openFilter, setOpenFilter] = useState(false);
   const [filterSelect, setFilterSelect] = useState("all");
@@ -149,10 +36,9 @@ export default function DeliveryService() {
   // };
 
   const getOrderList = async () => {
-    orderService.getData({}).then(({ result }) => {
-      setOrderData(result.sale_order_ids);
-      console.log(">>>>>>>>", result.sale_order_ids);
-    });
+    const {result} = await orderService.getData({})
+    setOrderData(result.sale_order_ids);
+    console.log("========>", result.sale_order_ids);
   };
 
   useEffect(() => {
@@ -248,7 +134,14 @@ export default function DeliveryService() {
       });
       return (
         <div key={lineKey}>
-          <ul className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5">
+          <ul
+            onClick={() =>
+              dropdowm === line.name
+                ? setDropdown(null)
+                : setDropdown(line.name)
+            }
+            className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
+          >
             <li className="w-full max-w-[6%] text-[#030229] text-xs text-center font-normal">
               {index + 1}
             </li>
@@ -256,8 +149,8 @@ export default function DeliveryService() {
               <Link
                 href={
                   line.state === "transport"
-                    ? `transport/${line.code}`
-                    : `/delivery-service/${line.code}`
+                    ? `transport/${line.name}`
+                    : `/delivery-service/${line.name}`
                 }
                 className="text-[#4285F4] hover:underline"
               >
@@ -282,21 +175,22 @@ export default function DeliveryService() {
               )}
             </li>
             <li
-              onClick={() =>
-                dropdowm === line.name
-                  ? setDropdown(null)
-                  : setDropdown(line.name)
-              }
               className={`flex items-center justify-center flex-grow shrink-0 w-[100px] h-[35px] text-sm text-[#4285F4] font-medium hover:underline`}
             >
-              {dropdowm === line.name ? 'Ẩn bớt' : 'Chi tiết'}
+              <Link
+                href={
+                  line.state === "transport"
+                    ? `transport/${line.name}`
+                    : `/delivery-service/${line.name}`
+                }
+              >Chi tiết</Link>
             </li>
           </ul>
           {line?.line_ids && (
             <div
               className={`w-full ${
                 dropdowm === line.name
-                  ? "max-h-[300px] opacity-100"
+                  ? "max-h-screen opacity-100"
                   : "max-h-0 opacity-0 overflow-hidden"
               } pl-[66.3px] transition-all duration-300`}
             >
@@ -498,9 +392,7 @@ export default function DeliveryService() {
                 }`}
               />
             </li>
-            <li className="w-[100px] xl:w-auto flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
-              
-            </li>
+            <li className="w-[100px] xl:w-auto flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap"></li>
           </ul>
         </div>
 
