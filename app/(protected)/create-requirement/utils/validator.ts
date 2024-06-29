@@ -12,14 +12,20 @@ export const yupMeet = yup.object().shape({
     .string()
     .required("Vui lòng nhập Thời gian kết thúc")
     .default(""),
-  participants_ids: yup.array().min(1, 'Vui lòng chọn Người tham gia').required("Vui lòng chọn Người tham gia"),
+  participants_ids: yup
+    .array()
+    .min(1, "Vui lòng chọn Người tham gia")
+    .required("Vui lòng chọn Người tham gia"),
   employee_id: yup.number().required("Vui lòng chọn Người chủ trì"),
   category_id: yup.number().required("Vui lòng chọn Danh mục"),
-  request_more_ids: yup.number().required("Vui lòng chọn Yêu cầu thêm"),
-  // approver_ids: yup
-  //   .string()
-  //   .required("Vui lòng nhập Người phê duyệt")
-  //   .default(""),
+  request_more_ids: yup
+    .array()
+    .min(1, "Vui lòng chọn Yêu cầu thêm")
+    .required("Vui lòng chọn Yêu cầu thêm"),
+  approver_ids: yup
+    .array()
+    .min(1, "Vui lòng chọn Người phê duyệt")
+    .required("Vui lòng chọn Người phê duyệt"),
 });
 
 export const yupOrder = yup.object().shape({

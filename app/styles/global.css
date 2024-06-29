@@ -183,6 +183,7 @@ body {
   }
 }
 
+.common-input-select,
 .common-input,
 .common-textarea {
   font-family: "Poppins", sans-serif;
@@ -204,10 +205,16 @@ body {
   font-weight: 500;
 }
 
+.common-input-select {
+  padding: 9px 30px 9px 60px;
+  font-weight: 500;
+  min-height: 60px;
+}
+
 .common-textarea {
   padding: 20px 20px 20px 60px;
 }
-
+.common-input-select::placeholder,
 .common-input::placeholder,
 .common-textarea::placeholder {
   font-family: "Poppins", sans-serif;
@@ -218,6 +225,8 @@ body {
   letter-spacing: 2.4px;
   font-weight: 500;
 }
+
+.common-input-select:focus,
 .common-input:focus,
 .common-textarea:focus {
   border: 1px solid rgb(7, 85, 209, 0.8);
@@ -256,5 +265,5 @@ body {
   @apply w-full;
 }
 .bg-select-multi {
- background-color: #f1f5f9;
+  background-color: #f1f5f9;
 }
