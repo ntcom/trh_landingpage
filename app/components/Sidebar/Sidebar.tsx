@@ -26,7 +26,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
             Tài khoản
           </p>
           <ul>
-            <li>
+            {/* <li>
               <a
                 href="/profile"
                 className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
@@ -36,7 +36,7 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                   Thông tin tài khoản
                 </p>
               </a>
-            </li>
+            </li> */}
             <li>
               <a
                 href="/services"
@@ -56,6 +56,17 @@ export default function Sidebar({ sideBar, setSideBar }: any) {
                 <Image src={chevronRight} height={10} alt="" />
                 <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
                   Kiểm tra tiến độ
+                </p>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/list-requirement"
+                className="flex items-center gap-[10px] py-[9px] border-y-[1px] border-solid border-[rgba(76,76,76,0.1)]"
+              >
+                <Image src={chevronRight} height={10} alt="" />
+                <p className="text-base text-[#4c4c4c] hover:text-[#0755d1]">
+                  Danh sách yêu cầu
                 </p>
               </a>
             </li>

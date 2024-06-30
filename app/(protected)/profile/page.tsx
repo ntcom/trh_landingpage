@@ -27,7 +27,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex mt-[60px]">
+    <div className="flex mt-[120px]">
       <div className="w-1/2 bg-[#fff] rounded-[10px] p-[50px_40px_120px]">
         <p className="font-poppins text-2xl text-[#4285F4] font-bold">
           Hồ sơ của tôi
