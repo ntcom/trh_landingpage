@@ -6,7 +6,7 @@ import Image from "next/image";
 import SelectCustoms from "@/app/components/SelectCustom/SelectCustom";
 import Link from "next/link";
 import currPass from "@/assets/svgs/current-pass.svg";
-import newPass from "@/assets/svgs/new-pass.svg";
+import new_password from "@/assets/svgs/new-pass.svg";
 import channel from "@/assets/svgs/channel.svg";
 import name from "@/assets/svgs/name.svg";
 import email from "@/assets/svgs/email.svg";
@@ -23,6 +23,12 @@ export default function ClientProfile() {
   const [iValue, setIValue] = useState("");
   const [paramOption, setParamOption] = useState("");
   const [userData, setUserData] = useState<any>();
+  const [changePassData, setChangePassData] = useState({
+    old_password: '',
+    new_password: '',
+    confirm_password: '',
+  })
+  const [confirmPass, setConfirmPass] = useState<boolean>(true);
 
   const getUserInfo = async () => {
     const { result } = await userService.getData({});
@@ -33,14 +39,31 @@ export default function ClientProfile() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
-  const handleChangePassword = (e: any) => {
+
+  const handleChangePassword = () => {
+    
+  }
+
+  const submitFormPassword = (e: any) => {
     e.preventDefault();
-    console.log('=========', e);
+    const vals = e.target
+    if(vals[1].value === vals[2].value) {
+      setConfirmPass(true)
+      setChangePassData({
+        old_password: vals[0].value,
+        new_password: vals[1].value,
+        confirm_password: vals[2].value
+      })
+    } else {
+      setConfirmPass(false)
+    }
   };
 
   useEffect(() => {
     getUserInfo();
   }, []);
+  useEffect(() => {
+  }, [changePassData]);
 
   return (
     <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] flex mt-[60px]">
@@ -179,7 +202,7 @@ export default function ClientProfile() {
           </div>
 
           <div className="w-full flex justify-center">
-            <button className="w-full max-w-[300px] h-[52px] bg-[#4285F4] rounded-[10px] mt-[50px] font-poppins text-lg text-[#fff] font-bold">
+            <button className="w-full max-w-[300px] h-[52px] bg-[#4285F4] rounded-[10px] mt-14 font-poppins text-lg text-[#fff] font-bold">
               Cập nhật thông tin
             </button>
           </div>
@@ -190,7 +213,7 @@ export default function ClientProfile() {
           Đổi mật khẩu
         </h2>
         <form
-          onSubmit={handleChangePassword}
+          onSubmit={submitFormPassword}
           className="w-full flex flex-col justify-center mt-10"
         >
           <div className="">
@@ -206,21 +229,24 @@ export default function ClientProfile() {
                 type={"text"}
                 placeholder={"Mật khẩu mới"}
                 setInputValue={setIValue}
-                icon={newPass}
+                icon={new_password}
                 isRequired={true}
               />
-              <InputCustom
-                type={"text"}
-                placeholder={"Nhập lại mật khẩu"}
-                setInputValue={setIValue}
-                icon={newPass}
-                isRequired={true}
-              />
+              <div>
+                <InputCustom
+                  type={"text"}
+                  placeholder={"Nhập lại mật khẩu"}
+                  setInputValue={setIValue}
+                  icon={new_password}
+                  isRequired={true}
+                />
+                <p className={`${confirmPass ? 'opacity-0' : 'opacity-100'} mt-3 text-[#D11A2A] tracking-[0.3px]`}>Nhập lại mật khẩu không khớp</p>
+              </div>
             </div>
           </div>
 
           <button
-            className="font-poppins mt-14 w-full max-w-[300px] mx-auto h-[50px] self-center rounded-[10px] bg-[#4285F4] text-lg text-[#fff] font-bold flex justify-center items-center"
+            className="font-poppins mt-5 w-full max-w-[300px] mx-auto h-[50px] self-center rounded-[10px] bg-[#4285F4] text-lg text-[#fff] font-bold flex justify-center items-center"
           >
             Đổi mật khẩu
           </button>

@@ -12,5 +12,5 @@ export default function ProtectedLayout({
   if (!isAuthenticated) {
     redirect("/login");
   }
-  return <div className="flex"><Sidebar />{children}</div>;
+  return <div className="flex h-full"><Sidebar />{children}</div>;
 }

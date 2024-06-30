@@ -131,6 +131,7 @@ export default function Sidebar() {
         </Link> */}
         <a
           href="/login"
+          onClick={() => localStorage.removeItem("TH_access_token")}
           className="w-full h-8 border-[2px] border-solid border-[#fff] p-[8px 20px] rounded flex justify-center items-center text-[#fff]"
         >
           Đăng xuất

@@ -45,86 +45,6 @@ export default function DeliveryService() {
     getOrderList();
   }, []);
 
-  // const renderDataTable = () => {
-  //   return orderData.map((line: any, index) => {
-  //     const lineKey = line.name.slice(1);
-  //     const formatter = new Intl.NumberFormat("vi", {
-  //       style: "currency",
-  //       currency: "VND",
-  //     });
-  //     return (
-  //       <tr
-  //         key={lineKey}
-  //         className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
-  //       >
-  //         <li className="w-full max-w-[6.98%] text-[#030229] text-xs text-center font-normal">
-  //           {index + 1}
-  //         </li>
-  //         <li className="w-[110px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           <Link
-  //             href={
-  //               line.state === "transport"
-  //                 ? `transport/${line.name}`
-  //                 : `/delivery-service/${line.name}`
-  //             }
-  //             className="text-[#4285F4] hover:underline"
-  //           >
-  //             {line.name}
-  //           </Link>
-  //         </li>
-  //         <li className="w-[172px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           <Image
-  //             src={calendar}
-  //             alt=""
-  //             className="block shrink-0 w-[12.6px]"
-  //           />
-  //           {line.date_order}
-  //         </li>
-  //         <li className="w-[220px] xl:w-full xl:max-w-[21%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           {line.line_ids[0].product_name}
-  //         </li>
-  //         <li className="w-[90px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           {line.line_ids[0].product_uom_qty}
-  //         </li>
-  //         <li className="w-[150px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           {formatter.format(line.line_ids[0].price_total)}
-  //         </li>
-  //         <li className="w-[120px] xl:w-full xl:max-w-[12%] flex items-center gap-[10px] text-[#030229] text-sm font-semibold whitespace-nowrap">
-  //           {formatter.format(line.line_ids[0].advance_money)}
-  //         </li>
-  //         <li
-  //           className={`flex items-center justify-center shrink-0 w-[140px] h-[35px] ${
-  //             line.state === "sale"
-  //               ? "bg-[#3a974c1a]"
-  //               : line.state === "looking ncc"
-  //               ? "bg-[#f293391a]"
-  //               : line.state === "cancel"
-  //               ? "bg-[#d11a2a1a]"
-  //               : "bg-[#4285f41a]"
-  //           } rounded-[22px]`}
-  //         >
-  //           <p
-  //             className={`text-sm font-bold leading-[14px] ${
-  //               line.state === "sale"
-  //                 ? "text-[#3A974C]"
-  //                 : line.state === "looking ncc"
-  //                 ? "text-[#F29339]"
-  //                 : line.state === "cancel"
-  //                 ? "text-[#D11A2A]"
-  //                 : "text-[#4285F4]"
-  //             }`}
-  //           >
-  //             {line.state === "sale"
-  //               ? "Đơn bán hàng"
-  //               : line.state === "looking ncc"
-  //               ? "Đang vận chuyển"
-  //               : "Đã huỷ"}
-  //           </p>
-  //         </li>
-  //       </tr>
-  //     );
-  //   });
-  // };
   const renderDataTable = () => {
     return orderData.map((line: any, index) => {
       const lineKey = line.name.slice(1);
@@ -183,6 +103,7 @@ export default function DeliveryService() {
                     ? `transport/${line.name}`
                     : `/delivery-service/${line.name}`
                 }
+                onClick={(e) => e.stopPropagation()}
               >Chi tiết</Link>
             </li>
           </ul>
@@ -224,17 +145,8 @@ export default function DeliveryService() {
                     key={itemKey}
                     className={`relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] px-4`}
                   >
-                    <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-xs font-semibold whitespace-nowrap">
-                      <Link
-                        href={
-                          line.state === "transport"
-                            ? `transport/${line.name}`
-                            : `/delivery-service/${line.name}`
-                        }
-                        className="text-[#4285F4] hover:underline"
-                      >
+                    <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#4285F4] text-xs font-semibold whitespace-nowrap">
                         {item.name}
-                      </Link>
                     </li>
                     <li className="w-[211px] xl:w-full xl:max-w-[20%] pr-2 flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.address_start}

@@ -21,7 +21,6 @@ export default function Header() {
   const [sideBar, setSideBar] = useState(false);
   const [onSearch, setOnsearch] = useState(false);
   const pathname = usePathname()
-  const checkPortal = pathname.split('/')[1];
   function toggleVisibility() {
     if (window.scrollY > 300) {
       setScroll(true);
@@ -42,7 +41,7 @@ export default function Header() {
 
   }, []);
 
-  return checkPortal !== 'delivery-service' && pathname !== '/client-profile' && (
+  return pathname !== '/delivery-service' && pathname !== '/client-profile' && (
     <div className="w-full">
       {/* {pathname !== '/login' && <div className="w-full bg-[#fff] p-[10px_15px] md:p-[10px_65px] z-[997]">
         <div className="container flex flex-wrap items-center justify-between py-[10px] gap-[15px_30px]">
@@ -82,7 +81,7 @@ export default function Header() {
         </div>
       </div>} */}
       <header
-        className={`${scroll
+        className={`${scroll || pathname === '/login'
           ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
           : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
           } left-0 right-0 transition-all duration-500 z-[996]`}
@@ -91,7 +90,7 @@ export default function Header() {
           <div className="container flex justify-between">
             <Link
               href="/"
-              className={`${scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
+              className={`${scroll || pathname === '/login' ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
                 }`}
             >
               {/* <p
@@ -176,14 +175,14 @@ export default function Header() {
       <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
 
 
-      <a
+      <Link
         href="#"
         className={cn("flex justify-center items-center w-[60px] h-[60px] fixed bottom-[-80px] right-0 bg-[#0755d1] opacity-70 hover:opacity-100 hover:-translate-y-1 transition-all duration-200 z-[199]", {
           'bottom-0': scroll && !sideBar
         })}
       >
         <Image src={chevron} alt="" className="-rotate-90" />
-      </a>
+      </Link>
 
     </div>
   );
