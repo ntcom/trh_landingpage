@@ -61,6 +61,7 @@ export default function InputCustom(props: InputProps) {
         id={props.id}
         type={props.type}
         defaultValue={props.defaultValue}
+        value={props.inputValue}
         className="common-input"
         placeholder={props.placeholder}
         onChange={(e) => props.setInputValue(e.target.value)}

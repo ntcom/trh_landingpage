@@ -13,7 +13,7 @@ export default function ProtectedLayout({
     redirect("/login");
   }
   return (
-    <div className="flex h-full">
+    <div className="flex h-screen">
       <Sidebar />
       {children}
     </div>

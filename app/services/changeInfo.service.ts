@@ -2,10 +2,10 @@ import BaseService from "@/core/services/BaseService";
 
 const endPoint = {
   base: "res_user",
-  getData: "/change_password",
+  getData: "/change_info",
 };
 
-class ChangePassword extends BaseService {
+class ChangeInfo extends BaseService {
   constructor() {
     super();
     this.baseEndPoint = endPoint.base;
@@ -16,6 +16,6 @@ class ChangePassword extends BaseService {
   }
 }
 
-const changePassword = new ChangePassword();
+const changeInfo = new ChangeInfo();
 
-export default changePassword;
+export default changeInfo;
