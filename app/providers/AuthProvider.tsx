@@ -52,10 +52,9 @@ function AuthProvider({
         setAuthenticated(true);
         LocalStorage.set(appConfig.tokenName, result.access_token);
         toast({
-          variant: "success",
+          variant: "default",
           title: "Đăng nhập thành công!",
           description: "Chào mừng bạn đến với Tranghuy Logistics",
-          action: <ToastAction altText="Done">Done</ToastAction>
         })
         router.push("/delivery-service");
         return

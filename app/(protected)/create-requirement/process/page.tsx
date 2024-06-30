@@ -1,11 +1,9 @@
 "use client";
 import BannerCustom from "@/app/components/BannerCustom";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import user1 from "@/assets/imgs/Teams/mem9.jpeg";
 import EvaluateModal from "@/app/components/EvaluateModal/EvaluateModal";
-import { usePathname } from 'next/navigation'
-import helpdeskService from "@/app/services/helpdesk.service";
 
 const questionsList = [
   {
@@ -93,31 +91,14 @@ const questionsList2 = [
 ];
 
 export default function Process() {
-  const pathname = usePathname()
-  const code_ticket = pathname.split('/')[2]
   const [tabActive, setTabActive] = useState(1);
   const [tabActive2, setTabActive2] = useState(1);
   const [openModal, setOpenModal] = useState(false);
-  const [request, setRequest] = useState<any>({})
 
-  const getDataDetail = async () => {
-    try {
-      const { result } = await helpdeskService.getDetail({ code_ticket })
-      if (result) {
-        setRequest(result)
-      }
-    } catch (error) {
-
-    }
-  }
-
-  useEffect(() => {
-    getDataDetail()
-  }, [])
   return (
     <div>
       <BannerCustom />
-      <EvaluateModal openModal={openModal} setOpenModal={setOpenModal} code={code_ticket} refetch={getDataDetail} />
+      <EvaluateModal openModal={openModal} setOpenModal={setOpenModal} />
       <div className="container-app p-[180px_24px_220px]">
         <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">
           Chờ xử lý
@@ -125,10 +106,10 @@ export default function Process() {
         <div className="mt-[30px]">
           <div>
             <p className="font-poppins text-[24px] text-[#0755d1] font-semibold text-center">
-              {request?.name}
+              Cấp máy cho nhân viên mới
             </p>
             <p className="font-poppins text-base text-[#1d2024] font-medium mt-3 text-center">
-              Mã yêu cầu: <span className="text-[#0755d1]">{request?.code_ticket}</span>
+              Mã yêu cầu: <span className="text-[#0755d1]">YC090909</span>
             </p>
           </div>
           <hr className="my-7" />
@@ -149,20 +130,20 @@ export default function Process() {
                       Thời gian cam kết:
                     </p>
                     <span className="text-[#0755d1] font-semibold">
-                      {request?.commitment_time} phút
+                      20 phút
                     </span>
                   </li>
                   <li className="flex items-center">
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời lượng:
                     </p>{" "}
-                    <span className="text-[#0755d1]">  {request?.duration}</span>
+                    <span className="text-[#0755d1]">00:00</span>
                   </li>
                   <li className="flex items-center">
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời gian hoàn thành:
                     </p>{" "}
-                    <span className="text-[#0755d1]">   {request?.date_done} </span>
+                    <span className="text-[#0755d1]">00:00</span>
                   </li>
                 </ul>
                 <button
@@ -183,10 +164,11 @@ export default function Process() {
                         <li key={tab.id} className="">
                           <button
                             onClick={() => setTabActive2(tab.id)}
-                            className={`${tabActive2 === tab.id
-                              ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                              : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                              } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                            className={`${
+                              tabActive2 === tab.id
+                                ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                                : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                            } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                           >
                             {tab.tag}
                           </button>
@@ -261,10 +243,11 @@ export default function Process() {
                     <li key={tab.id} className="">
                       <button
                         onClick={() => setTabActive(tab.id)}
-                        className={`${tabActive === tab.id
-                          ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                          : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                          } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                        className={`${
+                          tabActive === tab.id
+                            ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                            : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                       >
                         {tab.tag}
                       </button>
@@ -273,21 +256,15 @@ export default function Process() {
                 })}
               </ul>
               <div className="bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                {
-                  tabActive === 1 && <pre className="font-poppins text-sm text-[#1d2024]">
-                    {request?.description}
+                {tabActive === 3 ? (
+                  <div>
+                    <p>Tốt</p>
+                  </div>
+                ) : (
+                  <pre className="font-poppins text-sm text-[#1d2024]">
+                    {questionsList[tabActive - 1].content}
                   </pre>
-                }
-                {
-                  tabActive === 2 && <pre className="font-poppins text-sm text-[#1d2024]">
-                    {request?.solution}
-                  </pre>
-                }
-                {
-                  tabActive === 3 && <pre className="font-poppins text-sm text-[#1d2024]">
-                    {request?.customer_review}
-                  </pre>
-                }
+                )}
               </div>
             </div>
           </div>
