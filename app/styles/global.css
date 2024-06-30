@@ -255,6 +255,3 @@ body {
 .react-datepicker-wrapper {
   @apply w-full;
 }
-.bg-select-multi {
- background-color: #f1f5f9;
-}
