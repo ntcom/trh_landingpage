@@ -67,8 +67,8 @@ function CreateRequirement() {
     employee: [],
     request_more: [],
     user_approval: [],
-  })
-  const { toast } = useToast()
+  });
+  const { toast } = useToast();
   const [theme, setTheme] = useState("");
   const [dateDisplay, setDateDisplay] = useState("");
   const [bookedMeet, setBookedMeet] = useState([]);
@@ -97,14 +97,15 @@ function CreateRequirement() {
     control,
     handleSubmit,
     formState: { errors },
-    watch
+    reset,
+    watch,
   } = useForm<any>({
     mode: "onChange",
     resolver: yupResolver(currentYup),
   });
-  const startDate = watch('date_start')
-  const participants_idss = watch('participants_ids')
-  console.log('participants_idss:', participants_idss)
+  const startDate = watch("date_start");
+  const participants_idss = watch("participants_ids");
+  console.log("participants_idss:", participants_idss);
 
   const onSubmit = async (value: any) => {
     try {
@@ -116,10 +117,11 @@ function CreateRequirement() {
         participants_ids,
         employee_id,
         request_more_ids,
+        approver_ids,
         category_id,
         ...restRequest
       } = value;
-
+      // Case tạo dịch vụ
       if (pickOption === "SUPPORT_REPORT") {
         const newData = { ...restRequest, channel_source: "email" };
         const { result } = await helpdeskTicketService.createHelpdeskTicket({
@@ -132,17 +134,22 @@ function CreateRequirement() {
             title: "Thành công",
             description: "Thêm dịch vụ thành công",
             variant: "success",
-            action: <ToastAction altText="Done">Done</ToastAction>
-          })
-          return
+            action: <ToastAction altText="Done">Done</ToastAction>,
+          });
+          reset({});
+          return;
         }
         toast({
-          title: "Thêm dịch vụ thất bại",
+          title: "Thất bại",
           variant: "destructive",
-          description: "Vui lòng thử lại",
+          description:
+            result?.ValidationError ||
+            "Thêm dịch vụ thất bại, vui lòng thử lại",
           action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
-        })
-      } else if (pickOption === "MEET") {
+        });
+      }
+      // Case tạo phòng họp
+      else if (pickOption === "MEET") {
         const date_start_computed = dayjs(date_start).format(
           "YYYY-MM-DD HH:mm:ss"
         );
@@ -153,7 +160,7 @@ function CreateRequirement() {
             location,
             employee_id,
             category_id,
-            approver_ids: [1],
+            approver_ids,
             participants_ids,
             request_more_ids,
             date_start: date_start_computed,
@@ -165,16 +172,19 @@ function CreateRequirement() {
             title: "Thành công",
             description: "Thêm phòng họp thành công",
             variant: "success",
-            action: <ToastAction altText="Done">Done</ToastAction>
-          })
-          return
+            action: <ToastAction altText="Done">Done</ToastAction>,
+          });
+          reset({});
+          return;
         }
         toast({
-          title: "Thêm phòng họp thất bại",
+          title: "Thất bại",
           variant: "destructive",
-          description: "Vui lòng thử lại",
+          description:
+            result?.ValidationError ||
+            "Thêm phòng họp thất bại, vui lòng thử lại",
           action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
-        })
+        });
       }
     } catch (error) {
       toast({
@@ -182,7 +192,7 @@ function CreateRequirement() {
         variant: "destructive",
         description: "Vui lòng thử lại",
         action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
-      })
+      });
     }
   };
   const breadcrumbs = [
@@ -198,55 +208,54 @@ function CreateRequirement() {
 
   const getOptions = async () => {
     try {
-      const { result } = await meetRoomService.getOption()
+      const { result } = await meetRoomService.getOption();
       if (result) {
         setOptionsMeet(result);
       }
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   const getData = async () => {
     try {
       const { result } = await helpdeskService.getHelpDesk();
 
       setHelpdeskOption(result);
-    } catch (error) { }
+    } catch (error) {}
   };
   const getRoom = async (startDate?: string) => {
     try {
-      const currentDate = startDate ? dayjs(startDate).set("hours", 0).set("minutes", 0) : dayjs().set("hours", 0).set("minutes", 0)
+      const currentDate = startDate
+        ? dayjs(startDate).set("hours", 0).set("minutes", 0)
+        : dayjs().set("hours", 0).set("minutes", 0);
 
-      setDateDisplay(currentDate.format("DD-MM-YYYY"))
+      setDateDisplay(currentDate.format("DD-MM-YYYY"));
       const { result } = await meetRoomService.getRoom({
-        date_start: currentDate.format("YYYY-MM-DD HH:mm:ss")
+        date_start: currentDate.format("YYYY-MM-DD HH:mm:ss"),
         // date_start: '2024-06-28 00:00:02'
-      })
+      });
       if (result) {
         const toFormatTime = result.map((item: any) => {
-          const formatStartTime = dayjs(item.date_start).format("HH:mm a")
-          const formatEndTime = dayjs(item.date_start).format("HH:mm a")
+          const formatStartTime = dayjs(item.date_start).format("HH:mm a");
+          const formatEndTime = dayjs(item.date_start).format("HH:mm a");
           return {
             formatStartTime,
-            formatEndTime
-          }
-        })
-        setBookedMeet(toFormatTime)
+            formatEndTime,
+          };
+        });
+        setBookedMeet(toFormatTime);
       }
     } catch (error) {
-      console.log('error:', error)
-
+      console.log("error:", error);
     }
-  }
+  };
 
   useEffect(() => {
-    startDate && getRoom(startDate)
-  }, [startDate])
+    startDate && getRoom(startDate);
+  }, [startDate]);
 
   useEffect(() => {
     getData();
-    getRoom()
-    getOptions()
+    getRoom();
+    getOptions();
   }, []);
 
   return (
@@ -270,8 +279,7 @@ function CreateRequirement() {
         </div>
         <hr className="divide"></hr>
         <div className="flex justify-between gap-3 mt-[50px]">
-          <div className="md:flex-1">
-          </div>
+          <div className="md:flex-1"></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="lg:w-[400px] xl:w-[700px] justify-self-center"
@@ -344,13 +352,15 @@ function CreateRequirement() {
                   />
                 </div>
                 <div className="w-full">
-                  <ControllerSelect
+                  <ControllerMultiSelect
                     options={optionsMeet.request_more}
                     control={control}
                     name="request_more_ids"
                     pathLabel="name"
                     pathValue="id"
                     icon={requestz}
+                    animation={2}
+                    maxCount={2}
                     placeholder="Yêu cầu thêm"
                   />
                 </div>
@@ -365,7 +375,19 @@ function CreateRequirement() {
                     placeholder="Danh mục"
                   />
                 </div>
-
+                <div className="w-full">
+                  <ControllerMultiSelect
+                    options={optionsMeet.user_approval}
+                    control={control}
+                    name="approver_ids"
+                    pathLabel="name"
+                    pathValue="id"
+                    icon={requestz}
+                    animation={2}
+                    maxCount={2}
+                    placeholder="Người phê duyệt"
+                  />
+                </div>
                 <InputCustom
                   type={"file"}
                   placeholder={"Đính kèm tài liệu, văn bản"}
@@ -374,124 +396,124 @@ function CreateRequirement() {
                 />
               </div>
             ) : //  : pickOption === "ORDER_STATIONERY" ? (
-              //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
-              //     <InputCustom
-              //       type={"text"}
-              //       placeholder={"Tên sản phẩm"}
-              //       setInputValue={setTheme}
-              //       icon={tagName}
-              //     />
-              //     <InputCustom
-              //       type={"number"}
-              //       placeholder={"Số lượng"}
-              //       setInputValue={setTheme}
-              //       icon={quantity2}
-              //     />
-              //     <SelectCustom
-              //       options={processingDepartment.typeOfService}
-              //       setIValue={setTheme}
-              //       icon={receivingDepartment}
-              //       placeholder="Bộ phận tiếp nhận"
-              //     />
-              //     <SelectCustom
-              //       options={processingDepartment.typeOfService}
-              //       setIValue={setTheme}
-              //       icon={suporter}
-              //       placeholder="Người xử lý"
-              //     />
-              //     <InputCustom
-              //       type={"file"}
-              //       placeholder={"Đính kèm tài liệu, văn bản"}
-              //       setInputValue={setTheme}
-              //       icon={attach}
-              //     />
-              //   </div>
-              // )
-              pickOption === "SUPPORT_REPORT" ? (
-                <div className="flex flex-col gap-5 m-[30px_0_30px]">
-                  <ControllerInput
-                    control={control}
-                    name="name"
-                    placeholder="Tên dịch vụ"
-                    icon={time}
-                  />
+            //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
+            //     <InputCustom
+            //       type={"text"}
+            //       placeholder={"Tên sản phẩm"}
+            //       setInputValue={setTheme}
+            //       icon={tagName}
+            //     />
+            //     <InputCustom
+            //       type={"number"}
+            //       placeholder={"Số lượng"}
+            //       setInputValue={setTheme}
+            //       icon={quantity2}
+            //     />
+            //     <SelectCustom
+            //       options={processingDepartment.typeOfService}
+            //       setIValue={setTheme}
+            //       icon={receivingDepartment}
+            //       placeholder="Bộ phận tiếp nhận"
+            //     />
+            //     <SelectCustom
+            //       options={processingDepartment.typeOfService}
+            //       setIValue={setTheme}
+            //       icon={suporter}
+            //       placeholder="Người xử lý"
+            //     />
+            //     <InputCustom
+            //       type={"file"}
+            //       placeholder={"Đính kèm tài liệu, văn bản"}
+            //       setInputValue={setTheme}
+            //       icon={attach}
+            //     />
+            //   </div>
+            // )
+            pickOption === "SUPPORT_REPORT" ? (
+              <div className="flex flex-col gap-5 m-[30px_0_30px]">
+                <ControllerInput
+                  control={control}
+                  name="name"
+                  placeholder="Tên dịch vụ"
+                  icon={time}
+                />
 
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.type_service_ids}
-                      control={control}
-                      name="type_service_id"
-                      pathLabel="name"
-                      pathValue="id"
-                      icon={typeService}
-                      placeholder="Loại dịch vụ"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.service_child_ids}
-                      control={control}
-                      pathLabel="name"
-                      pathValue="id"
-                      name="service_child_id"
-                      icon={childService}
-                      placeholder="Dịch vụ con"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.service_detail_ids}
-                      name="service_detail_id"
-                      pathLabel="name"
-                      pathValue="id"
-                      control={control}
-                      icon={detailService}
-                      placeholder="Dịch vụ chi tiết"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.hr_department_ids}
-                      icon={receivingDepartment}
-                      control={control}
-                      name="receiving_department_id"
-                      pathLabel="name"
-                      pathValue="id"
-                      placeholder="Bộ phận tiếp nhận"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.helpdesk_team_ids}
-                      icon={suportTeam}
-                      name="team_id"
-                      pathLabel="name"
-                      pathValue="id"
-                      control={control}
-                      placeholder="Đội ngũ hỗ trợ"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <ControllerSelect
-                      options={helpdeskOption.user_ids}
-                      icon={suporter}
-                      control={control}
-                      name="user_id"
-                      pathLabel="name"
-                      pathValue="id"
-                      placeholder="Người xử lý"
-                    />
-                  </div>
-                  <InputCustom
-                    type={"file"}
-                    placeholder={"Đính kèm tài liệu, văn bản"}
-                    setInputValue={setTheme}
-                    icon={attach}
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.type_service_ids}
+                    control={control}
+                    name="type_service_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    icon={typeService}
+                    placeholder="Loại dịch vụ"
                   />
                 </div>
-              ) : (
-                <div className="h-[100px]"></div>
-              )}
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.service_child_ids}
+                    control={control}
+                    pathLabel="name"
+                    pathValue="id"
+                    name="service_child_id"
+                    icon={childService}
+                    placeholder="Dịch vụ con"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.service_detail_ids}
+                    name="service_detail_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    control={control}
+                    icon={detailService}
+                    placeholder="Dịch vụ chi tiết"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.hr_department_ids}
+                    icon={receivingDepartment}
+                    control={control}
+                    name="receiving_department_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    placeholder="Bộ phận tiếp nhận"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.helpdesk_team_ids}
+                    icon={suportTeam}
+                    name="team_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    control={control}
+                    placeholder="Đội ngũ hỗ trợ"
+                  />
+                </div>
+                <div className="w-full">
+                  <ControllerSelect
+                    options={helpdeskOption.user_ids}
+                    icon={suporter}
+                    control={control}
+                    name="user_id"
+                    pathLabel="name"
+                    pathValue="id"
+                    placeholder="Người xử lý"
+                  />
+                </div>
+                <InputCustom
+                  type={"file"}
+                  placeholder={"Đính kèm tài liệu, văn bản"}
+                  setInputValue={setTheme}
+                  icon={attach}
+                />
+              </div>
+            ) : (
+              <div className="h-[100px]"></div>
+            )}
 
             <div className="flex justify-center gap-4 mt-[50px]">
               <button type="submit" className="btn-common btn-send">
@@ -508,8 +530,8 @@ function CreateRequirement() {
               </a>
             </div>
           </form>
-          {
-            pickOption === "MEET" ? <div className="flex-1 card-app h-full mt-6 overflow-auto">
+          {pickOption === "MEET" ? (
+            <div className="flex-1 card-app h-full mt-6 overflow-auto">
               <div className="rounded-md border p-4">
                 <div className=" flex items-center space-x-4">
                   <BellRing />
@@ -523,21 +545,21 @@ function CreateRequirement() {
                   </div>
                 </div>
                 <div className="divide"></div>
-                {
-                  bookedMeet.map((item: any, index) => {
-                    return (<div key={index} className="flex gap-2 mb-2 items-center">
+                {bookedMeet.map((item: any, index) => {
+                  return (
+                    <div key={index} className="flex gap-2 mb-2 items-center">
                       <Image width={14} src={time} alt="" />
                       <p className="text-sm">{item.formatStartTime}</p>
                       <span>-</span>
                       <p className="text-sm">{item.formatEndTime}</p>
-                    </div>)
-                  })
-                }
-
+                    </div>
+                  );
+                })}
               </div>
-            </div> : <div className="flex-1"></div>
-          }
-
+            </div>
+          ) : (
+            <div className="flex-1"></div>
+          )}
         </div>
       </div>
     </div>

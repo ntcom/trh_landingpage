@@ -7,10 +7,10 @@ interface InputProps {
   defaultValue?: string | number;
   placeholder: string;
   inputValue?: string | number;
-  setInputValue: any;
+  setInputValue?: any;
   icon: any;
   id?: string;
-  isRequired?: boolean
+  isRequired?: boolean,
 }
 
 export default function InputCustom(props: InputProps) {
@@ -61,6 +61,7 @@ export default function InputCustom(props: InputProps) {
         id={props.id}
         type={props.type}
         defaultValue={props.defaultValue}
+        value={props.inputValue}
         className="common-input"
         placeholder={props.placeholder}
         onChange={(e) => props.setInputValue(e.target.value)}

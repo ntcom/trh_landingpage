@@ -10,7 +10,7 @@ import helpdeskService from "@/app/services/helpdesk.service";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
-const evaluateState = [
+export const evaluateState = [
   {
     id: "1",
     icon: bad,
@@ -33,52 +33,62 @@ const evaluateState = [
   },
 ];
 
-export default function EvaluateModal({ openModal, setOpenModal, code, refetch }: any) {
-  const [evaluate, setEvaluate] = useState('4');
-  const [value, setValue] = useState('');
-  const { toast } = useToast()
+export default function EvaluateModal({
+  openModal,
+  setOpenModal,
+  code,
+  refetch,
+}: any) {
+  const [evaluate, setEvaluate] = useState("4");
+  const [value, setValue] = useState("");
+  const { toast } = useToast();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!value) return
+    if (!value) return;
 
     try {
-      const { result } = await helpdeskService.createRate({ code_ticket: code, rate: evaluate, evaluate: value });
-      console.log('result:', result)
+      const { result } = await helpdeskService.createRate({
+        code_ticket: code,
+        rate: evaluate,
+        evaluate: value,
+      });
+      console.log("result:", result);
       if (result) {
         toast({
           title: "Thành công",
-          description: result?.message || 'Đánh giá thành công',
+          description: result?.message || "Đánh giá thành công",
           variant: "success",
-          action: <ToastAction altText="Done">Done</ToastAction>
-        })
-        refetch()
-        return
+          action: <ToastAction altText="Done">Done</ToastAction>,
+        });
+        refetch();
+        return;
       }
       toast({
         title: "Đánh giá thất bại",
         variant: "destructive",
         description: result?.message || "Vui lòng thử lại",
         action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
-      })
+      });
     } catch (error) {
       toast({
         title: "Đánh giá thất bại",
         variant: "destructive",
         description: "Vui lòng thử lại",
         action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
-      })
+      });
     } finally {
-      setValue("")
-      setEvaluate('4')
-      setOpenModal(false)
+      setValue("");
+      setEvaluate("4");
+      setOpenModal(false);
     }
   };
   return (
     <div
-      className={`fixed top-0 left-0 right-0 bottom-0 ${openModal
-        ? "opacity-100 z-[999]"
-        : "w-0 h-0 opacity-0 z-[-1x] overflow-hidden"
-        } bg-[rgba(170,170,170,.4)] flex justify-center items-center transition-all duration-200`}
+      className={`fixed top-0 left-0 right-0 bottom-0 ${
+        openModal
+          ? "opacity-100 z-[999]"
+          : "w-0 h-0 opacity-0 z-[-1x] overflow-hidden"
+      } bg-[rgba(170,170,170,.4)] flex justify-center items-center transition-all duration-200`}
     >
       <form
         onSubmit={handleSubmit}
@@ -113,8 +123,9 @@ export default function EvaluateModal({ openModal, setOpenModal, code, refetch }
                 <li
                   key={item.id}
                   onClick={() => setEvaluate(item.id)}
-                  className={`${evaluate === item.id ? "emoij emoij-active" : "emoij"
-                    }`}
+                  className={`${
+                    evaluate === item.id ? "emoij emoij-active" : "emoij"
+                  }`}
                 >
                   <Image src={item.icon} alt="" />
                   <span className="absolute top-[125%] text-sm text-[#fdca47] font-medium whitespace-nowrap">
@@ -126,17 +137,14 @@ export default function EvaluateModal({ openModal, setOpenModal, code, refetch }
           </ul>
 
           <div className="flex gap-4 justify-center mt-14">
-            <button
-              className="btn-common btn-send"
-              type="submit"
-            >
+            <button className="btn-common btn-send" type="submit">
               Gửi đánh giá
             </button>
             <button
               onClick={() => {
-                setOpenModal(false)
-                setValue("")
-                setEvaluate('4')
+                setOpenModal(false);
+                setValue("");
+                setEvaluate("4");
               }}
               className="btn-common btn-cancel"
             >

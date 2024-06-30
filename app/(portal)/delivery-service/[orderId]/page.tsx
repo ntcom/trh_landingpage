@@ -7,29 +7,64 @@ import download from "@/assets/svgs/Portal/download.svg";
 import print from "@/assets/svgs/Portal/print.svg";
 import cardAva from "@/assets/imgs/Portal/card-ava.png";
 import back from "@/assets/svgs/Portal/back.svg";
-import orderService from "@/app/services/orderService.service";
+import detailOrderService from "@/app/services/detailOrderService.service";
+
+
+const detailData = {
+    id: 1,
+    children: [
+      {
+        product_name: "Bánh xe",
+        product_uom_qty: 1,
+        load_capacity_fleet_vehicle: "3 Tấn",
+        price_unit: 1800.0,
+        tax: "8%",
+        sup_fee: 100.0,
+      },
+      {
+        product_name: "Kính xe",
+        product_uom_qty: 2,
+        load_capacity_fleet_vehicle: "1 Tấn",
+        price_unit: 1800.0,
+        tax: "16%",
+        sup_fee: 100.0,
+      }
+    ],
+    advance_money: 100.0,
+    price_total: 213.0,
+}
 
 interface orderDetailTypes {
   params: any;
 }
 
 export default function OrderDetail(props: orderDetailTypes) {
-  const [orderDetail, setOrderDetail] = useState<any>();
+  const [orderDetail, setOrderDetail] = useState<any>([]);
   const [total, setTotal] = useState<any>();
 
+  const formatter = new Intl.NumberFormat("vi", {
+    style: "currency",
+    currency: "VND",
+  });
+
   useEffect(() => {
-    orderService.getData({}).then(({ result }) => {
-      setOrderDetail(result.sale_order_ids);
-      console.log("============ ", result);
-    });
+    detailOrderService
+      .getData({ params: { id: `${props.params.orderId}` } })
+      .then(({ result }) => {
+        setOrderDetail(result);
+        console.log("============ ", result);
+      });
   }, []);
+  
   return (
     <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] min-h-screen h-full bg-[#fff] rounded-[10px] p-[50px_80px] flex flex-col justify-between">
       <div>
         <div className="w-full flex justify-between">
           <Link href={"/delivery-service"} className="flex items-center gap-2">
             <Image src={back} alt="" className="w-2" />
-            <p className="text-[17px] text-[#0755d1] font-semibold whitespace-nowrap hover:underline">Đơn hàng</p>
+            <p className="text-[17px] text-[#0755d1] font-semibold whitespace-nowrap hover:underline">
+              Đơn hàng
+            </p>
           </Link>
           <div className="w-full flex items-center justify-end gap-6">
             <button>
@@ -78,7 +113,7 @@ export default function OrderDetail(props: orderDetailTypes) {
                 Đơn bán hàng {props.params.orderId}
               </p>
               <p className="text-2xl text-[#1083FF] font-bold text-right mt-[16px]">
-                4.565.000 ₫
+                {formatter.format(detailData.price_total)}
               </p>
             </div>
 
@@ -105,25 +140,30 @@ export default function OrderDetail(props: orderDetailTypes) {
 
         <div className="flex flex-col mt-[50px] overflow-auto">
           <ul className="flex">
-            <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
+            <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
               <p className="text-sm text-[#828691] font-bold">Sản phẩm</p>
             </li>
-            <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+            <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
               <p className="text-sm text-[#828691] font-bold whitespace-nowrap">
                 Số lượng
               </p>
             </li>
-            <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+            <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
               <p className="text-sm text-[#828691] font-bold whitespace-nowrap">
                 Khối lượng
               </p>
             </li>
-            <li className="w-[222px] min-w-[100px] xl:w-[23.26%]">
+            <li className="w-[191.16px] min-w-[100px] xl:w-[18%]">
               <p className="text-sm text-[#828691] font-bold whitespace-nowrap">
                 Đơn giá
               </p>
             </li>
-            <li className="w-[178px] min-w-[90px] xl:w-[17.90%]">
+            <li className="w-[63.7px] min-w-[60px] xl:w-[6%]">
+              <p className="text-sm text-[#828691] font-bold whitespace-nowrap">
+                Thuế
+              </p>
+            </li>
+            <li className="w-[169.9px] min-w-[100px] xl:w-[16%]">
               <p className="text-sm text-[#828691] font-bold whitespace-nowrap text-right">
                 Thành tiền
               </p>
@@ -131,153 +171,135 @@ export default function OrderDetail(props: orderDetailTypes) {
           </ul>
 
           <div className="mt-[18px] flex flex-col items-end gap-[10px]">
-            {orderDetail?.map((line: any) => {
-              if (line.name === props.params.orderId) {
-                return line.line_ids.map((item: any, index: any) => {
-                  const formatter = new Intl.NumberFormat("vi", {
-                    style: "currency",
-                    currency: "VND",
-                  });
-                  return (
-                    <ul
-                      key={index}
-                      className="w-full flex pb-1 border-b-[1px] border-solid border-[#E7E8EC]"
-                    >
-                      <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
-                        <p className="text-xs text-[#1F2229] font-medium">
-                          {item.product_name}
-                        </p>
-                      </li>
-                      <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
-                        <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                          {item.product_uom_qty}
-                        </p>
-                      </li>
-                      <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
-                        <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                          {" "}
-                        </p>
-                      </li>
-                      <li className="w-[162px] min-w-[100px] xl:w-[16.26%]">
-                        <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                          {formatter.format(item.price_total)}
-                        </p>
-                      </li>
-                      <li className="w-[110px] min-w-[90px] xl:w-[12.05%]">
-                        <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                          {" "}
-                        </p>
-                      </li>
-                      <li className="w-[128px] min-w-[90px] xl:w-[12.85%]">
-                        <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap text-right">
-                          {formatter.format(
-                            item.price_total * item.product_uom_qty
-                          )}
-                        </p>
-                      </li>
-                    </ul>
-                  );
-                });
-              }
+            {detailData.children.map((item: any, index: number) => {
+              return (
+                <ul
+                  key={index}
+                  className="w-full flex pb-1 border-b-[1px] border-solid border-[#E7E8EC]"
+                >
+                  <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
+                    <p className="text-xs text-[#1F2229] font-medium">
+                      {item.product_name}
+                    </p>
+                  </li>
+                  <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
+                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                      {item.product_uom_qty}
+                    </p>
+                  </li>
+                  <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
+                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                      {item.load_capacity_fleet_vehicle}
+                    </p>
+                  </li>
+                  <li className="w-[191.16px] min-w-[100px] xl:w-[18%]">
+                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                      {formatter.format(item.price_unit)}
+                    </p>
+                  </li>
+                  <li className="w-[63.7px] min-w-60px] xl:w-[6%]">
+                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                      {" "}
+                    </p>
+                  </li>
+                  <li className="w-[169.9px] min-w-[100px] xl:w-[16%]">
+                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap text-right">
+                      {formatter.format(
+                        item.price_unit * item.product_uom_qty
+                      )}
+                    </p>
+                  </li>
+                </ul>
+              );
             })}
 
-            <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
-              <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
+            {/* <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
+              <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
                 <p className="text-xs text-[#1F2229] font-medium"> </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[222px] min-w-[100px] xl:w-[23.26%]">
-                <p className="text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
-                  Số tiền trước thuế
+              <li className="w-[222px] min-w-[100px] xl:w-[18%]">
+                <p className="font-poppins text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
+                  Thuế
                 </p>
               </li>
-              <li className="w-[178px] min-w-[90px] xl:w-[17.90%]">
+              <li className="w-[222px] min-w-[100px] xl:w-[10%]">
+                <p className="font-poppins text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
+                  {''}
+                </p>
+              </li>
+              <li className="w-[169.9px] min-w-[90px] xl:w-[16%]">
                 <p className="text-xs text-[#1F2229] font-medium text-right whitespace-nowrap">
-                  10,115,000 đ
+                  10%
                 </p>
               </li>
-            </ul>
+            </ul> */}
             <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
-              <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
+              <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
                 <p className="text-xs text-[#1F2229] font-medium"> </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[222px] min-w-[100px] xl:w-[23.26%]">
-                <p className="text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
-                  Thuế 8%
-                </p>
-              </li>
-              <li className="w-[178px] min-w-[90px] xl:w-[17.90%]">
-                <p className="text-xs text-[#1F2229] font-medium text-right whitespace-nowrap">
-                  5,550,000 đ
-                </p>
-              </li>
-            </ul>
-            <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
-              <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
-                <p className="text-xs text-[#1F2229] font-medium"> </p>
-              </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
-                <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                  {" "}
-                </p>
-              </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
-                <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                  {" "}
-                </p>
-              </li>
-              <li className="w-[222px] min-w-[100px] xl:w-[23.26%]">
-                <p className="text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
+              <li className="w-[222px] min-w-[100px] xl:w-[18%]">
+                <p className="font-poppins text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
                   Ứng tiền
                 </p>
               </li>
-              <li className="w-[178px] min-w-[90px] xl:w-[17.90%]">
+              <li className="w-[63.7px] min-w-[60px] xl:w-[6%]">
+                <p className="font-poppins text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
+                  {''}
+                </p>
+              </li>
+              <li className="w-[178px] min-w-[100px] xl:w-[16%]">
                 <p className="text-xs text-[#1F2229] font-medium text-right whitespace-nowrap">
-                  5,550,000 đ
+                  {formatter.format(detailData.advance_money)}
                 </p>
               </li>
             </ul>
             <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
-              <li className="w-[316px] min-w-[250px] xl:w-[31.73%]">
+              <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
                 <p className="text-xs text-[#1F2229] font-medium"> </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[140px] min-w-[90px] xl:w-[14.056%]">
+              <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
                 <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
                   {" "}
                 </p>
               </li>
-              <li className="w-[222px] min-w-[100px] xl:w-[23.26%]">
+              <li className="w-[222px] min-w-[100px] xl:w-[18%]">
                 <p className="font-poppins text-sm text-[#1F1F1F] font-bold whitespace-nowrap uppercase">
                   Tổng
                 </p>
               </li>
-              <li className="w-[178px] min-w-[90px] xl:w-[17.90%]">
+              <li className="w-[63.7px] min-w-[60px] xl:w-[6%]">
+                <p className="font-poppins text-sm text-[#1F1F1F] font-bold whitespace-nowrap uppercase">
+                  {''}
+                </p>
+              </li>
+              <li className="w-[178px] min-w-[100px] xl:w-[16%]">
                 <p className="text-xs text-[#1083FF] font-bold text-right whitespace-nowrap">
-                  4,565,000 đ
+                  {formatter.format(detailData.price_total)}
                 </p>
               </li>
             </ul>
@@ -353,7 +375,7 @@ export default function OrderDetail(props: orderDetailTypes) {
         </div>
         <div>
           <p className="text-[10px] text-[#828691] text-right">
-            Công ty được đăng ký trong sổ đăng ký kinh doanh theo số. 87650000
+            Công ty được đăng ký kinh doanh theo số: 999999
           </p>
         </div>
       </div>

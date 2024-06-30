@@ -13,7 +13,7 @@ import Image from "next/image";
 import arrowDown from "@/assets/svgs/Portal/arrow-down.svg";
 import helpdeskService from "@/app/services/helpdesk.service";
 import Link from "next/link";
-import { Eye } from 'lucide-react';
+import { Eye } from "lucide-react";
 const dataTable = [
   {
     stt: 1,
@@ -225,7 +225,7 @@ function TableSupportReport2() {
       if (res.result) {
         setHelpDesk(res.result);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   useEffect(() => {
     getHelpDesk();
@@ -329,6 +329,16 @@ function TableSupportReport2() {
             </TableHead>
             <TableHead>
               <div className="flex gap-2 items-center cursor-pointer">
+                Trạng thái
+                <Image
+                  src={arrowDown}
+                  alt=""
+                  className="block shrink-0 w-[8px]"
+                />
+              </div>
+            </TableHead>
+            <TableHead>
+              <div className="flex gap-2 items-center cursor-pointer">
                 Hành động
                 <Image
                   src={arrowDown}
@@ -341,7 +351,7 @@ function TableSupportReport2() {
         </TableHeader>
         <TableBody>
           {helpDesk.map((item, index) => {
-            // const status = item.status.type;
+            const status = item.status;
             return (
               <TableRow
                 key={index}
@@ -357,27 +367,36 @@ function TableSupportReport2() {
                 <TableCell>{item.service_detail_id.name}</TableCell>
                 <TableCell>{item.receiving_department_id.name}</TableCell>
                 <TableCell>{item.team_id.name}</TableCell>
-                {/* <TableCell>
+                <TableCell>
                   <div
                     className={cn("bg-[#4285f41a] w-fit px-2 py-1 rounded-lg", {
-                      "bg-[#3a974c1a]": status === "complete",
-                      "bg-[#f293391a]": status === "transport",
-                      "bg-[#d11a2a1a]": status === "cancel",
+                      "bg-[#FFF9C4]": status === "Mới",
+                      "bg-[#3a974c1a]": status === "Hoàn thành",
+                      "bg-[#f293391a]": status === "Đang xử lý",
+                      "bg-[#d11a2a1a]": status === "Hủy",
                     })}
                   >
                     <p
                       className={cn("text-[#4285F4] font-medium", {
-                        "text-[#3A974C]": status === "complete",
-                        "text-[#F29339]": status === "transport",
-                        "text-[#D11A2A]": status === "cancel",
+                        "text-[#333333]": status === "Mới",
+                        "text-[#3A974C]": status === "Hoàn thành",
+                        "text-[#0e5a97]": status === "Đã xử lý",
+                        "text-[#F29339]": status === "Đang xử lý",
+                        "text-[#D11A2A]": status === "Hủy",
                       })}
                     >
-                      {item.status.title}
+                      {status}
                     </p>
                   </div>
-                </TableCell> */}
+                </TableCell>
                 <TableCell>{item.user_id.name}</TableCell>
-                <TableCell><div className="flex justify-center"><Link href={'/list-requirement/' + item.code_ticket}><Eye className="text-sm text-[#727272]" /></Link></div></TableCell>
+                <TableCell>
+                  <div className="flex justify-center">
+                    <Link href={"/list-requirement/" + item.code_ticket}>
+                      <Eye className="text-sm text-[#727272]" />
+                    </Link>
+                  </div>
+                </TableCell>
               </TableRow>
             );
           })}

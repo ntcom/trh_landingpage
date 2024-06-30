@@ -6,7 +6,7 @@ import Image from "next/image";
 import SelectCustoms from "@/app/components/SelectCustom/SelectCustom";
 import Link from "next/link";
 import currPass from "@/assets/svgs/current-pass.svg";
-import newPass from "@/assets/svgs/new-pass.svg";
+import new_password from "@/assets/svgs/new-pass.svg";
 import channel from "@/assets/svgs/channel.svg";
 import name from "@/assets/svgs/name.svg";
 import email from "@/assets/svgs/email.svg";
@@ -15,6 +15,12 @@ import nation from "@/assets/svgs/nation.svg";
 import city from "@/assets/svgs/city.svg";
 import location from "@/assets/svgs/location.svg";
 import userService from "@/app/services/user.service";
+import { ComboboxDemo } from "@/components/ui/combobox";
+import changePassword from "@/app/services/changePassword.service";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import changeInfo from "@/app/services/changeInfo.service";
+import { useRouter } from "next/navigation";
 
 const nationData = ["Vietnam", "Cuba", "Rusia", "Japan", "USA"];
 const cityData = ["Hanoi", "Vinh", "Danang", "Dalat", "TP.HCM"];
@@ -23,6 +29,13 @@ export default function ClientProfile() {
   const [iValue, setIValue] = useState("");
   const [paramOption, setParamOption] = useState("");
   const [userData, setUserData] = useState<any>();
+  const [verifyPass, setVerifyPass] = useState({
+    currenPass: true,
+    confirmPass: true,
+  });
+
+  const { toast } = useToast();
+  const router = useRouter();
 
   const getUserInfo = async () => {
     const { result } = await userService.getData({});
@@ -30,12 +43,114 @@ export default function ClientProfile() {
     console.log(">>>>>>>>", result.employee_id[0]);
   };
 
-  const handleSubmit = (e: any) => {
+  const submitFormInfo = (e: any) => {
     e.preventDefault();
+    console.log("form info: ", e);
+    const vals = e.target;
+    handleChangeInfo({});
   };
-  const handleChangePassword = (e: any) => {
+
+  const handleChangeInfo = async (params: any) => {
+    const { result } = await changeInfo.postData({
+      params: params,
+    });
+    if (result.errors) {
+      setVerifyPass({ ...verifyPass, currenPass: false });
+      toast({
+        variant: "destructive",
+        title: "Đổi thông tin thất bại",
+        description: "Vui lòng thử lại",
+        action: (
+          <ToastAction
+            altText="Thử lại"
+            onClick={() =>
+              setVerifyPass({ currenPass: true, confirmPass: true })
+            }
+          >
+            Thử lại
+          </ToastAction>
+        ),
+      });
+    } else {
+      toast({
+        variant: "success",
+        title: "Đổi thông tin thành công!",
+        description: "Thành công",
+        action: (
+          <ToastAction
+            altText="Done"
+            onClick={() =>
+              setVerifyPass({ currenPass: true, confirmPass: true })
+            }
+          >
+            Done
+          </ToastAction>
+        ),
+      });
+      setVerifyPass({ confirmPass: true, currenPass: true });
+    }
+  };
+
+  const submitFormPassword = (e: any) => {
     e.preventDefault();
-    console.log('=========', e);
+    const vals = e.target;
+    if (vals[1].value === vals[2].value) {
+      setVerifyPass({ ...verifyPass, confirmPass: true });
+      handleChangePassword({
+        old_password: vals[0].value,
+        new_password: vals[1].value,
+        confirm_password: vals[2].value,
+      });
+    } else {
+      setVerifyPass({ ...verifyPass, confirmPass: false });
+    }
+  };
+
+  const handleChangePassword = async (params: any) => {
+    const { result } = await changePassword.postData({
+      params: params,
+    });
+    if (result.errors) {
+      setVerifyPass({ ...verifyPass, currenPass: false });
+      toast({
+        variant: "destructive",
+        title: "Đổi mật khẩu thất bại",
+        description: "Vui lòng thử lại",
+        action: (
+          <ToastAction
+            altText="Thử lại"
+            onClick={() =>
+              setVerifyPass({ currenPass: true, confirmPass: true })
+            }
+          >
+            Thử lại
+          </ToastAction>
+        ),
+      });
+    } else {
+      toast({
+        variant: "success",
+        title: "Đổi mật khẩu thành công!",
+        description: "Vui lòng đăng nhập lại",
+        action: (
+          <ToastAction
+            altText="Đăng nhập"
+            onClick={() => {
+              setVerifyPass({ currenPass: true, confirmPass: true });
+              localStorage.removeItem("TH_access_token");
+              router.push("/login");
+            }}
+          >
+            Đăng nhập
+          </ToastAction>
+        ),
+      });
+      setVerifyPass({ confirmPass: true, currenPass: true });
+      setTimeout(() => {
+        localStorage.removeItem("TH_access_token");
+        router.push("/login");
+      }, 5000);
+    }
   };
 
   useEffect(() => {
@@ -48,7 +163,7 @@ export default function ClientProfile() {
         <p className="font-poppins text-2xl text-[#4285F4] font-bold">
           Hồ sơ của tôi
         </p>
-        <form onSubmit={handleSubmit} className="mt-[30px]">
+        <form onSubmit={submitFormInfo} className="mt-[30px]">
           <label className="w-[134px] h-[134px] mx-auto bg-[#FAFAFB] rounded-[999px] flex justify-center items-center relative overflow-hidden">
             <input
               type="file"
@@ -135,14 +250,15 @@ export default function ClientProfile() {
                 >
                   Quốc gia
                 </label>
-                <SelectCustoms
+                {/* <SelectCustoms
                   options={nationData}
                   iValue={iValue}
                   setIValue={setIValue}
                   placeholder="Chọn quốc gia"
                   setPickOption={setParamOption}
                   icon={nation}
-                />
+                /> */}
+                <ComboboxDemo />
               </div>
               <div className="w-full">
                 <label
@@ -179,7 +295,7 @@ export default function ClientProfile() {
           </div>
 
           <div className="w-full flex justify-center">
-            <button className="w-full max-w-[300px] h-[52px] bg-[#4285F4] rounded-[10px] mt-[50px] font-poppins text-lg text-[#fff] font-bold">
+            <button className="w-full max-w-[300px] h-[52px] bg-[#4285F4] rounded-[10px] mt-14 font-poppins text-lg text-[#fff] font-bold">
               Cập nhật thông tin
             </button>
           </div>
@@ -190,38 +306,54 @@ export default function ClientProfile() {
           Đổi mật khẩu
         </h2>
         <form
-          onSubmit={handleChangePassword}
+          onSubmit={submitFormPassword}
           className="w-full flex flex-col justify-center mt-10"
         >
           <div className="">
-            <div className="flex flex-col gap-10 mt-[194px]">
-              <InputCustom
-                type={"text"}
-                placeholder={"Mật khẩu hiện tại"}
-                setInputValue={setIValue}
-                icon={currPass}
-                isRequired={true}
-              />
+            <div className="flex flex-col gap-[60px] mt-[194px]">
+              <div className="mb-[-36px]">
+                <InputCustom
+                  type={"text"}
+                  placeholder={"Mật khẩu hiện tại"}
+                  setInputValue={setIValue}
+                  icon={currPass}
+                  isRequired={true}
+                />
+                <p
+                  className={`${
+                    verifyPass.currenPass ? "opacity-0" : "opacity-100"
+                  } mt-3 text-[#D11A2A] tracking-[0.3px]`}
+                >
+                  Mật khẩu không đúng
+                </p>
+              </div>
               <InputCustom
                 type={"text"}
                 placeholder={"Mật khẩu mới"}
                 setInputValue={setIValue}
-                icon={newPass}
+                icon={new_password}
                 isRequired={true}
               />
-              <InputCustom
-                type={"text"}
-                placeholder={"Nhập lại mật khẩu"}
-                setInputValue={setIValue}
-                icon={newPass}
-                isRequired={true}
-              />
+              <div>
+                <InputCustom
+                  type={"text"}
+                  placeholder={"Nhập lại mật khẩu"}
+                  setInputValue={setIValue}
+                  icon={new_password}
+                  isRequired={true}
+                />
+                <p
+                  className={`${
+                    verifyPass.confirmPass ? "opacity-0" : "opacity-100"
+                  } mt-3 text-[#D11A2A] tracking-[0.3px]`}
+                >
+                  Nhập lại mật khẩu không khớp
+                </p>
+              </div>
             </div>
           </div>
 
-          <button
-            className="font-poppins mt-14 w-full max-w-[300px] mx-auto h-[50px] self-center rounded-[10px] bg-[#4285F4] text-lg text-[#fff] font-bold flex justify-center items-center"
-          >
+          <button className="font-poppins mt-5 w-full max-w-[300px] mx-auto h-[50px] self-center rounded-[10px] bg-[#4285F4] text-lg text-[#fff] font-bold flex justify-center items-center">
             Đổi mật khẩu
           </button>
         </form>

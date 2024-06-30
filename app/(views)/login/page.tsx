@@ -16,26 +16,15 @@ import vector4 from "@/assets/svgs/login/vector4.svg";
 import vector5 from "@/assets/svgs/login/vector5.svg";
 import vector6 from "@/assets/svgs/login/vector6.svg";
 import useAuth from "@/app/providers/AuthProvider";
-import axios from "axios";
-import authService from "@/app/services/auth.service";
 
 const Login = () => {
-  const { isAuthenticated, handleLogin } = useAuth();
+  const { handleLogin } = useAuth();
   const [eye, setEye] = useState(false);
   const [passVal, setPassVal] = useState("");
   const [username, setUsername] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await authService.getToken({
-        login: username,
-        password: passVal,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
     handleLogin({
       login: username,
       password: passVal,
