@@ -8,9 +8,14 @@ export default function ProtectedLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated } = useAuth();
-  if (!isAuthenticated) {
+  const { isAuthenticated, isEmployee } = useAuth();
+  if (!isAuthenticated || isEmployee) {
     redirect("/login");
   }
-  return <div className="flex h-full"><Sidebar />{children}</div>;
+  return (
+    <div className="flex">
+      <Sidebar />
+      {children}
+    </div>
+  );
 }

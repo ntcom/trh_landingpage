@@ -3,8 +3,10 @@ import BannerCustom from "@/app/components/BannerCustom";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import user1 from "@/assets/imgs/Teams/mem9.jpeg";
-import EvaluateModal from "@/app/components/EvaluateModal/EvaluateModal";
-import { usePathname } from 'next/navigation'
+import EvaluateModal, {
+  evaluateState,
+} from "@/app/components/EvaluateModal/EvaluateModal";
+import { usePathname } from "next/navigation";
 import helpdeskService from "@/app/services/helpdesk.service";
 
 const questionsList = [
@@ -93,34 +95,41 @@ const questionsList2 = [
 ];
 
 export default function Process() {
-  const pathname = usePathname()
-  const code_ticket = pathname.split('/')[2]
+  const pathname = usePathname();
+  const code_ticket = pathname.split("/")[2];
   const [tabActive, setTabActive] = useState(1);
   const [tabActive2, setTabActive2] = useState(1);
   const [openModal, setOpenModal] = useState(false);
-  const [request, setRequest] = useState<any>({})
+  const [request, setRequest] = useState<any>({});
+  const [rateInfo, setRateInfo] = useState<any>({});
 
   const getDataDetail = async () => {
     try {
-      const { result } = await helpdeskService.getDetail({ code_ticket })
+      const { result } = await helpdeskService.getDetail({ code_ticket });
       if (result) {
-        setRequest(result)
+        setRequest(result);
+        const currentRate = evaluateState.find(
+          (item) => item.id === result?.rate
+        );
+        setRateInfo(currentRate);
       }
-    } catch (error) {
-
-    }
-  }
-
+    } catch (error) {}
+  };
   useEffect(() => {
-    getDataDetail()
-  }, [])
+    getDataDetail();
+  }, []);
   return (
     <div>
       <BannerCustom />
-      <EvaluateModal openModal={openModal} setOpenModal={setOpenModal} code={code_ticket} refetch={getDataDetail} />
+      <EvaluateModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        code={code_ticket}
+        refetch={getDataDetail}
+      />
       <div className="container-app p-[180px_24px_220px]">
         <h2 className="font-poppins bg-[#0755d1] p-[25px] text-[28px] text-[#fff] font-semibold text-center uppercase">
-          Chờ xử lý
+          {request?.status}
         </h2>
         <div className="mt-[30px]">
           <div>
@@ -128,7 +137,8 @@ export default function Process() {
               {request?.name}
             </p>
             <p className="font-poppins text-base text-[#1d2024] font-medium mt-3 text-center">
-              Mã yêu cầu: <span className="text-[#0755d1]">{request?.code_ticket}</span>
+              Mã yêu cầu:{" "}
+              <span className="text-[#0755d1]">{request?.code_ticket}</span>
             </p>
           </div>
           <hr className="my-7" />
@@ -156,13 +166,16 @@ export default function Process() {
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời lượng:
                     </p>{" "}
-                    <span className="text-[#0755d1]">  {request?.duration}</span>
+                    <span className="text-[#0755d1]"> {request?.duration}</span>
                   </li>
                   <li className="flex items-center">
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời gian hoàn thành:
                     </p>{" "}
-                    <span className="text-[#0755d1]">   {request?.date_done} </span>
+                    <span className="text-[#0755d1]">
+                      {" "}
+                      {request?.date_done}{" "}
+                    </span>
                   </li>
                 </ul>
                 <button
@@ -183,10 +196,11 @@ export default function Process() {
                         <li key={tab.id} className="">
                           <button
                             onClick={() => setTabActive2(tab.id)}
-                            className={`${tabActive2 === tab.id
-                              ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                              : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                              } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                            className={`${
+                              tabActive2 === tab.id
+                                ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                                : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                            } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                           >
                             {tab.tag}
                           </button>
@@ -195,56 +209,32 @@ export default function Process() {
                     })}
                   </ul>
                   <div className="h-[400px] bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] overflow-auto">
-                    {questionsList2[tabActive2 - 1]?.contents?.map((item) => {
-                      return (
-                        <div key={item.time}>
-                          <div className="w-full h-[1px] my-[10px] bg-[#ccc] relative flex items-center justify-center">
-                            <p className="absolute text-sm text-[#777] font-medium px-2 bg-[#fff]">
-                              {item.time}
-                            </p>
-                          </div>
-
-                          <ul className="mt-6 flex flex-col gap-6 mb-12">
-                            {item.comments.map((cmt) => {
-                              return (
-                                <li key={cmt.id} className="flex gap-3">
-                                  <div className="w-10 h-10 rounded overflow-hidden">
-                                    <Image src={user1} alt="" />
-                                  </div>
-                                  <div>
-                                    <div className="flex items-center gap-1">
-                                      <p className="font-poppins text-[15px] text-[#1d2024] font-semibold">
-                                        {cmt.username}
-                                      </p>
-                                      <p className="font-poppins text-sm text-[#1d2024]">
-                                        -
-                                      </p>
-                                      <p className="font-poppins text-sm text-[#1d2024]">
-                                        1 ngày trước
-                                      </p>
-                                    </div>
-                                    <p className="font-poppins text-sm text-[#777]">
-                                      Giai đoạn đã thay đổi
-                                    </p>
-                                    <div>
-                                      <p className="font-poppins text-sm text-[#1e90ffbf]">
-                                        <span className="text-base font-bold leading-5">
-                                          •&ensp;
-                                        </span>
-                                        Đang thực hiện{" "}
-                                        <span className="text-[#777] text-xs">
-                                          (Giai đoạn)
-                                        </span>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      );
-                    })}
+                    <ul className="mt-6 flex flex-col gap-6 mb-12">
+                      {tabActive2 === 1 &&
+                        request?.message_ids?.map((cmt: any, index: number) => {
+                          return (
+                            <div key={index}>
+                              <div className="w-full h-[1px] my-[10px] bg-[#ccc] relative flex items-center justify-center">
+                                <p className="absolute text-sm text-[#777] font-medium px-2 bg-[#fff]">
+                                  {cmt?.date}
+                                </p>
+                              </div>
+                              <li className="flex gap-3">
+                                <div className="w-10 h-10 rounded overflow-hidden">
+                                  <Image src={user1} alt="" />
+                                </div>
+                                <div>
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: cmt.message,
+                                    }}
+                                  />
+                                </div>
+                              </li>
+                            </div>
+                          );
+                        })}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -261,10 +251,11 @@ export default function Process() {
                     <li key={tab.id} className="">
                       <button
                         onClick={() => setTabActive(tab.id)}
-                        className={`${tabActive === tab.id
-                          ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                          : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                          } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                        className={`${
+                          tabActive === tab.id
+                            ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                            : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                       >
                         {tab.tag}
                       </button>
@@ -273,21 +264,22 @@ export default function Process() {
                 })}
               </ul>
               <div className="bg-[#fff] p-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
-                {
-                  tabActive === 1 && <pre className="font-poppins text-sm text-[#1d2024]">
+                {tabActive === 1 && (
+                  <pre className="font-poppins text-sm text-[#1d2024]">
                     {request?.description}
                   </pre>
-                }
-                {
-                  tabActive === 2 && <pre className="font-poppins text-sm text-[#1d2024]">
+                )}
+                {tabActive === 2 && (
+                  <pre className="font-poppins text-sm text-[#1d2024]">
                     {request?.solution}
                   </pre>
-                }
-                {
-                  tabActive === 3 && <pre className="font-poppins text-sm text-[#1d2024]">
+                )}
+                {tabActive === 3 && (
+                  <pre className="font-poppins text-sm text-[#1d2024] flex gap-2">
+                    <Image src={rateInfo.icon} width={20} alt="" />
                     {request?.customer_review}
                   </pre>
-                }
+                )}
               </div>
             </div>
           </div>
