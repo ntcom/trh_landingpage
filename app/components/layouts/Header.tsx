@@ -103,7 +103,7 @@ export default function Header() {
       </div>} */}
         <header
           className={`${
-            scroll
+            scroll || pathname === '/login'
               ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
               : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
           } left-0 right-0 transition-all duration-500 z-[996]`}
@@ -113,7 +113,7 @@ export default function Header() {
               <Link
                 href="/"
                 className={`${
-                  scroll ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
+                  scroll || pathname === '/login' ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
                 }`}
               >
                 {/* <p
