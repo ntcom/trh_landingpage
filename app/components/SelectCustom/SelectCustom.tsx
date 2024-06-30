@@ -52,9 +52,9 @@ export default function SelectCustoms(props: SelectPropsType) {
       <div
         className={`absolute top-[108%] left-[-1px] w-[calc(100%+2px)] ${
           onSelect
-            ? "max-h-[400px] border-[rgba(7,85,209,.8)]"
+            ? "max-h-[400px] border-[rgba(7,85,209,.8)] z-50"
             : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
-        } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
+        } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border shadow-lg hidden-scroll`}
       >
         {props.options.map((option: any, index: number) => {
           return (
