@@ -21,6 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import changeInfo from "@/app/services/changeInfo.service";
 import { useRouter } from "next/navigation";
+import citysService from "@/app/services/citys.service";
 
 const nationData = ["Vietnam", "Cuba", "Rusia", "Japan", "USA"];
 const cityData = ["Hanoi", "Vinh", "Danang", "Dalat", "TP.HCM"];
@@ -33,6 +34,13 @@ export default function ClientProfile() {
     currenPass: true,
     confirmPass: true,
   });
+  const [countryData, setCountryData] = useState([
+    {
+      value: "vn",
+      label: "Việt Nam",
+    },
+  ])
+  const [listCity, setListCity] = useState()
 
   const { toast } = useToast();
   const router = useRouter();
@@ -40,14 +48,29 @@ export default function ClientProfile() {
   const getUserInfo = async () => {
     const { result } = await userService.getData({});
     setUserData(result.employee_id[0]);
-    console.log(">>>>>>>>", result.employee_id[0]);
+    console.log("result: ", result);
   };
+
+  const getCitys = async () => {
+    const { result } = await citysService.getData({})
+    console.log('citysService', result);
+    setListCity(result)
+  }
 
   const submitFormInfo = (e: any) => {
     e.preventDefault();
     console.log("form info: ", e);
     const vals = e.target;
-    handleChangeInfo({});
+    handleChangeInfo({
+      image: vals[0].value ? vals[0].value : false,
+      company_id: vals[1].value ? vals[1].value : false,
+      name: vals[2].value,
+      work_email: vals[3].value ? vals[3].value : false,
+      mobile_phone: vals[4].value ? vals[4].value : false,
+      private_country_id: vals[5].value ? vals[5].value : false,
+      private_city: vals[6].value ? vals[6].value : false,
+      private_street: vals[7].value ? vals[7].value : false,
+    });
   };
 
   const handleChangeInfo = async (params: any) => {
@@ -188,6 +211,7 @@ export default function ClientProfile() {
                 defaultValue={userData?.company.name}
                 setInputValue={setIValue}
                 icon={channel}
+                isRequired={true}
               />
             </div>
 
@@ -204,6 +228,7 @@ export default function ClientProfile() {
                 defaultValue={userData?.name}
                 setInputValue={setIValue}
                 icon={name}
+                isRequired={true}
               />
             </div>
 
@@ -221,6 +246,7 @@ export default function ClientProfile() {
                   defaultValue={userData?.email}
                   setInputValue={setIValue}
                   icon={email}
+                  isRequired={true}
                 />
               </div>
 
@@ -239,6 +265,7 @@ export default function ClientProfile() {
                   }
                   setInputValue={setIValue}
                   icon={phone}
+                  isRequired={true}
                 />
               </div>
             </div>
@@ -258,7 +285,7 @@ export default function ClientProfile() {
                   setPickOption={setParamOption}
                   icon={nation}
                 /> */}
-                <ComboboxDemo />
+                <ComboboxDemo arrData={countryData} defaultValue={countryData[0].label}/>
               </div>
               <div className="w-full">
                 <label
@@ -267,14 +294,15 @@ export default function ClientProfile() {
                 >
                   Tỉnh/ thành phố
                 </label>
-                <SelectCustoms
+                {/* <SelectCustoms
                   options={cityData}
                   iValue={iValue}
                   setIValue={setIValue}
                   placeholder="Tỉnh/thành phố"
                   setPickOption={setParamOption}
                   icon={city}
-                />
+                /> */}
+                <ComboboxDemo arrData={listCity}/>
               </div>
             </div>
             <div className="w-full">

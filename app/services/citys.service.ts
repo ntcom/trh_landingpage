@@ -2,20 +2,20 @@ import BaseService from "@/core/services/BaseService";
 
 const endPoint = {
   base: "hr_employee",
-  getData: "/update",
+  getData: "/res_country_state",
 };
 
-class ChangeInfo extends BaseService {
+class CitysService extends BaseService {
   constructor() {
     super();
     this.baseEndPoint = endPoint.base;
   }
 
-  postData(body: any) {
+  getData(body: any) {
     return this.post(body, endPoint.getData)
   }
 }
 
-const changeInfo = new ChangeInfo();
+const citysService = new CitysService();
 
-export default changeInfo;
+export default citysService;
