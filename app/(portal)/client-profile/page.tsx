@@ -194,7 +194,7 @@ export default function ClientProfile() {
               id=""
               className="absolute w-full h-full cursor-pointer opacity-0"
             />
-            <Image src={camera} width={28} height={28} alt="" />
+            <Image src={userData?.image ? 'data:image/png;base64, ' +  userData.image : camera} width={28} height={28} alt="" className={`${userData?.image ? 'w-full h-full' : 'w-[28px] h-[28px]'} object-cover`}/>
           </label>
 
           <div className="flex flex-col gap-5 mt-8">
