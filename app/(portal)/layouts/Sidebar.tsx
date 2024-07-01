@@ -128,7 +128,7 @@ export default function Sidebar() {
       <div className="absolute bottom-10 flex flex-col justify-between gap-5 items-center">
         <div className="flex items-center gap-[10px]">
           <button className="shrink-0 block w-[45px] h-[45px] rounded-xl overflow-hidden">
-            <Image src={ava} alt="" />
+            <Image src={userData?.image ? 'data:image/png;base64, ' +  userData.image : ava} width={100} height={100} alt="" />
           </button>
           <div>
             <p className="text-sm text-[#fff] font-bold">{userData?.name}</p>
