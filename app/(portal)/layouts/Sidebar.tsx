@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/imgs/Portal/logo2.png";
@@ -10,6 +10,7 @@ import contractIconActive from "@/assets/svgs/Portal/contract-active.svg";
 import upgrade from "@/assets/svgs/Portal/upgrade.svg";
 import ava from "@/assets/imgs/Portal/ava.png";
 import logout from "@/assets/svgs/Portal/logout2.svg";
+import userService from "@/app/services/user.service";
 
 const navs = [
   {
@@ -58,6 +59,16 @@ const navs = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [userData, setUserData] = useState<any>();
+
+  const getUserInfo = async () => {
+    const { result } = await userService.getData({});
+    setUserData(result.employee_id[0]);
+  };
+
+  useEffect(() => {
+    getUserInfo()
+  }, [])
 
   return (
     <aside className="fixed top-0 left-0 bottom-0 shrink-0 w-[218px] 2xl:w-[268px] h-screen bg-[linear-gradient(270deg,#4285F4_-67.2%,#10439F_100%)] flex flex-col items-center">
@@ -120,7 +131,7 @@ export default function Sidebar() {
             <Image src={ava} alt="" />
           </button>
           <div>
-            <p className="text-sm text-[#fff] font-bold">Tony Nhiem</p>
+            <p className="text-sm text-[#fff] font-bold">{userData?.name}</p>
             <p className="text-sm text-[#fff] texts-[#1f1f1f99] font-mediums">
               Free Account
             </p>

@@ -52,7 +52,7 @@ const multiSelectVariants = cva(
 
 interface MultiSelectProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof multiSelectVariants> {
+  VariantProps<typeof multiSelectVariants> {
   options: any[];
   onChange: any;
   defaultValue: string[];
@@ -118,7 +118,6 @@ export const MultiSelect = React.forwardRef<
         ? selectedValues.filter((v) => v !== value)
         : [...selectedValues, value];
       setSelectedValues(newSelectedValues);
-      console.log("newSelectedValues:", newSelectedValues);
       onChange(newSelectedValues);
     };
 
@@ -133,7 +132,6 @@ export const MultiSelect = React.forwardRef<
 
     const clearExtraOptions = () => {
       const newSelectedValues = selectedValues.slice(0, maxCount);
-      console.log("newSelectedValues:", newSelectedValues);
       setSelectedValues(newSelectedValues);
       onChange(newSelectedValues);
     };
@@ -150,10 +148,6 @@ export const MultiSelect = React.forwardRef<
     const updateWidth = () => {
       if (refWrap.current) {
         setWidthChild(refWrap.current.offsetWidth);
-        console.log(
-          "refWrap.current.offsetWidth:",
-          refWrap.current.offsetWidth
-        );
       }
     };
     const debouncedUpdateWidth = debounceFn(updateWidth, 200);
@@ -196,7 +190,7 @@ export const MultiSelect = React.forwardRef<
                         <Badge
                           key={value}
                           className={cn(
-                            "p-1 px-2",
+                            "p-1 px-2 font-poppins font-medium text-md",
                             isAnimating ? "animate-bounce" : "",
                             multiSelectVariants({ variant, className })
                           )}
@@ -249,7 +243,7 @@ export const MultiSelect = React.forwardRef<
                       orientation="vertical"
                       className="flex min-h-6 h-full"
                     />
-                    <ChevronDown className="h-4 mx-2 cursor-pointer text-muted-foreground" />
+                    <ChevronDown width={20} height={20} className="text-[#0755d1] mx-2 cursor-pointer text-muted-foreground" />
                   </div>
                 </div>
               ) : (
@@ -257,7 +251,7 @@ export const MultiSelect = React.forwardRef<
                   <span className="text-[13px] text-[#0755d1] font-medium uppercase tracking-[1.2px] ">
                     {placeholder}
                   </span>
-                  <ChevronDown className="h-4 cursor-pointer text-muted-foreground mx-2" />
+                  <ChevronDown width={20} height={20} className="text-[#0755d1] cursor-pointer text-muted-foreground mx-2" />
                 </div>
               )}
             </div>
@@ -298,13 +292,12 @@ export const MultiSelect = React.forwardRef<
                     const isSelected = selectedValues.includes(
                       option[pathValue]
                     );
-                    console.log(option[pathLabel]);
                     return (
                       <CommandItem
                         key={option[pathValue]}
                         onSelect={() => toggleOption(option[pathValue])}
                         style={{ pointerEvents: "auto", opacity: 1 }}
-                        className={cn("cursor-pointer ", {
+                        className={cn("cursor-pointer", {
                           "bg-select-multi": isSelected,
                         })}
                       >
@@ -321,7 +314,7 @@ export const MultiSelect = React.forwardRef<
                         {option.icon && (
                           <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                         )}
-                        <span>{option[pathLabel]}</span>
+                        <span className="tracking-[1.2px] text-[#1D2024]">{option[pathLabel]}</span>
                       </CommandItem>
                     );
                   })}

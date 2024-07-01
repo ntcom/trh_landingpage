@@ -28,7 +28,7 @@ export default function SelectCustoms(props: SelectPropsType) {
         onClick={() => {
           setOnSelect(!onSelect);
         }}
-        className="absolute top-0 left-0 w-full h-full z-30 cursor-pointer bg-transparent"
+        className={`absolute top-0 left-0 w-full h-full ${onSelect && 'z-30'} cursor-pointer bg-transparent`}
       ></span>
       <input
         type="text"
