@@ -40,7 +40,7 @@ export default function ClientProfile() {
       label: "Việt Nam",
     },
   ])
-  const [listCity, setListCity] = useState()
+  const [listCity, setListCity] = useState([])
 
   const { toast } = useToast();
   const router = useRouter();
