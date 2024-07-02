@@ -33,7 +33,7 @@ export default function Television() {
                   Tài liệu
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light  text-center lg:text-right">
-                  IPTV is easily integrated with other IP-based services.
+                  Cập nhật thông tin kiến thức tài liệu nhanh chóng
                 </p>
               </div>
               <div className="shrink-0 w-[50px] h-[50px]">
@@ -53,7 +53,7 @@ export default function Television() {
                   Số hoá
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light  text-center lg:text-right">
-                  The quality and stable work is surely going to amaze you
+                  Điều khiển và giám sát hạ tầng IT một cách tự động, chất lương
                 </p>
               </div>
               <div className="shrink-0 w-[50px] h-[50px]">
@@ -73,7 +73,7 @@ export default function Television() {
                   Lưu trữ
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light  text-center lg:text-right">
-                  Consumer is able to interact with the service provider.
+                  Lưu trữ đầy đủ các thông tin, an toàn và bảo mật dữ liệu
                 </p>
               </div>
               <div className="shrink-0 w-[50px] h-[50px]">
@@ -93,7 +93,7 @@ export default function Television() {
                   Giao việc
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light  text-center lg:text-right">
-                  Consumer is able to interact with the service provider.
+                  Phân chia công việc một cách hiệu quả. Theo dõi tiến độ công việc
                 </p>
               </div>
               <div className="shrink-0 w-[50px] h-[50px]">
@@ -127,7 +127,7 @@ export default function Television() {
                   Thực hiện
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light text-center lg:text-left">
-                  It’s fully interactive to personal needs of customer.
+                  Tương tác phù hợp với nhu cầu cá nhân của khách hàng
                 </p>
               </div>
             </li>
@@ -147,7 +147,7 @@ export default function Television() {
                   Đề xuất
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light text-center lg:text-left">
-                  Services is compatible with all display devices.
+                  Dịch vụ tương thích với tất cả các thiết bị hiển thị
                 </p>
               </div>
             </li>
@@ -167,7 +167,7 @@ export default function Television() {
                   Phê duyệt
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light text-center lg:text-left">
-                  Consumer is able to interact with the service provider.
+                  Phân quyền và điều phối phê duyệt dựa trên vai trò và quy trình
                 </p>
               </div>
             </li>
@@ -187,7 +187,7 @@ export default function Television() {
                   Luân chuyển
                 </a>
                 <p className="text-base text-[#808080] leading-6 font-light text-center lg:text-left">
-                  Consumer is able to interact with the service provider.
+                  Hỗ trợ và giải quyết sự cố kịp thời, đảm bảo đúng tiến độ
                 </p>
               </div>
             </li>
