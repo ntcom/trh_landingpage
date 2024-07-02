@@ -148,8 +148,9 @@ export default function Header() {
                     >
                       Khách hàng
                     </div>
-                    <div
-                      onClick={handleClickCustomer}
+                    <Link
+                      href={'http://preview.themeforest.net/item/satisfyc-satisfaction-survey-form-wizard/full_screen_preview/25475083?_ga=2.245873665.405038074.1719449498-245284937.1712226805'}
+                      target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
@@ -157,9 +158,10 @@ export default function Header() {
                       } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       Khảo sát
-                    </div>
-                    <div
-                      onClick={handleClickCustomer}
+                    </Link>
+                    <Link
+                      href={'https://templates.seekviral.com/qzain/quiz/Quiz1/index.html'}
+                      target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
@@ -167,7 +169,7 @@ export default function Header() {
                       } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       Kiểm tra
-                    </div>
+                    </Link>
                   </nav>
                 )}
 
