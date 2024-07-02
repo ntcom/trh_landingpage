@@ -1,0 +1,40 @@
+.react-datepicker-time__input,.react-datepicker__input-time-container{
+  height: 30px !important;
+  line-height: 1 !important;
+}
+
+/* CSS để ẩn biểu tượng tam giác */
+.react-datepicker__triangle {
+  display: none;
+}
+
+.custom-wrapper-date{
+  border: 1px solid #f8f8f8;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+/* Tăng z-index cho popup của DatePicker */
+.react-datepicker__portal {
+  z-index: 1050;
+}
+
+.react-datepicker__month-container {
+  z-index: 1050;
+}
+
+.react-datepicker {
+  z-index: 1051;
+}
+
+.react-datepicker__header {
+  height: 50px;
+}
+
+.react-datepicker-popper{
+  z-index: 1050;
+}
+
+
+/* ont-poppins outline-none w-full pl-[60px] h-[60px] border border-[rgba(76,_76,_76,_0.1)] shadow-[0_0_10px_0_rgba(0,_0,_0,_0.1)]
+ pr-[20px] py-2 placeholder:uppercase placeholder:tracking-[0.2em] placeholder: */

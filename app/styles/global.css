@@ -156,6 +156,11 @@ body {
   @apply font-poppins outline-none w-full pl-[60px] h-[60px] border border-[rgba(76,_76,_76,_0.1)] shadow-[0_0_10px_0_rgba(0,_0,_0,_0.1)] pr-[20px] py-2 placeholder:uppercase placeholder:tracking-[0.2em] placeholder:text-[#747474] placeholder:text-[12px] focus:shadow-none focus:border-[rgba(76,_76,_76,0.3)];
 }
 
+.input-focus {
+  box-shadow: 0 0 8px 2px rgba(7,85,209,.2);
+  border: 1px solid  rgba(7,85,209,.8)
+}
+
 .container {
   width: 100%;
   max-width: 1340px;
@@ -183,7 +188,22 @@ body {
   }
 }
 
-.common-input-select,
+.common-input-select{
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  background-color: transparent;
+  color: #1d2024;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  outline: none;
+  border-radius: 2px;
+}
+
+.common-input-default {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+}
+
 .common-input,
 .common-textarea {
   font-family: "Poppins", sans-serif;
