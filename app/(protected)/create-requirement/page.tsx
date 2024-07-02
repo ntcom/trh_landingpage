@@ -434,7 +434,7 @@ function CreateRequirement() {
                 <ControllerInput
                   control={control}
                   name="name"
-                  placeholder="Tên dịch vụ"
+                  placeholder="Nội dung yêu cầu"
                   icon={time}
                 />
 
