@@ -134,7 +134,7 @@ export default function Header() {
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
                           : "text-[#fff] hover:text-[#ffffffb3]"
-                      } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       IT Helpdesk
                     </div>
@@ -144,9 +144,29 @@ export default function Header() {
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
                           : "text-[#fff] hover:text-[#ffffffb3]"
-                      } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       Khách hàng
+                    </div>
+                    <div
+                      onClick={handleClickCustomer}
+                      className={`py-[15px] cursor-pointer text-[15px] ${
+                        scroll
+                          ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                          : "text-[#fff] hover:text-[#ffffffb3]"
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                    >
+                      Khảo sát
+                    </div>
+                    <div
+                      onClick={handleClickCustomer}
+                      className={`py-[15px] cursor-pointer text-[15px] ${
+                        scroll
+                          ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                          : "text-[#fff] hover:text-[#ffffffb3]"
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                    >
+                      Kiểm tra
                     </div>
                   </nav>
                 )}
