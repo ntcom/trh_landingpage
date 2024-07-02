@@ -149,7 +149,7 @@ export default function Header() {
                       Khách hàng
                     </div>
                     <Link
-                      href={'http://preview.themeforest.net/item/satisfyc-satisfaction-survey-form-wizard/full_screen_preview/25475083?_ga=2.245873665.405038074.1719449498-245284937.1712226805'}
+                      href={'https://main--gentle-gingersnap-c7b4c3.netlify.app/'}
                       target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
                         scroll
@@ -160,7 +160,7 @@ export default function Header() {
                       Khảo sát
                     </Link>
                     <Link
-                      href={'https://templates.seekviral.com/qzain/quiz/Quiz1/index.html'}
+                      href={'https://deploy-preview-1--sage-paprenjak-b8e71d.netlify.app/'}
                       target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
                         scroll

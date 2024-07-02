@@ -166,7 +166,7 @@ export default function Process() {
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
                       Thời lượng:
                     </p>{" "}
-                    <span className="text-[#0755d1]"> {request?.duration}</span>
+                    <span className="text-[#0755d1]"> {Math.round(request?.duration)}</span>
                   </li>
                   <li className="flex items-center">
                     <p className="w-[200px] font-poppins text-base text-[#1d2024] font-medium">
@@ -174,7 +174,7 @@ export default function Process() {
                     </p>{" "}
                     <span className="text-[#0755d1]">
                       {" "}
-                      {request?.date_done}{" "}
+                      {Math.round(request?.date_done)}{" "}
                     </span>
                   </li>
                 </ul>
