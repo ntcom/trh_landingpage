@@ -48,7 +48,6 @@ export default function ClientProfile() {
   const getUserInfo = async () => {
     const { result } = await userService.getData({});
     setUserData(result.employee_id[0]);
-    console.log("result: ", result);
   };
 
   const getCitys = async () => {

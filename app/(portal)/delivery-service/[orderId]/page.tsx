@@ -8,31 +8,31 @@ import print from "@/assets/svgs/Portal/print.svg";
 import cardAva from "@/assets/imgs/Portal/card-ava.png";
 import back from "@/assets/svgs/Portal/back.svg";
 import detailOrderService from "@/app/services/detailOrderService.service";
-
+import userService from "@/app/services/user.service";
 
 const detailData = {
-    id: 1,
-    children: [
-      {
-        product_name: "Bánh xe",
-        product_uom_qty: 1,
-        load_capacity_fleet_vehicle: "3 Tấn",
-        price_unit: 1800.0,
-        tax: "8%",
-        sup_fee: 100.0,
-      },
-      {
-        product_name: "Kính xe",
-        product_uom_qty: 2,
-        load_capacity_fleet_vehicle: "1 Tấn",
-        price_unit: 1800.0,
-        tax: "16%",
-        sup_fee: 100.0,
-      }
-    ],
-    advance_money: 100.0,
-    price_total: 213.0,
-}
+  id: 1,
+  children: [
+    {
+      product_name: "Bánh xe",
+      product_uom_qty: 1,
+      load_capacity_fleet_vehicle: "3 Tấn",
+      price_unit: 1800.0,
+      tax: "8%",
+      sup_fee: 100.0,
+    },
+    {
+      product_name: "Kính xe",
+      product_uom_qty: 2,
+      load_capacity_fleet_vehicle: "1 Tấn",
+      price_unit: 1800.0,
+      tax: "16%",
+      sup_fee: 100.0,
+    },
+  ],
+  advance_money: 100.0,
+  price_total: 213.0,
+};
 
 interface orderDetailTypes {
   params: any;
@@ -41,13 +41,22 @@ interface orderDetailTypes {
 export default function OrderDetail(props: orderDetailTypes) {
   const [orderDetail, setOrderDetail] = useState<any>([]);
   const [total, setTotal] = useState<any>();
+  const [userData, setUserData] = useState<any>();
 
   const formatter = new Intl.NumberFormat("vi", {
     style: "currency",
     currency: "VND",
   });
 
+  const getUserInfo = async () => {
+    const { result } = await userService.getData({});
+    setUserData(result.employee_id[0]);
+    console.log("=+++++++++++ ", result.employee_id[0].image);
+  };
+
   useEffect(() => {
+    getUserInfo()
+    
     detailOrderService
       .getData({ params: { id: `${props.params.orderId}` } })
       .then(({ result }) => {
@@ -55,7 +64,7 @@ export default function OrderDetail(props: orderDetailTypes) {
         console.log("============ ", result);
       });
   }, []);
-  
+
   return (
     <div className="ml-[218px] 2xl:ml-[268px] w-[calc(100%-218px)] 2xl:w-[calc(100%-268px)] min-h-screen h-full bg-[#fff] rounded-[10px] p-[50px_80px] flex flex-col justify-between">
       <div>
@@ -79,7 +88,13 @@ export default function OrderDetail(props: orderDetailTypes) {
         <div className="p-[36px_40px] bg-[#FBFBFB] rounded-md flex mt-5">
           <div className="w-1/2">
             <div className="flex w-[80px] h-[80px] rounded overflow-hidden">
-              <Image src={cardAva} alt="" />
+              <Image
+                src={userData?.image ? "data:image/png;base64, " + userData.image : cardAva}
+                width={100}
+                height={100}
+                alt=""
+                className="object-cover"
+              />
             </div>
 
             <div className="mt-[30px]">
@@ -95,13 +110,13 @@ export default function OrderDetail(props: orderDetailTypes) {
               <div className="flex items-center gap-3">
                 <p className="w-[26px] text-xs text-[#09F] text-right">Mail:</p>{" "}
                 <Link href={"#"} className="tetx-[11px] text-[#828691]">
-                  banhang@tranghuy.com
+                  {userData?.email ? userData.email : 'banhang@tranghuy.com'}
                 </Link>
               </div>
               <div className="flex items-center gap-3">
                 <p className="w-[26px] text-xs text-[#09F] text-right">Tax:</p>{" "}
                 <Link href={"#"} className="tetx-[11px] text-[#828691]">
-                  +84 934 525 315
+                  {userData?.work_phone ? userData.work_phone : '+84 934 525 315'}
                 </Link>
               </div>
             </div>
@@ -113,7 +128,7 @@ export default function OrderDetail(props: orderDetailTypes) {
                 Đơn bán hàng {props.params.orderId}
               </p>
               <p className="text-2xl text-[#1083FF] font-bold text-right mt-[16px]">
-                {formatter.format(detailData.price_total)}
+                {formatter.format(orderDetail.amount_total)}
               </p>
             </div>
 
@@ -171,47 +186,48 @@ export default function OrderDetail(props: orderDetailTypes) {
           </ul>
 
           <div className="mt-[18px] flex flex-col items-end gap-[10px]">
-            {detailData.children.map((item: any, index: number) => {
-              return (
-                <ul
-                  key={index}
-                  className="w-full flex pb-1 border-b-[1px] border-solid border-[#E7E8EC]"
-                >
-                  <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
-                    <p className="text-xs text-[#1F2229] font-medium">
-                      {item.product_name}
-                    </p>
-                  </li>
-                  <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
-                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                      {item.product_uom_qty}
-                    </p>
-                  </li>
-                  <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
-                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                      {item.load_capacity_fleet_vehicle}
-                    </p>
-                  </li>
-                  <li className="w-[191.16px] min-w-[100px] xl:w-[18%]">
-                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                      {formatter.format(item.price_unit)}
-                    </p>
-                  </li>
-                  <li className="w-[63.7px] min-w-60px] xl:w-[6%]">
-                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
-                      {" "}
-                    </p>
-                  </li>
-                  <li className="w-[169.9px] min-w-[100px] xl:w-[16%]">
-                    <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap text-right">
-                      {formatter.format(
-                        item.price_unit * item.product_uom_qty
-                      )}
-                    </p>
-                  </li>
-                </ul>
-              );
-            })}
+            {orderDetail?.children &&
+              orderDetail.children.map((item: any, index: number) => {
+                return (
+                  <ul
+                    key={index}
+                    className="w-full flex pb-1 border-b-[1px] border-solid border-[#E7E8EC]"
+                  >
+                    <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
+                      <p className="text-xs text-[#1F2229] font-medium">
+                        {item.product_name}
+                      </p>
+                    </li>
+                    <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
+                      <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                        {item.product_uom_qty}
+                      </p>
+                    </li>
+                    <li className="w-[127.4px] min-w-[90px] xl:w-[12%]">
+                      <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                        {item.load_capacity_fleet_vehicle}
+                      </p>
+                    </li>
+                    <li className="w-[191.16px] min-w-[100px] xl:w-[18%]">
+                      <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                        {formatter.format(item.price_unit)}
+                      </p>
+                    </li>
+                    <li className="w-[63.7px] min-w-60px] xl:w-[6%]">
+                      <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap">
+                        {" "}
+                      </p>
+                    </li>
+                    <li className="w-[169.9px] min-w-[100px] xl:w-[16%]">
+                      <p className="text-xs text-[#1F2229] font-medium whitespace-nowrap text-right">
+                        {formatter.format(
+                          item.price_unit * item.product_uom_qty
+                        )}
+                      </p>
+                    </li>
+                  </ul>
+                );
+              })}
 
             {/* <ul className="w-full flex pb-1 relative overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-[59.2%] before:w-full before:h-[1px] before:bg-[#E7E8EC]">
               <li className="w-[382.3px] min-w-[250px] xl:w-[36%]">
@@ -264,12 +280,12 @@ export default function OrderDetail(props: orderDetailTypes) {
               </li>
               <li className="w-[63.7px] min-w-[60px] xl:w-[6%]">
                 <p className="font-poppins text-xs text-[#828691] font-bold whitespace-nowrap uppercase">
-                  {''}
+                  {""}
                 </p>
               </li>
               <li className="w-[178px] min-w-[100px] xl:w-[16%]">
                 <p className="text-xs text-[#1F2229] font-medium text-right whitespace-nowrap">
-                  {formatter.format(detailData.advance_money)}
+                  {formatter.format(orderDetail.advance_money)}
                 </p>
               </li>
             </ul>
@@ -294,12 +310,12 @@ export default function OrderDetail(props: orderDetailTypes) {
               </li>
               <li className="w-[63.7px] min-w-[60px] xl:w-[6%]">
                 <p className="font-poppins text-sm text-[#1F1F1F] font-bold whitespace-nowrap uppercase">
-                  {''}
+                  {""}
                 </p>
               </li>
               <li className="w-[178px] min-w-[100px] xl:w-[16%]">
                 <p className="text-xs text-[#1083FF] font-bold text-right whitespace-nowrap">
-                  {formatter.format(detailData.price_total)}
+                  {formatter.format(orderDetail.amount_total)}
                 </p>
               </li>
             </ul>
