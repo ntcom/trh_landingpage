@@ -169,9 +169,8 @@ export const MultiSelect = React.forwardRef<
               className={cn(
                 "relative w-full cursor-pointer rounded-sm border bg-white flex items-center justify-center common-input-select !pr-0 h-auto",
                 {
-                  "!border-[rgba(7,85,209,0.8)] shadow-[0_0_8px_2px_rgba(7,85,209,.2)]":
-                    isPopoverOpen,
-                  "border-[#4c4c4c1a]": !isPopoverOpen,
+                  'input-focus': isPopoverOpen,
+                  'common-input-default ': !isPopoverOpen,
                 }
               )}
             >

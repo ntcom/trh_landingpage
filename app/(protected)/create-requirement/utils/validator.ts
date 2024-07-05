@@ -17,7 +17,7 @@ export const yupMeet = yup.object().shape({
     .min(1, "Vui lòng chọn Người tham gia")
     .required("Vui lòng chọn Người tham gia"),
   employee_id: yup.number().required("Vui lòng chọn Người chủ trì"),
-  category_id: yup.number().required("Vui lòng chọn Danh mục"),
+  // category_id: yup.number().required("Vui lòng chọn Danh mục"),
   request_more_ids: yup
     .array()
     .min(1, "Vui lòng chọn Yêu cầu thêm")
