@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 
 interface InputProps {
   type: string;
   label?: string | number;
   placeholder: string;
+  value?: string;
   icon: any;
   onChange: any;
   id?: string;
@@ -16,11 +17,18 @@ interface InputProps {
 
 const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
   const [fileName, setFileName] = useState("");
+  const [localValue, setLocalValue] = useState('')
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    setLocalValue(value)
     props?.onChange && props.onChange(value);
   };
 
+  useEffect(() => {
+    if (!props.value) {
+      setLocalValue("")
+    }
+  }, [props.value])
   return (
     <div className="w-full">
       {props.type === "file" ? (
@@ -76,6 +84,7 @@ const InputCustom = forwardRef(function InputCustom(props: InputProps, _) {
             className={`common-input ${props.className}`}
             name={props.nameInput}
             placeholder={props.placeholder}
+            value={localValue}
             onChange={handleChange}
           />
         </div>

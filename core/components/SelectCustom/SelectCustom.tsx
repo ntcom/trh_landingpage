@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import chevron from "@/assets/svgs/chevron-right.svg";
 
 interface SelectPropsType {
@@ -12,13 +12,14 @@ interface SelectPropsType {
   pathValue: string;
   icon?: any;
   onChange: any;
+  value: any;
 }
 
 const SelectCustoms = forwardRef(function SelectCustoms(
   props: SelectPropsType,
   _
 ) {
-  const { pathLabel, pathValue, onChange } = props;
+  const { pathLabel, pathValue, onChange, value } = props;
   const [open, setOpen] = useState(false);
   const [localTitle, setLocalTitle] = useState("");
 
@@ -28,14 +29,20 @@ const SelectCustoms = forwardRef(function SelectCustoms(
     onChange && onChange(item[pathValue]);
   };
 
+  useEffect(() => {
+    console.log('value:', value)
+    if (!value) {
+      setLocalTitle('')
+    }
+  }, [value])
+
   return (
     <div className="w-full">
       <div
-        className={`relative w-full rounded-sm border ${
-          open
-            ? "border-[rgba(7,85,209,.8)] shadow-[0_0_8px_2px_rgba(7,85,209,.2)]"
-            : "border-[#4c4c4c1a]"
-        }`}
+        className={`relative w-full rounded-sm border ${open
+          ? "border-[rgba(7,85,209,.8)] shadow-[0_0_8px_2px_rgba(7,85,209,.2)]"
+          : "border-[#4c4c4c1a]"
+          }`}
       >
         <span
           onClick={() => {
@@ -55,19 +62,17 @@ const SelectCustoms = forwardRef(function SelectCustoms(
           <Image src={props.icon} alt="" />
         </div>
         <div
-          className={`absolute right-5 max-w-[16px] max-h-[16px] z-20 top-1/2 -translate-y-1/2 ${
-            open ? "-rotate-90" : "rotate-90"
-          } transition-all`}
+          className={`absolute right-5 max-w-[16px] max-h-[16px] z-20 top-1/2 -translate-y-1/2 ${open ? "-rotate-90" : "rotate-90"
+            } transition-all`}
         >
           <Image src={chevron} alt="" />
         </div>
 
         <div
-          className={`absolute top-[108%] left-[-1px] w-[calc(100%+2px)] ${
-            open
-              ? "max-h-[400px] border-[rgba(7,85,209,.8)]"
-              : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
-          } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
+          className={`absolute top-[108%] left-[-1px] w-[calc(100%+2px)] ${open
+            ? "max-h-[400px] border-[rgba(7,85,209,.8)]"
+            : "max-h-0 border-transparent shadow-none overflow-hidden opacity-0"
+            } bg-[#fff] overflow-auto rounded-sm transition-all duration-200 border z-50 shadow-lg hidden-scroll`}
         >
           {props.options.map((option: any) => {
             return (

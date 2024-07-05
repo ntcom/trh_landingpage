@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css"
@@ -9,11 +9,13 @@ import { cn } from "@/lib/utils";
 
 const CustomInput: React.FC<any> = ({ date, placeholder, onClick, refValueDate, isOpen }) => {
   refValueDate.current = date
-  const currentDate = date ? dayjs(date).format('DD/MM/YYYY h:mm a') : placeholder;
+  const currentDate = date ? dayjs(date).format('DD/MM/YYYY h:mm a') : `-- ${placeholder} --`;
   return (
-    <p className={cn("common-input-select w-full flex items-center cursor-pointer text-[13px] !text-[#0755d1] font-medium tracking-0", {
+    <p className={cn("common-input-select w-full flex items-center cursor-pointer text-[13px]", {
       'input-focus': isOpen,
       'common-input-default ': !isOpen,
+      'uppercase font-medium text-[#0755d1]': !date,
+      'text-[#1d2024]': date,
     })} onClick={onClick} >
       {currentDate}
     </p>
@@ -25,7 +27,8 @@ const MemoizedCustomInput = React.memo(CustomInput, (prevProps, nextProps) => {
 });
 
 function DatePickerInput(props: any) {
-  const { onChange, placeholder, ...rest } = props;
+  const { onChange, placeholder, value, ...rest } = props;
+  console.log('rest:', rest)
   const refValueDate = useRef()
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -70,7 +73,11 @@ function DatePickerInput(props: any) {
     );
   }, [date]);
 
-
+  useEffect(() => {
+    if (!value) {
+      setSelectedDate(value)
+    }
+  }, [value])
   return (
     <div className="w-full">
       <div className="relative w-full flex items-center">

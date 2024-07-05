@@ -64,7 +64,7 @@ export default function SelectCustoms(props: SelectPropsType) {
               onClick={() => {
                 props.setPickOption(option.value);
                 setValue(option.title);
-                props.setIValue(option.value);
+                props?.setIValue(option.value);
                 setOnSelect(false);
               }}
               className="block w-full p-[10px_30px] hover:bg-[#0755d1] transition-all hover:text-[#fff] text-sm text-[#1d2024] font-medium tracking-[1.2px] cursor-pointer"
