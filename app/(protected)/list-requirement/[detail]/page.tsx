@@ -113,7 +113,7 @@ export default function Process() {
         );
         setRateInfo(currentRate);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     getDataDetail();
@@ -196,11 +196,10 @@ export default function Process() {
                         <li key={tab.id} className="">
                           <button
                             onClick={() => setTabActive2(tab.id)}
-                            className={`${
-                              tabActive2 === tab.id
-                                ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                                : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                            } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                            className={`${tabActive2 === tab.id
+                              ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                              : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                              } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                           >
                             {tab.tag}
                           </button>
@@ -251,11 +250,10 @@ export default function Process() {
                     <li key={tab.id} className="">
                       <button
                         onClick={() => setTabActive(tab.id)}
-                        className={`${
-                          tabActive === tab.id
-                            ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
-                            : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
-                        } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
+                        className={`${tabActive === tab.id
+                          ? "bg-[#0755d1] text-[#fff] hover:opacity-90"
+                          : "bg-[#f7f6fb] text-[#d5550f] hover:text-[#0755d1]"
+                          } w-full md:w-auto p-[15px_28px] rounded-[5px_5px_0_0] font-poppins text-xs font-medium leading-5 tracking-[1px] uppercase`}
                       >
                         {tab.tag}
                       </button>
@@ -275,10 +273,29 @@ export default function Process() {
                   </pre>
                 )}
                 {tabActive === 3 && (
-                  <pre className="font-poppins text-sm text-[#1d2024] flex gap-2">
-                    <Image src={rateInfo.icon} width={20} alt="" />
-                    {request?.customer_review}
-                  </pre>
+                  <div className="font-poppins text-sm text-[#1d2024] flex gap-2">
+                    {/* <Image src={rateInfo?.icon} width={20} alt="" />
+                    {request?.customer_review} */}
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+                      <div className="flex items-center">
+                        <svg className="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.805A9.969 9.969 0 0112 16c2.386 0 4.574.835 6.293 2.24A8.953 8.953 0 0021 12c0-4.974-4.026-9-9-9S3 7.026 3 12a8.953 8.953 0 002.828 6.805z"></path>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div className="ml-4">
+                          <h2 className="text-lg font-semibold">{request?.employee_id?.name}</h2>
+                          <div className="flex gap-2"> <Image src={rateInfo?.icon} width={20} alt="" /> <span>-</span>  <span className="text-gray-500 text-[12px]">{rateInfo?.value}</span></div>
+                          <div className="flex items-center">
+
+                          </div>
+                        </div>
+                      </div>
+                      <p className="mt-4 text-gray-600">
+                        {request?.customer_review}
+                      </p>
+                      <p className="flex justify-end text-gray-500 text-[12px]">{request?.date_request}</p>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

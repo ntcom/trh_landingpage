@@ -167,7 +167,7 @@ export const MultiSelect = React.forwardRef<
             <div
               onClick={handleTogglePopover}
               className={cn(
-                "relative w-full cursor-pointer rounded-sm border bg-white flex items-center justify-center common-input-select !pr-0 h-auto",
+                "relative w-full cursor-pointer rounded-sm border bg-white flex items-center justify-center common-input-select !pr-0 h-auto text-[13px]",
                 {
                   'input-focus': isPopoverOpen,
                   'common-input-default ': !isPopoverOpen,
@@ -189,7 +189,7 @@ export const MultiSelect = React.forwardRef<
                         <Badge
                           key={value}
                           className={cn(
-                            "p-1 px-2 font-poppins font-medium text-md",
+                            "p-1 px-2 font-poppins font-medium text-[13px]",
                             isAnimating ? "animate-bounce" : "",
                             multiSelectVariants({ variant, className })
                           )}
@@ -248,7 +248,7 @@ export const MultiSelect = React.forwardRef<
               ) : (
                 <div className="flex items-center justify-between w-full mx-auto">
                   <span className="text-[13px] text-[#0755d1] font-medium uppercase tracking-[1.2px] ">
-                    {placeholder}
+                    {`-- ${placeholder} --`}
                   </span>
                   <ChevronDown width={20} height={20} className="text-[#0755d1] cursor-pointer text-muted-foreground mx-2" />
                 </div>
