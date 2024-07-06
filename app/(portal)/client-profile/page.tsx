@@ -41,6 +41,7 @@ export default function ClientProfile() {
     },
   ]);
   const [listCity, setListCity] = useState([]);
+  const [avatarFile, setAvatarFile] = useState<any>();
 
   const { toast } = useToast();
   const router = useRouter();
@@ -175,6 +176,10 @@ export default function ClientProfile() {
     }
   };
 
+  const handleChangeFile = (e: any) => {
+    setAvatarFile(URL.createObjectURL(e.target.files[0]))
+  }
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -191,10 +196,11 @@ export default function ClientProfile() {
               type="file"
               name=""
               id=""
+              onChange={handleChangeFile}
               className="absolute w-full h-full cursor-pointer opacity-0"
             />
             <Image
-              src={
+              src={avatarFile ? avatarFile :
                 userData?.image
                   ? "data:image/png;base64, " + userData.image
                   : camera
