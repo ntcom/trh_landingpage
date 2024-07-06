@@ -47,34 +47,6 @@ function DatePickerInput(props: any) {
     setIsOpen(false);
   }, [date]);
 
-<!--   const handleInputClick = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  const handleConfirm = useCallback(() => {
-    console.log('selectedDate:', selectedDate)
-    setIsOpen(false);
-    setDate(refValueDate.current)
-    onChange && onChange(refValueDate.current)
-  }, [onChange, selectedDate]);
-
-  const calendarContainer = useMemo(() => {
-    // eslint-disable-next-line react/display-name
-    return ({ children }: any) => ( // Định nghĩa lại calendarContainer
-      <div className="bg-blue-50 z-[1000]">
-        {children}
-        <div style={{ textAlign: 'center', marginTop: '10px' }} className="h-10">
-          <div className="custom-wrapper-date p-2 h-[340px]">
-            <p className="divide"></p>
-            <button onClick={handleConfirm} style={{ height: "26px", width: "60px", padding: '10px', background: '#216ba5', color: 'white', border: 'none', borderRadius: '3px' }}>
-              ok
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }, [date]); -->
-
   const handleInputClick = useCallback(() => {
     setIsOpen(true);
   }, []);
