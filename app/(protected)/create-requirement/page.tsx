@@ -44,6 +44,7 @@ import { BellRing } from "lucide-react";
 import ControllerMultiSelect from "@/core/components/Form/ControllerMultipleSelect";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { cn } from "@/lib/utils";
 const options = [
   { title: "CNTT / Đặt lịch họp", value: "MEET" },
   // { title: "CNTT / Đặt văn phòng phẩm", value: "ORDER_STATIONERY" },
@@ -104,11 +105,27 @@ function CreateRequirement() {
     resolver: yupResolver(currentYup),
   });
   const startDate = watch("date_start");
-  const participants_idss = watch("participants_ids");
-  console.log("participants_idss:", participants_idss);
+  const serviceType = watch("type_service_id");
+  const serviceChild = watch("service_child_id");
+  const [isLoading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date);
+  };
+
+  const handleClickOutside = () => {
+    setIsOpen(false);
+  };
+
+  const handleInputClick = () => {
+    setIsOpen(true);
+  };
 
   const onSubmit = async (value: any) => {
     try {
+      setLoading(true)
       const {
         content,
         location,
@@ -118,7 +135,7 @@ function CreateRequirement() {
         employee_id,
         request_more_ids,
         approver_ids,
-        category_id,
+        // category_id,
         ...restRequest
       } = value;
       // Case tạo dịch vụ
@@ -136,7 +153,7 @@ function CreateRequirement() {
             variant: "success",
             action: <ToastAction altText="Done">Done</ToastAction>,
           });
-          reset({});
+          reset();
           return;
         }
         toast({
@@ -159,7 +176,7 @@ function CreateRequirement() {
             name: content,
             location,
             employee_id,
-            category_id,
+            // category_id,
             approver_ids,
             participants_ids,
             request_more_ids,
@@ -174,7 +191,7 @@ function CreateRequirement() {
             variant: "success",
             action: <ToastAction altText="Done">Done</ToastAction>,
           });
-          reset({});
+          reset();
           return;
         }
         toast({
@@ -193,6 +210,8 @@ function CreateRequirement() {
         description: "Vui lòng thử lại",
         action: <ToastAction altText="Thử lại">Thử lại</ToastAction>,
       });
+    } finally {
+      setLoading(false)
     }
   };
   const breadcrumbs = [
@@ -212,14 +231,14 @@ function CreateRequirement() {
       if (result) {
         setOptionsMeet(result);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const getData = async () => {
     try {
       const { result } = await helpdeskService.getHelpDesk();
 
       setHelpdeskOption(result);
-    } catch (error) {}
+    } catch (error) { }
   };
   const getRoom = async (startDate?: string) => {
     try {
@@ -253,10 +272,42 @@ function CreateRequirement() {
   }, [startDate]);
 
   useEffect(() => {
+    if (serviceType) {
+      (async () => {
+        try {
+          const { result } = await helpdeskService.getChildById(serviceType.toString());
+          console.log('result:', result)
+        } catch (error) {
+
+        }
+      })()
+    }
+  }, [serviceType])
+
+  useEffect(() => {
+    if (serviceChild) {
+      (async () => {
+        try {
+          const { result } = await helpdeskService.getDetailByChildId(serviceChild);
+          console.log('result:', result)
+        } catch (error) {
+
+        }
+      })()
+    }
+
+  }, [serviceChild])
+
+  useEffect(() => {
     getData();
     getRoom();
     getOptions();
   }, []);
+
+  const handleSetPickOption = (value: any) => {
+    setPickOption(value)
+    reset()
+  }
 
   return (
     <div className="mb-20">
@@ -269,11 +320,10 @@ function CreateRequirement() {
           <div className="w-full flex m-[50px_0_100px]">
             <SelectCustom
               options={options}
-              iValue={pickOption}
               setIValue={setPickOption}
               icon={request}
               placeholder="Chọn một chủ đề"
-              setPickOption={setPickOption}
+              setPickOption={handleSetPickOption}
             />
           </div>
         </div>
@@ -364,7 +414,7 @@ function CreateRequirement() {
                     placeholder="Yêu cầu thêm"
                   />
                 </div>
-                <div className="w-full">
+                {/* <div className="w-full">
                   <ControllerSelect
                     options={optionsMeet.category}
                     control={control}
@@ -374,7 +424,7 @@ function CreateRequirement() {
                     icon={requestz}
                     placeholder="Danh mục"
                   />
-                </div>
+                </div> */}
                 <div className="w-full">
                   <ControllerMultiSelect
                     options={optionsMeet.user_approval}
@@ -396,131 +446,139 @@ function CreateRequirement() {
                 />
               </div>
             ) : //  : pickOption === "ORDER_STATIONERY" ? (
-            //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
-            //     <InputCustom
-            //       type={"text"}
-            //       placeholder={"Tên sản phẩm"}
-            //       setInputValue={setTheme}
-            //       icon={tagName}
-            //     />
-            //     <InputCustom
-            //       type={"number"}
-            //       placeholder={"Số lượng"}
-            //       setInputValue={setTheme}
-            //       icon={quantity2}
-            //     />
-            //     <SelectCustom
-            //       options={processingDepartment.typeOfService}
-            //       setIValue={setTheme}
-            //       icon={receivingDepartment}
-            //       placeholder="Bộ phận tiếp nhận"
-            //     />
-            //     <SelectCustom
-            //       options={processingDepartment.typeOfService}
-            //       setIValue={setTheme}
-            //       icon={suporter}
-            //       placeholder="Người xử lý"
-            //     />
-            //     <InputCustom
-            //       type={"file"}
-            //       placeholder={"Đính kèm tài liệu, văn bản"}
-            //       setInputValue={setTheme}
-            //       icon={attach}
-            //     />
-            //   </div>
-            // )
-            pickOption === "SUPPORT_REPORT" ? (
-              <div className="flex flex-col gap-5 m-[30px_0_30px]">
-                <ControllerInput
-                  control={control}
-                  name="name"
-                  placeholder="Nội dung yêu cầu"
-                  icon={time}
-                />
+              //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
+              //     <InputCustom
+              //       type={"text"}
+              //       placeholder={"Tên sản phẩm"}
+              //       setInputValue={setTheme}
+              //       icon={tagName}
+              //     />
+              //     <InputCustom
+              //       type={"number"}
+              //       placeholder={"Số lượng"}
+              //       setInputValue={setTheme}
+              //       icon={quantity2}
+              //     />
+              //     <SelectCustom
+              //       options={processingDepartment.typeOfService}
+              //       setIValue={setTheme}
+              //       icon={receivingDepartment}
+              //       placeholder="Bộ phận tiếp nhận"
+              //     />
+              //     <SelectCustom
+              //       options={processingDepartment.typeOfService}
+              //       setIValue={setTheme}
+              //       icon={suporter}
+              //       placeholder="Người xử lý"
+              //     />
+              //     <InputCustom
+              //       type={"file"}
+              //       placeholder={"Đính kèm tài liệu, văn bản"}
+              //       setInputValue={setTheme}
+              //       icon={attach}
+              //     />
+              //   </div>
+              // )
+              pickOption === "SUPPORT_REPORT" ? (
+                <div className="flex flex-col gap-5 m-[30px_0_30px]">
+                  <ControllerInput
+                    control={control}
+                    name="name"
+                    placeholder="Tên dịch vụ"
+                    icon={time}
+                  />
 
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.type_service_ids}
-                    control={control}
-                    name="type_service_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    icon={typeService}
-                    placeholder="Loại dịch vụ"
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.type_service_ids}
+                      control={control}
+                      name="type_service_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      icon={typeService}
+                      placeholder="Loại dịch vụ"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.service_child_ids}
+                      control={control}
+                      pathLabel="name"
+                      pathValue="id"
+                      name="service_child_id"
+                      icon={childService}
+                      placeholder="Dịch vụ con"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.service_detail_ids}
+                      name="service_detail_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      control={control}
+                      icon={detailService}
+                      placeholder="Dịch vụ chi tiết"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.hr_department_ids}
+                      icon={receivingDepartment}
+                      control={control}
+                      name="receiving_department_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      placeholder="Bộ phận tiếp nhận"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.helpdesk_team_ids}
+                      icon={suportTeam}
+                      name="team_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      control={control}
+                      placeholder="Đội ngũ hỗ trợ"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.user_ids}
+                      icon={suporter}
+                      control={control}
+                      name="user_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      placeholder="Người xử lý"
+                    />
+                  </div>
+                  <InputCustom
+                    type={"file"}
+                    placeholder={"Đính kèm tài liệu, văn bản"}
+                    setInputValue={setTheme}
+                    icon={attach}
                   />
                 </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.service_child_ids}
-                    control={control}
-                    pathLabel="name"
-                    pathValue="id"
-                    name="service_child_id"
-                    icon={childService}
-                    placeholder="Dịch vụ con"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.service_detail_ids}
-                    name="service_detail_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    control={control}
-                    icon={detailService}
-                    placeholder="Dịch vụ chi tiết"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.hr_department_ids}
-                    icon={receivingDepartment}
-                    control={control}
-                    name="receiving_department_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    placeholder="Bộ phận tiếp nhận"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.helpdesk_team_ids}
-                    icon={suportTeam}
-                    name="team_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    control={control}
-                    placeholder="Đội ngũ hỗ trợ"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.user_ids}
-                    icon={suporter}
-                    control={control}
-                    name="user_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    placeholder="Người xử lý"
-                  />
-                </div>
-                <InputCustom
-                  type={"file"}
-                  placeholder={"Đính kèm tài liệu, văn bản"}
-                  setInputValue={setTheme}
-                  icon={attach}
-                />
-              </div>
-            ) : (
-              <div className="h-[100px]"></div>
-            )}
+              ) : (
+                <div className="h-[100px]"></div>
+              )}
 
             <div className="flex justify-center gap-4 mt-[50px]">
-              <button type="submit" className="btn-common btn-send">
+              <button disabled={isLoading} type="submit" className={cn("btn-common relative", {
+                'bg-gray-400': isLoading,
+                'btn-send': !isLoading
+              })}>
                 <Image src={send} alt="" />
                 Gửi đi
+                {
+                  isLoading && <div role="status" className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
+                  </div>
+                }
               </button>
-              <button className="btn-common btn-success btn-refresh">
+              <button type="button" onClick={() => reset()} className="btn-common btn-success btn-refresh">
                 <Image src={refresh} alt="" />
                 Làm mới
               </button>

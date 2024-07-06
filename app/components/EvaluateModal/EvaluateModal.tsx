@@ -141,6 +141,7 @@ export default function EvaluateModal({
               Gửi đánh giá
             </button>
             <button
+             type="button"
               onClick={() => {
                 setOpenModal(false);
                 setValue("");

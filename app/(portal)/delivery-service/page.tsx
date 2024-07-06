@@ -36,7 +36,7 @@ export default function DeliveryService() {
   // };
 
   const getOrderList = async () => {
-    const {result} = await orderService.getData({})
+    const { result } = await orderService.getData({});
     setOrderData(result.sale_order_ids);
     console.log("========>", result.sale_order_ids);
   };
@@ -104,7 +104,9 @@ export default function DeliveryService() {
                     : `/delivery-service/${line.name}`
                 }
                 onClick={(e) => e.stopPropagation()}
-              >Chi tiết</Link>
+              >
+                Chi tiết
+              </Link>
             </li>
           </ul>
           {line?.line_ids && (
@@ -116,25 +118,25 @@ export default function DeliveryService() {
               } pl-[66.3px] transition-all duration-300`}
             >
               <ul className="flex items-center py-5 px-4">
-                <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[159.4px] xl:w-full xl:max-w-[15%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Mã đơn
                 </li>
-                <li className="w-[211px] xl:w-full xl:max-w-[20%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[212.6px] xl:w-full xl:max-w-[20%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Nơi đi
                 </li>
-                <li className="w-[184.6px] xl:w-full xl:max-w-[17.5%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[180.7px] xl:w-full xl:max-w-[17%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Ngày đi
                 </li>
-                <li className="w-[211px] xl:w-full xl:max-w-[20%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[212.6px] xl:w-full xl:max-w-[20%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Nơi đến
                 </li>
-                <li className="w-[158.25px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[85px] xl:w-full xl:max-w-[8%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Loại xe
                 </li>
-                <li className="w-[158.25px] xl:w-full xl:max-w-[10%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[85px] xl:w-full xl:max-w-[8%] flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Biển số
                 </li>
-                <li className="w-[131.8px] xl:w-full xl:max-w-[12.5%] shrink-0 flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
+                <li className="w-[127.5px] xl:w-full xl:max-w-[12%] shrink-0 flex items-center gap-3 text-[#030229] text-xs font-medium whitespace-nowrap">
                   Trạng thái
                 </li>
               </ul>
@@ -145,26 +147,26 @@ export default function DeliveryService() {
                     key={itemKey}
                     className={`relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] px-4`}
                   >
-                    <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#4285F4] text-xs font-semibold whitespace-nowrap">
-                        {item.name}
+                    <li className="w-[159.4px] xl:w-full xl:max-w-[15%] flex items-center gap-[10px] text-[#4285F4] text-xs font-semibold whitespace-nowrap">
+                      {item.name}
                     </li>
-                    <li className="w-[211px] xl:w-full xl:max-w-[20%] pr-2 flex items-center gap-[10px] text-[#030229] text-xs font-medium">
+                    <li className="w-[212.6px] xl:w-full xl:max-w-[20%] pr-2 flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.address_start}
                     </li>
-                    <li className="w-[184.6px] xl:w-full xl:max-w-[17.5%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
+                    <li className="w-[180.7px] xl:w-full xl:max-w-[17%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.date_start}
                     </li>
-                    <li className="w-[211px] xl:w-full xl:max-w-[20%] pr-2 flex items-center gap-[10px] text-[#030229] text-xs font-medium">
+                    <li className="w-[212.6px] xl:w-full xl:max-w-[20%] pr-2 flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.address_end}
                     </li>
-                    <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
+                    <li className="w-[85px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.type_car}
                     </li>
-                    <li className="w-[105.5px] xl:w-full xl:max-w-[10%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
+                    <li className="w-[85px] xl:w-full xl:max-w-[8%] flex items-center gap-[10px] text-[#030229] text-xs font-medium">
                       {item.license_plate}
                     </li>
                     <li
-                      className={`w-[131.8px] xl:w-full xl:max-w-[12.5%] h-[35px] shrink-0 flex items-center justify-center ${
+                      className={`w-[127.5px] xl:w-full xl:max-w-[12%] h-[35px] shrink-0 flex items-center justify-center ${
                         item.state === "completed"
                           ? "bg-[#3a974c1a]"
                           : item.state === "shipping"
