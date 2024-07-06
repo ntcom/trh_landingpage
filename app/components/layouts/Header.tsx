@@ -60,6 +60,11 @@ export default function Header() {
     }
   };
 
+  const isHelpdesk =
+    pathname === "/services" ||
+    pathname === "/create-requirement" ||
+    pathname === "/checking-process";
+
   return (
     checkPortal !== "delivery-service" &&
     pathname !== "/client-profile" && (
@@ -103,7 +108,7 @@ export default function Header() {
       </div>} */}
         <header
           className={`${
-            scroll || pathname === '/login'
+            scroll || pathname === "/login"
               ? "fixed top-0 bg-[#fff] p-[0_15px] sm:p-[0_65px] shadow-[0_2px_15px_0_rgba(100,100,100,0.05)]"
               : "header-on-scroll absolute bg-transparent p-[30px_15px] sm:p-[50px_65px]"
           } left-0 right-0 transition-all duration-500 z-[996]`}
@@ -113,7 +118,9 @@ export default function Header() {
               <Link
                 href="/"
                 className={`${
-                  scroll || pathname === '/login' ? "w-[100px] h-[42px]" : "w-[150px] h-[60px]"
+                  scroll || pathname === "/login"
+                    ? "w-[100px] h-[42px]"
+                    : "w-[150px] h-[60px]"
                 }`}
               >
                 {/* <p
@@ -134,7 +141,7 @@ export default function Header() {
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
                           : "text-[#fff] hover:text-[#ffffffb3]"
-                      } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       IT Helpdesk
                     </div>
@@ -144,10 +151,36 @@ export default function Header() {
                         scroll
                           ? "text-[#4c4c4c] hover:text-[#0755d1]"
                           : "text-[#fff] hover:text-[#ffffffb3]"
-                      } font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
                     >
                       Khách hàng
                     </div>
+                    <Link
+                      href={
+                        "https://main--gentle-gingersnap-c7b4c3.netlify.app/"
+                      }
+                      target="_blank"
+                      className={`py-[15px] cursor-pointer text-[15px] ${
+                        scroll
+                          ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                          : "text-[#fff] hover:text-[#ffffffb3]"
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                    >
+                      Khảo sát
+                    </Link>
+                    <Link
+                      href={
+                        "https://deploy-preview-1--sage-paprenjak-b8e71d.netlify.app/"
+                      }
+                      target="_blank"
+                      className={`py-[15px] cursor-pointer text-[15px] ${
+                        scroll
+                          ? "text-[#4c4c4c] hover:text-[#0755d1]"
+                          : "text-[#fff] hover:text-[#ffffffb3]"
+                      } font-poppins font-medium tracking-[2.8px] leading-[14px] uppercase transition-all`}
+                    >
+                      Kiểm tra
+                    </Link>
                   </nav>
                 )}
 
@@ -155,12 +188,12 @@ export default function Header() {
                   <div className="flex items-center gap-9">
                     <div className="relative flex items-center">
                       <input
-                        placeholder="seach"
+                        placeholder="search"
                         type="text"
                         className={`${
                           onSearch ? "w-[280px] opacity-100" : "w-0 opacity-0"
                         } overflow-hidden h-[35px] p-[8px_40px_8px_15px] bg-transparent rounded-sm outline-none text-sm border ${
-                          scroll
+                          scroll || isHelpdesk
                             ? "text-[#0755d1] border-[#0755d1]"
                             : "text-[#fff]"
                         } transition-all duration-300`}
@@ -175,7 +208,7 @@ export default function Header() {
                         }}
                         className="absolute right-4"
                       >
-                        {scroll ? (
+                        {scroll || isHelpdesk ? (
                           <Image
                             src={searchGreen}
                             width={18}
@@ -193,7 +226,7 @@ export default function Header() {
                       </button>
                     </div>
                     <button onClick={() => setSideBar(true)}>
-                      {scroll ? (
+                      {scroll || isHelpdesk ? (
                         <Image src={navigationGreen} width={20} alt="" />
                       ) : (
                         <Image src={navigation} width={20} alt="" />

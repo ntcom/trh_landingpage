@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 const blogsList = [
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products & Reworking Pieces",
+      title: "Hệ thống quản lý quan hệ khách hàng CRM LOGISTICS",
       comments: 4,
       likes: 4,
       views: 2457,
@@ -19,7 +19,7 @@ const blogsList = [
     },
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products",
+      title: "Hệ thống quản lý nguồn nhân lực HRM",
       comments: 3,
       likes: 3,
       views: 538,
@@ -27,7 +27,7 @@ const blogsList = [
     },
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products",
+      title: "Hệ thống quản lý dịch vụ Công nghệ thông tin IT Helpdesk",
       comments: 0,
       likes: 4,
       views: 759,
@@ -35,7 +35,7 @@ const blogsList = [
     },
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products & Reworking Pieces",
+      title: "Hệ thống quản lý văn bản tài liệu",
       comments: 4,
       likes: 4,
       views: 2457,
@@ -43,7 +43,7 @@ const blogsList = [
     },
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products",
+      title: "Hệ thống quản lý Dự án",
       comments: 3,
       likes: 3,
       views: 538,
@@ -51,7 +51,7 @@ const blogsList = [
     },
     {
       id: uuidv4(),
-      title: "We Specialize In One Of A Kind Products",
+      title: "Hệ thống quản lý Đội xe",
       comments: 0,
       likes: 4,
       views: 759,

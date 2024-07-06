@@ -108,6 +108,20 @@ function CreateRequirement() {
   const serviceType = watch("type_service_id");
   const serviceChild = watch("service_child_id");
   const [isLoading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date);
+  };
+
+  const handleClickOutside = () => {
+    setIsOpen(false);
+  };
+
+  const handleInputClick = () => {
+    setIsOpen(true);
+  };
 
   const onSubmit = async (value: any) => {
     try {

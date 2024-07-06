@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css"
@@ -29,6 +30,7 @@ const MemoizedCustomInput = React.memo(CustomInput, (prevProps, nextProps) => {
 function DatePickerInput(props: any) {
   const { onChange, placeholder, value, ...rest } = props;
   console.log('rest:', rest)
+
   const refValueDate = useRef()
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -44,6 +46,34 @@ function DatePickerInput(props: any) {
     setSelectedDate(date)
     setIsOpen(false);
   }, [date]);
+
+<!--   const handleInputClick = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const handleConfirm = useCallback(() => {
+    console.log('selectedDate:', selectedDate)
+    setIsOpen(false);
+    setDate(refValueDate.current)
+    onChange && onChange(refValueDate.current)
+  }, [onChange, selectedDate]);
+
+  const calendarContainer = useMemo(() => {
+    // eslint-disable-next-line react/display-name
+    return ({ children }: any) => ( // Định nghĩa lại calendarContainer
+      <div className="bg-blue-50 z-[1000]">
+        {children}
+        <div style={{ textAlign: 'center', marginTop: '10px' }} className="h-10">
+          <div className="custom-wrapper-date p-2 h-[340px]">
+            <p className="divide"></p>
+            <button onClick={handleConfirm} style={{ height: "26px", width: "60px", padding: '10px', background: '#216ba5', color: 'white', border: 'none', borderRadius: '3px' }}>
+              ok
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }, [date]); -->
 
   const handleInputClick = useCallback(() => {
     setIsOpen(true);

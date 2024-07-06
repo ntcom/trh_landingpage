@@ -39,8 +39,8 @@ export default function ClientProfile() {
       value: "vn",
       label: "Việt Nam",
     },
-  ])
-  const [listCity, setListCity] = useState([])
+  ]);
+  const [listCity, setListCity] = useState([]);
 
   const { toast } = useToast();
   const router = useRouter();
@@ -48,14 +48,13 @@ export default function ClientProfile() {
   const getUserInfo = async () => {
     const { result } = await userService.getData({});
     setUserData(result.employee_id[0]);
-    console.log("result: ", result);
   };
 
   const getCitys = async () => {
-    const { result } = await citysService.getData({})
-    console.log('citysService', result);
-    setListCity(result)
-  }
+    const { result } = await citysService.getData({});
+    console.log("citysService", result);
+    setListCity(result);
+  };
 
   const submitFormInfo = (e: any) => {
     e.preventDefault();
@@ -194,7 +193,19 @@ export default function ClientProfile() {
               id=""
               className="absolute w-full h-full cursor-pointer opacity-0"
             />
-            <Image src={userData?.image ? 'data:image/png;base64, ' +  userData.image : camera} width={28} height={28} alt="" className={`${userData?.image ? 'w-full h-full' : 'w-[28px] h-[28px]'} object-cover`}/>
+            <Image
+              src={
+                userData?.image
+                  ? "data:image/png;base64, " + userData.image
+                  : camera
+              }
+              width={28}
+              height={28}
+              alt=""
+              className={`${
+                userData?.image ? "w-full h-full" : "w-[28px] h-[28px]"
+              } object-cover`}
+            />
           </label>
 
           <div className="flex flex-col gap-5 mt-8">
@@ -285,7 +296,10 @@ export default function ClientProfile() {
                   setPickOption={setParamOption}
                   icon={nation}
                 /> */}
-                <ComboboxDemo arrData={countryData} defaultValue={countryData[0].label}/>
+                <ComboboxDemo
+                  arrData={countryData}
+                  defaultValue={countryData[0].label}
+                />
               </div>
               <div className="w-full">
                 <label
@@ -302,7 +316,7 @@ export default function ClientProfile() {
                   setPickOption={setParamOption}
                   icon={city}
                 /> */}
-                <ComboboxDemo arrData={listCity}/>
+                <ComboboxDemo arrData={listCity} />
               </div>
             </div>
             <div className="w-full">

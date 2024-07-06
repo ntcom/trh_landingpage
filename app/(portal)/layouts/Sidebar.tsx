@@ -67,8 +67,8 @@ export default function Sidebar() {
   };
 
   useEffect(() => {
-    getUserInfo()
-  }, [])
+    getUserInfo();
+  }, []);
 
   return (
     <aside className="fixed top-0 left-0 bottom-0 shrink-0 w-[218px] 2xl:w-[268px] h-screen bg-[linear-gradient(270deg,#4285F4_-67.2%,#10439F_100%)] flex flex-col items-center">
@@ -127,9 +127,21 @@ export default function Sidebar() {
 
       <div className="absolute bottom-10 flex flex-col justify-between gap-5 items-center">
         <div className="flex items-center gap-[10px]">
-          <button className="shrink-0 block w-[45px] h-[45px] rounded-xl overflow-hidden">
-            <Image src={userData?.image ? 'data:image/png;base64, ' +  userData.image : ava} width={100} height={100} alt="" />
-          </button>
+          <Link
+            href={"/client-profile"}
+            className="shrink-0 block w-[45px] h-[45px] rounded-xl overflow-hidden"
+          >
+            <Image
+              src={
+                userData?.image
+                  ? "data:image/png;base64, " + userData.image
+                  : ava
+              }
+              width={100}
+              height={100}
+              alt=""
+            />
+          </Link>
           <div>
             <p className="text-sm text-[#fff] font-bold">{userData?.name}</p>
             <p className="text-sm text-[#fff] texts-[#1f1f1f99] font-mediums">
