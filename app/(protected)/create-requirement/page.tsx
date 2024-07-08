@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import BannerCustom from "@/app/components/BannerCustom";
 import Image from "next/image";
 import send from "@/assets/svgs/send.svg";
 import refresh from "@/assets/svgs/refresh.svg";
 import cancel from "@/assets/svgs/cancel.svg";
-import channel from "@/assets/svgs/channel.svg";
 import attach from "@/assets/svgs/attach.svg";
 import note from "@/assets/svgs/note.svg";
 import SelectCustom from "@/app/components/SelectCustom/SelectCustom";
@@ -13,15 +12,12 @@ import typeService from "@/assets/svgs/typeof-service.svg";
 import request from "@/assets/svgs/request.svg";
 import location from "@/assets/svgs/location.svg";
 import host from "@/assets/svgs/host.svg";
-import quantity from "@/assets/svgs/quantity.svg";
-import quantity2 from "@/assets/svgs/quantity2.svg";
 import time from "@/assets/svgs/time.svg";
 import childService from "@/assets/svgs/childService.svg";
 import detailService from "@/assets/svgs/detailService.svg";
 import receivingDepartment from "@/assets/svgs/receiving-department.svg";
 import suportTeam from "@/assets/svgs/suportTeam.svg";
 import suporter from "@/assets/svgs/suporter.svg";
-import tagName from "@/assets/svgs/tag-name.svg";
 import requestz from "@/assets/svgs/request.svg";
 import InputCustom from "@/app/components/InputCustom/InputCustom";
 import ControllerSelect from "@/core/components/Form/ControllerSelect";
@@ -35,7 +31,6 @@ import {
 } from "./utils/validator";
 import ControllerInput from "@/core/components/Form/ControllerInput";
 import helpdeskService from "@/app/services/helpdesk.service";
-import DatePickerInput from "@/core/components/DatePickerInput/DatePickerInput";
 import ControllerDatePicker from "@/core/components/Form/ControllerDatePicker";
 import helpdeskTicketService from "@/app/services/helpdesk-ticket.service";
 import meetRoomService from "@/app/services/meet-room.service";
@@ -73,6 +68,8 @@ function CreateRequirement() {
   const [theme, setTheme] = useState("");
   const [dateDisplay, setDateDisplay] = useState("");
   const [bookedMeet, setBookedMeet] = useState([]);
+  const [serviceChildOption, setServiceChildOption] = useState([])
+  const [serviceDetailOption, setServiceDetailOption] = useState([])
   const [helpdeskOption, setHelpdeskOption] = useState({
     channel: [],
     helpdesk_team_ids: [],
@@ -100,6 +97,7 @@ function CreateRequirement() {
     formState: { errors },
     reset,
     watch,
+    resetField,
   } = useForm<any>({
     mode: "onChange",
     resolver: yupResolver(currentYup),
@@ -108,21 +106,7 @@ function CreateRequirement() {
   const serviceType = watch("type_service_id");
   const serviceChild = watch("service_child_id");
   const [isLoading, setLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleDateChange = (date: any) => {
-    setSelectedDate(date);
-  };
-
-  const handleClickOutside = () => {
-    setIsOpen(false);
-  };
-
-  const handleInputClick = () => {
-    setIsOpen(true);
-  };
-
+  const category_id = useRef('')
   const onSubmit = async (value: any) => {
     try {
       setLoading(true)
@@ -176,7 +160,7 @@ function CreateRequirement() {
             name: content,
             location,
             employee_id,
-            // category_id,
+            category_id: category_id.current,
             approver_ids,
             participants_ids,
             request_more_ids,
@@ -230,16 +214,18 @@ function CreateRequirement() {
       const { result } = await meetRoomService.getOption();
       if (result) {
         setOptionsMeet(result);
+        category_id.current = result.category.find((item: any) => item.type === 'meeting_room')?.id || ''
       }
     } catch (error) { }
   };
   const getData = async () => {
     try {
       const { result } = await helpdeskService.getHelpDesk();
-
       setHelpdeskOption(result);
+
     } catch (error) { }
   };
+
   const getRoom = async (startDate?: string) => {
     try {
       const currentDate = startDate
@@ -267,47 +253,61 @@ function CreateRequirement() {
     }
   };
 
+  const handleSetPickOption = (value: any) => {
+    setPickOption(value)
+    reset()
+  }
+
   useEffect(() => {
     startDate && getRoom(startDate);
   }, [startDate]);
 
   useEffect(() => {
+    resetField("service_detail_id")
+    setServiceDetailOption([])
+    resetField("service_child_id")
+    setServiceChildOption([])
     if (serviceType) {
       (async () => {
         try {
-          const { result } = await helpdeskService.getChildById(serviceType.toString());
-          console.log('result:', result)
+          const { result } = await helpdeskService.getChildById(serviceType);
+          if (result) {
+            setServiceChildOption(result)
+            return
+          }
+          setServiceChildOption([])
         } catch (error) {
-
+          setServiceChildOption([])
         }
       })()
     }
-  }, [serviceType])
+  }, [serviceType, resetField])
 
   useEffect(() => {
+    resetField("service_detail_id")
+    setServiceDetailOption([])
     if (serviceChild) {
       (async () => {
         try {
           const { result } = await helpdeskService.getDetailByChildId(serviceChild);
-          console.log('result:', result)
+          if (result) {
+            setServiceDetailOption(result)
+            return
+          }
+          setServiceDetailOption([])
         } catch (error) {
-
+          setServiceDetailOption([])
         }
       })()
     }
 
-  }, [serviceChild])
+  }, [serviceChild, resetField])
 
   useEffect(() => {
     getData();
     getRoom();
     getOptions();
   }, []);
-
-  const handleSetPickOption = (value: any) => {
-    setPickOption(value)
-    reset()
-  }
 
   return (
     <div className="mb-20">
@@ -501,7 +501,7 @@ function CreateRequirement() {
                   </div>
                   <div className="w-full">
                     <ControllerSelect
-                      options={helpdeskOption.service_child_ids}
+                      options={serviceChildOption}
                       control={control}
                       pathLabel="name"
                       pathValue="id"
@@ -512,7 +512,7 @@ function CreateRequirement() {
                   </div>
                   <div className="w-full">
                     <ControllerSelect
-                      options={helpdeskOption.service_detail_ids}
+                      options={serviceDetailOption}
                       name="service_detail_id"
                       pathLabel="name"
                       pathValue="id"
@@ -565,7 +565,7 @@ function CreateRequirement() {
                 <div className="h-[100px]"></div>
               )}
 
-            <div className="flex justify-center gap-4 mt-[50px]">
+            <div id="button-requirement" className="flex justify-center gap-4 mt-[50px]">
               <button disabled={isLoading} type="submit" className={cn("btn-common relative", {
                 'bg-gray-400': isLoading,
                 'btn-send': !isLoading
@@ -578,11 +578,11 @@ function CreateRequirement() {
                   </div>
                 }
               </button>
-              <button type="button" onClick={() => reset()} className="btn-common btn-success btn-refresh">
+              <button disabled={isLoading} type="button" onClick={() => reset()} className="btn-common btn-success btn-refresh">
                 <Image src={refresh} alt="" />
                 Làm mới
               </button>
-              <a href="/" className="btn-common btn-danger btn-cancel">
+              <a href={isLoading ? '#button-requirement' : '/'} className="btn-common btn-danger btn-cancel">
                 <Image src={cancel} alt="" />
                 Hủy bỏ
               </a>

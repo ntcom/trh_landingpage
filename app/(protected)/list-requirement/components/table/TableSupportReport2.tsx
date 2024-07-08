@@ -14,208 +14,7 @@ import arrowDown from "@/assets/svgs/Portal/arrow-down.svg";
 import helpdeskService from "@/app/services/helpdesk.service";
 import Link from "next/link";
 import { Eye } from "lucide-react";
-const dataTable = [
-  {
-    stt: 1,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "complete",
-      title: "Hoàn thành",
-    },
-  },
-  {
-    stt: 4,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "cancel",
-      title: "Hủy",
-    },
-  },
-  {
-    stt: 8,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "transport",
-      title: "Đang vận chuyển",
-    },
-  },
-  {
-    stt: 4,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "complete",
-      title: "Hoàn thành",
-    },
-  },
-  {
-    stt: 5,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "complete",
-      title: "Hoàn thành",
-    },
-  },
-  {
-    stt: 6,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "transport",
-      title: "Đang vận chuyển",
-    },
-  },
-  {
-    stt: 7,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "complete",
-      title: "Hoàn thành",
-    },
-  },
-  {
-    stt: 11,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "transport",
-      title: "Đang vận chuyển",
-    },
-  },
-  {
-    stt: 12,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "complete",
-      title: "Hoàn thành",
-    },
-  },
-  {
-    stt: 14,
-    code: "S00924",
-    name: "Yêu cầu thay Case",
-    startDate: "11/12/2024",
-    content: "Nội dung yêu cầu",
-    endDate: "06/03/2025",
-    channel_source: "Kênh",
-    type_service_id: "Loại dịch vụ",
-    service_child_id: "Dịch vụ con",
-    service_detail_id: "Dịch vụ chi tiết",
-    receiving_department_id: "Phòng CNTT",
-    team_id: "Team CNTT",
-    user_id: "Nguyễn Văn An",
-    review: "Đánh giá",
-    status: {
-      type: "cancel",
-      title: "Hủy",
-    },
-  },
-];
+
 function TableSupportReport2() {
   const [helpdesk, setHelpdesk] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState('')
@@ -223,32 +22,31 @@ function TableSupportReport2() {
   const getHelpDesk = async (search?: string) => {
     try {
       const res = await helpdeskService.getListHelpDesk();
+      if (res?.result instanceof Array) {
+        setHelpdesk(res.result);
+      }
+    } catch (error) { }
+  };
+  const searchHelpdesk = async (search: string) => {
+    try {
+      const res = await helpdeskService.search(search);
       if (res.result) {
         setHelpdesk(res.result);
       }
     } catch (error) { }
   };
-  const searchHelpdesk = async (search?: string) => {
-    try {
-      const res = await helpdeskService.getListHelpDesk();
-      if (res.result) {
-        setHelpdesk(res.result);
-      }
-    } catch (error) { }
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      searchHelpdesk(searchValue)
+    }
   };
   useEffect(() => {
     getHelpDesk();
   }, []);
-  // 
-  // useEffect(() => {
-  //   if (debounceValue) {
-  //     getHelpDesk(debounceValue);
-  //   }
-  // }, [debounceValue]);
 
   const handleSearch = () => {
-    console.log(searchValue)
-    getHelpDesk()
+    searchHelpdesk(searchValue)
   }
 
   return (
@@ -261,7 +59,7 @@ function TableSupportReport2() {
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
             </svg>
           </div>
-          <input value={searchValue} onChange={(e: any) => setSearchValue(e.target.value)} type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm hỗ trợ dịch vụ..." required />
+          <input value={searchValue} onKeyDown={handleKeyDown} onChange={(e: any) => setSearchValue(e.target.value)} type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm hỗ trợ dịch vụ..." required />
         </div>
         <button onClick={handleSearch} type="button" className="p-2.5 ms-2 text-sm font-medium text-white bg-[#0755d1] rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-[#0755d1] dark:focus:ring-blue-800">
           <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -388,7 +186,7 @@ function TableSupportReport2() {
             </TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="relative">
           {helpdesk.map((item, index) => {
             const status = item.status;
             return (
@@ -439,6 +237,9 @@ function TableSupportReport2() {
               </TableRow>
             );
           })}
+          {
+            helpdesk.length === 0 && <div style={{ minHeight: "150px" }}><p className="empty-table-content">Không tìm thấy dịch vụ</p></div>
+          }
         </TableBody>
       </Table>
     </div>

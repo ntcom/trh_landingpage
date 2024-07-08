@@ -200,9 +200,23 @@ function TableMeet2() {
 
     }
   }
+  const searchRoom = async (search: string) => {
+    try {
+      const res = await meetRoomService.search(search);
+      if (res?.result instanceof Array) {
+        setRoom(res.result);
+      }
+    } catch (error) { }
+  };
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      searchRoom(searchValue)
+    }
+  };
+
   const handleSearch = () => {
-    console.log(searchValue)
-    getRoom()
+    searchRoom(searchValue)
   }
   useEffect(() => {
     getRoom()
@@ -217,7 +231,7 @@ function TableMeet2() {
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
             </svg>
           </div>
-          <input value={searchValue} onChange={(e: any) => setSearchValue(e.target.value)} type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm phòng họp..." required />
+          <input value={searchValue} onKeyDown={handleKeyDown} onChange={(e: any) => setSearchValue(e.target.value)} type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tìm kiếm phòng họp..." required />
         </div>
         <button onClick={handleSearch} type="button" className="p-2.5 ms-2 text-sm font-medium text-white bg-[#0755d1] rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-[#0755d1] dark:focus:ring-blue-800">
           <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -290,7 +304,7 @@ function TableMeet2() {
             </div> </TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="relative">
           {room.map((item, index) => {
             const status = item.request_status
             return (
@@ -344,6 +358,9 @@ function TableMeet2() {
               </TableRow>
             );
           })}
+          {
+            room.length === 0 && <div style={{ minHeight: "150px" }}><p className="empty-table-content">Không tìm thấy phòng họp</p></div>
+          }
         </TableBody>
       </Table>
     </div>

@@ -192,8 +192,8 @@ body {
   font-family: "Poppins", sans-serif;
   width: 100%;
   background-color: transparent;
-  color: #1d2024;
-  font-size: 14px;
+  /* color: #1d2024; */
+  /* font-size: 14px; */
   letter-spacing: 1.2px;
   outline: none;
   border-radius: 2px;
