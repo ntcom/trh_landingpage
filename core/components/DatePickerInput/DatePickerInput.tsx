@@ -29,7 +29,6 @@ const MemoizedCustomInput = React.memo(CustomInput, (prevProps, nextProps) => {
 
 function DatePickerInput(props: any) {
   const { onChange, placeholder, value, ...rest } = props;
-  console.log('rest:', rest)
 
   const refValueDate = useRef()
 
@@ -52,7 +51,6 @@ function DatePickerInput(props: any) {
   }, []);
 
   const handleConfirm = useCallback(() => {
-    console.log('selectedDate:', selectedDate)
     setIsOpen(false);
     setDate(refValueDate.current)
     onChange && onChange(refValueDate.current)

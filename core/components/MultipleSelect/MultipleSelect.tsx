@@ -65,6 +65,7 @@ interface MultiSelectProps
   asChild?: boolean;
   className?: string;
   icon?: any;
+  value: any
 }
 
 export const MultiSelect = React.forwardRef<
@@ -84,6 +85,7 @@ export const MultiSelect = React.forwardRef<
       maxCount = 3,
       asChild = false,
       className,
+      value,
       ...props
     },
     ref
@@ -159,6 +161,12 @@ export const MultiSelect = React.forwardRef<
       window.addEventListener("resize", debouncedUpdateWidth);
       return () => window.removeEventListener("resize", debouncedUpdateWidth);
     }, [debouncedUpdateWidth]);
+
+    React.useEffect(() => {
+      if (!value || value.length === 0) {
+        setSelectedValues([])
+      }
+    }, [value])
 
     return (
       <div className="w-full max-w-full" ref={refWrap}>

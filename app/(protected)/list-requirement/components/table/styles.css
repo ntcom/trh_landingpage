@@ -5,3 +5,7 @@
 .th-table-require {
   @apply flex items-center gap-2 text-[#030229] text-sm font-normal whitespace-nowrap;
 }
+
+.empty-table-content{
+  @apply absolute translate-x-1/2 translate-y-1/2 top-1/2 right-1/2
+}

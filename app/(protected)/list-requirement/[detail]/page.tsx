@@ -8,6 +8,7 @@ import EvaluateModal, {
 } from "@/app/components/EvaluateModal/EvaluateModal";
 import { usePathname } from "next/navigation";
 import helpdeskService from "@/app/services/helpdesk.service";
+import cardAva from "@/assets/imgs/Portal/card-ava.png";
 
 const questionsList = [
   {
@@ -218,18 +219,24 @@ export default function Process() {
                                   {cmt?.date}
                                 </p>
                               </div>
+
                               <li className="flex gap-3">
-                                <div className="w-10 h-10 rounded overflow-hidden">
-                                  <Image src={user1} alt="" />
+                                <div className="min-w-10 h-10 rounded overflow-hidden">
+                                  <Image src={cmt?.image ? "data:image/svg+xml;base64," + cmt.image : cardAva}
+                                    width={40}
+                                    height={40}
+                                    alt=""
+                                    className="object-cover" />
                                 </div>
-                                <div>
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: cmt.message,
-                                    }}
-                                  />
-                                </div>
+                                <div>{cmt?.partner_id}</div>
                               </li>
+                              <div className="text-slate-700 mt-3 text-sm">
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: cmt.message,
+                                  }}
+                                />
+                              </div>
                             </div>
                           );
                         })}
@@ -276,25 +283,27 @@ export default function Process() {
                   <div className="font-poppins text-sm text-[#1d2024] flex gap-2">
                     {/* <Image src={rateInfo?.icon} width={20} alt="" />
                     {request?.customer_review} */}
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-full">
-                      <div className="flex items-center">
-                        <svg className="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.805A9.969 9.969 0 0112 16c2.386 0 4.574.835 6.293 2.24A8.953 8.953 0 0021 12c0-4.974-4.026-9-9-9S3 7.026 3 12a8.953 8.953 0 002.828 6.805z"></path>
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <div className="ml-4">
-                          <h2 className="text-lg font-semibold">{request?.employee_id?.name}</h2>
-                          <div className="flex gap-2"> <Image src={rateInfo?.icon} width={20} alt="" /> <span>-</span>  <span className="text-gray-500 text-[12px]">{rateInfo?.value}</span></div>
-                          <div className="flex items-center">
+                    {
+                      request?.customer_review && (<div className="bg-white p-6 rounded-lg shadow-lg w-full">
+                        <div className="flex items-center">
+                          <svg className="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 18.805A9.969 9.969 0 0112 16c2.386 0 4.574.835 6.293 2.24A8.953 8.953 0 0021 12c0-4.974-4.026-9-9-9S3 7.026 3 12a8.953 8.953 0 002.828 6.805z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                          </svg>
+                          <div className="ml-4">
+                            <h2 className="text-lg font-semibold">{request?.employee_id?.name}</h2>
+                            <div className="flex gap-2"> <Image src={rateInfo?.icon} width={20} alt="" /> <span>-</span>  <span className="text-gray-500 text-[12px]">{rateInfo?.value}</span></div>
+                            <div className="flex items-center">
 
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <p className="mt-4 text-gray-600">
-                        {request?.customer_review}
-                      </p>
-                      <p className="flex justify-end text-gray-500 text-[12px]">{request?.date_request}</p>
-                    </div>
+                        <p className="mt-4 text-gray-600">
+                          {request?.customer_review}
+                        </p>
+                        <p className="flex justify-end text-gray-500 text-[12px]">{request?.date_request}</p>
+                      </div>)
+                    }
                   </div>
                 )}
               </div>
