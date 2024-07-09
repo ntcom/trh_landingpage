@@ -144,9 +144,9 @@ export default function Sidebar() {
           </Link>
           <div>
             <p className="text-sm text-[#fff] font-bold">{userData?.name}</p>
-            <p className="text-sm text-[#fff] texts-[#1f1f1f99] font-mediums">
+            {/* <p className="text-sm text-[#fff] texts-[#1f1f1f99] font-mediums">
               Free Account
-            </p>
+            </p> */}
           </div>
         </div>
         {/* <Link href={"/login"} className="shrink-0 flex">

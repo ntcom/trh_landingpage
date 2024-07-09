@@ -11,13 +11,15 @@ import minusClose from "@/assets/svgs/Portal/minus-border.svg";
 import GroupFuncKeys from "@/app/components/Portal/GroupFuncKeys/GroupFuncKeys";
 import orderService from "@/app/services/orderService.service";
 import Dashboard from "@/app/components/Dashboard/Dashboard";
+import { useRouter } from "next/navigation";
 
 export default function DeliveryService() {
-  const [openFilter, setOpenFilter] = useState(false);
   const [filterSelect, setFilterSelect] = useState("all");
   const [soft, setSoft] = useState("new");
   const [orderData, setOrderData] = useState([]);
   const [dropdowm, setDropdown] = useState(null);
+
+  const router = useRouter();
 
   // const TOKEN = 'access_token_ba0e8c81183207cccd0d63c59e3afdb4292a109d'
   // const postData = {}
@@ -38,7 +40,7 @@ export default function DeliveryService() {
   const getOrderList = async () => {
     const { result } = await orderService.getData({});
     setOrderData(result.sale_order_ids);
-    console.log("========>", result.sale_order_ids);
+    // console.log("========>", result.sale_order_ids);
   };
 
   useEffect(() => {
@@ -55,10 +57,14 @@ export default function DeliveryService() {
       return (
         <div key={lineKey}>
           <ul
-            onClick={() =>
-              dropdowm === line.name
-                ? setDropdown(null)
-                : setDropdown(line.name)
+            onClick={() =>{
+              // dropdowm === line.name
+              // ? setDropdown(null)
+              // : setDropdown(line.name)
+              line.state === "transport"
+                    ? router.push(`transport/${line.name}`)
+                    : router.push(`/delivery-service/${line.name}`)
+            }
             }
             className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
           >
