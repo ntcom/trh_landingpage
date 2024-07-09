@@ -9,6 +9,7 @@ import EvaluateModal, {
 import { usePathname } from "next/navigation";
 import helpdeskService from "@/app/services/helpdesk.service";
 import cardAva from "@/assets/imgs/Portal/card-ava.png";
+import { cn } from "@/lib/utils";
 
 const questionsList = [
   {
@@ -181,7 +182,10 @@ export default function Process() {
                 </ul>
                 <button
                   onClick={() => setOpenModal(true)}
-                  className="mt-16 btn-common btn-send !text-[15px]"
+                  disabled={request?.customer_review}
+                  className={cn("mt-16 btn-common btn-send !text-[15px]", {
+                    "app-bg-disabled": request?.customer_review
+                  })}
                 >
                   Đánh giá
                 </button>

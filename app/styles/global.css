@@ -287,3 +287,11 @@ body {
 .bg-select-multi {
   background-color: #f1f5f9;
 }
+
+.app-bg-disabled{
+  background: #ccc;
+  cursor: ;
+}
+.app-bg-disabled:hover{
+  background: #ccc;
+}
