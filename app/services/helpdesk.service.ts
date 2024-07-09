@@ -24,7 +24,7 @@ class HelpdeskService extends BaseService {
     return this.post({}, endpoint.getSupportReport);
   }
   search(content:string) {
-    return this.post({params:content}, endpoint.search);
+    return this.post({params:{content}}, endpoint.search);
   }
   getDetail(body:any) {
     return this.post({params:body}, endpoint.detail);
@@ -36,10 +36,10 @@ class HelpdeskService extends BaseService {
     return this.post({}, endpoint.getListHelpdesk);
   }
   getChildById(id:string) {
-    return this.post({params:id}, endpoint.getChildById);
+    return this.post({params:{id}}, endpoint.getChildById);
   }
   getDetailByChildId(id:string) {
-    return this.post({params:id}, endpoint.getDetailByChildId);
+    return this.post({params:{id}}, endpoint.getDetailByChildId);
   }
 }
 

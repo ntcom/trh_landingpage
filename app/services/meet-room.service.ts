@@ -7,6 +7,7 @@ const endPoint = {
   getRoom: "/get_room",
   getOption: "/get_data",
   listRoom: "/list_room",
+  search: "/search_approval",
   create: "/create",
 };
 
@@ -24,6 +25,9 @@ class MeetRoomService extends BaseService {
   }
   getOption() {
     return this.post({}, endPoint.getOption);
+  }
+  search(content:string) {
+    return this.post({params:{content}}, endPoint.search);
   }
   createRoom(body: any) {
     return this.post(body, endPoint.create);

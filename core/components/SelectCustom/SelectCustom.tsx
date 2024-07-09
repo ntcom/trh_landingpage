@@ -86,6 +86,9 @@ const SelectCustoms = forwardRef(function SelectCustoms(
               </data>
             );
           })}
+          {
+            !props.options || props.options.length === 0 && <data className="block w-full p-[10px_30px] transition-all text-sm text-[#1d2024] font-medium tracking-[1.2px]">Trống</data>
+          }
         </div>
       </div>
       {props.error && <p className="form-error">{props.error}</p>}
