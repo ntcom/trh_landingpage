@@ -26,6 +26,10 @@ export const yupMeet = yup.object().shape({
     .array()
     .min(1, "Vui lòng chọn Người phê duyệt")
     .required("Vui lòng chọn Người phê duyệt"),
+  meet_file: yup
+    .array()
+    .min(1, "Vui lòng chọn File đính kèm")
+    .required("Vui lòng chọn File đính kèm"),
 });
 
 export const yupOrder = yup.object().shape({
@@ -33,7 +37,11 @@ export const yupOrder = yup.object().shape({
 });
 
 export const yupSuportReport = yup.object().shape({
-  name: yup.string().required("Vui lòng nhập tên dịch vụ").default(""),
+  name: yup.string().required("Vui lòng nhập Tên dịch vụ").default(""),
+  description: yup
+    .string()
+    .required("Vui lòng nhập Mô tả nội dung yêu cầu")
+    .default(""),
   // channel_source: yup.string().required("Vui lòng chọn Kênh").default(""),
   type_service_id: yup.number().required("Vui lòng chọn Loại dịch vụ"),
   service_child_id: yup.number().required("Vui lòng chọn Dịch vụ con"),
@@ -43,6 +51,10 @@ export const yupSuportReport = yup.object().shape({
     .required("Vui lòng chọn Bộ phận tiếp nhận"),
   team_id: yup.number().required("Vui lòng chọn Đội ngũ hỗ trợ "),
   user_id: yup.number().required("Vui lòng chọn Người xử lý"),
+  support_file: yup
+    .array()
+    .min(1, "Vui lòng chọn File đính kèm")
+    .required("Vui lòng chọn File đính kèm"),
 });
 
 export const yupEmpty = yup.object().shape({});
