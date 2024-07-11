@@ -58,12 +58,12 @@ export default function DeliveryService() {
         <div key={lineKey}>
           <ul
             onClick={() =>{
-              // dropdowm === line.name
-              // ? setDropdown(null)
-              // : setDropdown(line.name)
-              line.state === "transport"
-                    ? router.push(`transport/${line.name}`)
-                    : router.push(`/delivery-service/${line.name}`)
+              dropdowm === line.name
+              ? setDropdown(null)
+              : setDropdown(line.name)
+              // line.state === "transport"
+              //       ? router.push(`transport/${line.name}`)
+              //       : router.push(`/delivery-service/${line.name}`)
             }
             }
             className="relative w-[1105px] xl:w-auto flex items-center py-[17.5px] bg-[#fff] rounded-[10px] hover:shadow-[1px_17px_44px_0px_rgba(3,2,41,0.07)] hover:z-10 cursor-pointer transition-all mb-[10px] pr-5"
