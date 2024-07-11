@@ -1,19 +1,19 @@
 import Image from "next/image";
-import model from "@/assets/imgs/Intro/model2.png";
+import model from "@/assets/imgs/Intro/model3-1.jpg";
 import signature from "@/assets/imgs/Intro/signature.png";
 
 export default function Intro() {
   return (
-    <div className="container2 flex items-center flex-col lg:flex-row p-[60px_15px] lg:p-[30px_15px]">
+    <div className="container2 flex items-center flex-col lg:flex-row p-[60px_15px] lg:p-[50px_15px]">
       <div className="lg:max-w-[50%] px-[15px] flex-grow">
         <Image src={model} alt="" className="w-full object-cover" />
       </div>
       <div className="lg:max-w-[50%] px-[15px] mt-[50px] lg:mt-0 flex-grow">
         <p className="font-dancing text-4xl sm:text-[52px] text-[#4c4c4c] font-bold leading-10 tracking-[1.2px] text-center md:text-left">
-          Trần Nhiệm
+        Nguyễn Thị Bích Thuỷ
         </p>
-        <p className="font-dancing text-[28px] sm:text-[32px] text-[#4c4c4c] font-medium leading-10 tracking-[0.72px] text-center md:text-left mt-2">
-          IT Manager
+        <p className="font-dancing text-[28px] sm:text-[32px] text-[#4c4c4c] font-medium leading-10 tracking-[0.72px] text-center md:text-left mt-5">
+        CEO Trang Huy logistics
         </p>
         {/* <p className="text-lg sm:text-[20px] text-[#4c4c4c] font-medium leading-[30px] italic mt-[45px] text-center md:text-left">
           To get started with SkyMax, please go over all of our plans to let our
