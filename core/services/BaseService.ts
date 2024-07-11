@@ -156,6 +156,58 @@ abstract class BaseService {
     }
     return this.post(data, "", config);
   }
+ public setHeader(headers:any = {}) {
+    this.request.interceptors.request.use(
+      async (requestConfig) => {
+        requestConfig.headers["Content-Type"] = headers;
+        console.log('requestConfig:', requestConfig)
+        return requestConfig;
+      },
+      (requestError) => {
+        // console.log(requestError)
+        return Promise.reject(requestError);
+      }
+    );
+  }
+  convertObjectToFormData(obj: Record<string, any>): FormData {
+    const formData = new FormData();
+  
+    function appendToFormData(data: Record<string, any>, root: string = ''): void {
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const value = data[key];
+          const formKey = root ? `${root}[${key}]` : key;
+  
+          if (value instanceof File) {
+            formData.append(formKey, value);
+          } else if (Array.isArray(value)) {
+            value.forEach(element => {
+              const arrayKey = `${formKey}[]`;
+              if (element instanceof File) {
+                formData.append(arrayKey, element);
+              } else {
+                appendToFormData(element, arrayKey);
+              }
+            });
+          } else if (typeof value === 'object' && value !== null) {
+            appendToFormData(value, formKey);
+          } else {
+            formData.append(formKey, value);
+          }
+        }
+      }
+    }
+  
+    appendToFormData(obj);
+    return formData;
+  }
+  // parseFormData(data: any) {
+  //   const formData = new FormData();
+  //   Object.entries(data).forEach(([key, value]) => {
+  //     formData.append(key, value);
+  //   });
+  //   return formData;
+  // }
 }
 
 export default BaseService;

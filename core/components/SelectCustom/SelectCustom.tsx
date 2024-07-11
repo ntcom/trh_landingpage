@@ -30,7 +30,6 @@ const SelectCustoms = forwardRef(function SelectCustoms(
   };
 
   useEffect(() => {
-    console.log('value:', value)
     if (!value) {
       setLocalTitle('')
     }

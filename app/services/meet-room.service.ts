@@ -30,6 +30,10 @@ class MeetRoomService extends BaseService {
     return this.post({params:{content}}, endPoint.search);
   }
   createRoom(body: any) {
+    this.setHeader({
+      'Content-Type':  'multipart/form-data'
+
+    })
     return this.post(body, endPoint.create);
   }
 }
