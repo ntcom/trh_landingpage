@@ -52,7 +52,6 @@ export default function EvaluateModal({
         rate: evaluate,
         evaluate: value,
       });
-      console.log("result:", result);
       if (result) {
         toast({
           title: "Thành công",

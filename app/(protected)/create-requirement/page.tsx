@@ -49,13 +49,6 @@ const options = [
 ];
 const locations = [{ title: "Phòng họp tầng 4", value: "Phòng họp tầng 4" }];
 
-const frameworksList = [
-  { value: "react", label: "React" },
-  { value: "angular", label: "Angular" },
-  { value: "vue", label: "Vue" },
-  { value: "svelte", label: "Svelte" },
-  { value: "ember", label: "Ember" },
-];
 function CreateRequirement() {
   const [pickOption, setPickOption] = useState<
     "MEET" | "ORDER_STATIONERY" | "SUPPORT_REPORT" | "EMPTY"
@@ -110,7 +103,7 @@ function CreateRequirement() {
   const [isLoading, setLoading] = useState(false);
   const category_id = useRef("");
   const onSubmit = async (value: any) => {
-    console.log("🚀 ~ value:", value);
+
     try {
       setLoading(true);
       const {
@@ -123,6 +116,7 @@ function CreateRequirement() {
         request_more_ids,
         approver_ids,
         // category_id,
+        meet_file,
         ...restRequest
       } = value;
       // Case tạo dịch vụ
@@ -158,19 +152,25 @@ function CreateRequirement() {
           "YYYY-MM-DD HH:mm:ss"
         );
         const date_end_computed = dayjs(date_end).format("YYYY-MM-DD HH:mm:ss");
-        const { result } = await meetRoomService.createRoom({
-          params: {
-            name: content,
-            location,
-            employee_id,
-            category_id: category_id.current,
-            approver_ids,
-            participants_ids,
-            request_more_ids,
-            date_start: date_start_computed,
-            date_end: date_end_computed,
-          },
+        const object = {
+          name: content,
+          location,
+          employee_id,
+          category_id: category_id.current,
+          approver_ids,
+          participants_ids,
+          request_more_ids,
+          date_start: date_start_computed,
+          date_end: date_end_computed,
+          meet_file,
+        }
+        const formDataMeetRoom = meetRoomService.convertObjectToFormData(object)
+        console.log('formDataMeetRoom:', formDataMeetRoom)
+
+        formDataMeetRoom.forEach((value, key) => {
+          console.log(key + ': ' + value);
         });
+        const { result } = await meetRoomService.createRoom(formDataMeetRoom);
         if (result?.requestID) {
           toast({
             title: "Thành công",
@@ -221,13 +221,13 @@ function CreateRequirement() {
           result.category.find((item: any) => item.type === "meeting_room")
             ?.id || "";
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const getData = async () => {
     try {
       const { result } = await helpdeskService.getHelpDesk();
       setHelpdeskOption(result);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getRoom = async (startDate?: string) => {
@@ -452,133 +452,133 @@ function CreateRequirement() {
                 />
               </div>
             ) : //  : pickOption === "ORDER_STATIONERY" ? (
-            //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
-            //     <InputCustom
-            //       type={"text"}
-            //       placeholder={"Tên sản phẩm"}
-            //       setInputValue={setTheme}
-            //       icon={tagName}
-            //     />
-            //     <InputCustom
-            //       type={"number"}
-            //       placeholder={"Số lượng"}
-            //       setInputValue={setTheme}
-            //       icon={quantity2}
-            //     />
-            //     <SelectCustom
-            //       options={processingDepartment.typeOfService}
-            //       setIValue={setTheme}
-            //       icon={receivingDepartment}
-            //       placeholder="Bộ phận tiếp nhận"
-            //     />
-            //     <SelectCustom
-            //       options={processingDepartment.typeOfService}
-            //       setIValue={setTheme}
-            //       icon={suporter}
-            //       placeholder="Người xử lý"
-            //     />
-            //     <InputCustom
-            //       type={"file"}
-            //       placeholder={"Đính kèm tài liệu, văn bản"}
-            //       setInputValue={setTheme}
-            //       icon={attach}
-            //     />
-            //   </div>
-            // )
-            pickOption === "SUPPORT_REPORT" ? (
-              <div className="flex flex-col gap-5 m-[30px_0_30px]">
-                <ControllerInput
-                  control={control}
-                  name="name"
-                  placeholder="Tên dịch vụ"
-                  icon={time}
-                />
-                <div className="relative flex">
+              //   <div className="flex flex-col gap-5 m-[30px_0_30px]">
+              //     <InputCustom
+              //       type={"text"}
+              //       placeholder={"Tên sản phẩm"}
+              //       setInputValue={setTheme}
+              //       icon={tagName}
+              //     />
+              //     <InputCustom
+              //       type={"number"}
+              //       placeholder={"Số lượng"}
+              //       setInputValue={setTheme}
+              //       icon={quantity2}
+              //     />
+              //     <SelectCustom
+              //       options={processingDepartment.typeOfService}
+              //       setIValue={setTheme}
+              //       icon={receivingDepartment}
+              //       placeholder="Bộ phận tiếp nhận"
+              //     />
+              //     <SelectCustom
+              //       options={processingDepartment.typeOfService}
+              //       setIValue={setTheme}
+              //       icon={suporter}
+              //       placeholder="Người xử lý"
+              //     />
+              //     <InputCustom
+              //       type={"file"}
+              //       placeholder={"Đính kèm tài liệu, văn bản"}
+              //       setInputValue={setTheme}
+              //       icon={attach}
+              //     />
+              //   </div>
+              // )
+              pickOption === "SUPPORT_REPORT" ? (
+                <div className="flex flex-col gap-5 m-[30px_0_30px]">
                   <ControllerInput
                     control={control}
-                    name="description"
-                    className="w-full"
-                    placeholder="Mô tả nội dung yêu cầu"
-                    icon={note}
+                    name="name"
+                    placeholder="Tên dịch vụ"
+                    icon={time}
                   />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.type_service_ids}
+                  <div className="relative flex">
+                    <ControllerInput
+                      control={control}
+                      name="description"
+                      className="w-full"
+                      placeholder="Mô tả nội dung yêu cầu"
+                      icon={note}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.type_service_ids}
+                      control={control}
+                      name="type_service_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      icon={typeService}
+                      placeholder="Loại dịch vụ"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={serviceChildOption}
+                      control={control}
+                      pathLabel="name"
+                      pathValue="id"
+                      name="service_child_id"
+                      icon={childService}
+                      placeholder="Dịch vụ con"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={serviceDetailOption}
+                      name="service_detail_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      control={control}
+                      icon={detailService}
+                      placeholder="Dịch vụ chi tiết"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.hr_department_ids}
+                      icon={receivingDepartment}
+                      control={control}
+                      name="receiving_department_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      placeholder="Bộ phận tiếp nhận"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.helpdesk_team_ids}
+                      icon={suportTeam}
+                      name="team_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      control={control}
+                      placeholder="Đội ngũ hỗ trợ"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <ControllerSelect
+                      options={helpdeskOption.user_ids}
+                      icon={suporter}
+                      control={control}
+                      name="user_id"
+                      pathLabel="name"
+                      pathValue="id"
+                      placeholder="Người xử lý"
+                    />
+                  </div>
+                  <ControllerFile
+                    multiple
+                    placeholder={"Đính kèm tài liệu, văn bản"}
+                    icon={attach}
                     control={control}
-                    name="type_service_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    icon={typeService}
-                    placeholder="Loại dịch vụ"
+                    name="support_file"
                   />
                 </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={serviceChildOption}
-                    control={control}
-                    pathLabel="name"
-                    pathValue="id"
-                    name="service_child_id"
-                    icon={childService}
-                    placeholder="Dịch vụ con"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={serviceDetailOption}
-                    name="service_detail_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    control={control}
-                    icon={detailService}
-                    placeholder="Dịch vụ chi tiết"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.hr_department_ids}
-                    icon={receivingDepartment}
-                    control={control}
-                    name="receiving_department_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    placeholder="Bộ phận tiếp nhận"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.helpdesk_team_ids}
-                    icon={suportTeam}
-                    name="team_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    control={control}
-                    placeholder="Đội ngũ hỗ trợ"
-                  />
-                </div>
-                <div className="w-full">
-                  <ControllerSelect
-                    options={helpdeskOption.user_ids}
-                    icon={suporter}
-                    control={control}
-                    name="user_id"
-                    pathLabel="name"
-                    pathValue="id"
-                    placeholder="Người xử lý"
-                  />
-                </div>
-                <ControllerFile
-                  multiple
-                  placeholder={"Đính kèm tài liệu, văn bản"}
-                  icon={attach}
-                  control={control}
-                  name="support_file"
-                />
-              </div>
-            ) : (
-              <div className="h-[100px]"></div>
-            )}
+              ) : (
+                <div className="h-[100px]"></div>
+              )}
 
             <div
               id="button-requirement"
