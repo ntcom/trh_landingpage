@@ -28,8 +28,8 @@ export const yupMeet = yup.object().shape({
     .required("Vui lòng chọn Người phê duyệt"),
   meet_file: yup
     .array()
-    .min(1, "Vui lòng chọn File đính kèm")
-    .required("Vui lòng chọn File đính kèm"),
+    // .min(1, "Vui lòng chọn File đính kèm")
+    // .required("Vui lòng chọn File đính kèm"),
 });
 
 export const yupOrder = yup.object().shape({
@@ -53,8 +53,8 @@ export const yupSuportReport = yup.object().shape({
   user_id: yup.number().required("Vui lòng chọn Người xử lý"),
   support_file: yup
     .array()
-    .min(1, "Vui lòng chọn File đính kèm")
-    .required("Vui lòng chọn File đính kèm"),
+    // .min(1, "Vui lòng chọn File đính kèm")
+    // .required("Vui lòng chọn File đính kèm"),
 });
 
 export const yupEmpty = yup.object().shape({});
