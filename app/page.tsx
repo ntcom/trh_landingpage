@@ -19,7 +19,7 @@ export default function Home() {
       <Timeline />
       <Careers />
       <Television />
-      <Teams />
+      {/* <Teams /> */}
       <FormQuestion />
       <Blogs />
       <Questions />
