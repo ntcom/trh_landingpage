@@ -11,7 +11,7 @@ import navigation from "@/assets/svgs/navigation.svg";
 import navigationGreen from "@/assets/svgs/navigation-green.svg";
 import chevron from "@/assets/svgs/chevron-white2.svg";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
-import logo from "@/assets/imgs/logo.png";
+import logo from "@/assets/imgs/logo/logo.png";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -157,7 +157,7 @@ export default function Header() {
                     </div>
                     <Link
                       href={
-                        "https://main--gentle-gingersnap-c7b4c3.netlify.app/"
+                        "https://main--alaric-survey.netlify.app/"
                       }
                       target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
@@ -170,7 +170,7 @@ export default function Header() {
                     </Link>
                     <Link
                       href={
-                        "https://deploy-preview-1--sage-paprenjak-b8e71d.netlify.app/"
+                        "https://main--alaric-quiz.netlify.app/"
                       }
                       target="_blank"
                       className={`py-[15px] cursor-pointer text-[15px] ${
